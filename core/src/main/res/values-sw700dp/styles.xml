@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <style name="ContentItems.Detail.Gallery">
+        <item name="android:verticalSpacing">0dp</item>
+        <item name="android:horizontalSpacing">@dimen/image_spacing</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+    </style>
+
+    <style name="ContentItems.Detail.Gallery.Header" parent="ContentItems.Detail.Gallery">
+        <item name="layoutManager">GridLayoutManager</item>
+        <item name="spanCount">2</item>
+        <item name="android:layout_above">@+id/content_item_header_titlebar</item>
+    </style>
+
+    <style name="ContentItems.Detail.Gallery.Secondary" parent="ContentItems.Detail.Gallery">
+        <item name="layoutManager">LinearLayoutManager</item>
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+        <item name="android:layout_height">@dimen/secondary_gallery_height</item>
+    </style>
+
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorAccent">@color/login_button_color</item>
+        <item name="colorControlNormal">@color/login_text_color</item>
+        <item name="colorControlActivated">@color/login_button_color</item>
+        <item name="colorControlHighlight">@color/login_button_color</item>
+    </style>
+
+    <style name="MediaPart.Cell">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/media_grid_width</item>
+    </style>
+
+    <style name="RecordTheme" parent="AppTheme">
+        <item name="isFloatingWindow">true</item>
+        <item name="mainNavigationMode">None</item>
+    </style>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <!-- It must be an integer taken from ActivityInfo.ScreenOrientation -->
+    <integer name="activity_orientation">4</integer>
+
+    <integer name="around_me_location_update_interval_seconds">300</integer>
+
+    <integer name="close_snackbar_duration">2500</integer>
+
+    <integer name="geocoder_autocompletion_threshold">3</integer>
+
+    <integer name="push_max_text_length">120</integer>
+</resources>

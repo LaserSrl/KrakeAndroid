@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_show_map"
+        android:icon="@drawable/ic_map_24dp"
+        android:title="@string/map"
+        android:visible="false"
+        app:showAsAction="always"></item>
+
+    <item
+        android:id="@+id/action_show_list"
+        android:icon="@drawable/ic_list_24dp"
+        android:title="@string/list"
+        android:visible="true"
+        app:showAsAction="always"></item>
+</menu>

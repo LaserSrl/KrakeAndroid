@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <bool name="is_tablet">false</bool>
+
+    <!-- Data model -->
+    <string name="app_model_base_package" translatable="false" />
+    <string name="app_package" translatable="false">none</string>
+
+    <!-- Krake server configs -->
+    <string name="orchard_base_service_url" translatable="false" />
+    <string name="orchard_language">it-IT</string>
+    <string name="google_api_key" translatable="false" />
+    <string name="header_key" translatable="false" />
+    <string name="orchard_api_key" translatable="false" />
+
+    <!-- Cache -->
+    <integer name="orchard_default_page_size">25</integer>
+    <integer name="default_cache_validity">21600</integer>
+    <integer name="kml_cache_validity">172800</integer>
+    <integer name="around_me_default_radius">1500</integer>
+    <integer name="around_me_max_radius">10000</integer>
+    <integer name="around_me_minimum_radius">500</integer>
+
+
+    <bool name="enable_analytics">false</bool>
+    <bool name="enable_social_sharing_on_details">true</bool>
+    <bool name="show_location_poi_directions">true</bool>
+
+    <string name="orchard_gcm_production" translatable="false">true</string>
+
+    <!-- Login -->
+    <string name="login_button_manager_orchard" translatable="false">com.krake.core.login.orchard.OrchardLoginManager</string>
+    <bool name="enable_orchard_registration">true</bool>
+    <bool name="enable_orchard_password_recovery">true</bool>
+    <string-array name="enabled_login_managers">
+        <item>@string/login_button_manager_orchard</item>
+    </string-array>
+    <bool name="orchard_registration_enable_telephone_number">false</bool>
+    <string name="default_sim_country_code">IT</string>
+    <string name="mail_regex_validation" translatable="false">^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\\-+)|([A-Za-z0-9]+\\.+)|([A-Za-z0-9]+\\++))*[A-Za-z0-9]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6}$</string>
+
+    <!-- App rate -->
+    <bool name="app_rate_enable">true</bool>
+    <integer name="app_rate_number_of_days">2</integer>
+    <integer name="app_rate_number_of_launch">3</integer>
+
+    <!-- Map options-->
+    <string name="mapType" translatable="false">3</string>
+    <string name="miniMapType" translatable="false">3</string>
+    <string name="tile_server_url" translatable="false">http://a.tile.thunderforest.com/cycle/%1$d/%2$d/%3$d.png</string>
+    <bool name="open_google_map_navigation_force_google_map_only">true</bool>
+    <string name="open_google_map_navigation_uri_format" translatable="false">google.navigation:q=%1$s,%2$s</string>
+    <string name="place_search_default_json" translatable="false">{"mVersionCode":1,"northeast":{"latitude":45.91772126,"longitude":6.79573059,"mVersionCode":1},"southwest":{"latitude":36.85325222,"longitude":18.36364746,"mVersionCode":1}}</string>
+
+    <string name="content_item_detail_text_alignement_css" translatable="false">justify</string>
+
+    <!-- Media -->
+    <dimen name="orchard_image_default_height">300dp</dimen>
+    <dimen name="orchard_image_default_width">400dp</dimen>
+    <integer name="video_max_duration">10</integer>
+
+    <!-- Krake relative path -->
+    <string name="orchard_api_path_content_modify" translatable="false">API/Laser.Orchard.ContentExtension/ContentItem</string>
+    <string name="orchard_api_privacy" translatable="false">API/laser.orchard.policy/PoliciesApi</string>
+    <string name="orchard_api_recover_password_by_mail" translatable="false">laser.orchard.usersextensions/akuseractions/RequestLostPasswordAccountOrEmailSsl</string>
+    <string name="orchard_api_recover_password_by_phone" translatable="false">laser.orchard.usersextensions/akuseractions/RequestLostPasswordSmsSsl</string>
+    <string name="orchard_api_taxonomies_push" translatable="false">API/Laser.Orchard.Mobile/TaxonomiePush/</string>
+    <string name="orchard_custom_login_authenticate_path" translatable="false">laser.orchard.usersextensions/akuseractions/SignInSsl</string>
+    <string name="orchard_custom_login_registration_path" translatable="false">laser.orchard.usersextensions/akuseractions/RegisterSsl</string>
+    <string name="orchard_api_user_reaction" translatable="false">Api/Laser.Orchard.UserReactions/ReactionApi</string>
+    <string name="orchard_data_service_path" translatable="false">Laser.orchard.WebServices/Json/GetByAlias</string>
+    <string name="orchard_signal_command" translatable="false">api/Laser.Orchard.WebServices/SignalApi</string>
+    <string name="orchard_upload_media_path" translatable="false">Laser.Orchard.ContentExtension/UploadFile/PostFile</string>
+    <string name="orchard_push_api" translatable="false">API/Laser.Orchard.Mobile/Device</string>
+    <string name="orchard_login_url_path" translatable="false">AKExternal/TokenLogOn</string>
+    <string name="orchard_medias_path" translatable="false">MediaExtensions/ImageUrl</string>
+    <string name="user_tag_api_path" translatable="false">Api/Tracking/PostId</string>
+
+    <!-- Data display alias-->
+    <string name="orchard_user_info_display_path" translatable="false">user+info</string>
+    <string name="orchard_all_policies_path" translatable="false">all_policies</string>
+    <string name="orchard_policies_service" translatable="false">policies/list</string>
+
+    <!-- Content Types -->
+    <string name="orchard_new_content_type_parameter" translatable="false">ContentType</string>
+
+    <!-- Krake parameters -->
+    <string name="login_user_mail" translatable="false">email</string>
+    <string name="attachement_parameter" translatable="false">Attachment</string>
+    <string name="orchard_api_token_enabled" translatable="false">tokenEnabled</string>
+    <string name="orchard_api_identifier_for_user_reaction" translatable="false">pageId</string>
+    <string name="orchard_api_reaction_identifier" translatable="false">typeId</string>
+    <string name="orchard_user_content_type" translatable="false">User</string>
+    <string name="orchard_login_provider_key" translatable="false">__provider__</string>
+    <string name="orchard_login_redirect_path" translatable="false">External/LogOn</string>
+    <string name="orchard_login_secret_parameter" translatable="false">secret</string>
+    <string name="orchard_login_token_key" translatable="false">Token</string>
+    <string name="orchard_mobile_platform" translatable="false">Android</string>
+    <string name="orchard_query_game_rand" translatable="false">rand</string>
+    <string name="orchard_query_term_ids" translatable="false">termids</string>
+    <string name="policy_all_key" translatable="false">All</string>
+    <string name="policy_register_key" translatable="false">ForRegistration</string>
+    <string name="policy_text_class_name" translatable="false">PolicyText</string>
+    <string name="policy_type_parameter" translatable="false">type</string>
+    <string name="orchard_signal_name_parameter" translatable="false">Name</string>
+
+    <string name="version_subtitle"/>
+
+    <string-array name="ntp_servers">
+        <item>ntp2.inrim.it</item>
+        <item>ntp1.inrim.it</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,124 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mediasPreviewGallery"
+        style="@style/NewContent.MediaGallery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.krake.core.widget.DividerView
+        style="@style/DividerView"
+        app:divRecyclerView="@id/mediasPreviewGallery" />
+
+    <ImageView
+        android:id="@+id/placeholder_view"
+        style="@style/NewContent.PlaceholderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/clickable_filter_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/cc_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="@string/behavior_bottom_sheet_not_under_action">
+
+        <com.krake.contentcreation.widget.SemiCircleView
+            android:id="@+id/toggle_bottom_view"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/media_actions_container"
+            android:layout_centerHorizontal="true"
+            app:linesColor="@color/semi_circle_view_lines_color"
+            app:semiCircleColor="@color/semi_circle_view_color" />
+
+        <LinearLayout
+            android:id="@+id/media_actions_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@color/cc_bottom_container_color"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/cc_bottom_container_top_line_color" />
+
+            <TextView
+                android:id="@+id/create_container_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:text="@string/create_media_label" />
+
+            <com.krake.contentcreation.widget.ResizableLinearLayout
+                android:id="@+id/create_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cc_button_size"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp" />
+
+            <View
+                android:id="@+id/containers_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/cc_bottom_container_divider_color" />
+
+            <TextView
+                android:id="@+id/pick_container_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:text="@string/pick_media_label" />
+
+            <com.krake.contentcreation.widget.ResizableLinearLayout
+                android:id="@+id/pick_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cc_button_size"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/photo_error_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        tools:text="Testo di errore" />
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,94 @@
+{
+  "InfoPage" : [
+    "bodyPartFormat",
+    "mapPart",
+    "galleryDisplayName",
+    "titlePartTitle",
+    "contentType",
+    "galleryMediaParts",
+    "bodyPartText",
+    "autoroutePartDisplayAlias"
+  ],
+  "EnumerationField" : [
+    "value"
+  ],
+  "TermPart" : [
+    "taxonomyId",
+    "count",
+    "fullPath",
+    "iconDisplayName",
+    "autoroutePartDisplayAlias",
+    "weight",
+    "path",
+    "selectable",
+    "container",
+    "iconMediaParts",
+    "name",
+    "univoco"
+  ],
+  "Taxonomy" : [
+    "taxonomyPartTermTypeName",
+    "taxonomyPartAutoroutePartDisplayAlias",
+    "taxonomyPartTerms",
+    "contentType",
+    "titlePartTitle",
+    "taxonomyPartIsInternal",
+    "autoroutePartDisplayAlias",
+    "taxonomyPartName"
+  ],
+  "YoutubeVideo" : [
+    "titlePartTitle",
+    "videoUrlDisplayName",
+    "contentType",
+    "videoUrlValue",
+    "autoroutePartDisplayAlias"
+  ],
+  "Percorso" : [
+    "localitaDisplayName",
+    "titlePartTitle",
+    "bodyPartFormat",
+    "progressivoValue",
+    "galleryMediaParts",
+    "apiediDisplayName",
+    "datitecniciValue",
+    "galleryDisplayName",
+    "apiediValue",
+    "mappaDisplayName",
+    "autoroutePartDisplayAlias",
+    "schemaTecnicoDisplayName",
+    "infuniviaValue",
+    "tipoPercorsoTerms",
+    "datitecniciDisplayName",
+    "contentType",
+    "inMTBDisplayName",
+    "magoutteValue",
+    "schemaTecnicoMediaParts",
+    "descrizionedelpercorsoDisplayName",
+    "mappaMediaParts",
+    "inMTBValue",
+    "videoCorrelatiContentItems",
+    "infuniviaDisplayName",
+    "altitudineValue",
+    "bodyPartText",
+    "localitaValue",
+    "descrizionedelpercorsoValue",
+    "inautoValue",
+    "magoutteDisplayName",
+    "inautoDisplayName"
+  ],
+  "MapPart" : [
+    "mapSourceFileDisplayName",
+    "location",
+    "mapSourceFileMediaParts"
+  ],
+  "MediaPart" : [
+    "mimeType",
+    "alternateText",
+    "fileName",
+    "title",
+    "folderPath",
+    "logicalType",
+    "mediaUrl",
+    "caption"
+  ]
+}

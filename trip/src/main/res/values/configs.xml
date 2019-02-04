@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="open_trip_planner_base_url">http://otp.laser-group.com:8080/otp/routers/default/</string>
+    <string name="bus_pattern_geometry_url_format" translatable="false">%sindex/patterns/%s/geometry</string>
+    <string name="plan_trip_command">plan</string>
+    <bool name="show_calendar_spinner">false</bool>
+
+    <integer name="show_step_zoom_level">16</integer>
+    <integer name="otp_bounds_cache_validity">604800</integer>
+
+    <string-array name="useless_street_names">
+        <item>road</item>
+        <item>path</item>
+        <item>sidewalk</item>
+        <item>platform</item>
+        <item>underpass</item>
+        <item>service road</item>
+        <item>bike path</item>
+        <item>ramp</item>
+        <item>steps</item>
+        <item>footbridge</item>
+        <item>parking aisle</item>
+    </string-array>
+
+    <integer name="distance_search_mininum_radius">50</integer>
+    <integer name="distance_search_maximum_radius">1000</integer>
+
+    <string name="orchard_path_bus_stops">otp/otpstops</string>
+    <string name="orchard_bus_line_display_alias">otp/otpstopspattern</string>
+    <integer name="bus_passage_minutes_interval">120</integer>
+    <string name="orchard_path_otp_stoptimes">otp/otp-stop-times</string>
+
+</resources>

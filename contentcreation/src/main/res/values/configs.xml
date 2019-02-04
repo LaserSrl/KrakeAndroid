@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="orchard_new_content_id_parameter">Id</string>
+    <string name="orchard_reports_display_alias">elenco-user-report</string>
+
+    <string name="orchard_user_reports_display_alias">elenco-my-userreport</string>
+
+    <string name="orchard_new_report_taxonomy_display_alias">categoria-report</string>
+    <string name="orchard_content_creation_status">Created</string>
+    <string name="orchard_citizen_user_reports_content_type">UserReport</string>
+
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <item name="activity_content_items_map_grid" type="layout">
+        @layout/activity_content_items_map_or_grid
+    </item>
+</resources>

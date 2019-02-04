@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="end_point_color">@android:color/holo_green_dark</color>
+    <color name="game_expired_color">#44FF0000</color>
+    <color name="game_valid_color">#4400FF00</color>
+    <color name="game_no_yet_enabled_color">#440000FF</color>
+    <color name="game_answer_button_color">#ffffff</color>
+    <color name="answred_correctly_color">@android:color/holo_green_light</color>
+    <color name="answred_incorrectly_color">@android:color/holo_red_dark</color>
+</resources>

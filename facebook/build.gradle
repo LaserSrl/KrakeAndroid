@@ -1,0 +1,6 @@
+new KrakeLibPlugin().apply(project)
+
+dependencies {
+    api project(':core')
+    api 'com.facebook.android:facebook-android-sdk:4.29.0'
+}

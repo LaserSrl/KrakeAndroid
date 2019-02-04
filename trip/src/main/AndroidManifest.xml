@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.krake.trip">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application tools:ignore="ManifestResource">
+        <activity
+            android:name="com.krake.bus.app.BusSearchActivity"
+            android:label="@string/public_transport"
+            android:screenOrientation="@integer/activity_orientation"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name="com.krake.bus.app.BusStopsListActivity"
+            android:screenOrientation="@integer/activity_orientation" />
+        <activity
+            android:name="com.krake.trip.TripPlannerSearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="@integer/activity_orientation"
+            android:theme="@style/TripPlannerTheme"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="com.krake.trip.plan_trip" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

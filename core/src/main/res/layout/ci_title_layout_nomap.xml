@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.krake.core.widget.TitleAndTermView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_item_header_titlebar"
+    style="@style/ContentItems.Detail.TitleBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom"
+    android:clickable="true"
+    app:layout_collapseMode="none"
+    tools:showIn="@layout/partial_collapsing_appbar">
+
+    <com.krake.core.media.widget.LoadableImageView
+        android:id="@+id/termPartIconImageView"
+        style="@style/ContentItems.Detail.TermPartIcon"
+        android:layout_width="@dimen/contentItemDetailTermIconSize"
+        android:layout_height="@dimen/contentItemDetailTermIconSize"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        android:layout_toEndOf="@+id/termPartIconImageView"
+        android:orientation="vertical"
+        tools:ignore="UnknownIdInLayout">
+
+        <TextView
+            android:id="@+id/content_item_details_non_header_title"
+            style="@style/ContentItems.Detail.Title" />
+
+        <TextView
+            android:id="@+id/content_item_details_non_header_subtitle"
+            style="@style/ContentItems.Detail.SubTitle" />
+    </LinearLayout>
+
+</com.krake.core.widget.TitleAndTermView>

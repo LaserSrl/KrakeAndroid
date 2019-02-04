@@ -1,0 +1,8 @@
+<resources>
+    <string name="event_begin">From</string>
+    <string name="event_end">To</string>
+    <string name="save_the_date">Save in calendar</string>
+    <string name="error_inserting_event_in_calendar">It has not been possible to insert the event on
+        the calendar.
+    </string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.krake.contentcreation">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application>
+        <activity
+            android:name=".ContentCreationActivity"
+            android:label="@string/title_activity_content_creation"
+            android:screenOrientation="@integer/activity_orientation"
+            android:theme="@style/ContentCreationTheme"
+            tools:ignore="ManifestResource" />
+    </application>
+</manifest>

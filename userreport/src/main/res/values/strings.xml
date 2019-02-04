@@ -1,0 +1,8 @@
+<resources>
+    <string name="title_activity_reports">@string/reports</string>
+    <string name="reports">Reports</string>
+    <string name="myreports">My Reports</string>
+    <string name="status_waiting">Waiting</string>
+    <string name="status_rejected">Rejected</string>
+    <string name="status_accepted">Accepted</string>
+</resources>

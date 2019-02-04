@@ -1,0 +1,17 @@
+<resources>
+    <string name="game_enable_number_message">Do you want to enable the numbers?</string>
+    <string name="game_number_of_moves_format">%d moves</string>
+    <string name="game_resume">Resume Game</string>
+    <string name="game_show_help_confirmation">Want to see the full picture?</string>
+    <string name="game_show_number_confirmation">Want to see the number of cards?</string>
+
+    <string name="error_loading_of_game_failed">It was not possible to load the image to play
+    </string>
+    <string name="game_won">Congratulations</string>
+    <string name="game_lost">What a pity! \n\n Better luck next time!</string>
+    <string name="play">Play</string>
+    <string name="play_to_gain_points" />
+    <string name="pause">Pause</string>
+    <string name="show_number">Show numbers</string>
+    <string name="show_complete_image">View full image</string>
+</resources>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apk_version_url" translatable="false">https://test.laser-group.com/apkversion.json</string>
+</resources>

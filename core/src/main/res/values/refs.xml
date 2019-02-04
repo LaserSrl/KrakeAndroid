@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <item name="activity_content_items_map_grid" type="layout">
+        @layout/activity_content_items_map_grid_sliding_up
+    </item>
+    <item name="activity_record_grid_details" type="layout">
+        @layout/activity_content_items_map_grid_sliding_up
+    </item>
+
+    <item name="audio_placeholder" type="drawable">@drawable/ic_play_circle_outline_black_120dp
+    </item>
+
+    <item name="autocomplete_default_text" type="string">@string/app_name</item>
+
+    <item name="content_item_grid_no_elements_message" type="string">
+        @string/content_item_grid_no_elements_available
+    </item>
+
+    <item name="fab_icon" type="drawable">@drawable/ic_share_24dp</item>
+
+    <item name="fragment_content_items_selection" type="layout">
+        @layout/fragment_content_items_selection_list
+    </item>
+
+    <item name="full_screen_image_placeholder" type="drawable">
+        @android:color/black
+    </item>
+
+    <item name="ic_call" type="drawable">@drawable/ic_call_24dp</item>
+    <item name="ic_email" type="drawable">@drawable/ic_email_24dp</item>
+    <item name="ic_facebook" type="drawable">@drawable/ic_facebook_24dp</item>
+    <item name="ic_instagram" type="drawable">@drawable/ic_instagram_24dp</item>
+    <item name="ic_pinterest" type="drawable">@drawable/ic_pinterest_24dp</item>
+    <item name="ic_public" type="drawable">@drawable/ic_public_24dp</item>
+    <item name="ic_push_icon" type="drawable">@drawable/ic_share_white_old</item>
+    <item name="ic_twitter" type="drawable">@drawable/ic_twitter_24dp</item>
+
+    <item name="login_background_image" type="drawable">@null</item>
+    <item name="login_image_logo" type="drawable">@null</item>
+    <item name="login_show_logo" type="bool">false</item>
+
+    <item name="media_upload_cancel_icon" type="drawable">@drawable/ic_cancel_notification_old
+    </item>
+    <item name="media_upload_logo" type="drawable">@drawable/ic_cloud_upload_white_old</item>
+
+    <item name="menu_content_item_detail" type="menu">
+        @menu/menu_content_item_detail_share_intent
+    </item>
+
+    <item name="new_content_creation_icon" type="drawable">
+        @drawable/ic_cloud_upload_white_old
+    </item>
+
+    <item name="partial_term_icon_name" type="string">termicon_</item>
+
+    <item name="photo_placeholder" type="drawable">@drawable/ic_camera_alt_black_150dp</item>
+
+    <item name="tab_all_icon" type="drawable">@drawable/ic_category_all</item>
+
+    <item name="termPartFilterColor" type="color">@android:color/white</item>
+
+    <item name="video_placeholder" type="drawable">@drawable/ic_play_circle_outline_black_120dp
+    </item>
+
+    <item name="user_image_placeholder" type="drawable">@drawable/ic_person</item>
+    <item name="ic_logout" type="drawable">@drawable/ic_exit_to_app</item>
+    <item name="notification_channel_name" type="string">@string/default_notification_channel_name</item>
+</resources>

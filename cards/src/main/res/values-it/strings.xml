@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="cards">Cartoline</string>
+    <string name="send_card">Invia cartolina</string>
+    <string name="sender_mail_required">Devi indicare la tua mail</string>
+    <string name="receiver_mail_required">Devi indicare la mail del destinatario</string>
+    <string name="missing_message_error">Non ha indicato il messaggio della cartolina</string>
+    <string name="title_activity_cards">Cartoline</string>
+    <string name="welcome">Benvenuto</string>
+    <string name="cards_welcome_message_text"></string>
+    <string name="card_send_correctly">Cartolina inviata correttamente</string>
+
+    <string name="sender_name">La tua mail</string>
+    <string name="receiver_name">La mail del destinatario</string>
+    <string name="card_message">Messaggio</string>
+
+</resources>

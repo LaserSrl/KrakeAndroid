@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.krake.core.widget.MediaGalleryView
+        android:id="@+id/content_item_details_non_header_gallery"
+        style="@style/ContentItems.Detail.Gallery.Secondary"
+        android:visibility="gone" />
+
+    <com.krake.core.widget.DividerView
+        android:id="@+id/content_item_details_gallery_divider"
+        style="@style/DividerView.SecondaryGallery" />
+</merge>

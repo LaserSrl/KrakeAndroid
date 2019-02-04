@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Card.EditTextContainer">
+        <item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="Card.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Card">
+        <item name="android:inAnimation">@android:anim/fade_in</item>
+        <item name="android:outAnimation">@android:anim/fade_out</item>
+    </style>
+
+
+    <style name="Card.ContactListView" />
+
+    <style name="CardNameTextView" />
+
+    <style name="CardImageView">
+
+    </style>
+
+    <dimen name="card_preview_height">150dp</dimen>
+
+</resources>

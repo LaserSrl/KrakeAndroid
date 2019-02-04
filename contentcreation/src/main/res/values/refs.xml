@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="reports_selection_layout" type="layout">
+        @layout/fragment_content_items_selection_list
+    </item>
+</resources>

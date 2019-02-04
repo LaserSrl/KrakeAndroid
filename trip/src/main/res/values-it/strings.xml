@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_trip_planner">Pianifica viaggio</string>
+    <string name="departure">Da</string>
+    <string name="arrival">A</string>
+
+    <string name="plan_trip">Cerca</string>
+    <string name="trip_planning_failed">La pianificazione del viaggio è fallita</string>
+    <string name="trip_duration">Durata</string>
+    <string name="total_walk">Percorso a piedi</string>
+    <string name="transfers">Cambi</string>
+    <string name="title_activity_itinerary">Itinerario</string>
+    <string name="user_location">La mia posizione</string>
+    <string name="hours">ore</string>
+    <string name="minutes">min.</string>
+    <string name="map">Mappa</string>
+    <string name="list">Lista</string>
+    <string name="error_missing_from_to_location">Non hai indicato la partenza o l\'arrivo</string>
+    <string name="error_missing_user_location">Non è stata ancora determinata la tua posizione</string>
+    <string name="impossible_to_plan_trip">Non puoi pianificare il viaggio</string>
+    <string name="direction_description_circle">Alla rotonda prendi la %s uscita</string>
+    <string name="direction_description_right">Svolta a destra</string>
+    <string name="direction_description_left">Svolta a sinistra</string>
+    <string name="direction_description_continue">Continua</string>
+    <string name="direction_description_depart">Parti</string>
+    <string name="direction_description_slightly_left">Gira lievemente a sinistra</string>
+    <string name="direction_description_slightly_right">Gira lievemente a destra</string>
+
+    <string name="travel_mode_car">Guida fino a </string>
+    <string name="travle_mode_transit">Mezzi pubblici</string>
+    <string name="travel_mode_walk">Cammina fino a </string>
+    <string name="travel_mode_bike">Vai in bici fino a </string>
+    <string name="travel_mode_tram">In tram</string>
+    <string name="travel_mode_bus">Bus</string>
+    <string name="trip_mode_subway">Metro</string>
+    <string name="now">Adesso</string>
+    <string name="cancel">Annulla</string>
+    <string name="address">Indirizzo</string>
+
+    <string name="error_trip_plan_no_times">La data selezionata non è corretta: potresti aver
+        inserito una data già trascorsa o una data non ancora disponibile per l\’itinerario scelto;
+        oppure potrebbero non essere disponibili i servizi di trasporto per il periodo selezionato.
+    </string>
+    <string name="none">Nessuno</string>
+
+    <string name="leg_group_direction_word">verso</string>
+    <string name="step_direction_word">in direzione</string>
+    <string name="direction_description_uturn">Fai inversione a U</string>
+    <string name="error_trip_plan_outside_dataBounds">Non è stato possibile calcolare il tragitto richiesto in quanto sei fuori dall\'area prevista.</string>
+    <string name="error_problem_trip_planning">Non è stato possibile pianificare il tuo viaggio. Per favore riprova tra poco.</string>
+    <string name="meters">mt</string>
+
+    <string name="public_transport">Trasporto Pubblico</string>
+    <string name="bus_line_destination_format">Linea %1$s - %2$s</string>
+    <string name="bus_time_minutes_format">%d min.</string>
+    <string name="error_loading_stop_times">Non è stato possibile caricare gli orari della fermata</string>
+    <string name="search_bus_stops_near">Cerca fermate vicino a</string>
+    <string name="fastest_route">percorso più veloce</string>
+    <string name="travel_mode_car_name">Guida</string>
+    <string name="travle_mode_transit_name">Trasporto pubblico</string>
+    <string name="travel_mode_walk_name">A piedi</string>
+    <string name="date_start">Partenza</string>
+    <string name="date_arrival">Arrivo entro</string>
+</resources>

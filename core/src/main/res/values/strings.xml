@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="accept_privacy_condition">Accept the conditions</string>
+
+    <string name="action_next">Next</string>
+    <string name="action_save">Save</string>
+    <string name="action_send">Send</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="address">Address</string>
+
+    <string name="air_distance">as the crow flies</string>
+
+    <string name="app_name">Commons</string>
+
+    <string name="authentication_failed">Access failed</string>
+
+    <string name="call">Call</string>
+    <string name="call_number">Do you want to call the number %s?</string>
+
+    <string name="cancel_privacy">Close</string>
+
+    <string name="com_facebook_loginview_log_in_button_long">Log in with Facebook</string>
+
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="content_item_grid_no_elements_available">There is nothing available right now</string>
+
+    <string name="data_loading_failed">The loading of data failed. Please try again later</string>
+
+    <string name="downloading_data">Downloading new data…</string>
+
+    <string name="error_accept_all_required_privacies">You must accept the terms and conditions in order to proceed.</string>
+    <string name="error_authentication_expired">You need to login again</string>
+    <string name="error_authentication_required_for_push">You have to identify and authenticate
+        yourself to enter push
+    </string>
+    <string name="error_enable_location_to_search_around_me">Enable location access to display the points around you</string>
+    <string name="error_enable_push_necessary">You have to activate the notification to manage the
+        categories of the push.
+    </string>
+    <string name="error_generic_failure">Something went wrong. Please try again.</string>
+    <string name="error_gps_blocked">Impossibile to activate you GPS. Please check your settings.</string>
+    <string name="error_insert_password">Enter your password</string>
+    <string name="error_insert_your_mail">Enter your mail</string>
+    <string name="error_invalid_mail">Invalid email address</string>
+    <string name="error_invalid_phone_number">The number is not valid</string>
+    <string name="error_location_permission_refused">Location permission permanently refused. Check your settings.</string>
+    <string name="error_location_permission_required_to_select_your_position">You need to allow the App to access location if you want to send \"your location\"</string>
+    <string name="error_location_required_to_show_route">You need to enable location to show the route to reach the selected point</string>
+    <string name="error_password_not_match">Passowrds do not match</string>
+    <string name="error_play_store_not_available">Play Store is not available.</string>
+    <string name="error_privacy_acceptance_failed">The acceptance of terms and conditions failed.
+        Please retry.
+    </string>
+    <string name="error_upload_cancelled_manually">The upload was cancelled</string>
+    <string name="error_uploading_file">Error uploading file</string>
+
+    <string name="faceboook">Facebook</string>
+
+    <string name="from">From</string>
+
+    <string name="hours">h</string>
+
+    <string name="instagram">Instagram</string>
+
+    <string name="list">List</string>
+
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="login_or_social">OR</string>
+    <string name="login_reason_message">You need to authenticate to continue</string>
+    <string name="login_registration">Login/Registration</string>
+
+    <string name="mail">Mail</string>
+    <string name="mail_or_phone">Mail or Telephone</string>
+
+    <string name="map">Map</string>
+
+    <string name="minutes">m</string>
+
+    <string name="navigate_to_point">Reach us</string>
+
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+
+    <string name="open_content">Learn more</string>
+    <string name="open_in_app_content">Are you sure you open this content in the App?</string>
+    <string name="open_url">Open URL</string>
+    <string name="open_website">Do you want to open the web site \'%s\'?</string>
+
+    <string name="osm_copyrights"><![CDATA[<div style=\"text-align:right;\">&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap contributors</a></div>]]></string>
+
+    <string name="password">Password</string>
+    <string name="password_reset_sent_mail">You have received a mail to change your password.</string>
+    <string name="password_reset_sent_sms">You have received an sms to change your password.</string>
+
+    <string name="pinterest">Pinterest</string>
+
+    <string name="privacy">Privacy</string>
+    <string name="privacy_accept">I accept these above terms.</string>
+    <string name="privacy_required_to_show_content">You must accept the terms and conditions in order to proceed.</string>
+    <string name="privacy_updated">Privacy updated</string>
+
+    <string name="push_categories_updated">Category of correctly updated notifications</string>
+    <string name="push_disable_message">Are you sure you want to disable push notifications?</string>
+    <string name="push_enable_message">Do you want to enable push notifications?</string>
+    <string name="push_notifications">Push notifications</string>
+    <string name="push_taxonomies_welcome_message"/>
+
+    <string name="recover_by_mail">Mail</string>
+    <string name="recover_insert_mail">Insert your mail</string>
+    <string name="recover_insert_phone">Insert your phone number</string>
+    <string name="recover_password">Forgotten password?</string>
+    <string name="recover_password_label">Recover password</string>
+
+    <string name="register">Register</string>
+
+    <string name="registration">Registration</string>
+
+    <string name="required">Required</string>
+
+    <string name="search_hint">Search…</string>
+    <string name="search_voice_error_snack">You can\'t use vocal search on your device</string>
+    <string name="search_voice_title">Speak now</string>
+
+    <string name="send_mail">Do you want to send a mail?</string>
+    <string name="send_mail_with_address">Send a mail to %s?</string>
+    <string name="send_privacy">Next</string>
+
+    <string name="share">Share</string>
+    <string name="share_bottomsheet_title">Share with…</string>
+
+    <string name="sms">SMS</string>
+
+    <string name="tab_all_title">All</string>
+
+    <string name="tag_no_switcher">0</string>
+    <string name="tag_use_switcher">1</string>
+
+    <string name="telephone_number">Telephone Number</string>
+
+    <string name="title_activity_audio_record">Record an audio</string>
+    <string name="title_activity_media_part_fullscreen">Photo</string>
+    <string name="title_activity_push_categories">Favorites</string>
+    <string name="title_activity_youtube_video">Video</string>
+    <string name="title_contentitem_detail">Details</string>
+    <string name="title_contentitem_list">Items</string>
+
+    <string name="to">to</string>
+
+    <string name="twitter">Twitter</string>
+
+    <string name="updating">Updating…</string>
+
+    <string name="uploading_medias">Uploading medias</string>
+    <string name="uploading_new_content">Uploading new content</string>
+
+    <string name="user_location">Your location</string>
+
+    <string name="username">E-Mail/Username</string>
+
+    <string name="video_not_available">Video can\'t be loaded</string>
+
+    <string name="website">Web</string>
+    <string name="usernamePlaceholder">Anonymous</string>
+    <string name="ok">Ok</string>
+
+    <string name="default_notification_channel_name">Default</string>
+    <string name="loading_data">Loading data...</string>
+    <string name="database_name">Db.en</string>
+</resources>

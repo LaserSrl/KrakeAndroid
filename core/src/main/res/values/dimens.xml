@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <integer name="animation_duration">800</integer>
+
+    <dimen name="attachment_max_photo_size">1000px</dimen>
+
+    <dimen name="bottom_sheet_default_sheet_width">0dp</dimen>
+
+    <dimen name="contentItemDetailTermIconSize">44dp</dimen>
+
+    <dimen name="content_details_floating_height">750dp</dimen>
+    <dimen name="content_details_floating_width">600dp</dimen>
+    <dimen name="content_details_internal_padding">8dp</dimen>
+    <dimen name="content_item_cell_height">150dp</dimen>
+    <dimen name="content_item_cell_width">220dp</dimen>
+    <dimen name="content_item_details_header_with_image_height">200dp</dimen>
+    <dimen name="content_item_details_to_list_padding">16dp</dimen>
+    <dimen name="content_item_grid_horizontal_padding">4dp</dimen>
+    <dimen name="content_item_grid_vertical_padding">4dp</dimen>
+    <dimen name="content_item_header_image_height">256dp</dimen>
+    <integer name="content_item_list_weight">1</integer>
+    <integer name="content_item_map_weight">1</integer>
+    <dimen name="content_item_medias_height">200dp</dimen>
+    <dimen name="content_item_small_map_height">150dp</dimen>
+    <dimen name="content_item_title_padding">2dp</dimen>
+    <dimen name="content_padding_initial_height">800dp</dimen>
+
+    <integer name="default_zoom">12</integer>
+
+    <dimen name="detail_media_cell_width">200dp</dimen>
+
+    <dimen name="expanded_map_view_height">400dp</dimen>
+
+    <dimen name="fab_content_padding">25dp</dimen>
+    <dimen name="fab_elevation">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="headerbar_elevation">4dp</dimen>
+
+    <dimen name="image_spacing">8dp</dimen>
+
+    <dimen name="instagram_image_size">640px</dimen>
+
+    <dimen name="kml_width_scale">1dp</dimen>
+
+    <integer name="layout_nuber_of_grid_span">2</integer>
+
+    <dimen name="list_map_small_height">70dp</dimen>
+    <dimen name="list_map_small_width">100dp</dimen>
+    <dimen name="list_panel_width">180dp</dimen>
+
+    <dimen name="login_logo_image_height">100dp</dimen>
+
+    <dimen name="map_padding">10dp</dimen>
+    <dimen name="map_toolbar_width">40dp</dimen>
+
+    <dimen name="media_default_size">220dp</dimen>
+    <dimen name="media_grid_height">250dp</dimen>
+    <dimen name="media_grid_width">360dp</dimen>
+
+    <dimen name="pin_height">72dp</dimen>
+    <dimen name="pin_label_inner_padding">6dp</dimen>
+    <dimen name="pin_label_max_size">96dp</dimen>
+    <dimen name="pin_width">48dp</dimen>
+
+    <dimen name="privacy_spacing">20dp</dimen>
+    <dimen name="privacy_web_height">80dp</dimen>
+
+    <dimen name="search_view_close_btn_inset_start">4dp</dimen>
+    <dimen name="search_view_default_corner_radius">0dp</dimen>
+
+    <dimen name="secondary_gallery_height">200dp</dimen>
+
+    <dimen name="slidingUpMinHeight">200dp</dimen>
+
+    <dimen name="social_item_size">40dp</dimen>
+
+    <dimen name="social_item_size_without_name">56dp</dimen>
+
+    <dimen name="swipe_size">40dp</dimen>
+
+    <dimen name="tab_indicator_height">2dp</dimen>
+
+    <dimen name="termPartSelectionImageSize">40dp</dimen>
+
+    <dimen name="ticket_image_height">90dp</dimen>
+
+    <dimen name="title_navigation_bar_height">60dp</dimen>
+
+    <dimen name="video_width">250px</dimen>
+
+    <dimen name="visualizerViewHeight">200dp</dimen>
+
+    <dimen name="visualizer_line_width">2dp</dimen>
+    <dimen name="user_menu_image_size">120dp</dimen>
+</resources>

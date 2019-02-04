@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="game_max_time_seconds">0</integer>
+    <integer name="game_enable_skip_after_seconds">120</integer>
+    <bool name="game_enable_show_tile_numbers">true</bool>
+    <integer name="game_number_of_showcomplete_image_help">999</integer>
+    <integer name="game_help_duration_second">2</integer>
+    <integer name="game_number_of_tiles">3</integer>
+</resources>

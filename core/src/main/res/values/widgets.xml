@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="behavior_avoid_bottom_sheet_and_action" translatable="false">com.krake.core.widget.AvoidBottomSheetAndActionBarBehavior</string>
+    <string name="behavior_bottom_sheet_not_under_action" translatable="false">com.krake.core.widget.BottomSheetNotUnderActionBehavior</string>
+    <string name="behavior_lock_app_bar" translatable="false">com.krake.core.widget.LockAppbarLayoutBehavior</string>
+    <string name="behavior_not_under_action_bar" translatable="false">com.krake.core.widget.NotUnderActionBehavior</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.krake.youtube">
+
+    <application>
+        <activity
+            android:name=".YoutubeVideoActivity"
+            android:label="@string/title_activity_youtube_video"
+            android:screenOrientation="@integer/activity_orientation"
+            tools:ignore="ManifestResource" />
+    </application>
+</manifest>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pdf_activity_bg_color">#333</color>
+    <color name="pdf_actions_color">@android:color/white</color>
+    <color name="pdf_bottom_bar_color">#f56</color>
+</resources>

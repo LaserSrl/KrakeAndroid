@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/content_item_header_image_height"
+    android:theme="@style/AppBarStyle"
+    app:expanded="false"
+    app:layout_behavior="com.krake.core.widget.LockAppbarLayoutBehavior">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/collapsing_toolbar_layout"
+        style="@style/AppCollapsingToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:expanded="false"
+        app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/ci_details_header_gallery" />
+
+            <include layout="@layout/ci_title_layout_nomap" />
+        </RelativeLayout>
+
+        <com.krake.core.widget.TouchControllableToolbar
+            android:id="@+id/toolbar_actionbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ActionBarThemeOverlay"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/Theme.AppCompat.Light"
+            app:subtitleTextAppearance="@style/SubtitleTextAppearance"
+            app:titleTextAppearance="@style/ActionBar.TitleText" />
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+</android.support.design.widget.AppBarLayout>

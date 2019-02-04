@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_open_pdf">View PDF</string>
+
+    <string name="dialog_download_pdf">Download</string>
+    <string name="dialog_message_pdf">This file has a big size, you can download it or either open it without download</string>
+    <string name="dialog_open_pdf_live">Open</string>
+    <string name="dialog_title_pdf">View PDF</string>
+
+    <string name="pdf_download_error">Download failed</string>
+    <string name="pdf_download_file_label">Downloading</string>
+    <string name="pdf_next_page">Next</string>
+    <string name="pdf_open_file_label">Open file</string>
+    <string name="pdf_previous_page">Previous</string>
+
+    <string name="no_app_available">There isn\'t any app installed to open this file</string>
+    <string name="pdf_permission_denied">You must accept the permission to open pdf file</string>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/tripDirectionImageView"
+        style="@style/TripDirectionImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tripNameTextView"
+        style="@style/TripCell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Tempo"
+        app:layout_constraintBottom_toBottomOf="@+id/tripDirectionImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/tripDirectionImageView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tripDirectionImageView"
+        app:layout_constraintVertical_bias="0.515"
+        tools:layout_constraintLeft_creator="1" />
+
+    <TextView
+        android:id="@+id/tripDistanceTextView"
+        style="@style/TripCell.Distance"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="distanza"
+        app:layout_constraintBottom_toBottomOf="@+id/tripNameTextView"
+        app:layout_constraintLeft_toRightOf="@+id/tripNameTextView"
+        app:layout_constraintTop_toTopOf="@+id/tripNameTextView" />
+
+</android.support.constraint.ConstraintLayout>

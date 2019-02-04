@@ -1,0 +1,31 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/tripDateContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.krake.core.widget.TimePickerScrollCompatible
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginTop="8dp"
+            android:timePickerMode="spinner" />
+
+        <com.krake.core.widget.DatePickerScrollCompatible
+            android:id="@+id/datePicker"
+            style="@style/TripDatePicker"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:datePickerMode="spinner" />
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

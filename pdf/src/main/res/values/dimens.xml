@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pdf_bottom_bar_button_size">56dp</dimen>
+    <dimen name="pdf_bottom_bar_text_size">16sp</dimen>
+    <dimen name="pdf_bottom_bar_line_height">1.5dp</dimen>
+</resources>

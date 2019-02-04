@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PlayGame.Question">
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+    </style>
+
+    <style name="PlayGame.AnswerRow" parent="android:Widget">
+        <item name="elevation">1dp</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+        <item name="android:minHeight">@dimen/answer_button_min_height</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="PlayGame.AnswerRow.Number" parent="">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="PlayGame.AnswerRow.Text" parent="">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+</resources>

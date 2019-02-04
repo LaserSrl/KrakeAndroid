@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="autocomplete_default_text" type="string">@string/user_location</item>
+    <item name="transit_placeholder" type="drawable">@drawable/ic_directions_bus_36dp</item>
+    <item name="bus_line_pin" type="drawable">@drawable/ic_place_24dp</item>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ContentItems.Detail.Content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.krake.itineraries.ItineraryItemMapView
+        style="@style/ItineraryMapView.Preview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/content_item_small_map_height"
+        android:visibility="gone"
+        app:mapViewId="@+id/location_content_item_map_view_lite">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/location_content_item_map_view_lite"
+            style="@style/ContentMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            app:cameraZoom="@integer/default_zoom"
+            app:liteMode="true" />
+    </com.krake.itineraries.ItineraryItemMapView>
+
+    <include layout="@layout/ci_details_description_view" />
+</LinearLayout>

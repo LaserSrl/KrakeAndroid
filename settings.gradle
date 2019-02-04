@@ -1,0 +1,46 @@
+//include ':app'
+include ':autoupdate'
+include ':beacons'
+include ':cards'
+include ':core'
+include ':contentcreation'
+include ':events'
+include ':facebook'
+include ':firebaseauth'
+include ':gamequiz'
+include ':itineraries'
+include ':oauthweblogin'
+include ':pdf'
+include ':puzzlegame'
+include ':surveys'
+include ':trip'
+include ':twitterstream'
+include ':userreport'
+include ':youtubevideo'
+/*
+def pathFile = file("./app-path.properties")
+if (!pathFile.exists()) {
+    // Write the file with its content for the first time.
+    def writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(pathFile), "utf-8"))
+    writer.write("# Specify the relative path of the app module with the key PATH if you want to link it in the project.")
+    writer.newLine()
+    writer.write("# For example:")
+    writer.newLine()
+    writer.write("# PATH=../MyProject/app")
+    writer.close()
+}
+
+def props = new Properties()
+props.load(new FileInputStream(pathFile))
+
+final def pathKey = "PATH"
+if (props.containsKey(pathKey)) {
+    // Read the path from the properties.
+    def path = props[pathKey]
+    def file = file(path)
+    if (!file.exists() || !file.isDirectory())
+        throw new IllegalArgumentException("The path ${path} doesn't exist or is not a directory.")
+
+    // Link the app module with the specified file.
+    project(':app').projectDir = file
+}*/

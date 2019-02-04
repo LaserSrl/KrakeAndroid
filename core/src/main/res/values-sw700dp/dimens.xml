@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <dimen name="activity_horizontal_margin">32dp</dimen>
+
+    <dimen name="bottom_sheet_default_sheet_width">480dp</dimen>
+
+    <dimen name="content_item_cell_height">200dp</dimen>
+    <dimen name="content_item_header_image_height">356dp</dimen>
+    <integer name="content_item_list_weight">1</integer>
+    <integer name="content_item_map_weight">1</integer>
+
+    <dimen name="detail_media_cell_width">300dp</dimen>
+
+    <dimen name="secondary_gallery_height">260dp</dimen>
+
+    <dimen name="slidingUpMinHeight">400dp</dimen>
+</resources>

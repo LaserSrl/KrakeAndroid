@@ -1,0 +1,33 @@
+<resources>
+
+    <string name="games">Giochi</string>
+    <string name="days_duration">%d giorni</string>
+    <string name="hours_duration">%d ore</string>
+    <string name="minutes_duration">%d min.</string>
+    <string name="games_valid_status_format">Puoi giocare ancora per %s</string>
+    <string name="games_no_yet_enabled_status_format">Torna qui a giocare tra %s</string>
+    <string name="game_expired_status_format">Il gioco è terminato</string>
+    <string name="title_activity_play_game">Gioco</string>
+
+    <string name="error_game_not_available_yet">Il gioco non è ancora attivo</string>
+    <string name="error_game_closed">Il gioco è terminato, puoi vederne la classifica.</string>
+    <string name="action_open_play_leaderboard">Classifica</string>
+
+
+    <string name="partecipate">Partecipa</string>
+    <string name="signin_other_error">C\'è stato un problema accedendo al tuo account. Riprova in
+        seguito.
+    </string>
+    <string name="signin_failure">Login fallito.</string>
+    <string name="telephone">Telefono</string>
+    <string name="message_enter_numer_to_partecipate">Inserisci il tuo numero</string>
+    <string name="correct_answer">Risposta corretta</string>
+    <string name="wrong_answer">Risposta sbagliata</string>
+    <string name="correct_answer_title">Bravo!</string>
+    <string name="wrong_answer_title">Ops!</string>
+    <string name="begin_game">Inizia il gioco</string>
+    <string name="close">Chiudi</string>
+    <string name="ready_to_begin">Sei pronto per iniziare?</string>
+    <string name="no_yet_available">Il gioco sarà disponibile dal</string>
+
+</resources>

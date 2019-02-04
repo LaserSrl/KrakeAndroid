@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="survey_welcome" />
+    <string name="thanks_for_taking_survey">Thanks to have answered to the survey</string>
+    <string name="error_sending_survey">Your survey couldn\'t be sent</string>
+    <string name="error_no_questions_answered">You haven\'t answered to any question</string>
+    <string name="send">Send</string>
+    <string name="error_no_survey_to_answer">Congratulations you have answered all the
+        questions. Get back to us soon to contribute again.
+    </string>
+</resources>

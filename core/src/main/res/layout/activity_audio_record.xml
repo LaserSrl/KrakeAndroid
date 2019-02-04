@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.krake.core.media.AudioRecorderActivity">
+
+    <com.krake.core.media.RecordVisualizerView
+        android:id="@+id/visualizerView"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="fill_vertical"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/deleteRecordButton"
+            style="@style/RecordActivityButton"
+            app:srcCompat="@drawable/ic_delete_24dp" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/playButton"
+            style="@style/RecordActivityButton"
+            app:srcCompat="@drawable/ic_play_arrow_24dp" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/recordButton"
+            style="@style/RecordActivityButton"
+            app:srcCompat="@drawable/ic_mic_24dp" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/sendBackFileButton"
+            style="@style/RecordActivityButton"
+            app:srcCompat="@drawable/ic_check_circle_24dp" />
+    </LinearLayout>
+</FrameLayout>

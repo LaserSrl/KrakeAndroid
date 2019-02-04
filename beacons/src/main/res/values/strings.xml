@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_offerts_with_format">New offers in department %s!</string>
+    <string name="new_offerts">New offers for you!</string>
+    <string name="beacon_notification_channel_name_default">Beacons</string>
+</resources>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="accept_privacy_condition">Accept the conditions</string>
+
+    <string name="action_next">Avanti</string>
+    <string name="action_save">Invia</string>
+    <string name="action_send">Invia</string>
+    <string name="action_settings">Impostazioni</string>
+
+    <string name="address">Indirizzo</string>
+
+    <string name="air_distance">in linea d\'aria</string>
+
+    <string name="authentication_failed">Accesso fallito</string>
+
+    <string name="call">Chiama</string>
+    <string name="call_number">Vuoi chiamare il numero %s?</string>
+
+    <string name="cancel_privacy">Chiudi</string>
+
+    <string name="com_facebook_loginview_log_in_button_long">Accedi con Facebook</string>
+
+    <string name="confirm_password">Conferma password</string>
+
+    <string name="content_item_grid_no_elements_available">Non ci sono elementi inseriti</string>
+
+    <string name="data_loading_failed">Il caricamento dei dati è fallito. Per favore riprova più tardi</string>
+
+    <string name="downloading_data">Scarico dati…</string>
+
+    <string name="error_accept_all_required_privacies">Per procedere devi accettare l\'informativa</string>
+    <string name="error_authentication_expired">Devi autenticarti nuovamente.</string>
+    <string name="error_authentication_required_for_push">Per accedere alle push devi autenticarti
+    </string>
+    <string name="error_enable_location_to_search_around_me">Abilita l\'accesso alla tua posizione per cercare i punti vicino a te</string>
+    <string name="error_gps_blocked">Impossibile abilitare il GPS controlla le tue impostazioni</string>
+    <string name="error_insert_password">Inserisci la tua password</string>
+    <string name="error_insert_your_mail">Devi indicare la tua mail</string>
+    <string name="error_invalid_mail">Indirizzo mail non valido</string>
+    <string name="error_invalid_phone_number">Numero di telefono non valido</string>
+    <string name="error_location_permission_refused">Permesso di accesso alla tua posizione rifiutato in modo permanente. Controlla le tue preferenze.</string>
+    <string name="error_location_permission_required_to_select_your_position">Devi abilitare l\'accesso alla posizione se vuoi selezionare \"La tua posizione\"</string>
+    <string name="error_location_required_to_show_route">Devi avilitare l\'accesso alla tua posizione se vuoi vedere il percorso per raggiungere il punto</string>
+    <string name="error_password_not_match">Le password indicate non coincidono</string>
+    <string name="error_play_store_not_available">Il Play Store non è disponibile.</string>
+    <string name="error_privacy_acceptance_failed">L\'accettazione delle informative è fallita. Per
+        favore riprova.
+    </string>
+    <string name="error_upload_cancelled_manually">L\'upload è stato annullato</string>
+    <string name="error_uploading_file">Errore durante il caricamento del file</string>
+
+    <string name="faceboook">Facebook</string>
+
+    <string name="from">Da</string>
+
+    <string name="hours">h</string>
+
+    <string name="list">Lista</string>
+
+    <string name="login">Accedi</string>
+    <string name="login_or_social">OR</string>
+    <string name="login_reason_message">Devi autenticarti per continuare</string>
+    <string name="login_registration">Login/Registrazione</string>
+
+    <string name="mail">Mail</string>
+    <string name="mail_or_phone">Telefono o E-Mail</string>
+
+    <string name="map">Mappa</string>
+
+    <string name="minutes">min</string>
+
+    <string name="navigate_to_point">Raggiungici</string>
+
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+
+    <string name="open_content">Apertura di un nuovo contenuto</string>
+    <string name="open_in_app_content">Sei sicuro di aprire questo contenuto in App?</string>
+    <string name="open_url">Open URL</string>
+    <string name="open_website">Vuoi aprire il sito web \'%s\'?</string>
+
+    <string name="osm_copyrights"><![CDATA[&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap contributors</a>]]></string>
+
+    <string name="password">Password</string>
+    <string name="password_reset_sent_mail">Hai ricevuto una mail per modificare la password.</string>
+    <string name="password_reset_sent_sms">Hai ricevuto un sms per modificare la password.</string>
+
+    <string name="pinterest">Pinterest</string>
+
+    <string name="privacy">Privacy</string>
+    <string name="privacy_accept">Accetto i suddetti termini.</string>
+    <string name="privacy_required_to_show_content">Devi accettare le informative per vedere i contenuti</string>
+    <string name="privacy_updated">Privacy aggiornate</string>
+
+    <string name="push_categories_updated">Categorie delle notifiche aggiornate correttamente.
+    </string>
+    <string name="push_disable_message">Sei sicuro di voler disabilitare le notifiche push?</string>
+    <string name="push_enable_message">Vuoi abilitare le notifiche push?</string>
+    <string name="push_notifications">Notifiche push</string>
+    <string name="push_taxonomies_welcome_message"/>
+
+    <string name="recover_by_mail">Mail</string>
+    <string name="recover_insert_mail">Inserisci la tua mail</string>
+    <string name="recover_insert_phone">Inserisci il tuo numero di telefono</string>
+    <string name="recover_password">Password dimenticata?</string>
+    <string name="recover_password_label">Recupera password</string>
+
+    <string name="register">Registrati</string>
+
+    <string name="registration">Registrazione</string>
+
+    <string name="required">obbligatorio</string>
+
+    <string name="search_hint">Cerca…</string>
+    <string name="search_voice_error_snack">Non puoi utilizzare la ricerca vocale sul tuo dispositivo</string>
+    <string name="search_voice_title">Parla ora</string>
+
+    <string name="send_mail">Vuoi spedire una mail?</string>
+    <string name="send_mail_with_address">Vuoi spedire una mail a %s?</string>
+    <string name="send_privacy">Avanti</string>
+
+    <string name="share">Condividi</string>
+    <string name="share_bottomsheet_title">Condividi con…</string>
+
+    <string name="sms">SMS</string>
+
+    <string name="tab_all_title">Tutti</string>
+
+    <string name="telephone_number">Numero di telefono</string>
+
+    <string name="title_activity_audio_record">Registra un audio</string>
+    <string name="title_activity_media_part_fullscreen">Foto</string>
+    <string name="title_activity_push_categories">Preferenze</string>
+    <string name="title_activity_youtube_video">Video</string>
+    <string name="title_contentitem_detail">Dettagli</string>
+    <string name="title_contentitem_list">Items</string>
+
+    <string name="to">a</string>
+
+    <string name="twitter">Twitter</string>
+
+    <string name="updating">Aggiorno…</string>
+
+    <string name="uploading_medias">Caricamento foto e contenuti multimediali</string>
+    <string name="uploading_new_content">Invio del tuo nuovo contenuto…</string>
+
+    <string name="user_location">La mia posizione</string>
+
+    <string name="username">E-Mail/Username</string>
+
+    <string name="video_not_available">Il video non può essere visualizzato</string>
+
+    <string name="website">Web</string>
+    <string name="usernamePlaceholder">Anonimo</string>
+    <string name="ok">Ok</string>
+    <string name="loading_data">Caricamento in corso...</string>
+    <string name="database_name">Db.it</string>
+</resources>

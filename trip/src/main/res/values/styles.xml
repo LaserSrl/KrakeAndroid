@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TripDirectionImageView">
+        <item name="android:tint">@color/colorPrimary</item>
+    </style>
+
+    <style name="TripPlannerEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">?actionBarIconColor</item>
+        <item name="drawableTintCompat">?actionBarIconColor</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">textAutoComplete</item>
+        <item name="android:completionThreshold">1</item>
+    </style>
+
+    <style name="TripPlannerText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">?actionBarIconColor</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="drawableTintCompat">?actionBarIconColor</item>
+        <item name="android:minHeight">28dp</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="drawableStartCompat">@drawable/ic_calendar_24dp</item>
+    </style>
+
+    <style name="TripDatePicker">
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:showWeekNumber">false</item>
+        <item name="android:calendarViewShown">false</item>
+        <item name="android:spinnersShown">true</item>
+    </style>
+
+    <style name="TripPlannerTheme" parent="AppTheme" />
+
+    <style name="TripPlannerForm" />
+
+    <style name="StopTimesGridView">
+        <item name="layoutManager">LinearLayoutManager</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_height">@dimen/bus_stop_times_height</item>
+        <item name="android:verticalSpacing">2dp</item>
+        <item name="android:horizontalSpacing">2dp</item>
+    </style>
+
+    <style name="TripCellHeader.Distance">
+        <item name="android:textColor">@color/tripDistanceColor</item>
+    </style>
+
+    <style name="TripCell" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TripCell.TransitLine" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingStart">2dp</item>
+        <item name="android:paddingEnd">2dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:minWidth">20dp</item>
+    </style>
+
+    <style name="TripCell.Distance">
+        <item name="android:textColor">@color/tripDistanceColor</item>
+    </style>
+
+    <style name="TripCellHeader" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TripCellSubtitle.Distance" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/tripDistanceColor</item>
+    </style>
+
+    <style name="TripCell.TransitTime" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="TripDividerView">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:visibility">visible</item>
+        <item name="divLastItemVisible">false</item>
+    </style>
+
+</resources>

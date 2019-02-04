@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.krake.core.widget.content.AddressTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/locationAddressTextView"
+    style="@style/ContentItems.Detail.AddressView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:visibility="gone"
+    app:drawableEndCompat="@drawable/ic_directions_24dp"
+    app:drawableStartCompat="@drawable/ic_place_24dp" />

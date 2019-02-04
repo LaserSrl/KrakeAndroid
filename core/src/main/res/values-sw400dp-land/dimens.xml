@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <integer name="content_item_list_weight">3</integer>
+    <integer name="content_item_map_weight">2</integer>
+
+    <dimen name="slidingUpMinHeight">150dp</dimen>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.krake.core.widget.MediaGalleryView
+        android:id="@+id/content_item_details_header_gallery"
+        style="@style/ContentItems.Detail.Gallery.Header"
+        android:visibility="gone"
+        app:animated="false"
+        app:collapseAppbarLayout="true"
+        app:layout_collapseMode="parallax"
+        app:layout_collapseParallaxMultiplier="0.7" />
+
+    <com.krake.core.widget.DividerView
+        android:id="@+id/content_item_details_gallery_divider"
+        style="@style/DividerView.HeaderGallery" />
+</merge>

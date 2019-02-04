@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="login_button_manager_twitter">com.krake.twitter.login.TwitterButtonManager</string>
+
+    <string name="orchard_login_provider_twitter">twitter</string>
+
+    <integer name="tweet_cache_validity">1800</integer>
+
+    <string name="twitter_consume_key"/>
+    <string name="twitter_consume_secret"/>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="action_take_photo" type="id" />
+    <item name="action_take_video" type="id" />
+    <item name="action_take_audio" type="id" />
+    <item name="action_pick_photo_from_library" type="id" />
+    <item name="action_pick_video_from_library" type="id" />
+    <item name="action_pick_audio_from_library" type="id" />
+</resources>

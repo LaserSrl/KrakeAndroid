@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="welcome">Bienvenue</string>
+
+    <string name="cards_welcome_message_text"></string>
+    <string name="card_send_correctly">Carte postale envoyée</string>
+
+
+    <string name="sender_name">Votre e-mail</string>
+    <string name="receiver_name">pour e-mail</string>
+    <string name="card_message">Message</string>
+    <string name="cards">Cartes postales</string>
+    <string name="send_card">Envoyer la carte postale</string>
+    <string name="sender_mail_required">Vous devez indiquer votre e-mail</string>
+    <string name="receiver_mail_required">Vous devez indiquer votre adresse e-mail</string>
+    <string name="missing_message_error">Il n\'a pas indiqué le message de la carte postale</string>
+    <string name="title_activity_cards">Cartes Postales</string>
+</resources>

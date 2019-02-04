@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ContentItems.Detail.Content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/partial_social_root" />
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/Card.EditTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.krake.cards.CardsAutoCompleteTextView
+            android:id="@+id/senderEditText"
+            style="@style/Card.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="20"
+            android:hint="@string/sender_name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:paddingBottom="@dimen/content_details_internal_padding"
+            tools:text="dsiupfsaifuhasdbfoiudshfbaisdopfuhbadsvpifundsvpifuhdnsvpigun"
+            android:ellipsize="end"
+            android:saveEnabled="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/Card.EditTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.krake.cards.CardsAutoCompleteTextView
+            android:id="@+id/receiverEditText"
+            style="@style/Card.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="20"
+            android:hint="@string/receiver_name"
+            android:imeOptions="actionNext"
+            tools:text="dsiupfsaifuhasdbfoiudshfbaisdopfuhbadsvpifundsvpifuhdnsvpigun"
+            android:ellipsize="end"
+            android:inputType="textPersonName"
+            android:paddingBottom="@dimen/content_details_internal_padding"
+            android:saveEnabled="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/Card.EditTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/messageEditText"
+            style="@style/Card.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/card_message"
+            android:inputType="textMultiLine"
+            android:saveEnabled="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
+            android:text="@string/send_card" />
+
+        <!--<ProgressBar-->
+        <!--android:id="@android:id/progress"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:visibility="invisible" />-->
+
+    </FrameLayout>
+
+    <include layout="@layout/ci_details_description_view" />
+</LinearLayout>

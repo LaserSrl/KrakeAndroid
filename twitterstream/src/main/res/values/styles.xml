@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="PrivateResource">
+
+    <style name="ContentItems.SelectionLayout.List.Twitter">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="layoutManager">LinearLayoutManager</item>
+        <item name="android:verticalSpacing">@dimen/content_item_grid_vertical_padding</item>
+        <item name="android:horizontalSpacing">0dp</item>
+    </style>
+
+    <style name="TweetAvatarImageView">
+        <item name="android:layout_width">@dimen/tweet_avatar_size</item>
+        <item name="android:layout_height">@dimen/tweet_avatar_size</item>
+        <item name="android:layout_marginTop">@dimen/tweet_avatar_margin_top</item>
+        <item name="android:layout_marginLeft">@dimen/tweet_avatar_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/tweet_avatar_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/tweet_avatar_margin_right</item>
+        <item name="android:layout_marginEnd">@dimen/tweet_avatar_margin_right</item>
+        <item name="android:focusable">false</item>
+        <item name="mediaScaleType">centerCrop</item>
+        <item name="animated">false</item>
+    </style>
+
+    <style name="TweetAuthorFullName">
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginRight">@dimen/tweet_full_name_margin_right</item>
+        <item name="android:layout_marginEnd">@dimen/tweet_full_name_margin_right</item>
+        <item name="android:textSize">@dimen/tweet_full_name_text_size</item>
+        <item name="android:textColor">@color/tweet_primary_text_color</item>
+        <item name="android:drawablePadding">@dimen/tweet_full_name_drawable_padding</item>
+        <item name="android:focusable">false</item>
+        <item name="android:importantForAccessibility">no</item>
+    </style>
+
+    <style name="TweetAuthorScreenName">
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:focusable">false</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="TwitterLogo">
+        <item name="android:layout_marginRight">@dimen/tweet_text_margin_right</item>
+        <item name="android:layout_marginEnd">@dimen/tweet_text_margin_right</item>
+    </style>
+
+    <style name="TweetText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/tweet_text_margin_top</item>
+        <item name="android:layout_marginRight">@dimen/tweet_text_margin_right</item>
+        <item name="android:layout_marginEnd">@dimen/tweet_text_margin_right</item>
+        <item name="android:layout_marginBottom">@dimen/tweet_avatar_margin_top</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/tweet_text_text_size</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:textColor">@color/tweet_primary_text_color</item>
+        <item name="android:textColorLink">@color/tweet_action_color</item>
+        <item name="android:focusable">false</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="android:visibility">gone</item>
+    </style>
+</resources>

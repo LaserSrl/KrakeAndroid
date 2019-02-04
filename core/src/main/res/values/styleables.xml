@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <declare-styleable name="BaseTheme">
+        <attr format="color" name="actionBarIconColor"/>
+        <attr format="boolean" name="isFloatingWindow"/>
+        <attr format="boolean" name="includeToolbar"/>
+        <attr format="enum" name="mainNavigationMode">
+            <enum name="NavigationViewDrawer" value="1"/>
+            <enum name="None" value="2"/>
+        </attr>
+        <attr format="string" name="navigationViewListenerClass"/>
+        <attr format="reference" name="navigationViewHeader"/>
+        <attr format="reference" name="navigationViewMenu"/>
+        <attr format="boolean" name="navigationIntentClearParallelsTasks"/>
+        <attr format="string" name="listMapTransition"/>
+    </declare-styleable>
+
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr format="reference" name="metaButtonBarStyle"/>
+        <attr format="reference" name="metaButtonBarButtonStyle"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr format="dimension" name="civ_border_width"/>
+        <attr format="color" name="civ_border_color"/>
+        <attr format="boolean" name="civ_border_overlay"/>
+        <attr format="color" name="civ_fill_color"/>
+    </declare-styleable>
+
+    <declare-styleable name="ContentItemMapView">
+        <attr format="boolean" name="showUserDirection"/>
+        <attr format="boolean" name="showKml"/>
+        <attr name="showUserPosition" format="boolean" />
+        <attr format="reference" name="fullScreenMap"/>
+        <attr format="reference" name="fullScreenMapLayout"/>
+        <attr format="reference" name="mapViewId"/>
+    </declare-styleable>
+
+    <declare-styleable name="ContentItemTextView">
+        <attr format="string" name="methodName"/>
+    </declare-styleable>
+
+    <declare-styleable name="ContentItemWebView">
+        <attr format="string" name="contentMethod"/>
+        <attr format="color" name="linkColor"/>
+        <attr format="color" name="backgroundColor"/>
+        <attr format="color" name="htmlTextColor"/>
+        <attr format="string" name="cssAlignment"/>
+    </declare-styleable>
+
+    <declare-styleable name="DividerView">
+        <attr format="color" name="divColor"/>
+        <attr format="reference" name="divDrawable"/>
+        <attr format="dimension" name="divSize"/>
+        <attr format="dimension" name="divMarginSize"/>
+        <attr format="boolean" name="divLastItemVisible"/>
+        <attr format="reference" name="divRecyclerView"/>
+        <attr format="boolean" name="divAsSpace"/>
+    </declare-styleable>
+
+    <declare-styleable name="DrawableCompatView">
+        <attr name="drawableStartCompat" format="reference" />
+        <attr name="drawableEndCompat" format="reference" />
+        <attr name="drawableTopCompat" format="reference" />
+        <attr name="drawableBottomCompat" format="reference" />
+        <attr name="drawableTintCompat" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="FloatSearchView">
+        <attr format="reference" name="dependencyId"/>
+        <attr format="color" name="textColor"/>
+        <attr format="color" name="hintTextColor"/>
+        <attr format="color" name="iconsColor"/>
+        <attr format="color" name="shapeBackgroundColor"/>
+        <attr format="dimension" name="cornersRadius"/>
+    </declare-styleable>
+
+    <declare-styleable name="FullSpanFrame">
+        <attr format="boolean" name="full_span"/>
+    </declare-styleable>
+
+    <declare-styleable name="Loadable">
+        <attr format="dimension" name="optionsWidth"/>
+        <attr format="dimension" name="optionsHeight"/>
+        <attr format="enum" name="optionsMode">
+            <enum name="max" value="0"/>
+            <enum name="crop" value="1"/>
+            <enum name="stretch" value="2"/>
+            <enum name="pan" value="3"/>
+        </attr>
+        <attr format="enum" name="optionsAlignment">
+            <enum name="topleft" value="1"/>
+            <enum name="topcenter" value="2"/>
+            <enum name="topright" value="3"/>
+            <enum name="middleleft" value="4"/>
+            <enum name="middlecenter" value="0"/>
+            <enum name="middleright" value="5"/>
+            <enum name="bottomleft" value="6"/>
+            <enum name="bottomcenter" value="7"/>
+            <enum name="bottomright" value="8"/>
+        </attr>
+        <attr format="reference" name="placeholderPhotoSrc"/>
+        <attr format="reference" name="placeholderVideoSrc"/>
+        <attr format="reference" name="placeholderAudioSrc"/>
+        <attr format="enum" name="placeholderScaleType">
+            <enum name="matrix" value="0"/>
+            <enum name="fitXY" value="1"/>
+            <enum name="fitStart" value="2"/>
+            <enum name="fitCenter" value="3"/>
+            <enum name="fitEnd" value="4"/>
+            <enum name="center" value="5"/>
+            <enum name="centerCrop" value="6"/>
+            <enum name="centerInside" value="7"/>
+        </attr>
+        <attr format="enum" name="mediaScaleType">
+            <enum name="matrix" value="0"/>
+            <enum name="fitXY" value="1"/>
+            <enum name="fitStart" value="2"/>
+            <enum name="fitCenter" value="3"/>
+            <enum name="fitEnd" value="4"/>
+            <enum name="center" value="5"/>
+            <enum name="centerCrop" value="6"/>
+            <enum name="centerInside" value="7"/>
+        </attr>
+        <attr format="boolean" name="animated"/>
+        <attr format="boolean" name="showPlaceholder"/>
+    </declare-styleable>
+
+    <declare-styleable name="LockAppBar">
+        <attr format="boolean" name="autoClose"/>
+    </declare-styleable>
+
+    <declare-styleable name="MediaDetailGallery">
+        <attr format="reference" name="mediaCell"/>
+        <attr format="string" name="mediaKey"/>
+        <attr format="string" name="adapterClass"/>
+        <attr format="boolean" name="collapseAppbarLayout"/>
+    </declare-styleable>
+
+    <declare-styleable name="SocialToolbar">
+        <attr format="reference" name="socialRootLayout"/>
+        <attr format="reference" name="socialLayout"/>
+        <attr format="boolean" name="showNames"/>
+        <attr format="reference" name="tintColorList"/>
+    </declare-styleable>
+
+    <declare-styleable name="UserReactionView">
+        <attr format="reference" name="rootLayout"/>
+        <attr format="reference" name="elementLayout"/>
+        <attr format="reference" name="elementColorList"/>
+    </declare-styleable>
+
+    <declare-styleable name="content_item_grid">
+        <attr format="reference" name="content_layout"/>
+        <attr format="reference" name="grid_cell_layout"/>
+        <attr format="string" name="orchard_no_elements_message"/>
+        <attr format="string" name="content_item_adapter_class"/>
+        <attr format="string" name="view_holder_class"/>
+    </declare-styleable>
+
+    <declare-styleable name="fillRecycleView">
+        <attr format="integer" name="fillPercentage"/>
+    </declare-styleable>
+
+    <declare-styleable name="orchard_data_fragment">
+        <attr format="string" name="orchard_display_path"/>
+        <attr format="string" name="orchard_data_class"/>
+        <attr format="integer" name="orchard_page_size"/>
+        <attr format="integer" name="deep_level"/>
+        <attr format="string" name="item_attributes_filter"/>
+    </declare-styleable>
+
+    <declare-styleable name="UserNavigationMenuView">
+        <attr name="hide_logout_button" format="boolean" />
+    </declare-styleable>
+</resources>

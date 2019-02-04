@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/tileAndImageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <view
+            android:id="@+id/tileView"
+            class="com.krake.puzzlegame.TileView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:visibility="invisible" />
+
+        <com.krake.core.media.widget.LoadableImageView
+            android:id="@+id/completedImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:alpha="0"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/numberOfMovesTextView"
+        style="@style/Game.ScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:paddingBottom="@dimen/content_details_internal_padding"
+        android:paddingLeft="@dimen/content_details_internal_padding"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/timeTextView"
+        style="@style/Game.ScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        style="@style/Game.ScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:paddingBottom="@dimen/content_details_internal_padding"
+        android:paddingRight="@dimen/content_details_internal_padding" />
+
+    <FrameLayout
+        android:id="@+id/pauseView"
+        style="@style/Game.Pause"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|top"
+        android:alpha="0"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/resumeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/riprendi"
+            android:drawablePadding="@dimen/content_details_internal_padding"
+            android:drawableStart="@drawable/riprendi"
+            android:text="@string/game_resume" />
+    </FrameLayout>
+</FrameLayout>

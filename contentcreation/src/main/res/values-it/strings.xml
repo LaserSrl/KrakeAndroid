@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="action_settings">Impostazioni</string>
+
+    <string name="category">Categoria</string>
+
+    <string name="content_creation_lose_modification">Sei sicuro di uscire? perderai le modifiche effettuate.</string>
+    <string name="content_creation_notification_title_format">Nuovo contenuto: %s</string>
+    <string name="content_creation_save_for_later">Vuoi salvare i dati per continuare dopo?</string>
+
+    <string name="create_media_label">Crea il contenuto multimediale da caricare</string>
+
+    <string name="description">Descrizione</string>
+
+    <string name="error_content_creation_loading_failed">Non è stato possibile caricare i dati necessari. Per favore riprova più tardi.</string>
+    <string name="error_invalid_number">Hai inserito un numero non valido</string>
+    <string name="error_location_no_yet_found">La tua posizione non è ancora stata determinata.</string>
+    <string name="error_missing_content_media">Devi inserire una foto o un video</string>
+    <string name="error_missing_required_field">Non hai inserito un campo obbligatorio</string>
+    <string name="error_missing_required_field_short">obbligatorio</string>
+    <string name="error_no_location_indicated">Posizione mancante</string>
+    <string name="error_permanently_permission_storage_for_media">Hai negato in modo permanente l\'accesso alla memoria interna per caricare i media. Modifica le impostazioni.</string>
+    <string name="error_permission_storage_for_media">E\' richiesto l\'accesso alla memoria interna per caricare i media.</string>
+    <string name="error_position_selected_but_gps_blocked">Hai scelto di inviare la tua posizione, ma il GPS non è attivo. Controlla le impostazioni del dispositivo.</string>
+
+    <string name="infos">Info</string>
+
+    <string name="location">Posizione</string>
+
+    <string name="medias">Foto e Video</string>
+
+    <string name="new_content_created">Grazie per il tuo contributo</string>
+    <string name="new_location">Location</string>
+
+    <string name="no">No</string>
+
+    <string name="pick_media_label">Scegli un contenuto multimediale</string>
+
+    <string name="subtitle">Sottotitolo</string>
+
+    <string name="title">Titolo</string>
+
+    <string name="updated_content">Informazioni aggiornate</string>
+</resources>

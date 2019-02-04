@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="answer_delay_time">1000</integer>
+    <integer name="wrong_answer_vibration">300</integer>
+</resources>

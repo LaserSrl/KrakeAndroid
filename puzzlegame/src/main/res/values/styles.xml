@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Game" />
+
+    <style name="Game.ScoreText" />
+
+    <style name="Game.Pause">
+        <item name="android:background">@android:color/black</item>
+    </style>
+
+    <style name="Game.QuestionText" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+        <item name="android:layout_marginTop">@dimen/content_details_internal_padding</item>
+    </style>
+
+    <style name="Game.AnswerText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:minHeight">40dp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="Game.SubTitleText" />
+
+    <style name="ReadMoreButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_gravity">right</item>
+        <item name="android:layout_marginTop">@dimen/content_details_internal_padding</item>
+    </style>
+
+    <style name="Game.TitleText" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textSize">60dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@android:color/white</item>
+
+    </style>
+
+    <style name="PuzzleGameTheme" parent="AppTheme">
+        <item name="mainNavigationMode">None</item>
+    </style>
+</resources>

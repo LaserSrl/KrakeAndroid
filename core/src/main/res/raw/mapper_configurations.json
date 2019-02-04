@@ -1,0 +1,55 @@
+{
+  "MultipleValuesKeyRegex" : [
+    "^.*\\[\\]$",
+    "^List<.+>$",
+    "^WhereSelectListIterator<.+>$",
+    "^OrderedEnumerable<.+>$"
+  ],
+  "GenerationSpecialClassesClean" : {
+    "AutoroutePart" : [
+      "customPattern",
+      "path",
+      "useCustomPattern"
+    ]
+  },
+  "GenerationNameFields" : [
+    "name",
+    "displayName"
+  ],
+  "GetByID" : "Json\/GetByID",
+  "SpecialNamesMapping" : {
+    "Slug" : "autoroutePartDisplayAlias"
+  },
+  "GenerationFieldsThatContainLinkReferences" : [
+    "displayAlias"
+  ],
+  "GarbageParts" : [
+    "CommonPart",
+    "ContentItem",
+    "Version",
+    "LocalizationPart",
+    "Storage",
+    "Version",
+    "Taxonomy",
+    "Ids",
+    "LayerPart",
+    "CommentsPart",
+    "UserPart",
+    "QrCodePart",
+    "MobilePushPart"
+  ],
+  "GenerationClassesToIgnoreRegex" : [
+    "^WhereSelectEnumerableIterator<.+>$",
+    "^PersistentGenericBag<.+>$"
+  ],
+  "GenerationClassesToReduceEvenIfTheyHaveMutipleFields" : [
+    "BlogPostPart",
+    "LinkField",
+    "TaxonomyPart",
+    "MeteoPart",
+    "ParentContent",
+    "BlogPart",
+    "ContentPickerConnectorPart"
+  ],
+  "GetByAlias" : "Json\/GetByAlias"
+}

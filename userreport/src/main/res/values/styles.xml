@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ContentItems.Detail.StatusTextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_marginTop">@dimen/content_details_internal_padding</item>
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+        <item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="ContentItems.Detail.SubTitleTextView">
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+        <item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+
+    <style name="UserCreatedContent.Cell.Image" parent="ContentItems.Cell.Image">
+        <item name="android:layout_width">@dimen/user_created_image_size</item>
+        <item name="android:layout_marginRight">@dimen/content_details_internal_padding</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_height">@dimen/user_created_image_size</item>
+    </style>
+
+
+    <style name="UserCreatedContent.Cell" parent="ContentItems.Cell">
+        <item name="android:layout_height">@dimen/user_created_cell_height</item>
+    </style>
+
+    <style name="UserCreatedContent" />
+
+    <style name="UserCreatedContent.Cell.Title">
+        <item name="android:background">@null</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">#DD000000</item>
+    </style>
+
+    <style name="UserCreatedContent.Cell.SubTitle">
+        <item name="android:background">@null</item>
+        <item name="android:textColor">#DD000000</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+    </style>
+
+    <style name="UserCreatedContent.Cell.Status">
+        <item name="android:layout_marginLeft">@dimen/content_details_internal_padding</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+    </style>
+</resources>

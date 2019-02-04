@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.krake.puzzlegame">
+
+    <application tools:ignore="ManifestResource">
+        <activity
+            android:name=".PuzzleGameSelectionActivity"
+            android:screenOrientation="@integer/activity_orientation" />
+        <activity
+            android:name=".GameActivity"
+            android:screenOrientation="@integer/activity_orientation"
+            android:theme="@style/PuzzleGameTheme" />
+    </application>
+</manifest>

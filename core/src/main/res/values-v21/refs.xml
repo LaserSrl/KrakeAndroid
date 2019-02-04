@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <item name="ic_push_icon" type="drawable">@drawable/ic_share_24dp</item>
+
+    <item name="media_upload_cancel_icon" type="drawable">@drawable/ic_cancel_notification</item>
+    <item name="media_upload_logo" type="drawable">@drawable/ic_cloud_upload_24dp</item>
+
+    <item name="menu_content_item_detail" type="menu">
+        @menu/menu_content_item_detail_share_intent
+    </item>
+
+    <item name="new_content_creation_icon" type="drawable">
+        @drawable/ic_cloud_upload_24dp
+    </item>
+</resources>

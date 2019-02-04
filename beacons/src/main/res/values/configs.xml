@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orchard_beacon_uuid_key" translatable="false">UUID</string>
+    <string name="orchard_beacon_major_key" translatable="false">major</string>
+    <string name="orchard_beacon_minor_key" translatable="false">minor</string>
+    <integer name="number_of_seconds_in_near_queue">22</integer>
+    <integer name="meters_to_be_near">4</integer>
+    <integer name="super_beacon_min_distance_per_ten">10</integer>
+    <integer name="minimumTimeToNotifiySameBeacon">3600</integer>
+    <integer name="maxNumberOfBeaconsToNotify">5</integer>
+    <integer name="rssi_medium_count">6</integer>
+    <integer name="beacon_background_scan_period">10</integer>
+    <integer name="beacon_background_wait_period">25</integer>
+    <integer name="beacon_foreground_scan_period">2</integer>
+    <integer name="beacon_foreground_wait_period">1</integer>
+</resources>

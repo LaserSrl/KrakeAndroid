@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="sender_name">From email</string>
+    <string name="receiver_name">To email</string>
+    <string name="card_message">Message</string>
+    <string name="cards">Postcards</string>
+    <string name="send_card">Send</string>
+    <string name="sender_mail_required">You must indicate your email</string>
+    <string name="receiver_mail_required">You must indicate your mail address</string>
+    <string name="missing_message_error">You have not indicated the message of the postcard</string>
+    <string name="title_activity_cards">Postcards</string>
+    <string name="welcome">Welcome</string>
+
+    <string name="cards_welcome_message_text"></string>
+    <string name="card_send_correctly">Postcard sent</string>
+
+
+</resources>

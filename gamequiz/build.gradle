@@ -1,0 +1,11 @@
+new KrakeLibPlugin(
+        config: {
+            krake.autoOrientation.exclude "com.krake.gamequiz.GamesActivity"
+        }
+).apply(project)
+
+dependencies {
+    api project(':surveys')
+    api "com.google.android.gms:play-services-games:$services_library_version"
+    api "com.google.android.gms:play-services-auth:$services_library_version"
+}

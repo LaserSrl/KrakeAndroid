@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="event_date_format">2</integer>
+
+    <string name="orchard_event_begin_date_key">datainizio</string>
+    <string name="orchard_event_end_date_key">datafine</string>
+
+</resources>

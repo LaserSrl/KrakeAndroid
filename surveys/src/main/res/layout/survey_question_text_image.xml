@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/questionTextView"
+        style="@style/SurveyTextStyle.Question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <com.krake.core.media.widget.LoadableImageView
+        android:id="@+id/questionImageView"
+        style="@style/SurveyImage.Question"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/questionImageHeight" />
+</LinearLayout>

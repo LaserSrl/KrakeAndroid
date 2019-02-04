@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SurveySectionTextStyle" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="SurveyOpenAnswerEditText" />
+
+    <style name="SurveyImage.Answer">
+        <item name="mediaScaleType">fitCenter</item>
+    </style>
+
+    <style name="SurveyImage.Question">
+        <item name="mediaScaleType">fitCenter</item>
+    </style>
+
+    <style name="SurveyImage">
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="SurveyTextStyle.Question">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SurveyTextStyle.Answer" />
+
+    <style name="SurveyTextStyle" />
+</resources>

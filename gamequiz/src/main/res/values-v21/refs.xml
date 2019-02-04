@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ic_star" type="drawable">@drawable/ic_star_24dp</item>
+    <item name="ic_star_empty" type="drawable">@drawable/ic_star_outline_24dp</item>
+    <item name="ic_alarm" type="drawable">@drawable/ic_alarm_24dp</item>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="thanks_for_taking_survey">Grazie per aver risposto al questionario</string>
+    <string name="error_sending_survey">Non è stato possibile spedire il tuo questionario</string>
+    <string name="error_no_questions_answered">Non hai risposto a nessuna domanda</string>
+    <string name="send">Invia</string>
+    <string name="error_no_survey_to_answer">Complimenti, hai già compilato tutti i questionari.
+        Torna presto a trovarci per contribuire ancora!
+    </string>
+</resources>

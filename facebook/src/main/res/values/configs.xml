@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="facebook_app_id"/>
+    <string-array name="facebook_permissions">
+        <item>public_profile</item>
+        <item>email</item>
+        <item>user_birthday</item>
+    </string-array>
+
+    <string name="login_button_manager_facebook">com.krake.facebook.FacebookLoginButtonManager</string>
+
+    <string name="orchard_login_provider_facebook">facebook</string>
+</resources>

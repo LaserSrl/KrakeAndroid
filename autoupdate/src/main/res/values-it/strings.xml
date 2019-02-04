@@ -1,0 +1,11 @@
+<resources>
+    <string name="apk_dowloader_permanentlymsg">Devi accettare i permessi per continuare.</string>
+    <string name="apk_new_version_check">Check nuova versione disponibile…</string>
+    <string name="apk_download_new_version">Scaricando nuova versione…</string>
+    <string name="apk_install_new_version">Download nuova versione completato, lancia il nuovo apk dai download per aggiornare la versione.</string>
+    <string name="apk_waiting">Attendere…</string>
+    <string name="apk_update_download_generic_error">Errore avvenuto al download della nuova versione.</string>
+    <string name="apk_update_request_generic_error">Errore avvenuto alla richiesta di una nuova versione.</string>
+    <string name="apk_error_download_manager_not_enabled">Non è possibile effettuare il download della nuova versione perché il DownloadManager è disabilitato.\nAbilitarlo dalla sezione Impostazioni del dispositivo e riprovare.</string>
+    <string name="apk_dialog_title_advice">Attenzione</string>
+</resources>

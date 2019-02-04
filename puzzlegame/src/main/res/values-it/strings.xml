@@ -1,0 +1,18 @@
+<resources>
+    <string name="game_enable_number_message">Vuoi abilitare i numeri?</string>
+
+    <string name="game_number_of_moves_format">%d mosse</string>
+    <string name="game_resume">Riprendi partita</string>
+    <string name="game_show_help_confirmation">Vuoi vedere l\'immagine completa?</string>
+    <string name="game_show_number_confirmation">Vuoi vedere il numero delle tessere?</string>
+
+    <string name="error_loading_of_game_failed">Non è stato possibile caricare l\'immagine per
+        giocare
+    </string>
+    <string name="game_won">Complimenti</string>
+    <string name="game_lost">Peccato!\nRitenta la prossima volta.</string>
+    <string name="pause">Pausa</string>
+    <string name="show_number">Mostra numeri</string>
+    <string name="show_complete_image">Mostra immagine completa</string>
+
+</resources>

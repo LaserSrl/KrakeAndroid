@@ -1,0 +1,5 @@
+<resources>
+    <integer name="content_creation_page_percentage_width">100</integer>
+    <dimen name="cc_button_size">72dp</dimen>
+    <dimen name="cc_media_bottom_container_height">240dp</dimen>
+</resources>

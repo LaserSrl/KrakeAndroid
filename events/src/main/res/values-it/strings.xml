@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_begin">Inizio</string>
+    <string name="event_end">Fine</string>
+    <string name="save_the_date">Salva nel calendario</string>
+
+    <string name="error_inserting_event_in_calendar">Non è stato possibile inserire l\'evento nel calendario</string>
+</resources>

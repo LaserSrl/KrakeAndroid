@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_trip_planner">Trip Planner</string>
+    <string name="departure">From</string>
+    <string name="arrival">To</string>
+
+    <string name="plan_trip">Journey plan</string>
+    <string name="trip_planning_failed">The trip planning failed</string>
+    <string name="trip_duration">Duration</string>
+    <string name="total_walk">Journey on foot</string>
+    <string name="transfers">Changes</string>
+    <string name="title_activity_itinerary">Itinerary</string>
+    <string name="user_location">Your location</string>
+    <string name="hours">hours</string>
+    <string name="minutes">min.</string>
+    <string name="map">Map</string>
+    <string name="list">List</string>
+
+    <string name="error_missing_from_to_location">You have not indicated the departure or the arrival</string>
+    <string name="error_missing_user_location">Your location is missing</string>
+    <string name="impossible_to_plan_trip">It has not been possible to plan the journey</string>
+    <string name="direction_description_circle">At the roundabout take the %s turn-off (exit)</string>
+    <string name="direction_description_right">Turn right</string>
+    <string name="direction_description_left">Turn left</string>
+    <string name="direction_description_continue">Straight on</string>
+    <string name="direction_description_depart">Set off</string>
+    <string name="direction_description_slightly_left">Turn slightly to the left</string>
+    <string name="direction_description_slightly_right">Turn slightly to the right</string>
+
+    <string name="travel_mode_car">Drive to</string>
+    <string name="travle_mode_transit">Public Transport</string>
+    <string name="travel_mode_walk">Walk to</string>
+    <string name="travel_mode_bike">Bike to</string>
+    <string name="travel_mode_tram">Tram for</string>
+    <string name="travel_mode_bus">Bus for</string>
+    <string name="trip_mode_subway">Metro</string>
+    <string name="now">Now</string>
+    <string name="cancel">Cancel</string>
+    <string name="address">Address</string>
+
+    <string name="none">None</string>
+    <string name="error_trip_plan_no_times">No transit times available. The date may be past or too
+        far in the future or they may be no transit service for your trip at the time you chose.
+    </string>
+
+    <string name="leg_group_direction_word">towards</string>
+    <string name="step_direction_word"></string>
+    <string name="direction_description_uturn">Make a U-turn</string>
+    <string name="error_trip_plan_outside_dataBounds">It hasn\'t been possible to work out the requested journey as you are outside the prearranged area.</string>
+    <string name="error_problem_trip_planning">The trip planning failed. Please try again later.</string>
+    <string name="meters">mt</string>
+
+    <string name="public_transport">Public Transport</string>
+    <string name="bus_line_destination_format">Line %1$s - %2$s</string>
+    <string name="bus_time_minutes_format">%d min.</string>
+    <string name="error_loading_stop_times">it has not been possible to load the times of the
+        stops
+    </string>
+    <string name="search_bus_stops_near">Find stops near a</string>
+    <string name="fastest_route">Fastest route</string>
+    <string name="travel_mode_car_name">Drive</string>
+    <string name="travle_mode_transit_name">Public transport</string>
+    <string name="travel_mode_walk_name">On foot</string>
+    <string name="travel_mode_bike_name">By bike</string>
+    <string name="date_start">Departure</string>
+    <string name="date_arrival">Arrival</string>
+
+</resources>

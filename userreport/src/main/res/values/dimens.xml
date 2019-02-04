@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="user_created_image_size">80dp</dimen>
+    <dimen name="user_created_cell_height">100dp</dimen>
+    <dimen name="status_background_corner_radius">8dp</dimen>
+    <dimen name="status_background_padding">4dp</dimen>
+</resources>

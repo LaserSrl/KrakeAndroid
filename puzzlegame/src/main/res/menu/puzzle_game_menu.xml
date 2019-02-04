@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_game_show_completed_image"
+        android:icon="@drawable/mostra_immagine_completa"
+        android:title="@string/show_complete_image" app:showAsAction="always">
+
+    </item>
+    <item android:id="@+id/action_game_show_tile_numbers" android:icon="@drawable/mostra_numeri"
+        android:title="@string/show_number" app:showAsAction="always"></item>
+
+    <item android:id="@+id/action_game_pause" android:icon="@drawable/pausa"
+        android:title="@string/pause" app:showAsAction="always"></item>
+</menu>

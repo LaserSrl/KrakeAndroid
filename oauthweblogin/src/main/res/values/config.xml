@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="linkedin_api_key" />
+    <string name="instagram_api_key" />
+    <string name="orchard_login_provider_linkedin">linkedin</string>
+    <string name="login_button_manager_linkedin">com.krake.oauthweblogin.LinkedinSignInButtonManager</string>
+    <string name="login_button_manager_instagram">com.krake.oauthweblogin.InstagramSignInButtonManager</string>
+    <string name="orchard_login_provider_instagram">instagram</string>
+</resources>

@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/create_container_parent"
+        android:layout_width="@dimen/cc_button_size"
+        android:layout_height="match_parent"
+        android:background="@color/cc_bottom_container_color">
+
+        <com.krake.contentcreation.widget.ResizableLinearLayout
+            android:id="@+id/create_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_toLeftOf="@+id/divider_view_left"
+            android:layout_toStartOf="@+id/divider_view_left"
+            android:orientation="vertical" />
+
+        <View
+            android:id="@+id/divider_view_left"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/cc_bottom_container_top_line_color" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pick_container_parent"
+        android:layout_width="@dimen/cc_button_size"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/cc_bottom_container_color">
+
+        <com.krake.contentcreation.widget.ResizableLinearLayout
+            android:id="@+id/pick_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@+id/divider_view_right"
+            android:layout_toRightOf="@+id/divider_view_right"
+            android:orientation="vertical" />
+
+        <View
+            android:id="@+id/divider_view_right"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/cc_bottom_container_top_line_color" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mediasPreviewGallery"
+        style="@style/NewContent.MediaGallery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/create_container_parent"
+        android:layout_toLeftOf="@id/pick_container_parent"
+        android:layout_toRightOf="@+id/create_container_parent"
+        android:layout_toStartOf="@+id/pick_container_parent" />
+
+    <com.krake.core.widget.DividerView
+        style="@style/DividerView"
+        app:divRecyclerView="@id/mediasPreviewGallery" />
+
+    <ImageView
+        android:id="@+id/placeholder_view"
+        style="@style/NewContent.PlaceholderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/create_container_parent"
+        android:layout_toLeftOf="@id/pick_container_parent"
+        android:layout_toRightOf="@+id/create_container_parent"
+        android:layout_toStartOf="@+id/pick_container_parent" />
+
+    <TextView
+        android:id="@+id/photo_error_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        tools:text="Testo di errore" />
+</RelativeLayout>

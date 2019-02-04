@@ -1,0 +1,4 @@
+<resources>
+    <string name="error_loading_tweets">There are no tweets to show at this moment</string>
+    <string name="error_no_tweets_to_show">There are no tweets to show at this moment</string>
+</resources>

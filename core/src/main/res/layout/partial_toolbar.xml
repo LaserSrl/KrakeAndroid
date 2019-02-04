@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.krake.core.widget.SplitToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/additionalToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    myapp:popupTheme="@style/Theme.AppCompat.Light"
+    myapp:subtitleTextAppearance="@style/SubtitleTextAppearance"
+    myapp:theme="@style/ActionBarThemeOverlay"
+    myapp:titleTextAppearance="@style/ActionBar.TitleText" />

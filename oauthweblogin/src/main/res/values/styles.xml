@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LinkedinButton" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:tint">#FFFFFF</item>
+
+        <item name="android:background">@drawable/linkedin_background</item>
+    </style>
+
+    <style name="InstagramButton" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:tint">#FFFFFF</item>
+
+        <item name="android:background">@drawable/instagram_background</item>
+    </style>
+</resources>

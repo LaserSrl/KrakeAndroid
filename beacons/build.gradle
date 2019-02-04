@@ -1,0 +1,6 @@
+new KrakeLibPlugin().apply(project)
+
+dependencies {
+    api project(':core')
+    api 'org.altbeacon:android-beacon-library:2.15.1'
+}

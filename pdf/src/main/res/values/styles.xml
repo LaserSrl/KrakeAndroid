@@ -1,0 +1,44 @@
+<resources>
+    <style name="PDFWebview">
+
+    </style>
+
+    <style name="PDFBottomBar">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="PDFBottomBar.Line">
+        <item name="android:layout_height">@dimen/pdf_bottom_bar_line_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/pdf_actions_color</item>
+    </style>
+
+    <style name="PDFBottomBar.Content">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="PDFBottomBar.Content.Button">
+        <item name="android:layout_height">@dimen/pdf_bottom_bar_button_size</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="PDFBottomBar.Content.TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/pdf_bottom_bar_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>

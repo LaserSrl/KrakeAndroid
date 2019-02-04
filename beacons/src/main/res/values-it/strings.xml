@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_offerts_with_format">Nuove offerte nel reparto %s!</string>
+    <string name="new_offerts">Nuove offerte per te!</string>
+</resources>

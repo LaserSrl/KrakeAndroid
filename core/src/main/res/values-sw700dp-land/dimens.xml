@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+
+    <dimen name="content_details_floating_height">650dp</dimen>
+    <dimen name="content_details_floating_width">600dp</dimen>
+    <dimen name="content_item_header_image_height">300dp</dimen>
+    <integer name="content_item_list_weight">1</integer>
+    <integer name="content_item_map_weight">1</integer>
+
+    <dimen name="header_media_first_cell_width">550dp</dimen>
+
+    <dimen name="slidingUpMinHeight">260dp</dimen>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/GameCell"
+    android:orientation="horizontal">
+
+    <com.krake.core.media.widget.LoadableImageView
+        android:id="@+id/cellImageView"
+        style="@style/GameCell.Image" />
+
+    <FrameLayout
+        android:id="@+id/gameStatusBackgroundContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        style="@style/GameCell.TextContainer"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cellTextView"
+            style="@style/GameCell.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/gameAbstractTextView"
+            style="@style/GameCell.Abstract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/gameStatusTextView"
+            style="@style/GameCell.Status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground" />
+</FrameLayout>

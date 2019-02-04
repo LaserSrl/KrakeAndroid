@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ItineraryMapView" />
+
+    <style name="ItineraryMapView.Preview">
+        <item name="showKml">false</item>
+        <item name="showUserDirection">false</item>
+        <item name="fullScreenMap">@+id/fullScreenMapContainer</item>
+        <item name="fullScreenMapLayout">@layout/partial_itinerary_fullscreen_map</item>
+    </style>
+
+    <style name="ItineraryMapView.Full" />
+</resources>

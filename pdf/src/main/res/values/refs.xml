@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="pdf_right_arrow_image" type="drawable">@drawable/pdf_arrow_right</item>
+    <item name="pdf_left_arrow_image" type="drawable">@drawable/pdf_arrow_left</item>
+    <item name="ic_action_pdf" type="drawable">@drawable/pdf_menu_icon</item>
+</resources>

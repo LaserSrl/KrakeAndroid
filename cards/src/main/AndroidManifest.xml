@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.krake.cards">
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <application>
+        <activity
+            android:name=".CardsActivity"
+            android:label="@string/title_activity_cards"
+            android:screenOrientation="@integer/activity_orientation"
+            android:windowSoftInputMode="stateUnchanged"
+            tools:ignore="ManifestResource">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_voice" />
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

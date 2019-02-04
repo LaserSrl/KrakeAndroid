@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="game_expired_background" type="drawable">@drawable/game_background_shape_expired
+    </item>
+    <item name="game_valid_background" type="drawable">@drawable/game_background_shape_valid</item>
+    <item name="game_no_yet_enabled_background" type="drawable">
+        @drawable/game_background_shape_no_yet_enabled
+    </item>
+    <item name="fragment_games_items_selection" type="layout">
+        @layout/fragment_content_items_selection_list
+    </item>
+    <item name="game_begin_background" type="drawable">@drawable/game_begin_background_image</item>
+    <integer name="play_game_orientation">1</integer>
+
+    <item name="ic_star" type="drawable">@drawable/ic_star_white_24dp</item>
+    <item name="ic_star_empty" type="drawable">@drawable/ic_star_border_white_24dp</item>
+    <item name="ic_alarm" type="drawable">@drawable/ic_alarm_white_24dp</item>
+</resources>

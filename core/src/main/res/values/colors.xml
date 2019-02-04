@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <color name="button_color_disabled">#CCC</color>
+    <color name="button_color_normal">@color/colorAccent</color>
+    <color name="button_color_selected">@color/colorPrimaryDark</color>
+
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorAccentDark">#DC2D6E</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+
+    <color name="colorPrimaryDark">#303F9F</color>
+
+    <color name="details_background_color">#ffffff</color>
+    <color name="details_link_color">@color/colorAccent</color>
+    <color name="textColor">#000000</color>
+    <color name="details_text_color">@color/textColor</color>
+
+    <color name="disabledTextColor">#bbb</color>
+
+    <color name="divider_gray">#AAe2e2e2</color>
+
+    <color name="kml_default_color">#AAFF0000</color>
+
+    <color name="login_button_color">#3BBDEA</color>
+    <color name="login_color">#1E2A37</color>
+    <color name="login_text_color">@android:color/white</color>
+
+    <color name="media_photo_background_color">#000000</color>
+
+    <color name="menu_item_pressed_color">#66000000</color>
+    <color name="menu_item_selected_color">#44000000</color>
+
+    <color name="overlay_map_color">#FF0000</color>
+
+    <color name="pin_label_bg_color">#EEE</color>
+    <color name="pin_label_stroke_color">@color/pin_label_text_color</color>
+    <color name="pin_label_text_color">#444</color>
+
+    <color name="privacy_background_color">#FFFFFF</color>
+
+    <color name="search_view_default_background_color">@android:color/white</color>
+    <color name="search_view_default_hint_text_color">#999</color>
+    <color name="search_view_default_icons_color">#777</color>
+    <color name="search_view_default_text_color">@android:color/black</color>
+
+    <color name="selection_color">#44000000</color>
+
+    <color name="snackbar_text_color">#DDFFFFFF</color>
+
+    <color name="tab_selected_text_color">@android:color/white</color>
+    <color name="tab_unselected_text_color">#AAFFFFFF</color>
+
+    <color name="text_gray">#8C000000</color>
+
+    <color name="vectorIconColor">#DDFFFFFF</color>
+
+    <color name="visualizer_line_color">@color/colorAccent</color>
+
+    <color name="user_menu_view_placeholder_color">@color/colorAccent</color>
+
+</resources>

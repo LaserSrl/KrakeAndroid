@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TripPlannerSearchContainer">
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+</resources>

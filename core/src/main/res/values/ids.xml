@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tabs_container" type="id" />
+    <item name="float_search_view" type="id" />
+    <item name="btn_close_search" type="id" />
+</resources>

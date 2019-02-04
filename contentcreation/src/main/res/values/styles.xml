@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NewContent" />
+
+    <style name="NewContent.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/field_text_color</item>
+    </style>
+
+    <style name="NewContent.Switch" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:textColor">@color/field_text_color</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="NewContent.Date">
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+    </style>
+
+    <style name="NewContent.Date.Text" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/field_text_color</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="NewContent.Date.Button" parent="Widget.AppCompat.ImageButton">
+        <item name="backgroundTint">?attr/colorAccent</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:minWidth">48dp</item>
+    </style>
+
+    <style name="NewContent.Map">
+        <item name="mapType">terrain</item>
+        <item name="android:layout_marginTop">@dimen/content_details_internal_padding</item>
+    </style>
+
+    <style name="NewContent.Spinner" parent="Widget.AppCompat.Spinner" />
+
+    <style name="NewContent.ErrorText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/field_text_color_error</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>ì
+    </style>
+
+    <style name="NewContent.PlaceholderView">
+        <item name="android:scaleType">fitCenter</item>
+        <item name="srcCompat">@drawable/content_creation_placeholder</item>
+    </style>
+
+    <style name="NewContent.FieldTitleText">
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="NewContent.MediaGallery">
+        <item name="layoutManager">LinearLayoutManager</item>
+        <item name="android:verticalSpacing">@dimen/image_spacing</item>
+        <item name="android:horizontalSpacing">@dimen/image_spacing</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="spanCount">1</item>
+    </style>
+
+    <style name="BaseContentCreationTheme" parent="AppTheme">
+        <item name="mainNavigationMode">None</item>
+    </style>
+
+    <style name="ContentCreationTheme" parent="BaseContentCreationTheme" />
+
+    <style name="NewMediaPartCell">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+</resources>

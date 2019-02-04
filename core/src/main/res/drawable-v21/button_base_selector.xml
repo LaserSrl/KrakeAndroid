@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/button_color_selected">
+    <item android:top="8dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:bottom="8dp">
+        <selector>
+            <item
+                android:drawable="@drawable/bg_button_disabled"
+                android:state_enabled="false" />
+            <item android:drawable="@drawable/bg_button_normal" />
+        </selector>
+    </item>
+</ripple>

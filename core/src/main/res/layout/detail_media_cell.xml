@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MediaPart.Cell"
+    android:layout_width="@dimen/detail_media_cell_width"
+    android:layout_height="match_parent">
+
+    <com.krake.core.media.widget.LoadableImageView
+        android:id="@+id/cellImageView"
+        style="@style/MediaPart.Cell.Image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:optionsHeight="@dimen/media_grid_height"
+        app:optionsWidth="@dimen/media_grid_width" />
+
+    <FrameLayout
+        android:tag="@string/cell_selection_view_tag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" />
+
+</FrameLayout>

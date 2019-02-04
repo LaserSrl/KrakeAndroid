@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="location_fix_validity_seconds">300</integer>
+</resources>

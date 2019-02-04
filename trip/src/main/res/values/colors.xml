@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <color name="itinerary_step_color_bike">#8cc63f</color>
+    <color name="itinerary_step_color_car">#5aaddd</color>
+    <color name="itinerary_step_color_subway">#000000</color>
+    <color name="itinerary_step_color_tram">#f7931e</color>
+    <color name="itinerary_step_color_transit">#0071bc</color>
+    <color name="itinerary_step_color_walk">#8c6239</color>
+
+    <color name="otp_map_center_item_color">@color/otp_map_circle_stroke_color</color>
+    <color name="otp_map_circle_fill_color">#30FF0000</color>
+    <color name="otp_map_circle_stroke_color">#FF0000</color>
+    <color name="otp_map_default_item_color">#999999</color>
+
+    <color name="step_direction_background_color">#6e6e6e</color>
+    <color name="step_distance_background_color">#4b4b4b</color>
+
+    <color name="tripDistanceColor">#999</color>
+
+    <color name="tripStepDividerColor">#bbb</color>
+
+    <color name="trip_mode_selected_tint">@android:color/white</color>
+    <color name="trip_planner_button_color_normal">@color/colorAccent</color>
+    <color name="trip_tab_background_color">@android:color/transparent</color>
+    <color name="trip_tab_icon_selected_color">@color/colorAccent</color>
+    <color name="trip_tab_icon_unselected_color">@android:color/white</color>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/NewMediaPartCell">
+
+    <FrameLayout
+        android:id="@+id/cellClickView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.krake.core.media.widget.LoadableImageView
+            android:id="@+id/cellImageView"
+            style="@style/MediaPart.Cell.Image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mediaScaleType="fitCenter" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/deleteMediaFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_delete_24dp" />
+    </FrameLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/cellTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/mediaProgress"
+        style="?attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+</FrameLayout>

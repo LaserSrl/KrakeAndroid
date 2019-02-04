@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="accept_privacy_condition">J\'accepte les conditions</string>
+
+    <string name="action_next">Envoyer</string>
+    <string name="action_save">Envoyer</string>
+
+    <string name="address">Addresse</string>
+
+    <string name="air_distance">à vol d\'oiseau</string>
+
+    <string name="authentication_failed">Login failed</string>
+
+    <string name="call">Telephone</string>
+    <string name="call_number">Voulez-vous appeler %s?</string>
+
+    <string name="cancel_privacy">Fermer</string>
+
+    <string name="com_facebook_loginview_log_in_button_long">Acceder avec Facebook</string>
+
+    <string name="confirm_password">Confirme le mot de passe Password</string>
+
+    <string name="downloading_data">Télechargement…</string>
+
+    <string name="error_authentication_expired">Vous devez vous connecter à nouveau.</string>
+    <string name="error_enable_location_to_search_around_me">Abilita l\'accesso alla tua posizione per cercare i punti vicino a te</string>
+    <string name="error_insert_password">Tu dois insérer ton mot de passe</string>
+    <string name="error_insert_your_mail">Tu dois insérer ton adresse mail</string>
+    <string name="error_invalid_mail">Adresse e-mail non valide</string>
+    <string name="error_invalid_phone_number">Numéro invalide</string>
+    <string name="error_location_required_to_show_route">Devi avilitare l\'accesso alla tua posizione se vuoi vedere il percorso per raggiungere il punto</string>
+    <string name="error_password_not_match">Les mots de passes ne coincident pas</string>
+    <string name="error_privacy_acceptance_failed">Acceptation de la Confidentialité a échoué. pour
+         S\'il vous plaît essayer à nouveau.
+    </string>
+
+    <string name="faceboook">Facebook</string>
+
+    <string name="list">Liste</string>
+
+    <string name="login">Acceder</string>
+    <string name="login_reason_message">Vous devez vous connecter pour continuer</string>
+    <string name="login_registration">Login/Registration</string>
+
+    <string name="mail">Mail</string>
+    <string name="mail_or_phone">Téléphone ou E-Mail</string>
+
+    <string name="map">Carte</string>
+
+    <string name="navigate_to_point">Raggiungici</string>
+
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+
+    <string name="open_content">En savoir plus</string>
+    <string name="open_in_app_content">Etes-vous sûr que vous ouvrez ce contenu dans l\'App?</string>
+    <string name="open_url">Open URL</string>
+    <string name="open_website">Voulez-vous ouvrir le site web \'%s\'?</string>
+
+    <string name="osm_copyrights"><![CDATA[&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap contributors</a>]]></string>
+
+    <string name="password">Password</string>
+    <string name="password_reset_sent_mail">Tu as reçu un courriel pour changer ton mot de passe.</string>
+    <string name="password_reset_sent_sms">Tu as reçu un message de text pour changer ton mot de passe.</string>
+
+    <string name="pinterest">Pinterest</string>
+
+    <string name="privacy">Privacy</string>
+    <string name="privacy_accept">Je accepte les conditions</string>
+    <string name="privacy_required_to_show_content">Confidentialité nécessaire pour acceder au contenu</string>
+
+    <string name="push_disable_message">Etes-vous sûr que vous voulez désactiver les notifications push?</string>
+    <string name="push_enable_message">Etes-vous sûr que vous voulez d\'activer les notifications push?</string>
+    <string name="push_notifications">Notifications push</string>
+
+    <string name="recover_by_mail">Mail</string>
+    <string name="recover_insert_mail">Insérer ton adresse mail</string>
+    <string name="recover_insert_phone">Insérer ton numerò de telephone</string>
+    <string name="recover_password">Mot de passe oublié?</string>
+    <string name="recover_password_label">Récupérer mot de passe</string>
+
+    <string name="register">Register</string>
+
+    <string name="registration">Enregistrement</string>
+
+    <string name="required">obligatoire</string>
+
+    <string name="search_hint">Rechercher…</string>
+    <string name="search_voice_error_snack">Vous ne pouvez pas utiliser la recherche vocale sur votre appareil</string>
+    <string name="search_voice_title">Écoute en cours</string>
+
+    <string name="send_mail">Vous voulez envoyer un courriel?</string>
+    <string name="send_mail_with_address">Vous voulez envoyer un courriel à %s?</string>
+    <string name="send_privacy">Envoyer</string>
+
+    <string name="share">Partager</string>
+
+    <string name="sms">Message</string>
+
+    <string name="tab_all_title">Tous</string>
+
+    <string name="telephone_number">Portable</string>
+
+    <string name="title_activity_media_part_fullscreen">Photos</string>
+    <string name="title_activity_youtube_video">Video</string>
+    <string name="title_contentitem_detail">Details</string>
+    <string name="title_contentitem_list">Items</string>
+
+    <string name="twitter">Twitter</string>
+
+    <string name="updating">Mise à jour…</string>
+
+    <string name="uploading_medias">Uploading medias</string>
+    <string name="uploading_new_content">Uploading new content</string>
+
+    <string name="user_location">Votre localité</string>
+
+    <string name="username">E-Mail/Username</string>
+
+    <string name="website">Web</string>
+    <string name="usernamePlaceholder">Anonime</string>
+    <string name="ok">Ok</string>
+    <string name="loading_data">Loading data...</string>
+    <string name="database_name">Db.fr</string>
+</resources>

@@ -1,0 +1,9 @@
+new KrakeLibPlugin(
+        config: {
+            lintOptions.disable 'InvalidPackage'
+        }
+).apply(project)
+
+dependencies {
+    api project(':core')
+}

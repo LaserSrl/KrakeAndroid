@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <style name="ActionBar.TitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
+
+    <style name="ActionBarThemeOverlay" parent="Widget.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="colorControlNormal">?actionBarIconColor</item>
+        <item name="colorControlHighlight">#3fff</item>
+    </style>
+
+    <style name="AppBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppCollapsingToolbar" parent="Widget.Design.CollapsingToolbar">
+        <item name="contentScrim">?attr/colorPrimary</item>
+        <item name="statusBarScrim">?attr/colorPrimaryDark</item>
+        <item name="layout_scrollFlags">scroll|exitUntilCollapsed</item>
+        <item name="expandedTitleTextAppearance">@style/CollapsingToolbarLayoutExpandedTextStyle
+        </item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoNavigation" parent="AppTheme">
+        <item name="mainNavigationMode">None</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CollapsingToolbarLayoutExpandedTextStyle" parent="AppTheme">
+        <item name="android:textColor">@android:color/transparent</item>
+        <item name="android:textSize">0sp</item>
+    </style>
+
+    <style name="ContentItems" />
+
+    <style name="ContentItems.Cell">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/content_item_cell_height</item>
+    </style>
+
+    <style name="ContentItems.Cell.CardView" parent="ContentItems.Cell">
+        <item name="android:background">@null</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/content_details_internal_padding</item>
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+    </style>
+
+    <style name="ContentItems.Cell.Image">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ContentItems.Cell.Title" parent="android:TextAppearance.Medium">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_gravity">center_horizontal|bottom</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="ContentItems.Cell.Title.CardView">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+    </style>
+
+    <style name="ContentItems.Detail" />
+
+    <style name="ContentItems.Detail.AddressView">
+        <item name="android:minHeight">35dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textColor">?colorPrimary</item>
+        <item name="drawableTintCompat">?colorPrimary</item>
+    </style>
+
+    <style name="ContentItems.Detail.Content" />
+
+    <style name="ContentItems.Detail.DescriptionWebview" parent="ContentItems.Detail">
+        <item name="android:transitionGroup">true</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="ContentItems.Detail.Gallery">
+        <item name="android:verticalSpacing">0dp</item>
+        <item name="android:horizontalSpacing">@dimen/image_spacing</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+    </style>
+
+    <style name="ContentItems.Detail.Gallery.Header" parent="ContentItems.Detail.Gallery">
+        <item name="layoutManager">GridLayoutManager</item>
+        <item name="spanCount">2</item>
+        <item name="android:layout_above">@+id/content_item_header_titlebar</item>
+    </style>
+
+    <style name="ContentItems.Detail.Gallery.Secondary" parent="ContentItems.Detail.Gallery">
+        <item name="layoutManager">LinearLayoutManager</item>
+        <item name="android:layout_marginBottom">@dimen/content_details_internal_padding</item>
+        <item name="android:layout_height">@dimen/secondary_gallery_height</item>
+    </style>
+
+    <style name="ContentItems.Detail.MapToolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">?attr/colorPrimary</item>
+        <item name="backgroundStacked">?attr/colorPrimary</item>
+        <item name="backgroundSplit">?attr/colorPrimary</item>
+    </style>
+
+    <style name="ContentItems.Detail.SocialToolbar">
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="ContentItems.Detail.SocialToolbar.Button" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/social_item_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:visibility">visible</item>
+        <item name="android:textColor">@color/social_tint_color</item>
+    </style>
+
+    <style name="ContentItems.Detail.SocialToolbar.ButtonWithoutName" parent="ContentItems.Detail.SocialToolbar.Button">
+        <item name="android:minHeight">@dimen/social_item_size_without_name</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="ContentItems.Detail.SubTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">
+            @style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle
+        </item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ContentItems.Detail.Subtitlelabel" parent="android:TextAppearance.Medium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ContentItems.Detail.TermPartIcon">
+        <item name="android:tint">@android:color/white</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="ContentItems.Detail.Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Title
+        </item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="ContentItems.Detail.TitleBar">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:minHeight">@dimen/title_navigation_bar_height</item>
+    </style>
+
+    <style name="ContentItems.Detail.TitleBar.TwoPane">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:minHeight">@dimen/title_navigation_bar_height</item>
+    </style>
+
+    <style name="ContentItems.Detail.SocialScrollView" parent="android:Widget.Material.HorizontalScrollView"/>
+
+    <style name="ContentItems.GridMap" parent="ContentItems">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="ContentItems.SelectionLayout">
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="ContentItems.SelectionLayout.Grid">
+        <item name="android:orientation">vertical</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="layoutManager">GridLayoutManager</item>
+        <item name="spanCount">@integer/layout_nuber_of_grid_span</item>
+        <item name="android:verticalSpacing">@dimen/content_item_grid_vertical_padding</item>
+        <item name="android:horizontalSpacing">@dimen/content_item_grid_horizontal_padding</item>
+    </style>
+
+    <style name="ContentItems.SelectionLayout.Grid.Horizontal">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="layoutManager">GridLayoutManager</item>
+        <item name="spanCount">2</item>
+    </style>
+
+    <style name="ContentItems.SelectionLayout.List" parent="ContentItems.SelectionLayout">
+        <item name="android:orientation">vertical</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="layoutManager">LinearLayoutManager</item>
+        <item name="android:verticalSpacing">@dimen/content_item_grid_vertical_padding</item>
+        <item name="android:horizontalSpacing">0dp</item>
+    </style>
+
+    <style name="ContentItems.SelectionLayout.List.Horizontal" parent="ContentItems.SelectionLayout.List">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="android:verticalSpacing">0dp</item>
+        <item name="android:horizontalSpacing">@dimen/content_item_grid_vertical_padding</item>
+    </style>
+
+    <style name="ContentItemsDetailTheme" parent="AppTheme">
+        <item name="isFloatingWindow">false</item>
+        <item name="includeToolbar">false</item>
+    </style>
+
+    <style name="ContentMap">
+        <item name="android:layout_height">@dimen/content_item_small_map_height</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="ContentMap.Full">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="ContentMap.Mini">
+        <item name="android:foreground">@drawable/small_map_foreground</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/map_toolbar_width</item>
+    </style>
+
+    <style name="ContentMapCloseButton">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:minWidth">56dp</item>
+        <item name="srcCompat">@drawable/ic_close_24dp</item>
+    </style>
+
+    <style name="DatePicker">
+        <item name="android:showWeekNumber">false</item>
+        <item name="android:calendarViewShown">true</item>
+        <item name="android:spinnersShown">false</item>
+    </style>
+
+    <style name="DividerView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="divLastItemVisible">false</item>
+    </style>
+
+    <style name="DividerView.HeaderGallery" parent="DividerView">
+        <item name="android:visibility">visible</item>
+        <item name="divRecyclerView">@id/content_item_details_header_gallery</item>
+        <item name="divAsSpace">true</item>
+        <item name="divSize">4dp</item>
+        <item name="divLastItemVisible">false</item>
+    </style>
+
+    <style name="DividerView.SecondaryGallery" parent="DividerView">
+        <item name="android:visibility">visible</item>
+        <item name="divRecyclerView">@id/content_item_details_non_header_gallery</item>
+        <item name="divAsSpace">true</item>
+        <item name="divSize">4dp</item>
+        <item name="divLastItemVisible">false</item>
+    </style>
+
+    <style name="DrawerListStyle" />
+
+    <style name="DrawerListStyle.TopLayout">
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="DrawerRecycle">
+        <item name="layoutManager">LinearLayoutManager</item>
+    </style>
+
+    <style name="FullScreenMediaPartTitleStyle" parent="android:TextAppearance.Large" />
+
+    <style name="FullscreenActionBarStyle" parent="ThemeOverlay.AppCompat.ActionBar" />
+
+    <style name="FullscreenTheme" parent="Theme.AppCompat">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="LoginButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:theme">@style/LoginButtonTheme</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="LoginButtonBorderless" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/login_button_color</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+    </style>
+
+    <style name="LoginButtonTheme" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/login_button_color</item>
+    </style>
+
+    <style name="LoginEditText">
+        <item name="android:theme">@style/LoginEditTextTheme</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:textColor">@color/login_text_color</item>
+        <item name="android:textColorHint">@color/login_text_color</item>
+    </style>
+
+    <style name="LoginEditTextTheme" parent="Widget.AppCompat.EditText">
+        <item name="colorControlNormal">@color/login_text_color</item>
+        <item name="colorControlHighlight">@color/login_button_color</item>
+        <item name="colorControlActivated">@color/login_button_color</item>
+    </style>
+
+    <style name="LoginFragmentAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/login_slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/login_slide_out_bottom</item>
+    </style>
+
+    <style name="LoginImageBackground">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:alpha">0.4</item>
+        <item name="srcCompat">@drawable/login_background_image</item>
+    </style>
+
+    <style name="LoginImageLogo">
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:maxHeight">@dimen/login_logo_image_height</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="srcCompat">@drawable/login_image_logo</item>
+    </style>
+
+    <style name="LoginInputLayout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textColorHint">@color/login_text_color</item>
+        <item name="hintTextAppearance">@style/LoginInputLayoutLabel</item>
+    </style>
+
+    <style name="LoginInputLayoutLabel" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/login_text_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="LoginMainText">
+        <item name="android:textSize">32sp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textColor">@color/login_text_color</item>
+    </style>
+
+    <style name="LoginProgressTheme" parent="Widget.AppCompat.ProgressBar">
+        <item name="colorAccent">@color/login_button_color</item>
+        <item name="colorControlNormal">@color/login_button_color</item>
+        <item name="colorControlActivated">@color/login_button_color</item>
+        <item name="colorControlHighlight">@color/login_button_color</item>
+    </style>
+
+    <style name="LoginRegistrationButton" parent="LoginButton">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="LoginRoot">
+        <item name="android:background">@color/login_color</item>
+    </style>
+
+    <style name="LoginSubText">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:textColor">@color/login_text_color</item>
+    </style>
+
+    <style name="LoginSwitchTheme" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="colorAccent">@color/login_button_color</item>
+        <item name="colorControlNormal">@color/login_text_color</item>
+        <item name="colorControlActivated">@color/login_button_color</item>
+        <item name="colorControlHighlight">@color/login_button_color</item>
+    </style>
+
+    <!-- LOGIN -->
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/login_color</item>
+        <item name="colorAccent">@color/login_button_color</item>
+        <item name="colorControlNormal">@color/login_text_color</item>
+        <item name="colorControlActivated">@color/login_button_color</item>
+        <item name="colorControlHighlight">@color/login_button_color</item>
+    </style>
+
+    <style name="MainNavigationView" />
+
+    <style name="MediaFillerImage">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="MediaFullScreenActivity">
+        <item name="android:background">@color/media_photo_background_color</item>
+    </style>
+
+    <style name="MediaPart" />
+
+    <style name="MediaPart.Cell">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="MediaPart.Cell.Image" />
+
+    <style name="NoElementsTextView" />
+
+    <style name="OSMCopyrightWebView" />
+
+    <style name="OpenWebContentAlert" parent="AlertDialog.AppCompat.Light">
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+    </style>
+
+    <style name="OrchardLoginActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/login_alpha_show</item>
+        <item name="android:windowExitAnimation">@anim/login_alpha_hide</item>
+    </style>
+
+    <style name="PrivacyAcceptStyle">
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:background">@color/privacy_background_color</item>,
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="PrivacyModificationTheme" parent="AppTheme">
+        <item name="mainNavigationMode">None</item>
+    </style>
+
+    <style name="PrivacyTextStyle">
+        <item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <style name="RecordActivityButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:tint">?attr/colorAccent</item>
+    </style>
+
+    <style name="RecordTheme" parent="AppTheme">
+        <item name="mainNavigationMode">None</item>
+    </style>
+
+    <style name="SocialFloatingButton" parent="Widget.Design.FloatingActionButton">
+        <item name="srcCompat">@drawable/ic_share_24dp</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="layout_anchorGravity">top|right|end</item>
+        <item name="layout_anchor">@id/content_item_header_titlebar</item>
+    </style>
+
+    <style name="SubtitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionMode.Subtitle" />
+
+    <style name="TabBar" parent="Widget.Design.TabLayout">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="tabSelectedTextColor">@color/tab_selected_text_color</item>
+        <item name="tabTextColor">@color/tab_unselected_text_color</item>
+    </style>
+
+    <style name="TermEnumImage">
+        <item name="android:layout_width">@dimen/termPartSelectionImageSize</item>
+        <item name="android:layout_height">@dimen/termPartSelectionImageSize</item>
+        <item name="mediaScaleType">centerInside</item>
+        <item name="android:layout_marginRight">@dimen/content_details_internal_padding</item>
+    </style>
+
+    <style name="ThemeOverlay" />
+
+    <style name="UserReaction" />
+
+    <style name="UserReactionElement" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/user_reaction_color</item>
+        <item name="android:drawableTint">@color/user_reaction_color</item>
+        <item name="android:tint">@color/user_reaction_color</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:minWidth">40dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="UserCirclePhoto">
+        <item name="civ_fill_color">@color/colorPrimary</item>
+    </style>
+
+    <style name="UserNameText" parent="TextAppearance.AppCompat">
+
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="UserInitialsPlaceholder" parent="TextAppearance.AppCompat.Large">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/user_navigation_initials_bg</item>
+    </style>
+
+    <style name="UserNavigationView">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <style name="UserLogoutButton" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="srcCompat">@drawable/ic_logout</item>
+        <item name="tint">@color/colorAccent</item>
+    </style>
+</resources>

@@ -1,0 +1,32 @@
+<resources>
+
+    <string name="games">Games</string>
+    <string name="days_duration">%d days</string>
+    <string name="hours_duration">%d hours</string>
+    <string name="minutes_duration">%d min.</string>
+    <string name="games_valid_status_format">You can play for %s</string>
+    <string name="games_no_yet_enabled_status_format">Come back in %s to play</string>
+    <string name="game_expired_status_format">Game closed</string>
+    <string name="title_activity_play_game">Game</string>
+
+    <string name="error_game_not_available_yet">The game is no yet available</string>
+    <string name="error_game_closed">Game closed. You can watch the leaderboard</string>
+    <string name="action_open_play_leaderboard">Leaderboard</string>
+
+
+    <string name="partecipate">Partecipate</string>
+    <string name="signin_other_error">There was an issue with sign-in, please try again later.</string>
+    <string name="signin_failure">Unable to sign in.</string>
+    <string name="telephone">Telephone</string>
+    <string name="message_enter_numer_to_partecipate">Enter your phone number</string>
+    <string name="correct_answer">Correct answer</string>
+    <string name="wrong_answer">Wrong answer</string>
+    <string name="correct_answer_title">Good!</string>
+    <string name="wrong_answer_title">Ops!</string>
+    <string name="begin_game">Play!</string>
+    <string name="close">Close</string>
+    <string name="error_invalid_leaderboard">The leaderboard isn\'t valid</string>
+    <string name="ready_to_begin">Are you ready to begin?</string>
+    <string name="no_yet_available">The game will be available from</string>
+
+</resources>

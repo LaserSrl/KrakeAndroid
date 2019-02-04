@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_pdf"
+        android:icon="@drawable/ic_action_pdf"
+        android:title="@string/action_open_pdf"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+</menu>

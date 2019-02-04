@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="category">Category</string>
+
+    <string name="content_creation_lose_modification">Are you sure to exit? You\'ll lose your modifications.</string>
+    <string name="content_creation_notification_title_format">New content: %s</string>
+    <string name="content_creation_save_for_later">Do you want to save your data and continue to edit it later?</string>
+
+    <string name="create_media_label">Create the multimedia content to upload</string>
+
+    <string name="description">Description</string>
+
+    <string name="error_content_creation_loading_failed">You can\'t edit or create a new element right now. Please try again later.</string>
+    <string name="error_generic_failure">Something went wrong. Please try again.</string>
+    <string name="error_invalid_number">You have inserted an invalid number</string>
+    <string name="error_location_no_yet_found">Your position has not yet been determined.</string>
+    <string name="error_missing_content_media">You have to insert a photo or a video</string>
+    <string name="error_missing_required_field">You haven\'t inserted a mandatory field</string>
+    <string name="error_missing_required_field_short">mandatory</string>
+    <string name="error_no_location_indicated">Missing position</string>
+    <string name="error_permanently_permission_storage_for_media">You have permanently denied the storage access. Change your settings.</string>
+    <string name="error_permission_storage_for_media">Storage access is required to load and take medias.</string>
+    <string name="error_position_selected_but_gps_blocked">You have selected to send Your position, but the GPS can\'t be activated. Check your device settings.</string>
+
+    <string name="infos">Infos</string>
+
+    <string name="location">Position</string>
+
+    <string name="medias">Photos and Videos</string>
+
+    <string name="new_content_created">Thanks for your submission</string>
+    <string name="new_location">Location</string>
+
+    <string name="no">No</string>
+
+    <string name="pick_media_label">Pick a multimedia content</string>
+
+    <string name="subtitle">Subtitle</string>
+
+    <string name="title">Title</string>
+    <string name="title_activity_content_creation">Content Creation</string>
+
+    <string name="updated_content">Infos saved</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="status_waiting">In attesa</string>
+    <string name="status_rejected">Respinto</string>
+    <string name="status_accepted">Accettato</string>
+</resources>

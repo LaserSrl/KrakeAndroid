@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/PDFBottomBar">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/news_home_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        card_view:cardBackgroundColor="@color/pdf_bottom_bar_color"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="3dp"
+        card_view:cardPreventCornerOverlap="true">
+
+        <LinearLayout style="@style/PDFBottomBar.Content">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/btn_previous_page"
+                style="@style/PDFBottomBar.Content.Button"
+                app:srcCompat="@drawable/pdf_left_arrow_image" />
+
+            <TextView
+                android:id="@+id/tv_pdf_page_number"
+                style="@style/PDFBottomBar.Content.TextView"
+                tools:text="23" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/btn_next_page"
+                style="@style/PDFBottomBar.Content.Button"
+                app:srcCompat="@drawable/pdf_right_arrow_image" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>

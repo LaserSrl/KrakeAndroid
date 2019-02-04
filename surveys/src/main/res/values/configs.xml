@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orchard_api_send_surveys">
+        API/Laser.Orchard.Questionnaires/QuestionnaireResponse
+    </string>
+    <integer name="survey_max_number_of_radio_group_answers">2</integer>
+</resources>

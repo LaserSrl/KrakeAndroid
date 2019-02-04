@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/TripPlannerForm"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.krake.core.widget.InstantAutoCompleteTextView
+        android:id="@+id/departureEditText"
+        style="@style/TripPlannerEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:enabled="true"
+        android:hint="@string/departure"
+        app:drawableStartCompat="@drawable/ic_from" />
+
+    <com.krake.core.widget.InstantAutoCompleteTextView
+        android:id="@+id/arrivalEditText"
+        style="@style/TripPlannerEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:enabled="true"
+        android:hint="@string/arrival"
+        app:drawableStartCompat="@drawable/ic_to" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/travelModeTabContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/searchProgress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <com.krake.core.widget.compat.DrawableCompatTextView
+        android:id="@+id/dateSelectedTextView"
+        style="@style/TripPlannerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
+</LinearLayout>
