@@ -36,8 +36,8 @@ class AltBeaconManager(context: Context,
         val resources = context.resources
         internalManager.backgroundScanPeriod = resources.getInteger(R.integer.beacon_background_scan_period) * 1000L
         internalManager.backgroundBetweenScanPeriod = resources.getInteger(R.integer.beacon_background_wait_period) * 1000L
-        internalManager.foregroundBetweenScanPeriod = resources.getInteger(R.integer.beacon_foreground_scan_period) * 1000L
-        internalManager.foregroundBetweenScanPeriod = resources.getInteger(R.integer.beacon_foreground_scan_period) * 1000L
+        internalManager.foregroundScanPeriod = resources.getInteger(R.integer.beacon_foreground_scan_period) * 1000L
+        internalManager.foregroundBetweenScanPeriod = resources.getInteger(R.integer.beacon_foreground_wait_period) * 1000L
         appContext = context.applicationContext
     }
 
