@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_poi"
+                android:icon="@android:drawable/ic_menu_camera"
+                android:title="Punti di Interesse"/>
+        <item
+                android:id="@+id/nav_itineraries"
+                android:icon="@android:drawable/ic_menu_slideshow"
+                android:title="Itinerari"/>
+        <item
+                android:id="@+id/nav_products"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Prodotti"/>
+        <item
+                android:id="@+id/nav_user_reports"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Io Reporter"/>
+        <item
+                android:id="@+id/nav_trip"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Viaggia con noi..."/>
+        <item
+                android:id="@+id/nav_cards"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Cartoline"/>
+        <item
+                android:id="@+id/nav_news"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Notizie"/>
+        <item
+                android:id="@+id/nav_bus"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Bus"/>
+        <item
+                android:id="@+id/nav_domanda"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Domanda"/>
+        <item
+                android:id="@+id/nav_game"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Gioco"/>
+    </group>
+
+    <item android:title="Tu">
+        <menu>
+            <item
+                    android:id="@+id/nav_privacy"
+                    android:icon="@android:drawable/ic_menu_share"
+                    android:title="Privacy"/>
+            <item
+                    android:id="@+id/nav_myself"
+                    android:icon="@android:drawable/ic_menu_share"
+                    android:title="Mio Account"/>
+            <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@android:drawable/ic_menu_share"
+                    android:title="Logout"/>
+        </menu>
+    </item>
+
+</menu>

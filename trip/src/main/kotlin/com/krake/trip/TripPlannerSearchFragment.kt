@@ -23,6 +23,8 @@ import com.google.android.gms.location.LocationListener
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.model.TypeFilter
 import com.krake.core.address.*
 import com.krake.core.api.GoogleApiClientFactory
 import com.krake.core.component.annotation.BundleResolvable
@@ -42,19 +44,19 @@ import java.util.*
  * Created by joel on 18/04/17.
  */
 class TripPlannerSearchFragment : Fragment(),
-        AdapterView.OnItemClickListener,
-        AddressFilterableArrayAdapter.FilterChangedListener,
-        SearchBoundsProvider,
-        TabLayout.OnTabSelectedListener,
-        LocationListener,
-        View.OnClickListener,
-        TripDatePickerFragment.OnTripDateTimePickerListener,
-        OtpBoundingBoxTask.Listener,
-        PlaceIdTask.Listener,
-        PlacesResultTask.Listener,
-        GeocoderTask.Listener,
-        PermissionListener,
-        GoogleApiClientFactory.ConnectionListener, Observer<Boolean>
+    AdapterView.OnItemClickListener,
+    AddressFilterableArrayAdapter.FilterChangedListener,
+    SearchBoundsProvider,
+    TabLayout.OnTabSelectedListener,
+    LocationListener,
+    View.OnClickListener,
+    TripDatePickerFragment.OnTripDateTimePickerListener,
+    OtpBoundingBoxTask.Listener,
+    PlaceIdTask.Listener,
+    PlacesResultTask.Listener,
+    GeocoderTask.Listener,
+    PermissionListener,
+    GoogleApiClientFactory.ConnectionListener, Observer<Boolean>
 {
     companion object {
         private const val ARRIVAL_REQUEST_ID = 546
@@ -75,12 +77,16 @@ class TripPlannerSearchFragment : Fragment(),
     private lateinit var geocoderTask: GeocoderTask
 
     private val fromAdapter: AddressFilterableArrayAdapter  by lazy {
-        AddressFilterableArrayAdapter(activity ?:
-                throw IllegalArgumentException("The activity mustn't be null."), R.id.departureEditText, this)
+        AddressFilterableArrayAdapter(activity ?: throw IllegalArgumentException("The activity mustn't be null."),
+            R.id.departureEditText,
+            this
+        )
     }
     private val toAdapter: AddressFilterableArrayAdapter by lazy {
-        AddressFilterableArrayAdapter(activity ?:
-                throw IllegalArgumentException("The activity mustn't be null."), R.id.arrivalEditText, this)
+        AddressFilterableArrayAdapter(activity ?: throw IllegalArgumentException("The activity mustn't be null."),
+            R.id.arrivalEditText,
+            this
+        )
     }
 
     var internalSearchBounds: LatLngBounds? = null
@@ -181,10 +187,8 @@ class TripPlannerSearchFragment : Fragment(),
         locationRequirementsHelper.request()
     }
 
-    override fun onPermissionsHandled(acceptedPermissions: Array<out String>)
-    {
-        if (PermissionManager.containLocationPermissions(acceptedPermissions))
-        {
+    override fun onPermissionsHandled(acceptedPermissions: Array<out String>) {
+        if (PermissionManager.containLocationPermissions(acceptedPermissions)) {
             insertUserLocationInOptions()
         }
     }
@@ -192,28 +196,32 @@ class TripPlannerSearchFragment : Fragment(),
     private fun insertTravelTabType(view: ViewGroup): TabLayout {
         val activity = activity ?: throw IllegalArgumentException("The activity mustn't be null.")
         val helper = TabLayoutHelper.CreationBuilder(activity)
-                .contentSelectedColor(ContextCompat.getColor(activity, R.color.trip_tab_icon_selected_color))
-                .contentUnselectedColor(ContextCompat.getColor(activity, R.color.trip_tab_icon_unselected_color))
-                .bgColor(ContextCompat.getColor(activity, R.color.trip_tab_background_color))
-                .tabShowImage(true)
-                .tabShowTitle(false)
-                .build()
+            .contentSelectedColor(ContextCompat.getColor(activity, R.color.trip_tab_icon_selected_color))
+            .contentUnselectedColor(ContextCompat.getColor(activity, R.color.trip_tab_icon_unselected_color))
+            .bgColor(ContextCompat.getColor(activity, R.color.trip_tab_background_color))
+            .tabShowImage(true)
+            .tabShowTitle(false)
+            .build()
 
         helper.addTab(null,
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_car_36dp, null),
-                TravelMode.CAR)
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_car_36dp, null),
+            TravelMode.CAR
+        )
 
         helper.addTab(null,
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_bus_36dp, null),
-                TravelMode.TRANSIT)
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_bus_36dp, null),
+            TravelMode.TRANSIT
+        )
 
         helper.addTab(null,
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_walk_36dp, null),
-                TravelMode.WALK)
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_walk_36dp, null),
+            TravelMode.WALK
+        )
 
         helper.addTab(null,
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_bike_36dp, null),
-                TravelMode.BICYCLE)
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_bike_36dp, null),
+            TravelMode.BICYCLE
+        )
 
         val tab = helper.layout()
 
@@ -257,7 +265,8 @@ class TripPlannerSearchFragment : Fragment(),
         val context = context ?: throw IllegalArgumentException("The context mustn't be null.")
         val minimumConstraintLength = context.resources.getInteger(R.integer.geocoder_autocompletion_threshold)
         if (constraint?.length ?: 0 >= minimumConstraintLength
-                && !constraint.toString().equals(getString(R.string.user_location), ignoreCase = true)) {
+            && !constraint.toString().equals(getString(R.string.user_location), ignoreCase = true)
+        ) {
 
             val requestId = if (adapter.viewIdentifier == R.id.arrivalEditText) ARRIVAL_REQUEST_ID else DEPARTURE_REQUEST_ID
             placesResultTask.load(constraint.toString(), TypeFilter.ADDRESS, this, requestId)
@@ -356,8 +365,7 @@ class TripPlannerSearchFragment : Fragment(),
             else
                 tripModule.request.from
 
-            if (placeResult == null)
-            {
+            if (placeResult == null) {
                 placeResult = PlaceResult(place.name.toString())
                 if (requestId == ARRIVAL_REQUEST_ID)
                     tripModule.request.to = placeResult

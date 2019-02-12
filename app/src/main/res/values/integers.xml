@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="magic_meters_to_minute_ratio">6000</integer>
+</resources>

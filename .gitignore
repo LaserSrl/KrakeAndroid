@@ -21,7 +21,6 @@ logcat.txt
 bin/
 
 # IntelliJ specific files/directories
-out
 .idea
 *.ipr
 *.iws
@@ -36,5 +35,8 @@ crashlytics.keystore.properties
 crashlytics-build.properties
 
 # Internal link
-/app
-/app-path.properties
+google-services.json
+fabric.properties
+*/termIconDownloader/term-icon-downloader.json
+**/drawable/termicon_*.png
+**/drawable/termicon_*.jpg

@@ -2,4 +2,5 @@ new KrakeLibPlugin().apply(project)
 
 dependencies {
     api project(':contentcreation')
+    api project(':core')
 }

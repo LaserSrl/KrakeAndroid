@@ -6,6 +6,7 @@ import android.support.annotation.StyleRes
 import android.text.TextUtils
 import android.text.style.TextAppearanceSpan
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.krake.core.R
 import com.krake.core.model.ContentItemWithLocation
 

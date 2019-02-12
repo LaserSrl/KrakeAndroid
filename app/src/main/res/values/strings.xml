@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AAA KrakeSample</string>
+    <string name="price_not_available">Non disponibile</string>
+
+    <string name="beacons">Beacons</string>
+    <string name="product_removed_from_shopcart">Prodotto rimosso dal carrello</string>
+    <string name="product_added_to_cart">Prodotto aggiunto al carrello</string>
+    <string name="title_activity_shopcart">Il mio carrello</string>
+    <string name="no_elements_in_cart">Non hai nessun prodotto nel carrello!</string>
+    <string name="order_created">Ordine inviato al sistema</string>
+    <string name="show_orders">I miei ordini</string>
+    <string name="error_new_order_failed">Non è stato possibile creare il nuovo ordine</string>
+    <string name="title_activity_shop_search">Negozi</string>
+    <string name="orchard_path_shop_around_me">elenco-negozi-around-me</string>
+    <string name="title_activity_user_profiling">Le mie info</string>
+    <string name="sex">Sesso</string>
+    <string name="nation">Nazione</string>
+    <string name="you">Il tuo profilo</string>
+    <string name="push">Categorie push</string>
+    <string name="paynow">Compra subito</string>
+</resources>

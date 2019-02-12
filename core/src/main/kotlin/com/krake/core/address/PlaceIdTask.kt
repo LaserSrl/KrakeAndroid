@@ -2,6 +2,9 @@ package com.krake.core.address
 
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.tasks.Tasks
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.net.FetchPlaceRequest
+import com.google.android.libraries.places.api.net.PlacesClient
 import com.krake.core.address.PlaceIdTask.Listener
 import com.krake.core.thread.AsyncTask
 import com.krake.core.thread.async
@@ -15,8 +18,7 @@ import java.util.*
  * @param listener [Listener] per ricevere la callback quando l'indirizzo è stato caricato.
  * @constructor crea un nuovo [PlaceIdTask].
  */
-class PlaceIdTask(client: PlacesClient, var listener: Listener?)
-{
+class PlaceIdTask(client: PlacesClient, var listener: Listener?) {
     private var apiClient: PlacesClient? = client
     private var task: AsyncTask<*>? = null
 

@@ -25,21 +25,6 @@ open class EventActivity : ContentItemListMapActivity(), DateTimePickerFragment.
         private const val OUT_STATE_END_DATE_SELECTED = "otsEndDateSelected"
     }
 
-    @Deprecated("use startSelectedDate instead")
-    protected var mStartSelectedDate: Date
-        get() = startSelectedDate!!
-        set(value)
-        {
-            startSelectedDate = value
-        }
-    @Deprecated("use endSelectedDate instead")
-    protected var mEndSelectedDate: Date
-        get() = endSelectedDate!!
-        set(value)
-        {
-            endSelectedDate = value
-        }
-
     protected var startSelectedDate: Date? = null
     protected var endSelectedDate: Date? = null
     private val dateFormat = DateFormat.getDateInstance()

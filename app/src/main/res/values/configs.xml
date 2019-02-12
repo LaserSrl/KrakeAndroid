@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Configurazioni base-->
+    <string name="orchard_base_service_url" translatable="false">http://team00.mykrake.com/</string>
+
+    <string name="orchard_language">it-IT</string>
+
+    <integer name="orchard_default_page_size">25</integer>
+    <integer name="default_cache_validity">900</integer>
+    <integer name="kml_cache_validity">1800</integer>
+
+    <!-- Impostazioni per login e social-->
+    <string-array name="enabled_login_managers">
+        <item>@string/login_button_manager_orchard</item>
+        <item>@string/login_button_manager_facebook</item>
+        <item>@string/login_button_manager_twitter</item>
+        <!--<item>@string/login_button_manager_google</item>-->
+        <!--<item>@string/login_button_manager_linkedin</item>-->
+        <!--<item>@string/login_button_manager_instagram</item>-->
+    </string-array>
+
+    <!--Display Path per i diversi contenuti-->
+    <string name="orchard_path_notizie_filtrate_per_beacon">elenco-notizie-beacon</string>
+    <string name="orchard_path_elenco_punti_interesse">elenco-poi</string>
+    <string name="orchard_path_categorie_punti_interesse">categorie-poi</string>
+    <string name="orchard_path_my_orders">lista-ordini-per-utente</string>
+
+    <!--Impostazione per la creazione dei nuovi ordini-->
+    <string name="order_content_type">Ordine</string>
+    <string name="orchard_path_products">tutti-i-prodotto</string>
+
+    <!--Impostazioni legate allo stile-->
+    <integer name="activity_orientation">2</integer>
+
+    <string name="app_package" translatable="false">mykrake.com.krakesample</string>
+</resources>

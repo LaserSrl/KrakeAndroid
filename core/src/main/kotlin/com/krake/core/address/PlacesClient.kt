@@ -1,6 +1,8 @@
 package com.krake.core.address
 
 import android.content.Context
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.net.PlacesClient
 import com.krake.core.R
 
 /**

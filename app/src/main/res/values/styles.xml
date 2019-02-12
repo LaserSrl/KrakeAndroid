@@ -1,0 +1,64 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="mainNavigationMode">NavigationViewDrawer</item>
+        <item name="navigationViewListenerClass">mykrake.com.krakesample.NavigationDataSource
+        </item>
+        <item name="actionBarIconColor">@android:color/white</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="navigationViewHeader">@layout/user_menu_view</item>
+        <item name="navigationViewMenu">@menu/activity_menu_drawer</item>
+    </style>
+
+
+    <style name="TestStyle" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="backgroundTint">#00DD0a</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">#FFFFFF</item>
+        <item name="spinBars">false</item>
+    </style>
+
+    <style name="ContentItems.DetailActivity" parent="AppTheme">
+    </style>
+
+    <style name="ContentItems.Cell.Title" parent="android:TextAppearance.Medium">
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_gravity">center_horizontal|bottom</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingTop">2dp</item>
+
+        <item name="android:textColor">#DD000000</item>
+    </style>
+
+    <style name="ContentItems.Cell">
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="android:background">@drawable/state_list_background</item>
+
+        <item name="android:layout_height">@dimen/content_item_cell_height</item>
+    </style>
+
+    <style name="ContentItems.Cell.Image">
+        <item name="android:clickable">true</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+</resources>

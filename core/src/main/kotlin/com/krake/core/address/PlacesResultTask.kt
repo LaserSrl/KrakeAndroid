@@ -4,6 +4,12 @@ import android.content.Context
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.tasks.Tasks
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.AutocompleteSessionToken
+import com.google.android.libraries.places.api.model.RectangularBounds
+import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
+import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.gson.Gson
 import com.krake.core.R
 import com.krake.core.address.PlacesResultTask.Listener
@@ -19,8 +25,7 @@ import com.krake.core.thread.async
  * @param listener [Listener] per ricevere la callback quando la lista di luoghi è stata caricata.
  * @constructor crea un nuovo [PlacesResultTask].
  */
-class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: Listener?)
-{
+class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: Listener?) {
     private var context: Context? = context
     private var apiClient: PlacesClient? = apiClient
     private var task: AsyncTask<MutableList<PlaceResult>>? = null
@@ -34,8 +39,12 @@ class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: 
      * @param requestId id da associare alla richiesta per supportare richieste multiple.
      */
     @JvmOverloads
-    fun load(addressName: String, typeFilter: TypeFilter = TypeFilter.ADDRESS, searchBoundsProvider: SearchBoundsProvider? = null, requestId: Int = 0)
-    {
+    fun load(
+        addressName: String,
+        typeFilter: TypeFilter = TypeFilter.ADDRESS,
+        searchBoundsProvider: SearchBoundsProvider? = null,
+        requestId: Int = 0
+    ) {
         cancel()
         task = async {
             var places: MutableList<PlaceResult>? = null
@@ -52,11 +61,11 @@ class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: 
                 val token = AutocompleteSessionToken.newInstance()
                 val convertedBounds = RectangularBounds.newInstance(bounds)
                 val request = FindAutocompletePredictionsRequest.builder()
-                        .setLocationBias(convertedBounds)
-                        .setTypeFilter(typeFilter)
-                        .setSessionToken(token)
-                        .setQuery(addressName)
-                        .build()
+                    .setLocationBias(convertedBounds)
+                    .setTypeFilter(typeFilter)
+                    .setSessionToken(token)
+                    .setQuery(addressName)
+                    .build()
 
                 val predictions = Tasks.await(apiClient.findAutocompletePredictions(request)).autocompletePredictions
 

@@ -1,0 +1,79 @@
+{
+  "MultipleValuesKeyRegex": [
+    "^.*\\[\\]$",
+    "^List<.+>$",
+    "^WhereSelectListIterator<.+>$",
+    "^OrderedEnumerable<.+>$",
+    "^WhereSelectEnumerableIterator<.+>$"
+  ],
+  "GenerationSpecialClassesClean": {
+    "AutoroutePart": [
+      "customPattern",
+      "path",
+      "useCustomPattern"
+    ]
+  },
+  "GenerationNameFields": [
+    "name",
+    "displayName"
+  ],
+  "GetByID": "Json\/GetByID",
+  "SpecialNamesMapping": {
+    "String": "stringValue",
+    "Medias": "mediasList",
+    "Id": "identifier",
+    "Sid": "stringIdentifier",
+    "Repeat": "repeatValue",
+    "Slug": "autoroutePartDisplayAlias"
+  },
+  "GenerationFieldsThatContainLinkReferences": [
+    "displayAlias"
+  ],
+  "GarbageParts": [
+    "CommonPart",
+    "ContentItem",
+    "Version",
+    "LocalizationPart",
+    "Storage",
+    "Version",
+    "Taxonomy",
+    "Ids",
+    "LayerPart",
+    "CommentsPart",
+    "UserPart",
+    "QrCodePart",
+    "MobilePushPart",
+    "UserReactionsPart",
+    "Content",
+    "QuestionsToDisplay",
+    "DisplayName",
+    "DynamicButtonToWorkflowsPart",
+    "UserProvidersPart",
+    "FavoriteCulturePart",
+    "SeoPart"
+  ],
+  "GenerationClassesToIgnoreRegex": [
+    "^WhereSelectEnumerableIterator<.+>$",
+    "^PersistentGenericBag<.+>$",
+    "^<TakeIterator.+>$"
+  ],
+  "GenerationClassesToReduceEvenIfTheyHaveMutipleFields": [
+    "InputField",
+    "AutoroutePart",
+    "ContentPickerField",
+    "MediaLibraryPickerField",
+    "BlogPostPart",
+    "LinkField",
+    "TaxonomyPart",
+    "TaxonomyField",
+    "MeteoPart",
+    "ParentContent",
+    "BlogPart",
+    "ContentPickerConnectorPart",
+    "TextField",
+    "BodyPart",
+    "PolicyTextInfoPart",
+    "PolicyTextInfoPartRecord"
+  ],
+  "GetByAlias": "Json\/GetByAlias"
+}

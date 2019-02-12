@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
+apply plugin: 'krake'
+
+krake.modules "apkNameGenerator", "autoOrientation"
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "28.0.3"
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    defaultConfig {
+        applicationId "mykrake.com.krakesample"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled = true
+        vectorDrawables.useSupportLibrary = true
+    }
+    signingConfigs {
+        keystore {
+            keyAlias 'hackday'
+            keyPassword 'hackday'
+            storeFile file('keystore.jks')
+            storePassword 'hackday'
+        }
+    }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        local.dimension "app"
+
+        maven.dimension "app"
+
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.keystore
+            resValue "string","orchard_api_key",SAMPLE_orchard_api_key
+            resValue "string","header_key",SAMPLE_header_key
+            resValue "string","twitter_consume_key",SAMPLE_twitter_consume_key
+            resValue "string","twitter_consume_secret",SAMPLE_twitter_consume_secret
+            resValue "string","instagram_api_key",SAMPLE_instagram_api_key
+            resValue "string","linkedin_api_key",SAMPLE_linkedin_api_key
+            resValue "string","facebook_app_id",SAMPLE_facebook_app_id
+        }
+
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.keystore
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+
+}
+
+def krake_version = '9.1.11'
+def leak_canary_version = '1.6.2'
+
+dependencies {
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+
+    implementation project(':beacons')
+    implementation project(':cards')
+    implementation project(':contentcreation')
+    implementation project(':core')
+    implementation project(':events')
+    implementation project(':facebook')
+    implementation project(':firebaseauth')
+    implementation project(':gamequiz')
+    implementation project(':itineraries')
+    implementation project(':oauthweblogin')
+    implementation project(':pdf')
+    implementation project(':puzzlegame')
+    implementation project(':surveys')
+    implementation project(':trip')
+    implementation project(':twitterstream')
+    implementation project(':userreport')
+    implementation project(':youtubevideo')
+}
+
+apply plugin: 'com.google.gms.google-services'

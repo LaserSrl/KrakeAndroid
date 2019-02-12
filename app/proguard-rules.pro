@@ -1,0 +1,211 @@
+##--------------- Begin: common rules for Android apps ---------------##
+-optimizationpasses 5
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontskipnonpubliclibraryclassmembers
+-dontpreverify
+-verbose
+-printseeds seeds.txt
+-printusage unused.txt
+-printmapping mapping.txt
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+-renamesourcefileattribute SourceFile
+
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class com.android.vending.licensing.ILicensingService
+-dontnote com.android.vending.licensing.ILicensingService
+
+# Explicitly preserve all serialization members. The Serializable interface
+# is only a marker interface, so it wouldn't save them.
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
+# Preserve all native method names and the names of their classes.
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keepclasseswithmembernames class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembernames class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+# Preserve static fields of inner classes of R classes that might be accessed
+# through introspection.
+-keepclassmembers class **.R$* {
+  public static <fields>;
+}
+
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+
+-dontwarn org.jetbrains.annotations.*
+
+##--------------- Begin: proguard configuration for Gson ---------------##
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+-dontnote sun.misc.Unsafe
+#-keep class com.google.gson.stream.** { *; }
+
+-dontnote com.google.gson.internal.$Gson$Types$ParameterizedTypeImpl
+
+-keep enum * {
+    public <fields>;
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+##--------------- End: proguard configuration for Gson ---------------##
+
+-keep public class android.support.v4.widget.** { *; }
+-keep public class android.support.v7.widget.** { *; }
+-keep public class android.support.design.widget.** { *; }
+-keep class android.support.v7.widget.RecyclerView$ViewHolder { *; }
+
+-dontwarn android.support.**
+
+-keep public class * extends android.support.v4.view.ActionProvider {
+    public <init>(android.content.Context);
+}
+
+-keep public class * extends android.support.design.widget.CoordinatorLayout.Behavior { *; }
+-dontnote android.support.design.widget.CoordinatorLayout.Behavior
+-keep public class * extends android.support.design.widget.ViewOffsetBehavior { *; }
+
+## PhotoView specific rules
+-keep public class com.github.chrisbanes.photoview.PhotoViewAttacher
+-keep public class ucom.github.chrisbanes.photoview.PhotoViewAttacher$*
+-keep public class com.github.chrisbanes.photoview.gestures.CupcakeGestureDetector
+
+-keep class org.simpleframework.xml.** { *; }
+-keepnames class org.simpleframework.xml.** { *; }
+
+##--------------- Begin: Orchard libs rules ---------------##
+-keepattributes Exceptions,InnerClasses,Deprecated,SourceFile,LineNumberTable,EnclosingMethod
+
+-dontnote com.krake.core.login.LoginFragment
+
+-keepnames class **.R$* {
+  public static <fields>;
+}
+
+-keep public interface com.krake.core.model.RequestCache {*;}
+-keep public interface com.krake.core.model.* {*;}
+
+-keepnames class android.support.v7.app.** { *; }
+-keepnames class android.support.v4.app.** { *; }
+
+-keepnames class * extends android.support.v7.widget.RecyclerView$ViewHolder
+-keepclassmembers class * extends android.support.v7.widget.RecyclerView$ViewHolder {
+    <init>(...);
+}
+
+-keepclassmembers class com.krake.core.widget.ObjectsRecyclerViewAdapter {
+    public <init>(...);
+}
+
+-keepnames class * extends com.krake.core.widget.ObjectsRecyclerViewAdapter
+-keepclassmembers class * extends com.krake.core.widget.ObjectsRecyclerViewAdapter {
+    <init>(...);
+}
+
+-keepnames class * extends com.krake.core.app.LoginAndPrivacyActivity { *; }
+-keepnames class com.krake.core.app.LoginAndPrivacyActivity {
+    abstract <methods>;
+}
+
+-keepnames class * extends com.lasergroup.services.MessengerAndWorkerMultithreadService {
+    protected void onHandleIntent(android.content.Intent, android.os.Handler);
+    public int threadIndexToHandleIntent(android.content.Intent, int);
+    protected android.os.Message getStatusMessage();
+    protected boolean handleClientMessage(android.os.Message);
+}
+
+#-keep class com.krake.core.widget.** {*;}
+-keepnames public interface com.krake.core.drawer.NavigationItemIntentSelectionListener { *; }
+-keep class * implements com.krake.core.drawer.NavigationItemIntentSelectionListener {
+    public <init>(android.content.Context);
+    android.content.Intent createIntentForNavigationItemSelected(android.view.MenuItem);
+}
+-keep public class * extends com.krake.core.app.OrchardApplication { *; }
+-keepnames class com.krake.core.app.KrakeApplication { *; }
+-keepnames interface com.krake.core.app.** { *; }
+-keepnames interface com.krake.core.content.CacheManager { *; }
+-keepnames interface com.krake.core.view.LocationContentItemMapManager { *; }
+-keepnames interface com.krake.core.ServiceTask { *; }
+-keepnames public class * implements com.krake.core.ServiceTask { *; }
+-keep interface com.krake.core.content.data.** { *; }
+-keep class com.krake.core.Mapper { *; }
+-keepnames class com.krake.core.app.LocationContentItemDetailFragment { *; }
+
+-keepnames class com.krake.core.login.LoginViewManager { *; }
+-keep class * extends com.krake.core.login.LoginViewManager { *; }
+-keepclassmembers class * extends com.krake.core.login.LoginViewManager {
+    <init>(...);
+}
+
+## contentcreation rules
+-dontnote com.krake.core.login.LoginFragment
+
+-keep class com.krake.contentcreation.ContentDefinition { *; }
+
+
+-keep class com.krake.surveys.app.SurveyFragment { *; }
+
+-keep class com.krake.usercontent.UserContentTab { *; }
+
+##--------------- End: Orchard libs rules ---------------##
+
+
+##--------------- Begin: app specific rules ---------------##
+-keep class * extends io.realm.RealmObject { *; }
+-keep class **.model.** { *; }
+-keepclassmembers public class **.model.** {*;}
+-keep class **.adapter.**
+-keepclassmembers class **.adapter.** {
+    <init>(...);
+}
+-dontwarn com.krake.surveys.app.SurveyActivity
+
+## Twitter SDK specific rules.
+#  Source: https://docs.fabric.io/android/twitter/twitter.html
+-dontwarn com.squareup.okhttp.**
+-dontwarn com.google.appengine.api.urlfetch.**
+-dontwarn rx.**
+-dontwarn retrofit2.**
+-dontwarn okio.**
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+-keep class retrofit2.** { *; }
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}
+
+-keepclasseswithmembernames class kotlin.reflect.jvm.* {
+   <methods>;
+}
