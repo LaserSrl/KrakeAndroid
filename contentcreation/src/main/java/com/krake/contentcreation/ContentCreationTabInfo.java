@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.util.SparseArray;
-
 import com.krake.core.media.MediaType;
 import com.krake.core.media.watermark.Watermark;
 import com.krake.core.model.TermPart;
@@ -615,16 +614,6 @@ public class ContentCreationTabInfo {
 
         public boolean isEditingEnabled() {
             return editingEnabled;
-        }
-
-        @Deprecated
-        public void addFielInfoValidator(FieldInfoValidator fieldInfoValidator) {
-            addFieldInfoValidator(fieldInfoValidator);
-        }
-
-        @Deprecated
-        public boolean isMutipleSelection() {
-            return isMultipleSelection();
         }
     }
 }

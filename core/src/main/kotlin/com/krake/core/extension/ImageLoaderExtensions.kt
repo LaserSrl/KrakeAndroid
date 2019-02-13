@@ -11,30 +11,6 @@ import java.io.File
  *
  * @return the request that will retrieve the [Bitmap].
  */
-@Deprecated("This extension is now deprecated.", ReplaceWith("asBitmap()"))
-fun <From> ImageLoader<From, Bitmap>.toBitmap() = asBitmap()
-
-/**
- * Convenience method used to retrieve the image as [File].
- *
- * @return the request that will retrieve the [File].
- */
-@Deprecated("This extension is now deprecated.", ReplaceWith("asFile()"))
-fun <From> ImageLoader<From, File>.toFile() = asFile()
-
-/**
- * Convenience method used to retrieve the image as [Drawable].
- *
- * @return the request that will retrieve the [Drawable].
- */
-@Deprecated("This extension is now deprecated.", ReplaceWith("asDrawable()"))
-fun <From> ImageLoader<From, Drawable>.toDrawable() = asDrawable()
-
-/**
- * Convenience method used to retrieve the image as [Bitmap].
- *
- * @return the request that will retrieve the [Bitmap].
- */
 fun <From> ImageLoader<From, Bitmap>.asBitmap(): ImageLoader.Request<Bitmap> = asResource(GlideImageLoader.BitmapRequestProvider())
 
 /**

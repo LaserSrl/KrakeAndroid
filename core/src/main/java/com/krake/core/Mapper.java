@@ -3,29 +3,21 @@ package com.krake.core;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.krake.core.cache.CacheManager;
 import com.krake.core.data.DataMapper;
-import com.krake.core.data.RemoteDataRepository;
 import com.krake.core.login.PrivacyException;
 import com.krake.core.model.PolicyText;
 import com.krake.core.model.RecordWithIdentifier;
 import com.krake.core.model.RecordWithStringIdentifier;
 import com.krake.core.model.RequestCache;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmModel;
 import io.realm.RealmObject;
+
+import java.util.*;
 
 /**
  * Classe per caricare i dati da Orchard.
@@ -45,12 +37,6 @@ public class Mapper implements DataMapper {
      */
     public Mapper(Context context) {
         mConfigurations = new Configurations(context);
-    }
-
-    public static
-    @Deprecated
-    Mapper getSharedInstance() {
-        return (Mapper) RemoteDataRepository.Companion.getShared().getDataMapper();
     }
 
     public Configurations getConfigurations() {

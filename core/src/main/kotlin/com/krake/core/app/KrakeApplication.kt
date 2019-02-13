@@ -31,16 +31,13 @@ import com.krake.core.fetcher.content.WebViewFetchableContent
 import com.krake.core.fetcher.manager.PoolPreFetchManager
 import com.krake.core.fetcher.manager.PreFetchManager
 import com.krake.core.login.LoginManager
-import com.krake.core.login.LogoutListener
 import com.krake.core.login.RegistrationListener
 import com.krake.core.map.DefaultMarkerCreator
 import com.krake.core.map.MarkerCreator
 import com.krake.core.map.MarkerInvalidator
 import com.krake.core.media.UploadableMediaInfo
-import com.krake.core.media.loader.ImageLoader
 import com.krake.core.media.loader.ImageManager
 import com.krake.core.media.loader.ImageManagerProvider
-import com.krake.core.media.loader.glide.GlideImageLoader
 import com.krake.core.media.loader.glide.GlideImageManager
 import com.krake.core.media.streaming.StreamingProvider
 import com.krake.core.model.ContentItem
@@ -108,23 +105,9 @@ abstract class KrakeApplication : Application(),
      */
     val uploadInterceptors = ArrayList<UploadInterceptor>()
 
-    @Deprecated("Use MarkerCreator.shared")
-    val markerCreator: MarkerCreator
-        get()
-        {
-            return MarkerCreator.shared
-        }
-
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     private var markerInvalidator: MarkerInvalidator? = null
-
-    @Deprecated("Use CacheManager.shared")
-    val cacheManager: CacheManager
-        get()
-        {
-            return CacheManager.shared
-        }
 
     /**
      * Registra una classe di fragment da utlizzare per mostrare il dettaglio di un contenuto.
@@ -217,53 +200,6 @@ abstract class KrakeApplication : Application(),
             registeredProjectionClasses.containsKey(dataClass.simpleName.realmCleanClassName())
 
     /**
-     * Permette di registrare una classe da invocare a fine delle chiamata di un API su orchard
-     * La classe deve avere un costruttore pubblico senza parametri e implementare l'interfaccia
-     * [OrchardApiEndListener][com.krake.core.OrchardApiEndListener]
-
-     * @param apiPath       path delle API su cui registrare il listener
-     * @param listenerClass classe del listener
-     */
-    @Deprecated("Use Signaler.shared.registerApiEndListener")
-    fun registerApiEndListener(apiPath: String,
-                               listenerClass: Class<out OrchardApiEndListener>)
-    {
-        Signaler.shared.registerApiEndListener(apiPath,
-                                               listenerClass.newInstance())
-    }
-
-
-    /**
-     * @param apiPath apiPAth per cui si vuole ottnere la classe listener
-     * *
-     * @return la classe, oppure null
-     */
-    @Deprecated("Signaler.shared.apiEndListenerClass")
-    fun getApiEndListenerClass(apiPath: String): List<OrchardApiEndListener>?
-    {
-        return Signaler.shared.apiEndListenerClass(apiPath)
-    }
-
-    /**
-     * Permette di registrare una classe da invocare a fine delle chiamata di un Signal.
-     * La classe deve avere un costruttore senza parametri e implementare l'interfaccia [com.krake.core.OrchardSignalEndListener]
-
-     * @param signalName
-     * @param listenerCLass
-     */
-    @Deprecated("Use Signaler.registerSignalEndListener")
-    fun registerSignalEndListener(signalName: String, listenerCLass: Class<out OrchardSignalEndListener>)
-    {
-        Signaler.shared.registerSignalEndListener(signalName, listenerCLass)
-    }
-
-    @Deprecated("Use Signaler.getSignalListener")
-    fun getSignalListener(signalName: String): Class<out OrchardSignalEndListener>? {
-
-        return Signaler.shared.signalListener(signalName)
-    }
-
-    /**
      * Permette di registrare una classe da invocare a fine di un upload.
      * Gli upload sono utilizzati per la creazione di contenuti lato Orchard, caricando anche i file media.
      * La classe deve avere un costruttore senza parametri e implementare l'interfaccia [UploadCompleteEndListener]
@@ -277,29 +213,6 @@ abstract class KrakeApplication : Application(),
 
     fun getUploadCompletedListener(uploadCode: Int): Class<out UploadCompleteEndListener>? =
             uploadCompletedListener.get(uploadCode)
-
-    /**
-     * Permette di registrare un listener da chiamare quando l'utente richiede la funzione di logout.
-     * Utile per eliminare sessioni dei social che causarebbero una login automatica con lo stesso social
-     */
-    @Deprecated("Register in App directly on LoginManager.shared.isLogged")
-    fun addLogoutListener(listener: LogoutListener)
-    {
-        LoginManager.shared.isLogged.observeForever(listener)
-    }
-
-    /**
-     * Permette di registrare dei listener da invocare quando l'utente viene registrato ad un nuovo servizio.
-     * Per registrazione ad un nuovo servizio non si intende la registrazione di un nuovo utente,
-     * ma la registrazione di un utente a servizi terzi che dipendono dalla registrazione della UI.
-
-     * @param registrationListener la classe deve implementare l'interfaccia [RegistrationListener][com.krake.core.login.RegistrationListener]
-     */
-    @Deprecated("Register in App directly on LoginManager.shared.loggedUser")
-    fun addUserRegistrationEndListener(registrationListener: RegistrationListener)
-    {
-        LoginManager.shared.loggedUser.observeForever(registrationListener)
-    }
 
     override fun onCreate() {
         super.onCreate()
@@ -725,14 +638,6 @@ abstract class KrakeApplication : Application(),
             db.delete()
         }
     }
-
-    /**
-     * provide a new image loader
-     * Default: [GlideImageLoader] that use [Glide] for the load
-     */
-    @Deprecated("This method is now deprecated", ReplaceWith("KrakeApplication.provideManager()"))
-    protected open fun <From, To> buildImageLoader(): ImageLoader<From, To> =
-            provideManager().loader()
 
     override fun provideManager(): ImageManager = GlideImageManager(this)
 

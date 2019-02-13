@@ -30,7 +30,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-
 import com.krake.core.R;
 import com.krake.core.component.annotation.BundleResolvable;
 import com.krake.core.component.base.ComponentManager;
@@ -39,7 +38,6 @@ import com.krake.core.drawer.NavigationItemIntentSelectionListener;
 import com.krake.core.extension.ActivityExtensionsKt;
 import com.krake.core.extension.IntentExtensionsKt;
 import com.krake.core.util.LayoutUtils;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
@@ -47,8 +45,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-
-import kotlin.Deprecated;
 
 /**
  * Activity base che include opzionalmente la navigazione basata sul drawer.
@@ -157,7 +153,6 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
      * @param layout             default:  R.layout.activity_drawer_with_appbar
      */
     public void onCreate(Bundle savedInstanceState, int layout) {
-        setupInitialIntent();
 
         ComponentManager.resolveIntent(this);
 
@@ -227,18 +222,6 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
         }
 
         elements.recycle();
-    }
-
-    /**
-     * If the app must have a custom intent for the launcher activity
-     * this intent can be specified in the application with an implementation of AppWithCustomLaunchIntent
-     */
-    @java.lang.Deprecated
-    @Deprecated(message = "this method must be deleted when the AppWithCustomLaunchIntent is no longer implemented")
-    protected void setupInitialIntent() {
-        Intent launchIntent;
-        if ((launchIntent = getSetupIntentForOriginalIntent(getApplication(), getIntent())) != null)
-            setIntent(launchIntent);
     }
 
     /**

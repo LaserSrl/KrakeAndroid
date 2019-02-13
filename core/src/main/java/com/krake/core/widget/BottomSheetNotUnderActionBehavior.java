@@ -7,7 +7,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import com.krake.core.R;
 
 /**
@@ -109,9 +108,5 @@ public class BottomSheetNotUnderActionBehavior<V extends View> extends SafeBotto
      */
     public void setAllowUserDrag(boolean handleTouch) {
         this.mAllowUserDrag = handleTouch;
-    }
-
-    @Deprecated
-    static public abstract class BottomSheetStateCallback extends SafeBottomSheetBehavior.BottomSheetCallback {
     }
 }

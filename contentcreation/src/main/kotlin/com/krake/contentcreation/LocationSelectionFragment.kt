@@ -28,8 +28,8 @@ import com.krake.core.ClassUtils
 import com.krake.core.StringUtils
 import com.krake.core.address.*
 import com.krake.core.api.GoogleApiClientFactory
-import com.krake.core.extension.krakeApplication
 import com.krake.core.location.LocationRequirementsHelper
+import com.krake.core.map.MarkerCreator
 import com.krake.core.map.manager.FragmentMapManager
 import com.krake.core.map.manager.MapManager
 import com.krake.core.model.MapPart
@@ -362,7 +362,7 @@ class LocationSelectionFragment : Fragment(),
 
             mapManager.getMapAsync {
                 val activity = contentCreationActivity ?: throw NullPointerException("The activity mustn't be null.")
-                val options = krakeApplication.markerCreator.createMarker(activity, LocationSelectionItem(position))
+                val options = MarkerCreator.shared.createMarker(activity, LocationSelectionItem(position))
                 options.draggable(true)
                 currentMarker = it.addMarker(options)
                 it.animateCamera(CameraUpdateFactory.newLatLngZoom(position, resources.getInteger(R.integer.default_zoom).toFloat()))

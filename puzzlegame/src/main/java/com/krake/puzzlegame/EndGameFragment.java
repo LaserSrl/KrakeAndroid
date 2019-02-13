@@ -1,6 +1,5 @@
 package com.krake.puzzlegame;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.krake.core.util.LayoutUtils;
 
 /**
@@ -50,18 +48,6 @@ public class EndGameFragment extends Fragment implements View.OnClickListener {
             mListener = (OnCloseGameListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnCloseGameListener");
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    @Deprecated
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnCloseGameListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnCloseGameListener");
         }
     }
 

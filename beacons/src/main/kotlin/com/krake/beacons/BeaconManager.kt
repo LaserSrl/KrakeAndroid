@@ -49,9 +49,4 @@ interface BeaconManager {
      * @param region
      */
     fun stopRangingInRegion(region: Region)
-
-    @Deprecated("Use startRegionMonitoring(context: Context?)")
-    fun startRegionMonitoring() {
-        startRegionMonitoring(null)
-    }
 }

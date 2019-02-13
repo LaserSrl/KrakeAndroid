@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.krake.core.OrchardError;
 import com.krake.core.app.OrchardDataModelFragment;
 import com.krake.core.data.DataModel;
@@ -18,7 +17,6 @@ import com.krake.core.util.LayoutUtils;
 import com.krake.core.widget.ObjectsRecyclerViewAdapter;
 import com.krake.surveys.model.Answer;
 import com.krake.surveys.model.Question;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -27,7 +25,7 @@ import java.util.List;
 
 
 /**
- * A simple {@link com.krake.core.app.support.OrchardDataFragment} subclass.
+ * A simple {@link com.krake.core.app.OrchardDataModelFragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link QuestionaryDetailsFragment.OnQuestionAnsweredListener} interface
  * to handle interaction events.

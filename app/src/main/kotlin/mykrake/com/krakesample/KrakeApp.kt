@@ -5,7 +5,7 @@ import com.krake.contentcreation.ContentCreationActivity
 import com.krake.contentcreation.ContentCreationTabInfo
 import com.krake.contentcreation.ContentDefinition
 import com.krake.contentcreation.component.module.ContentCreationComponentModule
-import com.krake.core.app.ContentItemDetailFragment
+import com.krake.core.app.ContentItemDetailModelFragment
 import com.krake.core.app.KrakeApplication
 import com.krake.core.component.base.ComponentManager
 import com.krake.core.component.module.DetailComponentModule
@@ -49,7 +49,7 @@ class KrakeApp : KrakeApplication(), UserNavigationViewListener {
         val near = ProximityBeaconRanger(this, beaconManger)
         beaconManger!!.addObserver(near)
         beaconManger!!.startRegionMonitoring()*/
-        registerDetailFragment(Itinerario::class.java, ContentItemDetailFragment::class.java, { original ->
+        registerDetailFragment(Itinerario::class.java, ContentItemDetailModelFragment::class.java, { original ->
             val module = DetailComponentModule(this@KrakeApp)
             module.readContent(this@KrakeApp, original)
             module.contentLayout(ItineraryComponentModule.DEFAULT_DETAIL_CONTENT_LAYOUT)

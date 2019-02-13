@@ -4,8 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-
 import com.google.gson.JsonObject;
+import com.krake.core.data.RemoteDataRepository;
 import com.krake.core.login.PrivacyException;
 
 import java.io.IOException;
@@ -86,7 +86,8 @@ public class OrchardError extends IOException {
 
         if (reactionCode == REACTION_PRIVACY) {
             try {
-                Mapper.getSharedInstance().parseContentFromResult(orchardResult.getAsJsonObject("Data"),
+
+                RemoteDataRepository.Companion.getShared().getDataMapper().parseContentFromResult(orchardResult.getAsJsonObject("Data"),
                         null,
                         false,
                         null);
