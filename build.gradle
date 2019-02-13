@@ -20,13 +20,6 @@ buildscript {
 
         maven { url "https://jitpack.io" }
 
-        maven {
-            url MAVEN_LASER_URL
-            credentials {
-                username NEXUS_USERNAME
-                password NEXUS_PASSWORD
-            }
-        }
         jcenter()
     }
 
@@ -39,7 +32,8 @@ buildscript {
         classpath 'io.fabric.tools:gradle:1.+'
         classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:$dokka_version"
         classpath "io.realm:realm-gradle-plugin:$realm_version"
-        classpath "com.github.LaserSrl.GradlePlugins:krake:1.0.0"
+        classpath 'com.github.LaserSrl.GradlePlugins:krake:1.0.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
@@ -54,13 +48,6 @@ allprojects {
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public/' }
 
-        maven {
-            url MAVEN_LASER_URL
-            credentials {
-                username NEXUS_USERNAME
-                password NEXUS_PASSWORD
-            }
-        }
         jcenter()
     }
 }
