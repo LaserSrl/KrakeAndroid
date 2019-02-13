@@ -6,11 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import com.krake.core.R;
 import com.krake.core.app.ContentItemDetailActivity;
 import com.krake.core.app.KrakeApplication;

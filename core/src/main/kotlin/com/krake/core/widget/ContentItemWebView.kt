@@ -4,12 +4,12 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
-import android.support.v4.app.FragmentActivity
-import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import com.krake.core.R
 import com.krake.core.getProperty
 import com.krake.core.model.ContentItem

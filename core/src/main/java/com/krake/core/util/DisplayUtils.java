@@ -2,9 +2,9 @@ package com.krake.core.util;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.support.annotation.NonNull;
 import android.view.Display;
 import android.view.WindowManager;
+import androidx.annotation.NonNull;
 
 /**
  * Classe di utils per il Display

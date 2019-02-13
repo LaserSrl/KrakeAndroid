@@ -1,7 +1,7 @@
 package com.krake.bus.app
 
-import android.arch.lifecycle.Observer
 import android.content.Context
+import androidx.lifecycle.Observer
 import com.krake.bus.model.BusPassage
 import com.krake.bus.model.BusPassagesReceiver
 import com.krake.bus.model.BusPassagesSender

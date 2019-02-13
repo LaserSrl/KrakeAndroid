@@ -3,9 +3,9 @@ package com.krake.core.app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import android.support.annotation.StyleableRes
-import android.support.v4.app.Fragment
 import android.util.AttributeSet
+import androidx.annotation.StyleableRes
+import androidx.fragment.app.Fragment
 import com.krake.core.component.base.ComponentModule
 
 /**

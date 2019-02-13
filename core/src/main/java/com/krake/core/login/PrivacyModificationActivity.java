@@ -1,25 +1,20 @@
 package com.krake.core.login;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import androidx.annotation.Nullable;
+import androidx.collection.LongSparseArray;
+import androidx.lifecycle.ViewModelProviders;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
-import com.krake.core.ClassUtils;
-import com.krake.core.Constants;
-import com.krake.core.OrchardError;
-import com.krake.core.PrivacyStatus;
-import com.krake.core.PrivacyViewModel;
-import com.krake.core.R;
+import com.krake.core.*;
 import com.krake.core.app.LoginAndPrivacyActivity;
 import com.krake.core.component.base.ComponentManager;
 import com.krake.core.component.module.OrchardComponentModule;
@@ -29,11 +24,10 @@ import com.krake.core.network.RemoteClient;
 import com.krake.core.network.RemoteResponse;
 import com.krake.core.util.SerializableLongSparseArray;
 import com.krake.core.widget.SnackbarUtils;
-
-import java.util.List;
-
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
+
+import java.util.List;
 
 public class PrivacyModificationActivity extends LoginAndPrivacyActivity {
     private OrchardRegisterPrivacyFragment registerFragment;
@@ -138,7 +132,7 @@ public class PrivacyModificationActivity extends LoginAndPrivacyActivity {
      */
     public boolean allRequiredPrivaciesAccepted() {
         List<PolicyText> mPrivacies = registerFragment.getPrivacies();
-        android.support.v4.util.LongSparseArray<Boolean> mAcceptedPrivacies = registerFragment.getAcceptedPrivacies();
+        LongSparseArray<Boolean> mAcceptedPrivacies = registerFragment.getAcceptedPrivacies();
         if (mPrivacies != null) {
             for (int i = 0; i < mPrivacies.size(); ++i) {
                 PolicyText privacy = mPrivacies.get(i);

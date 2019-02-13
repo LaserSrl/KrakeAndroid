@@ -1,11 +1,11 @@
 package com.krake.trip
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.location.Location
 import android.text.Spanned
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.krake.core.OrchardError

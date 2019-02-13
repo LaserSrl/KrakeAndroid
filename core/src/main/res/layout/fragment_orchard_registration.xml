@@ -15,27 +15,27 @@
 
         <include layout="@layout/common_login_layout"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/username_input_text_layout"
             style="@style/LoginInputLayout">
 
-            <android.support.v7.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatEditText
                 style="@style/LoginEditText"
                 android:hint="@string/username"
                 android:inputType="textEmailAddress" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_input_text_layout"
             style="@style/LoginInputLayout">
 
-            <android.support.v7.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatEditText
                 style="@style/LoginEditText"
                 android:hint="@string/password"
                 android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_confirm_text_layout"
             style="@style/LoginInputLayout">
 
@@ -43,9 +43,9 @@
                 style="@style/LoginEditText"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/telephone_number_text_layout"
             style="@style/LoginInputLayout"
             android:visibility="gone">
@@ -54,7 +54,7 @@
                 style="@style/LoginEditText"
                 android:hint="@string/telephone_number"
                 android:inputType="phone" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <FrameLayout
             android:id="@+id/acceptPrivacyContainer"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content" />
 
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register"
             style="@style/LoginButton"
             android:text="@string/register" />

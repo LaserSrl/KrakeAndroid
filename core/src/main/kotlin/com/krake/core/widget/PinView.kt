@@ -4,10 +4,10 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import androidx.annotation.ColorInt
 
 /**
  * View che gestisce i pin da mostrare su mappa.

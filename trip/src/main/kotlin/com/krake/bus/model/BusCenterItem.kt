@@ -1,8 +1,8 @@
 package com.krake.bus.model
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.model.LatLng
 import com.krake.core.image.BitmapGenerator
 import com.krake.core.map.MarkerConfiguration

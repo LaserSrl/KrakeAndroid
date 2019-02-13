@@ -1,8 +1,8 @@
 package com.krake.bus.model
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
 import android.util.Log
+import androidx.core.content.ContextCompat
 import com.krake.core.model.ContentItemWithLocation
 import com.krake.core.model.MapPart
 import com.krake.core.model.RecordWithStringIdentifier

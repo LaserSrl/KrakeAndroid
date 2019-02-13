@@ -1,12 +1,12 @@
 package com.krake.contentcreation
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.widget.NestedScrollView
 import android.view.View
 import android.widget.*
+import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.gson.JsonArray
 import com.krake.core.OrchardError
 import com.krake.core.PrivacyViewModel

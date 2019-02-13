@@ -6,13 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.pdf.PdfRenderer;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
 import com.github.chrisbanes.photoview.PhotoViewAttacher;
 
 import java.io.IOException;

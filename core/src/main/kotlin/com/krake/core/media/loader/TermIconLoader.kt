@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.support.annotation.UiThread
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v4.util.ArrayMap
+import androidx.annotation.UiThread
+import androidx.collection.ArrayMap
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.krake.core.R
 import com.krake.core.extension.asDrawable
 import com.krake.core.media.DownloadOnlyLoadable

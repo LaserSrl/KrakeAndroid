@@ -6,10 +6,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.krake.core.extension.commitSyncAllowingStateLoss
 import com.krake.core.permission.presenter.PermissionPresenter
 import com.krake.core.permission.presenter.SnackbarPermissionPresenter
@@ -168,7 +168,7 @@ open class PermissionManager constructor(protected val activity: Activity, prote
             if (fragment == null) {
                 fragment = permissionFragment()
                 fragmentManager.beginTransaction()
-                        .add(fragment, tag)
+                    .add(fragment!!, tag)
                         .commitSyncAllowingStateLoss(fragmentManager)
             }
             fragment?.callback = this

@@ -1,9 +1,9 @@
 package com.krake.contentcreation.adapter.holder
 
-import android.support.design.widget.FloatingActionButton
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.krake.contentcreation.R
 import com.krake.core.media.task.MediaInfoPreviewTask
 import com.krake.core.media.task.ProgressMediaInfoViewer

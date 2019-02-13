@@ -5,13 +5,13 @@ buildscript {
     ext.kotlin_coroutines_version = '1.1.1'
     ext.dokka_version = '0.9.17'
     ext.realm_version = '5.8.0'
-    ext.support_library_version = '27.1.1'
+    ext.support_library_version = '1.0.0'
     ext.services_library_version = '15.0.1'
-    ext.firebase_library_version = '16.0.6'
+    ext.firebase_library_version = '16.0.7'
     ext.firebase_messagging_version = '17.3.4'
     ext.firebase_auth_version = '16.0.1'
-    ext.lifecycle_version = "1.1.1"
-    ext.glide_version = "4.4.0"
+    ext.lifecycle_version = '2.0.0'
+    ext.glide_version = "4.8.0"
 
     repositories {
         google()

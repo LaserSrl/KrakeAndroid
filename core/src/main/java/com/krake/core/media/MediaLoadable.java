@@ -1,7 +1,7 @@
 package com.krake.core.media;
 
-import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
+import androidx.annotation.DrawableRes;
 
 /**
  * Utilizzata per definire una classe che può caricare un'immagine tramite il {@link com.krake.core.media.loader.MediaLoader}

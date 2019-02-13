@@ -1,11 +1,11 @@
 package com.krake.bus.app
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.CoordinatorLayout
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.model.*
 import com.krake.core.PrivacyViewModel

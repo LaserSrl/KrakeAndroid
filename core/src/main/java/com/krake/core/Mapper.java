@@ -1,8 +1,8 @@
 package com.krake.core;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import androidx.annotation.Nullable;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.krake.core.cache.CacheManager;

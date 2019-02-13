@@ -1,8 +1,8 @@
 package com.krake.contentcreation.adapter.holder
 
-import android.support.v7.widget.SwitchCompat
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
 import com.krake.contentcreation.R
 import com.krake.core.widget.GestureViewHolder
 import com.krake.core.widget.ViewHolderWithClickGesture

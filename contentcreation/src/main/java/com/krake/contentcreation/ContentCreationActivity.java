@@ -1,26 +1,10 @@
 package com.krake.contentcreation;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.PersistableBundle;
-import android.os.Vibrator;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
+import android.os.*;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,18 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
-
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.krake.contentcreation.component.module.ContentCreationComponentModule;
-import com.krake.core.Constants;
-import com.krake.core.KeyListMap;
-import com.krake.core.OrchardError;
-import com.krake.core.OrchardUploadService;
-import com.krake.core.PrivacyViewModel;
-import com.krake.core.Signaler;
-import com.krake.core.UploadInterceptor;
+import com.krake.core.*;
 import com.krake.core.app.KrakeApplication;
 import com.krake.core.app.LoginAndPrivacyActivity;
 import com.krake.core.cache.CacheManager;
@@ -59,17 +48,11 @@ import com.krake.core.service.MessengerAndWorkerServiceConnection;
 import com.krake.core.util.LayoutUtils;
 import com.krake.core.view.TabLayoutHelper;
 import com.krake.core.widget.SnackbarUtils;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 
 /**
  * Activity per creare nuovi contenuti in Orchard, è configurabile in modo da permettere di creare

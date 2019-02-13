@@ -1,8 +1,8 @@
 package com.krake.core.drawer;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Interfaccia da implementare per caricare i contenuti dal drawer usando la navigation view.

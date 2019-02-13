@@ -1,11 +1,11 @@
 package com.krake.youtube
 
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.youtube.player.YouTubeIntents
 import com.krake.core.OrchardError
 import com.krake.core.app.OrchardDataModelFragment

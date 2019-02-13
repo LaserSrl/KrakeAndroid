@@ -5,9 +5,6 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
-
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import com.google.android.material.snackbar.Snackbar;
 import com.krake.core.R;
 import com.krake.core.widget.SnackbarUtils;
 

@@ -2,9 +2,8 @@ package com.krake.core.media;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import com.krake.core.R;
 import com.krake.core.app.KrakeApplication;
 import com.krake.core.component.annotation.BundleResolvable;
@@ -17,15 +16,14 @@ import com.krake.core.model.RecordKt;
 import com.krake.core.model.RecordWithIdentifier;
 import com.krake.core.model.RecordWithStringIdentifier;
 import com.krake.core.widget.CachedFragmentPagerAdapter;
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-
-import io.realm.Realm;
-import io.realm.RealmChangeListener;
-import io.realm.RealmResults;
 
 
 /**

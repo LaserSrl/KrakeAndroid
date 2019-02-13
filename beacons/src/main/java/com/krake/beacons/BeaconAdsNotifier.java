@@ -1,11 +1,10 @@
 package com.krake.beacons;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.SparseArray;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.krake.core.PrivacyViewModel;
 import com.krake.core.component.module.LoginComponentModule;
 import com.krake.core.component.module.OrchardComponentModule;
@@ -17,11 +16,7 @@ import com.krake.core.model.ContentItemWithTermPart;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.Date;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BeaconAdsNotifier extends Observable implements Observer {
 
@@ -69,7 +64,7 @@ public class BeaconAdsNotifier extends Observable implements Observer {
                 new LoginComponentModule(),
                 privacyViewModel);
 
-        beaconConnection.getModel().observeForever(new android.arch.lifecycle.Observer<DataModel>() {
+        beaconConnection.getModel().observeForever(new androidx.lifecycle.Observer<DataModel>() {
             @Override
             public void onChanged(@Nullable DataModel dataModel) {
                 if (dataModel != null)
@@ -86,7 +81,7 @@ public class BeaconAdsNotifier extends Observable implements Observer {
                 new LoginComponentModule(),
                 privacyViewModel);
 
-        adsConnection.getModel().observeForever(new android.arch.lifecycle.Observer<DataModel>() {
+        adsConnection.getModel().observeForever(new androidx.lifecycle.Observer<DataModel>() {
             @Override
             public void onChanged(@Nullable DataModel dataModel) {
                 if (dataModel != null) {

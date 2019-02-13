@@ -1,17 +1,16 @@
 package com.krake.core.app;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.annotation.CallSuper;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
-
+import androidx.annotation.CallSuper;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import com.krake.core.PrivacyStatus;
 import com.krake.core.PrivacyViewModel;
 import com.krake.core.R;
@@ -21,10 +20,9 @@ import com.krake.core.login.AcceptPrivacyFragment;
 import com.krake.core.login.LoginFragment;
 import com.krake.core.login.LoginManager;
 import com.krake.core.login.LoginUserOutput;
+import hotchemi.android.rate.AppRate;
 
 import java.util.Set;
-
-import hotchemi.android.rate.AppRate;
 
 /**
  * Activity che si occupa della gestione della privacy e della login durante l'interazione con Orchard.

@@ -1,7 +1,7 @@
 package com.krake.bus.app
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Transformations
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.krake.bus.model.BusPassage
 import com.krake.bus.model.BusPattern
 import com.krake.core.data.DataConnectionModel

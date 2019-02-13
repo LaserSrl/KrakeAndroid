@@ -3,9 +3,9 @@ package com.krake.core.social
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.annotation.DrawableRes
-import android.support.annotation.IntDef
-import android.support.annotation.StringRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.IntDef
+import androidx.annotation.StringRes
 
 object SocialItems
 {

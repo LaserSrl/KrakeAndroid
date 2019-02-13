@@ -1,7 +1,6 @@
 package com.krake.core.app;
 
-import android.support.annotation.NonNull;
-
+import androidx.annotation.NonNull;
 import com.krake.core.model.ContentItem;
 
 /**

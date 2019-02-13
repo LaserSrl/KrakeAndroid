@@ -1,6 +1,5 @@
 package mykrake.com.krakesample
 
-import android.content.Intent
 import android.os.Bundle
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
@@ -46,11 +45,6 @@ class MainActivity : LoginAndPrivacyActivity(), OnContentItemSelectedListener, O
     }
 
     override fun onContentItemInEvidence(senderFragment: Any, contentItem: ContentItem) {
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        super.onActivityResult(requestCode, resultCode, data)
 
     }
 

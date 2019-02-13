@@ -1,20 +1,18 @@
 package com.krake.core;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.util.ArrayMap;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.ArrayMap;
 import com.krake.core.model.RecordWithIdentifier;
 import com.krake.core.model.RecordWithStringIdentifier;
 import com.krake.core.util.StringWithRealmNameKt;
+import io.realm.RealmModel;
+import io.realm.RealmObject;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.StringTokenizer;
-
-import io.realm.RealmModel;
-import io.realm.RealmObject;
 
 /**
  * Utility per la gestione delle classi

@@ -1,14 +1,7 @@
 package com.krake.core.login.orchard;
 
-import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.util.LongSparseArray;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,7 +10,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.LongSparseArray;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -35,7 +34,6 @@ import com.krake.core.login.LoginManager;
 import com.krake.core.network.RemoteRequest;
 import com.krake.core.network.RemoteResponse;
 import com.krake.core.widget.SnackbarUtils;
-
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 

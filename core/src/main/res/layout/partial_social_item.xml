@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.AppCompatButton style="@style/ContentItems.Detail.SocialToolbar.Button" />
+<androidx.appcompat.widget.AppCompatButton style="@style/ContentItems.Detail.SocialToolbar.Button"/>

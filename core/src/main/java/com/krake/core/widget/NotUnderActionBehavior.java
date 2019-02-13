@@ -1,10 +1,10 @@
 package com.krake.core.widget;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.google.android.material.appbar.AppBarLayout;
 
 public class NotUnderActionBehavior<V extends View> extends CoordinatorLayout.Behavior<V> {
 

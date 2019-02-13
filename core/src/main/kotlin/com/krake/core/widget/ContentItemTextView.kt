@@ -1,9 +1,9 @@
 package com.krake.core.widget
 
 import android.content.Context
-import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
 import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
 import com.krake.core.ClassUtils
 import com.krake.core.R
 import com.krake.core.StringUtils

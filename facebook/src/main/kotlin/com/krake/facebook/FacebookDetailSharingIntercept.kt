@@ -2,8 +2,8 @@ package com.krake.facebook
 
 import android.content.Intent
 import android.net.Uri
-import android.support.v4.app.Fragment
 import android.util.Patterns
+import androidx.fragment.app.Fragment
 import com.facebook.share.model.ShareContent
 import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.model.SharePhoto

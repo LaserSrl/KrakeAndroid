@@ -4,12 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonObject;
 import com.krake.core.R;
 import com.krake.core.contacts.ContactInfo;

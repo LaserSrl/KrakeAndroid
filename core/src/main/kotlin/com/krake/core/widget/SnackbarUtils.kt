@@ -1,10 +1,10 @@
 package com.krake.core.widget
 
 import android.os.Handler
-import android.support.annotation.StringRes
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.view.View
+import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import com.krake.core.R
 
 /**

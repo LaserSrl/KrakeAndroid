@@ -52,7 +52,7 @@
             android:background="@color/cc_bottom_container_top_line_color" />
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mediasPreviewGallery"
         style="@style/NewContent.MediaGallery"
         android:layout_width="match_parent"

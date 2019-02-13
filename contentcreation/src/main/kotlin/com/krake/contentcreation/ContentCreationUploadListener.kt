@@ -1,9 +1,9 @@
 package com.krake.contentcreation
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Context
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.krake.core.OrchardApiEndListener
 import com.krake.core.OrchardError
 import com.krake.core.Signaler

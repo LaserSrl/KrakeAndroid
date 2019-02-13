@@ -1,7 +1,7 @@
 package com.krake.core
 
 import android.content.Context
-import android.support.v4.util.ArrayMap
+import androidx.collection.ArrayMap
 import com.google.gson.JsonObject
 import com.krake.core.network.CancelableRequest
 import com.krake.core.network.RemoteClient

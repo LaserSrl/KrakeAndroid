@@ -1,7 +1,7 @@
 package com.krake.core.media.streaming;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Interfaccia che definisce le proprietà di un provider utilizzato per lo streaming.

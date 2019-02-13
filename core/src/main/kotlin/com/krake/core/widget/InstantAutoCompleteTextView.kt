@@ -3,10 +3,6 @@ package com.krake.core.widget
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.AppCompatAutoCompleteTextView
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -15,6 +11,10 @@ import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
+import androidx.core.content.ContextCompat
 import com.krake.core.R
 import com.krake.core.extension.setTintCompat
 import com.krake.core.util.ColorUtil

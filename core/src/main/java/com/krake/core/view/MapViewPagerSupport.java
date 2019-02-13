@@ -1,7 +1,6 @@
 package com.krake.core.view;
 
-import android.support.annotation.NonNull;
-
+import androidx.annotation.NonNull;
 import com.krake.core.data.DataConnectionBase;
 import com.krake.core.model.ContentItemWithLocation;
 

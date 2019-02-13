@@ -1,15 +1,14 @@
 package com.krake.puzzlegame;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import com.krake.core.PrivacyViewModel;
 import com.krake.core.app.ThemableNavigationActivity;
 import com.krake.core.cache.CacheManager;
@@ -24,11 +23,10 @@ import com.krake.core.model.RecordWithIdentifier;
 import com.krake.core.model.RecordWithStringIdentifier;
 import com.krake.puzzlegame.component.module.PuzzleGameComponentModule;
 import com.krake.puzzlegame.model.PuzzleGame;
+import io.realm.RealmModel;
 
 import java.util.List;
 import java.util.Random;
-
-import io.realm.RealmModel;
 
 /**
  * Activity per accogliere l'utente prima di potarlo al puzzle effettivo.

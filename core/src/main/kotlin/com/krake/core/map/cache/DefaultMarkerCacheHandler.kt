@@ -1,6 +1,6 @@
 package com.krake.core.map.cache
 
-import android.support.v4.util.ArrayMap
+import androidx.collection.ArrayMap
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.Marker
 import com.krake.core.cache.CacheHandler

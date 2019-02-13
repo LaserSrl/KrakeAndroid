@@ -2,7 +2,7 @@ package com.krake.core.model
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.krake.core.image.BitmapGenerator

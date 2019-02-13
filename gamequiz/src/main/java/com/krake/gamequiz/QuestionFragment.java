@@ -3,24 +3,15 @@ package com.krake.gamequiz;
 import android.animation.Animator;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Vibrator;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.os.*;
 import android.text.TextUtils;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import com.krake.core.OrchardError;
 import com.krake.core.app.OrchardDataModelFragment;
 import com.krake.core.data.DataModel;
@@ -31,7 +22,6 @@ import com.krake.core.media.loader.MediaLoader;
 import com.krake.core.util.LayoutUtils;
 import com.krake.surveys.model.Answer;
 import com.krake.surveys.model.Question;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

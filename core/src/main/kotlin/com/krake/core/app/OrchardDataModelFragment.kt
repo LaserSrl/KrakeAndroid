@@ -1,15 +1,15 @@
 package com.krake.core.app
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.res.TypedArray
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.krake.core.ClassUtils
 import com.krake.core.OrchardError
 import com.krake.core.PrivacyViewModel

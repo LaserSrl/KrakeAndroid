@@ -1,15 +1,15 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_map_and_grid"
-    style="@style/ContentItems.GridMap"
-    android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="fill_vertical"
-    android:orientation="vertical"
-    android:tag="@string/tag_no_switcher"
-    tools:context="com.krake.core.app.ContentItemListMapActivity"
-    tools:layout="@android:layout/list_content">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:tools="http://schemas.android.com/tools"
+                                                     android:id="@+id/root_map_and_grid"
+                                                     style="@style/ContentItems.GridMap"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="fill_parent"
+                                                     android:layout_gravity="fill_vertical"
+                                                     android:orientation="vertical"
+                                                     android:tag="@string/tag_no_switcher"
+                                                     tools:context="com.krake.core.app.ContentItemListMapActivity"
+                                                     tools:layout="@android:layout/list_content">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -39,4 +39,4 @@
             android:layout_gravity="fill_vertical"
             android:layout_weight="@integer/content_item_map_weight" />
     </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

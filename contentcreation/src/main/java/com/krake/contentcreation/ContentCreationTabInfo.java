@@ -1,11 +1,11 @@
 package com.krake.contentcreation;
 
 import android.content.Context;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.util.SparseArray;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import com.krake.core.media.MediaType;
 import com.krake.core.media.watermark.Watermark;
 import com.krake.core.model.TermPart;

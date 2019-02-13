@@ -1,6 +1,6 @@
 package com.krake.core.map
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.ClusterManager

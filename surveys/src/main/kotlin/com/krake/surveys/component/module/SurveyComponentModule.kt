@@ -3,7 +3,7 @@ package com.krake.surveys.component.module
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.krake.core.component.base.ComponentModule
 import com.krake.core.component.module.LoginComponentModule
 import com.krake.surveys.R

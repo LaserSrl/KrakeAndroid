@@ -2,9 +2,9 @@ package com.krake.core.address
 
 import android.content.Context
 import android.location.Location
-import android.support.annotation.StyleRes
 import android.text.TextUtils
 import android.text.style.TextAppearanceSpan
+import androidx.annotation.StyleRes
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.krake.core.R

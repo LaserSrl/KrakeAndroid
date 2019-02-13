@@ -9,28 +9,13 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Message;
-import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.os.*;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Chronometer;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import android.view.*;
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import com.krake.core.OrchardError;
 import com.krake.core.app.OrchardDataModelFragment;
 import com.krake.core.data.DataModel;
@@ -41,7 +26,7 @@ import com.krake.core.media.loader.ImageLoader;
 import com.krake.core.media.loader.MediaLoader;
 import com.krake.core.util.LayoutUtils;
 import com.krake.puzzlegame.model.PuzzleGame;
-
+import io.realm.Realm;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -49,8 +34,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import io.realm.Realm;
 
 public class GameTilesFragment extends OrchardDataModelFragment
         implements TileView.Listener, Chronometer.OnChronometerTickListener, View.OnClickListener {

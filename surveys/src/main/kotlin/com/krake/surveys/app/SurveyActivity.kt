@@ -1,6 +1,6 @@
 package com.krake.surveys.app
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.krake.core.app.AnalyticsApplication
 import com.krake.core.app.LoginAndPrivacyActivity
 import com.krake.core.component.annotation.BundleResolvable

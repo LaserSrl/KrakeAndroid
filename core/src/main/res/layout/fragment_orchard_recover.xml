@@ -14,16 +14,16 @@
 
         <include layout="@layout/common_login_layout" />
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/mailOrPhoneInputLayout"
             style="@style/LoginInputLayout"
             android:layout_marginTop="16dp">
 
-            <android.support.v7.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/mail_or_phone_edit_text"
                 style="@style/LoginEditText"
                 android:inputType="textEmailAddress" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/recoverBySMSButton"
                 style="@style/LoginButton"
                 android:layout_width="0dp"
@@ -43,7 +43,7 @@
                 android:text="@string/sms"
                 android:visibility="gone" />
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/recoverByMailButton"
                 style="@style/LoginButton"
                 android:layout_width="0dp"

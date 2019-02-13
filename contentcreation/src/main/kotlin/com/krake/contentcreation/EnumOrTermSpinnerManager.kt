@@ -1,14 +1,14 @@
 package com.krake.contentcreation
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.gson.JsonArray
 import com.krake.core.OrchardError
 import com.krake.core.PrivacyViewModel

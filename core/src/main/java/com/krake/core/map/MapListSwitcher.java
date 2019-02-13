@@ -1,11 +1,9 @@
 package com.krake.core.map;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import androidx.fragment.app.Fragment;
 import com.krake.core.R;
 import com.krake.core.app.ContentItemListMapActivity;
 

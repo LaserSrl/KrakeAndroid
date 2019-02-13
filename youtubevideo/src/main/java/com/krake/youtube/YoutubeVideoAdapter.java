@@ -1,11 +1,10 @@
 package com.krake.youtube;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
-
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import com.krake.core.widget.ObjectsRecyclerViewAdapter;
 import com.krake.youtube.model.YoutubeVideo;
 import com.krake.youtube.widget.YoutubeVideoHolder;

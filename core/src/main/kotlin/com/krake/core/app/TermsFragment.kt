@@ -5,13 +5,13 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.design.widget.TabLayout
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.CallSuper
+import androidx.core.content.ContextCompat
+import com.google.android.material.tabs.TabLayout
 import com.krake.core.Constants
 import com.krake.core.OrchardError
 import com.krake.core.R

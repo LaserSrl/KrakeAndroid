@@ -12,7 +12,8 @@ val Activity.krakeApplication: KrakeApplication get() = application as KrakeAppl
 
 val Fragment.krakeApplication: KrakeApplication get() = activity.krakeApplication
 
-val android.support.v4.app.Fragment.krakeApplication: KrakeApplication get() =
+val androidx.fragment.app.Fragment.krakeApplication: KrakeApplication
+    get() =
     activity?.krakeApplication ?: throw IllegalArgumentException("The activity mustn't be null.")
 
 val Context.krakeAppContext: KrakeApplication get() = applicationContext as KrakeApplication

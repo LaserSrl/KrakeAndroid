@@ -1,9 +1,9 @@
 package com.krake.core.util
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.annotation.StyleableRes
 import android.util.TypedValue
+import androidx.annotation.ColorInt
+import androidx.annotation.StyleableRes
 import com.krake.core.R
 
 /**

@@ -1,6 +1,6 @@
 package com.krake.core.thread
 
-import android.support.test.filters.SmallTest
+import androidx.test.filters.SmallTest
 import com.krake.test.extension.lock
 import kotlinx.coroutines.delay
 import org.junit.Assert.*

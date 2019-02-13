@@ -1,8 +1,8 @@
 package com.krake.core.media.loader
 
 import android.graphics.drawable.Drawable
-import android.support.annotation.DrawableRes
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 
 /**
  * Generic loader for images

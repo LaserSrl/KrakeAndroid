@@ -1,8 +1,8 @@
 package com.krake.core.widget.compat
 
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 
 /**
  * Used to allow the compound drawables features on all API levels.

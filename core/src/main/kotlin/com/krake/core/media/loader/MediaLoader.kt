@@ -5,10 +5,10 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.util.Log
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import com.krake.core.R
 import com.krake.core.media.ImageOptions
 import com.krake.core.media.MediaLoadable

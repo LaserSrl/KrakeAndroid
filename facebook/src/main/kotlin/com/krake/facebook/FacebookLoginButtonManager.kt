@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Typeface
-import android.support.v4.content.ContextCompat
 import android.widget.Button
+import androidx.core.content.ContextCompat
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback

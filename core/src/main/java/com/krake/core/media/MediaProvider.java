@@ -4,17 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v4.content.FileProvider;
 import android.webkit.MimeTypeMap;
-
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import com.krake.core.R;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

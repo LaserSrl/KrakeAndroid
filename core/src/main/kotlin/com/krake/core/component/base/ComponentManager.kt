@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.util.ArrayMap
 import android.util.Log
+import androidx.collection.ArrayMap
+import androidx.fragment.app.Fragment
 import com.krake.core.component.annotation.BundleResolvable
 import com.krake.core.component.base.ComponentManager.resolveBundle
 import com.krake.core.component.module.ThemableComponentModule

@@ -1,11 +1,11 @@
 package com.krake.core.widget.osm
 
 import android.content.Context
-import android.support.v4.app.FragmentActivity
 import android.util.AttributeSet
 import android.view.View
 import android.webkit.WebView
 import android.widget.FrameLayout
+import androidx.fragment.app.FragmentActivity
 import com.krake.core.R
 import com.krake.core.view.DescriptionWebViewClient
 import com.krake.core.view.MapUtils

@@ -1,6 +1,6 @@
 package com.krake.core.login;
 
-import android.arch.lifecycle.Observer;
+import androidx.lifecycle.Observer;
 
 /**
  * Created by joel on 19/02/15.

@@ -4,11 +4,11 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.annotation.LayoutRes
 import com.google.android.gms.maps.model.Marker
 import com.krake.core.R
 import com.krake.core.image.BitmapGenerator

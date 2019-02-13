@@ -1,11 +1,11 @@
 package com.krake.contentcreation
 
 import android.content.Context
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import com.krake.core.media.MediaLoadable
 import com.krake.core.media.loader.MediaLoader
 import java.util.*

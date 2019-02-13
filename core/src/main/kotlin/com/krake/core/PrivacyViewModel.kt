@@ -1,10 +1,10 @@
 package com.krake.core
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.content.Context
-import android.support.v4.util.LongSparseArray
+import androidx.collection.LongSparseArray
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.krake.core.login.PrivacyException

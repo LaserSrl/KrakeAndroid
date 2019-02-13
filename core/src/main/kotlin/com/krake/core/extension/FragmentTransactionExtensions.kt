@@ -24,7 +24,7 @@ fun FragmentTransaction.commitSync(manager: FragmentManager) {
  *
  * @param manager [android.support.v4.app.FragmentManager] usato per fare il commit della [android.support.v4.app.FragmentTransaction].
  */
-fun android.support.v4.app.FragmentTransaction.commitSync(manager: android.support.v4.app.FragmentManager) {
+fun androidx.fragment.app.FragmentTransaction.commitSync(manager: androidx.fragment.app.FragmentManager) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         commitNow()
     } else {
@@ -52,7 +52,7 @@ fun FragmentTransaction.commitSyncAllowingStateLoss(manager: FragmentManager) {
  *
  * @param manager [android.support.v4.app.FragmentManager] usato per fare il commit della [android.support.v4.app.FragmentTransaction].
  */
-fun android.support.v4.app.FragmentTransaction.commitSyncAllowingStateLoss(manager: android.support.v4.app.FragmentManager) {
+fun androidx.fragment.app.FragmentTransaction.commitSyncAllowingStateLoss(manager: androidx.fragment.app.FragmentManager) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         commitNowAllowingStateLoss()
     } else {

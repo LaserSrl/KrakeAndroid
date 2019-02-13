@@ -6,27 +6,22 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v7.widget.AppCompatImageButton;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
+import android.view.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -38,14 +33,7 @@ import com.krake.contentcreation.widget.SemiCircleView;
 import com.krake.core.ClassUtils;
 import com.krake.core.StringUtils;
 import com.krake.core.extension.ImageLoaderExtensionsKt;
-import com.krake.core.media.CameraPickedFullScreenActivity;
-import com.krake.core.media.DownloadOnlyLoadable;
-import com.krake.core.media.ImageOptions;
-import com.krake.core.media.MediaLoadable;
-import com.krake.core.media.MediaPickerHelper;
-import com.krake.core.media.MediaProvider;
-import com.krake.core.media.MediaType;
-import com.krake.core.media.UploadableMediaInfo;
+import com.krake.core.media.*;
 import com.krake.core.media.loader.ImageLoader;
 import com.krake.core.media.loader.MediaLoader;
 import com.krake.core.media.watermark.Watermark;
@@ -58,15 +46,13 @@ import com.krake.core.permission.PermissionManager;
 import com.krake.core.util.DisplayUtils;
 import com.krake.core.widget.BottomSheetNotUnderActionBehavior;
 import com.krake.core.widget.SafeBottomSheetBehavior;
-
+import kotlin.collections.ArraysKt;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import kotlin.collections.ArraysKt;
 
 /**
  * Fragment per caricare una foto o un video da collegare ad un nuovo contenuto su Orchard.

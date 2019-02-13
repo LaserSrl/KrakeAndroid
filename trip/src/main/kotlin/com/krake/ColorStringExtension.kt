@@ -1,7 +1,7 @@
 package com.krake
 
 import android.graphics.Color
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 
 /**
  * Exten

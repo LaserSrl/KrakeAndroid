@@ -3,11 +3,11 @@ package com.krake.core.component.module
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.annotation.LongDef
-import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
 import android.widget.FrameLayout
+import androidx.annotation.LayoutRes
+import androidx.annotation.LongDef
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.google.maps.android.clustering.ClusterManager
 import com.krake.core.R
 import com.krake.core.app.*

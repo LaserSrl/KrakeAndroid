@@ -2,8 +2,8 @@ package com.krake.bus.app
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*

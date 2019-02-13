@@ -2,8 +2,8 @@ package com.krake.core.cache
 
 import android.content.Context
 import android.location.Location
-import android.support.v4.util.ArrayMap
 import android.util.Log
+import androidx.collection.ArrayMap
 import com.krake.core.Constants
 import com.krake.core.R
 import com.krake.core.app.KrakeApplication

@@ -1,18 +1,18 @@
 package com.krake.core.widget
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
-import android.support.v4.app.FragmentActivity
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v4.graphics.ColorUtils
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.ColorUtils
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.krake.core.*
 import com.krake.core.app.LoginAndPrivacyActivity
 import com.krake.core.component.module.LoginComponentModule

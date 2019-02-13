@@ -1,8 +1,7 @@
 package com.krake.core;
 
 import android.content.Context;
-import android.support.v4.util.ArrayMap;
-
+import androidx.collection.ArrayMap;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

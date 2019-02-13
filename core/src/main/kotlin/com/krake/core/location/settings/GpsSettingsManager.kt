@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.location.LocationManager
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.krake.core.R
 import com.krake.core.extension.commitSyncAllowingStateLoss
 import com.krake.core.location.settings.presenter.GpsSettingsPresenter
@@ -97,7 +97,7 @@ open class GpsSettingsManager constructor(protected val activity: Activity, prot
         if (gpsFragment == null) {
             gpsFragment = GpsSettingsFragment.newInstance(settingsChangeUnavailableMsg)
             fragmentManager.beginTransaction()
-                    .add(gpsFragment, tag)
+                .add(gpsFragment!!, tag)
                     .commitSyncAllowingStateLoss(fragmentManager)
         }
         gpsFragment?.callback = this

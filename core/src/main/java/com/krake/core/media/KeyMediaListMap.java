@@ -2,8 +2,7 @@ package com.krake.core.media;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-
+import androidx.annotation.NonNull;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.krake.core.KeyListMap;

@@ -1,6 +1,6 @@
 package com.krake.core.widget;
 
-import android.support.v7.widget.GridLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 /**
  * Gestisce uno span size differente a seconda della posizione.

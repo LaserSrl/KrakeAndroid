@@ -1,11 +1,11 @@
 package com.krake.core.widget.compat
 
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.v7.content.res.AppCompatResources
 import android.util.AttributeSet
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.appcompat.content.res.AppCompatResources
 import com.krake.core.R
 import com.krake.core.extension.getColor
 import com.krake.core.extension.getResourceId

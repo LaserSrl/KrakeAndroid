@@ -1,6 +1,5 @@
 package com.krake.core.widget;
 
-import android.support.annotation.IntDef;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -8,6 +7,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
+import androidx.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

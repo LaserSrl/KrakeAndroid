@@ -1,7 +1,7 @@
 package com.krake.usercontent;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Informazioni per creazione di un tab nell'activity per mostrare i contenuti dell'utente

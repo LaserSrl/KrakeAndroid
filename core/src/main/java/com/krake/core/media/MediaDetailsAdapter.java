@@ -1,12 +1,11 @@
 package com.krake.core.media;
 
 import android.app.Activity;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import com.krake.core.R;
 import com.krake.core.widget.ImageViewHolder;
 

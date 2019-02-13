@@ -2,12 +2,12 @@ package com.krake.core.widget
 
 import android.app.Activity
 import android.content.Context
-import android.support.annotation.LayoutRes
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.krake.core.R
 import com.krake.core.media.MediaDetailsAdapter
 import com.krake.core.media.MediaSelectionListener

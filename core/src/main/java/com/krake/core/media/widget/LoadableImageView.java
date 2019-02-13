@@ -1,15 +1,14 @@
 package com.krake.core.media.widget;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import com.krake.core.media.ImageOptions;
 import com.krake.core.media.MediaLoadable;
-import com.krake.core.media.loader.MediaLoader;
 import com.krake.core.media.WidgetLoadableHelper;
+import com.krake.core.media.loader.MediaLoader;
 
 /**
  * ImageView che permette il caricamento dei dati tramite il {@link MediaLoader}

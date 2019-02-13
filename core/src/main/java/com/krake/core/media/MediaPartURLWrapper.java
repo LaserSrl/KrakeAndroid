@@ -1,7 +1,6 @@
 package com.krake.core.media;
 
-import android.support.annotation.NonNull;
-
+import androidx.annotation.NonNull;
 import com.krake.core.model.MediaPart;
 
 /**

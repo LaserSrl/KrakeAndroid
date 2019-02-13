@@ -2,17 +2,17 @@
 
 <!-- As the main content view, the view below consumes the entire
      space available using match_parent in both dimensions. -->
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_refresh"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:enabled="false"
-    android:fitsSystemWindows="true">
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                       android:id="@+id/swipe_refresh"
+                                                       android:layout_width="match_parent"
+                                                       android:layout_height="match_parent"
+                                                       android:enabled="false"
+                                                       android:fitsSystemWindows="true">
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_layout_coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical" />
-</android.support.v4.widget.SwipeRefreshLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

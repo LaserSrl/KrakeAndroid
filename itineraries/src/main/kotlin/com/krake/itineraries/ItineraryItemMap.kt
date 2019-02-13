@@ -3,8 +3,8 @@ package com.krake.itineraries
 import android.app.ActivityOptions
 import android.content.Context
 import android.os.Build
-import android.support.v4.util.ArrayMap
 import android.util.AttributeSet
+import androidx.collection.ArrayMap
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLngBounds

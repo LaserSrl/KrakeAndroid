@@ -1,7 +1,7 @@
 package com.krake.core.data
 
-import android.arch.lifecycle.*
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.*
+import androidx.lifecycle.Observer
 import com.krake.core.OrchardError
 import com.krake.core.PrivacyStatus
 import com.krake.core.PrivacyViewModel

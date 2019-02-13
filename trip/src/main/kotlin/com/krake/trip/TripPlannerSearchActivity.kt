@@ -1,20 +1,21 @@
 package com.krake.trip
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED
-import android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
-import android.support.v4.view.ViewCompat
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AlertDialog
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.appcompat.app.AlertDialog
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.ViewCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
 import com.krake.core.address.PlaceResult
 import com.krake.core.app.LoginAndPrivacyActivity
 import com.krake.core.widget.SafeBottomSheetBehavior
@@ -113,7 +114,7 @@ class TripPlannerSearchActivity : LoginAndPrivacyActivity(),
             supportActionBar?.hide()
     }
 
-    override fun onAttachFragment(fragment: android.support.v4.app.Fragment?) {
+    override fun onAttachFragment(fragment: Fragment?) {
         super.onAttachFragment(fragment)
 
         //if the fragment attached is TransitRoutesAlternativeFragment or RouteStepsFragment

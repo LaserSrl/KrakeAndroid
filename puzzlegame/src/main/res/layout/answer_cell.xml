@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/ContentItems.Cell.CardView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   style="@style/ContentItems.Cell.CardView"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:orientation="vertical">
 
     <TextView
         android:id="@+id/answerText"
@@ -12,4 +12,4 @@
         android:layout_height="wrap_content"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

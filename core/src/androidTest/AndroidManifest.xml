@@ -4,9 +4,9 @@
     package="com.krake.test">
 
     <application
-        android:name="android.support.multidex.MultiDexApplication"
-        android:theme="@style/Theme.AppCompat"
-        tools:ignore="ManifestResource">
+            android:name="androidx.multidex.MultiDexApplication"
+            android:theme="@style/Theme.AppCompat"
+            tools:ignore="ManifestResource">
         <activity
             android:name=".view.ViewActivity"
             android:screenOrientation="@integer/activity_orientation" />

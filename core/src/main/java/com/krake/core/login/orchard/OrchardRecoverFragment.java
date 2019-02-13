@@ -5,9 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,7 +14,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import androidx.fragment.app.Fragment;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonObject;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -29,7 +28,6 @@ import com.krake.core.network.RemoteRequest;
 import com.krake.core.network.RemoteResponse;
 import com.krake.core.widget.EditTextExtensionTextInputLayoutKt;
 import com.krake.core.widget.SnackbarUtils;
-
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 

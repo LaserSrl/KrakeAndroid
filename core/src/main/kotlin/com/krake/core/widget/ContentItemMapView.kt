@@ -6,13 +6,12 @@ import android.content.Context
 import android.graphics.Color
 import android.location.Location
 import android.os.Build
-import android.support.annotation.CallSuper
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.CoordinatorLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
+import androidx.annotation.CallSuper
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -20,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.maps.android.data.kml.KmlLayer
 import com.krake.core.R
 import com.krake.core.api.Request

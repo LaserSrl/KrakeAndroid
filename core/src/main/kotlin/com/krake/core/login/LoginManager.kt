@@ -1,12 +1,12 @@
 package com.krake.core.login
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Transformations
 import android.content.Context
 import android.content.SharedPreferences
 import android.text.TextUtils
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.krake.core.Constants

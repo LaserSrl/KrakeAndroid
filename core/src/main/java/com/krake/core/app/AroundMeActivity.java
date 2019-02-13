@@ -2,12 +2,11 @@ package com.krake.core.app;
 
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -23,7 +22,6 @@ import com.krake.core.location.LocationRequirementsHelper;
 import com.krake.core.permission.PermissionListener;
 import com.krake.core.permission.PermissionManager;
 import com.krake.core.text.DistanceNumberFormat;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;

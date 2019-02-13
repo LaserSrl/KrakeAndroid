@@ -3,12 +3,10 @@ package com.krake.gamequiz;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.IntentSender;
-import android.support.design.widget.Snackbar;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.krake.gamequiz.R;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * Created by joel on 26/06/15.

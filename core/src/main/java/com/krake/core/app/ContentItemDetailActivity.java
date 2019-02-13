@@ -1,21 +1,20 @@
 package com.krake.core.app;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.transition.Fade;
 import android.transition.Transition;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Window;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.krake.core.OrchardError;
 import com.krake.core.R;
 import com.krake.core.cache.CacheManager;
@@ -30,12 +29,10 @@ import com.krake.core.media.MediaSelectionListener;
 import com.krake.core.model.ContentItem;
 import com.krake.core.model.MediaPart;
 import com.krake.core.widget.SnackbarUtils;
-
-import java.util.List;
+import io.realm.RealmModel;
 
 import javax.annotation.Nonnull;
-
-import io.realm.RealmModel;
+import java.util.List;
 
 /**
  * Activity che mostra i contenuti di un oggetto per orchard deve implementare l'interfaccia

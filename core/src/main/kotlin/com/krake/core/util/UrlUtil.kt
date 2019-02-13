@@ -3,8 +3,8 @@ package com.krake.core.util
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.design.widget.Snackbar
 import android.view.View
+import com.google.android.material.snackbar.Snackbar
 import com.krake.core.R
 import com.krake.core.widget.SnackbarUtils
 

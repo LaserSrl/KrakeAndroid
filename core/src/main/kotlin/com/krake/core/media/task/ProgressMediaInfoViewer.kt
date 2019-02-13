@@ -1,11 +1,11 @@
 package com.krake.core.media.task
 
 import android.graphics.Bitmap
-import android.support.annotation.DrawableRes
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.annotation.DrawableRes
 import com.krake.core.R
 import com.krake.core.media.MediaLoadable
 import com.krake.core.media.MediaType

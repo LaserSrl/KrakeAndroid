@@ -33,7 +33,7 @@
         android:textColor="@color/textColor"
         tools:text="08/10/2016" />
 
-    <android.support.v7.widget.AppCompatImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/creation_date_field_button"
         style="@style/NewContent.Date.Button"
         android:layout_width="wrap_content"

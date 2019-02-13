@@ -3,7 +3,6 @@ package com.krake.bus.app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.krake.core.address.AddressFilterableArrayAdapter
 import com.krake.core.address.PlaceResult
 import com.krake.core.text.DistanceNumberFormat

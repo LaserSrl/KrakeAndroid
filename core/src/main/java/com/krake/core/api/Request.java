@@ -1,9 +1,8 @@
 package com.krake.core.api;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.JsonObject;
 import com.google.maps.android.PolyUtil;
@@ -12,12 +11,11 @@ import com.krake.core.network.CancelableRequest;
 import com.krake.core.network.RemoteClient;
 import com.krake.core.network.RemoteRequest;
 import com.krake.core.network.RemoteResponse;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 import java.util.List;
 import java.util.Locale;
-
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
 
 /*
 Classe per fare una richiesta delle indicazioni su come arrivare ad una destinazione

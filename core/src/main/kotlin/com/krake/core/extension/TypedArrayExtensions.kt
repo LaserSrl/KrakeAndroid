@@ -1,9 +1,9 @@
 package com.krake.core.extension
 
 import android.content.res.TypedArray
-import android.support.annotation.AnyRes
-import android.support.annotation.ColorInt
-import android.support.annotation.StyleableRes
+import androidx.annotation.AnyRes
+import androidx.annotation.ColorInt
+import androidx.annotation.StyleableRes
 
 /**
  * Used to get a null default value instead of an invalid resource id.

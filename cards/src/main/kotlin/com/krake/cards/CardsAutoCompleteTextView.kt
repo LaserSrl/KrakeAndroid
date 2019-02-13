@@ -3,14 +3,14 @@ package com.krake.cards
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.widget.AppCompatAutoCompleteTextView
 import android.util.AttributeSet
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.krake.core.contacts.ContactInfo
 
 /**

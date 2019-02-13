@@ -1,15 +1,8 @@
 package com.krake.core.app
 
-import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.res.TypedArray
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.LayoutRes
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.CoordinatorLayout
-import android.support.design.widget.Snackbar
-import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -17,6 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.ProgressBar
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 import com.krake.core.ClassUtils
 import com.krake.core.OrchardError
 import com.krake.core.R

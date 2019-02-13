@@ -1,11 +1,11 @@
 package com.krake.core.widget;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 /**
  * Created by joel on 24/06/16.

@@ -3,14 +3,15 @@ package com.krake.core.media;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.krake.core.media.support.VideoFragment;
 import com.krake.core.util.UriGsonSerializer;
 import com.krake.core.widget.CachedFragmentPagerAdapter;
+
 import java.util.LinkedList;
 import java.util.List;
 

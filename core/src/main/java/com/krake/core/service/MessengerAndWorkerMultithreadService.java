@@ -3,16 +3,9 @@ package com.krake.core.service;
 import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-
+import android.os.*;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import com.krake.core.app.KrakeApplication;
 
 import java.util.ArrayList;

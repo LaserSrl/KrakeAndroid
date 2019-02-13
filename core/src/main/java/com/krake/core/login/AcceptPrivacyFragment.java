@@ -1,12 +1,7 @@
 package com.krake.core.login;
 
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.util.LongSparseArray;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +9,11 @@ import android.webkit.WebView;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.collection.LongSparseArray;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import com.google.android.material.snackbar.Snackbar;
 import com.krake.core.PrivacyViewModel;
 import com.krake.core.R;
 import com.krake.core.model.PolicyText;

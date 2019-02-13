@@ -3,9 +3,8 @@ package com.krake.oauthweblogin;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.view.View;
-
+import androidx.annotation.NonNull;
 import com.krake.core.login.LoginViewManager;
 import com.krake.core.network.RemoteRequest;
 

@@ -2,13 +2,12 @@ package com.krake.core.view;
 
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import com.krake.core.app.OpenWebContentFragment;
 
 import java.lang.ref.WeakReference;

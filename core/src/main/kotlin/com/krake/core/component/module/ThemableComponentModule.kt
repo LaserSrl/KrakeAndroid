@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.StyleRes
+import androidx.annotation.StyleRes
 import com.krake.core.R
 import com.krake.core.app.ThemableNavigationActivity
 import com.krake.core.component.base.ComponentModule

@@ -6,12 +6,12 @@ import android.graphics.Color
 import android.graphics.LightingColorFilter
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.krake.core.R
 import com.krake.core.media.loader.TermIconLoader
 import com.krake.core.model.ContentItem

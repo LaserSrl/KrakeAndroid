@@ -1,7 +1,7 @@
 package com.krake.core.app;
 
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by joel on 09/10/14.

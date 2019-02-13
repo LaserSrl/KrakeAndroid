@@ -5,23 +5,15 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.ArrayMap;
+import androidx.core.app.NotificationCompat;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.krake.core.ClassUtils;
-import com.krake.core.Constants;
-import com.krake.core.KeyListMap;
-import com.krake.core.OrchardApiEndListener;
-import com.krake.core.OrchardError;
-import com.krake.core.OrchardUploadService;
-import com.krake.core.Signaler;
-import com.krake.core.UploadCompleteEndListener;
+import com.krake.core.*;
 import com.krake.core.app.ContentItemDetailActivity;
 import com.krake.core.app.KrakeApplication;
 import com.krake.core.component.base.ComponentManager;
@@ -30,12 +22,11 @@ import com.krake.core.component.module.OrchardComponentModule;
 import com.krake.core.media.UploadableMediaInfo;
 import com.krake.core.network.RemoteRequest;
 import com.krake.core.network.RemoteResponse;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 import java.util.List;
 import java.util.Random;
-
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
 
 /**
  * Listener per gestire la fine dell'upload del file multimediale durante la creazione di un contenuto.

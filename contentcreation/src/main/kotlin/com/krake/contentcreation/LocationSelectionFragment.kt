@@ -4,14 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import android.os.Bundle
-import android.support.design.widget.CoordinatorLayout
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.Fragment
 import com.google.android.gms.location.LocationListener
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -21,6 +20,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.Marker
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.krake.contentcreation.model.LocationSelectionItem

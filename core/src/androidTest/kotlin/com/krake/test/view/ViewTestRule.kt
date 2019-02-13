@@ -1,7 +1,6 @@
 package com.krake.test.view
 
 import android.content.Intent
-import android.support.test.rule.ActivityTestRule
 import android.view.View
 
 /**

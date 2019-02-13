@@ -1,10 +1,10 @@
 package com.krake.trip
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat
 import android.text.SpannableString
 import android.text.Spanned
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.model.LatLngBounds
 import com.krake.core.address.PlaceResult
 import com.krake.core.model.MediaPart

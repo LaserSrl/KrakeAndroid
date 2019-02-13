@@ -2,8 +2,8 @@ package com.krake.core.media
 
 import android.app.Activity
 import android.content.ComponentCallbacks
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import com.krake.core.media.loader.MediaLoader
 import com.krake.core.model.MediaPart
 import com.krake.core.widget.ImageViewHolder

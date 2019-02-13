@@ -7,11 +7,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Build;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-
+import androidx.annotation.ColorInt;
 import com.krake.contentcreation.MediaPickerFragment;
 import com.krake.contentcreation.R;
 

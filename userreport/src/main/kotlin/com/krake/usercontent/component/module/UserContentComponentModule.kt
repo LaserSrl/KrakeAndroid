@@ -3,10 +3,10 @@ package com.krake.usercontent.component.module
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.TabLayout
 import android.view.MenuItem
+import androidx.annotation.LayoutRes
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.krake.contentcreation.ContentCreationActivity
 import com.krake.core.app.ContentItemDetailActivity

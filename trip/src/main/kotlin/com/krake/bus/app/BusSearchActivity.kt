@@ -8,15 +8,14 @@ import android.graphics.drawable.Drawable
 import android.location.Address
 import android.location.Location
 import android.os.Bundle
-import android.support.annotation.DrawableRes
-import android.support.design.widget.AppBarLayout
-import android.support.v4.content.ContextCompat
-import android.support.v4.util.ArrayMap
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.DrawableRes
+import androidx.collection.ArrayMap
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationListener
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -24,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.material.appbar.AppBarLayout
 import com.google.gson.Gson
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.map.MapModifier

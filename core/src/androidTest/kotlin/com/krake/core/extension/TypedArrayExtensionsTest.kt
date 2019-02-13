@@ -1,9 +1,9 @@
 package com.krake.core.extension
 
 import android.content.res.TypedArray
-import android.support.annotation.AnyRes
-import android.support.annotation.ColorInt
-import android.support.test.filters.SmallTest
+import androidx.annotation.AnyRes
+import androidx.annotation.ColorInt
+import androidx.test.filters.SmallTest
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
 import junit.framework.Assert.assertEquals

@@ -3,8 +3,8 @@ package com.krake.gamequiz.component.module
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
 import android.view.MenuItem
+import androidx.annotation.LayoutRes
 import com.krake.core.app.ContentItemDetailActivity
 import com.krake.core.component.base.ComponentModule
 import com.krake.core.component.module.ListMapComponentModule

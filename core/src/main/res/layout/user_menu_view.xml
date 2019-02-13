@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:placeholderPhotoSrc="@drawable/user_image_placeholder" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/userInitialPlaceholder"
         style="@style/UserInitialsPlaceholder"
         android:layout_width="@dimen/user_menu_image_size"
@@ -27,7 +27,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/usernameTextView"
         style="@style/UserNameText"
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userImageView" />
 
-    <android.support.v7.widget.AppCompatImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/logoutButton"
         style="@style/UserLogoutButton"
         android:layout_width="40dp"

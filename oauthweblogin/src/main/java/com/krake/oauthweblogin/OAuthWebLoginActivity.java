@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.krake.core.R;
 
 import java.lang.ref.WeakReference;

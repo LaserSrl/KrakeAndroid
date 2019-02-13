@@ -1,7 +1,7 @@
 package com.krake.core.widget
 
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.CoordinatorLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 /**
  * Created by joel on 23/02/17.

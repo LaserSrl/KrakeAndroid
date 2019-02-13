@@ -3,8 +3,8 @@ package com.krake.core.permission.presenter
 import android.annotation.TargetApi
 import android.app.Activity
 import android.os.Build
-import android.support.design.widget.Snackbar
 import android.view.View
+import com.google.android.material.snackbar.Snackbar
 import com.krake.core.permission.PermissionFragment
 import com.krake.core.widget.SnackbarUtils
 

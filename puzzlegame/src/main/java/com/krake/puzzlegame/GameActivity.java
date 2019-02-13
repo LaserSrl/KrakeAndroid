@@ -2,8 +2,7 @@ package com.krake.puzzlegame;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.v4.app.Fragment;
-
+import androidx.fragment.app.Fragment;
 import com.krake.core.app.LoginAndPrivacyActivity;
 import com.krake.core.component.base.ComponentManager;
 import com.krake.core.component.module.OrchardComponentModule;

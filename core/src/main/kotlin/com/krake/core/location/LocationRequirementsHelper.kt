@@ -2,9 +2,9 @@ package com.krake.core.location
 
 import android.Manifest
 import android.app.Activity
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.krake.core.R
 import com.krake.core.location.settings.GpsSettingsListener
 import com.krake.core.location.settings.GpsSettingsManager

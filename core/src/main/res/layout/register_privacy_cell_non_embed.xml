@@ -36,7 +36,7 @@
         android:autoLink="all"
         android:visibility="gone" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/privacyAcceptSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

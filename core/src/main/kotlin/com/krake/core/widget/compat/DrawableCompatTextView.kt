@@ -2,11 +2,11 @@ package com.krake.core.widget.compat
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.annotation.VisibleForTesting
-import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.annotation.VisibleForTesting
+import androidx.appcompat.widget.AppCompatTextView
 import com.krake.core.R
 
 /**

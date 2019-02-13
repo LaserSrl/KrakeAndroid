@@ -1,6 +1,6 @@
 package com.krake.core.util;
 
-import android.support.v4.util.LongSparseArray;
+import androidx.collection.LongSparseArray;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -10,12 +10,12 @@ import android.net.http.HttpResponseCache
 import android.os.Build
 import android.os.Bundle
 import android.os.Trace
-import android.support.v4.app.Fragment
-import android.support.v4.app.NotificationCompat
-import android.support.v4.util.ArrayMap
-import android.support.v4.util.Pair
 import android.util.Log
 import android.util.SparseArray
+import androidx.collection.ArrayMap
+import androidx.core.app.NotificationCompat
+import androidx.core.util.Pair
+import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.model.Marker
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.krake.core.*
@@ -85,7 +85,8 @@ abstract class KrakeApplication : Application(),
         const val KRAKE_NOTIFICATION_CHANNEL = "krakeNotificationChannel"
     }
 
-    private val registeredDetailsFragment = ArrayMap<String, Pair<Class<out Fragment>, ((Bundle) -> Bundle)?>>()
+    private val registeredDetailsFragment =
+        ArrayMap<String, Pair<Class<out Fragment>, ((Bundle) -> Bundle)?>>()
     private val registeredProjectionClasses = ArrayMap<String, Intent>()
     private val uploadCompletedListener = SparseArray<Class<out UploadCompleteEndListener>>()
     private val detailSharingInterceptors = ArrayList<DetailIntentSharingInterceptor>()

@@ -3,7 +3,7 @@ package com.krake.core.media.task
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
-import android.support.annotation.Px
+import androidx.annotation.Px
 import com.krake.core.extension.asBitmap
 import com.krake.core.media.MediaType
 import com.krake.core.media.UploadableMediaInfo

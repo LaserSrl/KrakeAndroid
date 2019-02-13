@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/app_bar_layout"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/content_item_header_image_height"
-    android:theme="@style/AppBarStyle"
-    app:expanded="false"
-    app:layout_behavior="com.krake.core.widget.LockAppbarLayoutBehavior">
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:id="@+id/app_bar_layout"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="@dimen/content_item_header_image_height"
+                                                 android:theme="@style/AppBarStyle"
+                                                 app:expanded="false"
+                                                 app:layout_behavior="com.krake.core.widget.LockAppbarLayoutBehavior">
 
-    <android.support.design.widget.CollapsingToolbarLayout
+    <com.google.android.material.appbar.CollapsingToolbarLayout
         android:id="@+id/collapsing_toolbar_layout"
         style="@style/AppCollapsingToolbar"
         android:layout_width="match_parent"
@@ -36,5 +36,5 @@
             app:subtitleTextAppearance="@style/SubtitleTextAppearance"
             app:titleTextAppearance="@style/ActionBar.TitleText" />
 
-    </android.support.design.widget.CollapsingToolbarLayout>
-</android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+</com.google.android.material.appbar.AppBarLayout>

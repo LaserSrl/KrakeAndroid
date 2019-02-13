@@ -3,8 +3,8 @@ package com.krake.cards
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.support.v7.app.AlertDialog
 import android.text.TextUtils
+import androidx.appcompat.app.AlertDialog
 import com.krake.core.app.ContentItemListMapActivity
 
 class CardsActivity : ContentItemListMapActivity() {

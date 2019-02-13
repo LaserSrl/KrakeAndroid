@@ -1,8 +1,8 @@
 package com.krake.core.widget.compat
 
 import android.graphics.Color
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import com.krake.core.test.R
 import com.krake.test.extension.viewTestRule
 import com.nhaarman.mockito_kotlin.*

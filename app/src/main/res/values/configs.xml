@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Configurazioni base-->
-    <string name="orchard_base_service_url" translatable="false">http://team00.mykrake.com/</string>
+    <string name="orchard_base_service_url" translatable="false">https://team00.mykrake.com/</string>
 
     <string name="orchard_language">it-IT</string>
 

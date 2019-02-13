@@ -6,15 +6,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.krake.core.OrchardError;
@@ -26,16 +25,9 @@ import com.krake.twitter.R;
 import com.krake.twitter.adapter.TweetAdapter;
 import com.krake.twitter.adapter.holder.TweetHolder;
 import com.krake.twitter.model.TweetsLoadingConfiguration;
-import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.IntentUtils;
-import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterApiClient;
-import com.twitter.sdk.android.core.TwitterCore;
-import com.twitter.sdk.android.core.TwitterException;
-import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.*;
 import com.twitter.sdk.android.core.models.Search;
 import com.twitter.sdk.android.core.models.Tweet;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

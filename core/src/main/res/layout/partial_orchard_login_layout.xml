@@ -7,27 +7,27 @@
     android:minWidth="368dp"
     android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_input_text_layout"
         style="@style/LoginInputLayout">
 
-        <android.support.v7.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
             style="@style/LoginEditText"
             android:hint="@string/username"
             android:inputType="textEmailAddress" />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_input_text_layout"
         style="@style/LoginInputLayout">
 
-        <android.support.v7.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
             style="@style/LoginEditText"
             android:hint="@string/password"
             android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         style="@style/LoginButton"
         android:text="@string/login" />
@@ -36,13 +36,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register"
             style="@style/LoginButtonBorderless"
             android:layout_gravity="end"
             android:text="@string/register" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_recover_password"
             style="@style/LoginButtonBorderless"
             android:layout_gravity="start"
@@ -64,7 +64,7 @@
             android:layout_weight="1"
             android:background="@color/login_text_color" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

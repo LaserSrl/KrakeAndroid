@@ -11,19 +11,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresPermission;
-import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.TextView;
-
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
+import androidx.appcompat.app.AlertDialog;
 import com.krake.core.app.ContentItemDetailModelFragment;
 import com.krake.core.data.DataModel;
 import com.krake.core.model.ActivityPart;
@@ -33,15 +28,13 @@ import com.krake.core.model.MapPart;
 import com.krake.core.permission.PermissionManager;
 import com.krake.events.component.module.EventComponentModule;
 import com.krake.events.model.Event;
-
+import kotlin.collections.ArraysKt;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import kotlin.collections.ArraysKt;
 
 /**
  * Classe per mostrare i dettagli di un evento

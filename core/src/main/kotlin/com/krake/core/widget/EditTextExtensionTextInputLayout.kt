@@ -1,7 +1,7 @@
 package com.krake.core.widget
 
-import android.support.design.widget.TextInputLayout
 import android.widget.EditText
+import com.google.android.material.textfield.TextInputLayout
 
 /**
  * Created by joel on 21/02/17.

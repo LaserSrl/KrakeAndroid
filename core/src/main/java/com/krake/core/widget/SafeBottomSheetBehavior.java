@@ -2,11 +2,11 @@ package com.krake.core.widget;
 
 import android.content.Context;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;

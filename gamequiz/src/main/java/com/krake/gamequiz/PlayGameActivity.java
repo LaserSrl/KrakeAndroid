@@ -1,17 +1,16 @@
 package com.krake.gamequiz;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.Fragment;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.krake.core.OrchardError;
 import com.krake.core.PrivacyViewModel;

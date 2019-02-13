@@ -3,7 +3,7 @@ package com.krake.events.component.module
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import com.krake.core.component.base.ComponentModule
 import com.krake.core.component.module.ListMapComponentModule
 import com.krake.events.EventActivity

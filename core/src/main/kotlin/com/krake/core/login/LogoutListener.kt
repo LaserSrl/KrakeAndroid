@@ -1,6 +1,6 @@
 package com.krake.core.login
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 
 /**
  * Classe usata per essere notificata che l'utente ha eseguito il logout.

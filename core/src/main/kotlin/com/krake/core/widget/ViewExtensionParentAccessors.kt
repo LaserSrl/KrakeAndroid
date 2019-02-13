@@ -2,9 +2,9 @@ package com.krake.core.widget
 
 import android.app.Activity
 import android.content.ContextWrapper
-import android.support.annotation.StringRes
-import android.support.design.widget.CoordinatorLayout
 import android.view.View
+import androidx.annotation.StringRes
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 
 /**
  * Created by joel on 30/09/16.

@@ -3,12 +3,12 @@ package com.krake.contentcreation
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject

@@ -1,7 +1,7 @@
 package com.krake.core.network
 
 import android.content.Context
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.krake.core.R

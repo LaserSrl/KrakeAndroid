@@ -5,10 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.util.LongSparseArray;
-import android.support.v7.widget.SwitchCompat;
 import android.text.Html;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -18,13 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
-import android.widget.TextView;
-
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.collection.LongSparseArray;
 import com.krake.core.OrchardError;
 import com.krake.core.R;
 import com.krake.core.app.OrchardDataModelFragment;
@@ -32,7 +26,6 @@ import com.krake.core.data.DataModel;
 import com.krake.core.model.PolicyText;
 import com.krake.core.util.LayoutUtils;
 import com.krake.core.util.SerializableLongSparseArray;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

@@ -3,10 +3,10 @@ package com.krake.core.permission
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.RequiresApi
-import android.support.v4.app.Fragment
 import android.util.Log
+import androidx.annotation.CallSuper
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 
 /**
  * Support [Fragment] che si occupa di richiedere i permessi runtime sopra le api 23.

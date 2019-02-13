@@ -1,8 +1,8 @@
 package com.krake.contentcreation.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.krake.contentcreation.adapter.holder.MediaPickerHolder
 import com.krake.core.media.UploadableMediaInfo
 import com.krake.core.media.task.MediaInfoPreviewTask
