@@ -243,25 +243,32 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                 )
                 .build()
 
-            R.id.nav_user_reports -> intent = ComponentManager.createIntent()
+            R.id.nav_user_reports -> {
+                val userModule = UserContentComponentModule(context)
+                    .contentCreationModules(
+                        LoginComponentModule()
+                            .loginRequired(true),
+                        ContentCreationComponentModule(context)
+                            .contentDefinition(userReportDefinition)
+                    )
+
+                intent = ComponentManager.createIntent()
                 .from(context)
                 .to(UserCreatedContentActivity::class.java)
                 .with(
                     ThemableComponentModule()
                         .title("UserReport"),
                     ListMapComponentModule(context),
+                    LoginComponentModule()
+                        .loginRequired(true),
                     OrchardComponentModule()
-                        .dataClass(UserReport::class.java),
-                    UserContentComponentModule(context)
-                        .contentCreationModules(
-                            LoginComponentModule()
-                                .loginRequired(true),
-                            ContentCreationComponentModule(context)
-                                .contentDefinition(userReportDefinition)
-                        )
+                        .dataClass(UserReport::class.java)
+                        .displayPath(userModule.tabs.firstOrNull()?.displayAlias),
+                    userModule
+
                 )
                 .build()
-
+            }
             R.id.nav_trip -> intent = ComponentManager.createIntent()
                 .from(context)
                 .to(TripPlannerSearchActivity::class.java)
