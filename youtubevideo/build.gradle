@@ -2,5 +2,5 @@ new KrakeLibPlugin().apply(project)
 
 dependencies {
     api project(':core')
-    api 'com.google.android:youtube-android-player-api:1.2.1'
+    api files('libs/YouTubeAndroidPlayerApi.jar')
 }

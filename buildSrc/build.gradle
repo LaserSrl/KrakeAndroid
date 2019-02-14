@@ -2,17 +2,11 @@ apply plugin: "groovy"
 
 repositories {
     mavenLocal()
-    maven {
-        url MAVEN_LASER_URL
-        credentials {
-            username NEXUS_USERNAME
-            password NEXUS_PASSWORD
-        }
-    }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-    implementation "com.laser.gradle:core:1.0.2"
+    implementation 'com.github.LaserSrl.GradlePlugins:core:1.0.0'
 }
