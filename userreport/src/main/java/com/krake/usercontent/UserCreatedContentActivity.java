@@ -23,6 +23,7 @@ import com.krake.core.component.module.OrchardComponentModule;
 import com.krake.core.component.module.ThemableComponentModule;
 import com.krake.core.extension.BundleExtensionsKt;
 import com.krake.core.login.LoginFragment;
+import com.krake.core.login.LoginManager;
 import com.krake.core.model.ContentItem;
 import com.krake.core.view.TabLayoutHelper;
 import com.krake.usercontent.component.module.UserContentComponentModule;
@@ -64,6 +65,7 @@ public class UserCreatedContentActivity extends ContentItemListMapActivity imple
 
         UserContentTab firstTab = tabs[0];
         setLoginRequired(firstTab.isLoginRequired());
+        orchardComponentModule.displayPath(firstTab.getDisplayAlias());
 
         if (tabCount > 1) {
             AppBarLayout verticalLayout = findViewById(R.id.app_bar_layout);
@@ -196,6 +198,7 @@ public class UserCreatedContentActivity extends ContentItemListMapActivity imple
 
     private void updateFragmentsAlias(boolean loginRequired, String displayPath) {
         setLoginRequired(loginRequired);
+        onLoginUserChanged(LoginManager.getShared().getLoggedUser().getValue());
         getGridFragment().getLoginComponentModule().loginRequired(loginRequired);
         getGridFragment().updateDisplayPath(displayPath);
 
