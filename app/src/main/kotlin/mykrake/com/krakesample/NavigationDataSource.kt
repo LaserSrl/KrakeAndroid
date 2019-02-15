@@ -260,7 +260,7 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                         .title("UserReport"),
                     ListMapComponentModule(context),
                     LoginComponentModule()
-                        .loginRequired(true),
+                        .loginRequired(false),
                     OrchardComponentModule()
                         .dataClass(UserReport::class.java)
                         .displayPath(userModule.tabs.firstOrNull()?.displayAlias),
