@@ -45,6 +45,7 @@ android {
 
     buildTypes {
         debug {
+            if(project.hasProperty("SAMPLE_orchard_api_key")) {
                 resValue "string", "orchard_api_key", project.properties["SAMPLE_orchard_api_key"] ?: ""
                 resValue "string", "header_key", project.properties["SAMPLE_header_key"] ?: ""
                 resValue "string", "twitter_consume_key", project.properties["SAMPLE_twitter_consume_key"] ?: ""
@@ -52,6 +53,7 @@ android {
                 resValue "string", "instagram_api_key", project.properties["SAMPLE_instagram_api_key"] ?: ""
                 resValue "string", "linkedin_api_key", project.properties["SAMPLE_linkedin_api_key"] ?: ""
                 resValue "string", "facebook_app_id", project.properties["SAMPLE_facebook_app_id"] ?: ""
+            }
         }
 
         release {
