@@ -45,14 +45,15 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.keystore
-            resValue "string","orchard_api_key",SAMPLE_orchard_api_key
-            resValue "string","header_key",SAMPLE_header_key
-            resValue "string","twitter_consume_key",SAMPLE_twitter_consume_key
-            resValue "string","twitter_consume_secret",SAMPLE_twitter_consume_secret
-            resValue "string","instagram_api_key",SAMPLE_instagram_api_key
-            resValue "string","linkedin_api_key",SAMPLE_linkedin_api_key
-            resValue "string","facebook_app_id",SAMPLE_facebook_app_id
+            if(project.hasProperty("SAMPLE_orchard_api_key")) {
+                resValue "string", "orchard_api_key", SAMPLE_orchard_api_key
+                resValue "string", "header_key", SAMPLE_header_key
+                resValue "string", "twitter_consume_key", SAMPLE_twitter_consume_key
+                resValue "string", "twitter_consume_secret", SAMPLE_twitter_consume_secret
+                resValue "string", "instagram_api_key", SAMPLE_instagram_api_key
+                resValue "string", "linkedin_api_key", SAMPLE_linkedin_api_key
+                resValue "string", "facebook_app_id", SAMPLE_facebook_app_id
+            }
         }
 
         release {
