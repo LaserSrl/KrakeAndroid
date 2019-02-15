@@ -49,9 +49,11 @@ class GeocoderTask(context: Context, var listener: Listener?) {
                     address = addresses.firstOrNull()
                 }
             }
-            address ?: throw NullPointerException("The address cannot be null.")
+            address
         }.completed {
-            listener?.onAddressLoaded(it)
+            if (it != null) {
+                listener?.onAddressLoaded(it)
+            }
         }.build()
         task?.load()
     }
