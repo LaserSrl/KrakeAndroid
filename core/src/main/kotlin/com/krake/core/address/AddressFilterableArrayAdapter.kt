@@ -3,10 +3,7 @@ package com.krake.core.address
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.ImageView
+import android.widget.*
 import androidx.annotation.DrawableRes
 import com.krake.core.R
 import java.util.*
@@ -59,6 +56,7 @@ class AddressFilterableArrayAdapter(context: Context,
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val textView = super.getView(position, convertView, parent)
 
+        val item = getItem(position)
         @DrawableRes val drawable: Int
         var poweredVisibility = View.GONE
         if (position == 0)
@@ -73,6 +71,14 @@ class AddressFilterableArrayAdapter(context: Context,
 
         textView.findViewById<View>(R.id.poweredByGoogle).visibility = poweredVisibility
 
+        (textView.findViewById<TextView>(android.R.id.text2)).apply {
+            text = item?.subname
+
+            if (item?.subname.isNullOrEmpty())
+                visibility = View.GONE
+            else
+                visibility = View.VISIBLE
+        }
 
         return textView
     }

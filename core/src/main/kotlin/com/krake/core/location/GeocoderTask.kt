@@ -45,8 +45,12 @@ class GeocoderTask(context: Context, var listener: Listener?) {
             context?.let { context ->
                 // Carica l'indirizzo solo se il Geocoder è disponibile.
                 if (Geocoder.isPresent()) {
-                    val addresses = Geocoder(context).getFromLocation(latLng.latitude, latLng.longitude, 1)
-                    address = addresses.firstOrNull()
+                    try {
+                        val addresses = Geocoder(context).getFromLocation(latLng.latitude, latLng.longitude, 1)
+                        address = addresses.firstOrNull()
+                    } catch (exception: Exception) {
+
+                    }
                 }
             }
             address

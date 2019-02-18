@@ -21,6 +21,8 @@ open class PlaceResult {
     val isUserLocation: Boolean
     var name: String
         protected set
+    var subname: String = ""
+        protected set
     @StyleRes var theme: Int = R.style.AppTheme
     var location: Location? = null
     var geocodeAddress: Boolean = false
@@ -28,6 +30,7 @@ open class PlaceResult {
 
     constructor(context: Context, prediction: AutocompletePrediction) {
         this.name = prediction.getPrimaryText(TextAppearanceSpan(context, R.style.ActionBar_TitleText)).toString()
+        this.subname = prediction.getSecondaryText(TextAppearanceSpan(context, R.style.ActionBar_TitleText)).toString()
         placeId = prediction.placeId
         isUserLocation = false
     }

@@ -75,7 +75,7 @@ class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: 
                         PlaceResult(context, it)
                     }.toMutableList()
                 } catch (e: Exception) {
-
+                    e.toString()
                 }
             }
             places
