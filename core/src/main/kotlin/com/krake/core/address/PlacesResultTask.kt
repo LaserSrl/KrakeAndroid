@@ -28,7 +28,7 @@ import com.krake.core.thread.async
 class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: Listener?) {
     private var context: Context? = context
     private var apiClient: PlacesClient? = apiClient
-    private var task: AsyncTask<MutableList<PlaceResult>>? = null
+    private var task: AsyncTask<MutableList<PlaceResult>?>? = null
 
     /**
      * Fa partire il caricamento dei dati.
@@ -67,17 +67,24 @@ class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: 
                     .setQuery(addressName)
                     .build()
 
-                val predictions = Tasks.await(apiClient.findAutocompletePredictions(request)).autocompletePredictions
+                try {
+                    val predictions =
+                        Tasks.await(apiClient.findAutocompletePredictions(request)).autocompletePredictions
 
-                places = predictions.map {
-                    PlaceResult(context, it)
-                }.toMutableList()
+                    places = predictions.map {
+                        PlaceResult(context, it)
+                    }.toMutableList()
+                } catch (e: Exception) {
+
+                }
             }
+            places
 
-            places ?: throw NullPointerException("Places can't be null")
         }.completed {
-            // Notifica il listener del corretto scaricamento dei dati.
-            listener?.onPlacesResultLoaded(requestId, it)
+            if (it != null) {
+                // Notifica il listener del corretto scaricamento dei dati.
+                listener?.onPlacesResultLoaded(requestId, it)
+            }
         }.build()
         task?.load()
     }
