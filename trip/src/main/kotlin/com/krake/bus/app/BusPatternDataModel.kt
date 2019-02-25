@@ -38,7 +38,14 @@ class BusPatternDataModel : DataConnectionModel()
             {
                 for (time in pattern.stopTimes)
                 {
-                    val passageDate = Date(midNight.time + time.scheduledDeparture!! * 1000)
+                    val departure: Long?
+
+                    if (time.realtimeDeparture != null && time.realtimeDeparture != 0L)
+                        departure = time.realtimeDeparture
+                    else
+                        departure = time.scheduledDeparture
+
+                    val passageDate = Date(midNight.time + departure!! * 1000)
 
                     if (now.before(passageDate) && twoHoursLater.after(passageDate))
                     {
