@@ -33,18 +33,26 @@ class PlaceIdTask(client: PlacesClient, var listener: Listener?) {
     fun load(placeId: String, requestId: Int = 0) {
         cancel()
         task = async {
-            val place = apiClient?.let {
+            var place: Place? = null
+
+            apiClient?.let {
                 // Il GoogleApiClient deve essere connesso prima di arrivare qui.
                 val placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
 
                 val request = FetchPlaceRequest.builder(placeId, placeFields).build()
 
-                Tasks.await(it.fetchPlace(request)).place
+                try {
+                    place = Tasks.await(it.fetchPlace(request)).place
+                } catch (ignored: Exception) {
+
+                }
             }
 
-            place ?: throw NullPointerException("The place cannot be null.")
+            place
         }.completed {
-            listener?.onPlaceLoaded(requestId, it)
+            if (it != null) {
+                listener?.onPlaceLoaded(requestId, it)
+            }
         }.build()
         task?.load()
     }
