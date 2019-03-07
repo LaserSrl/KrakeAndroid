@@ -1,6 +1,7 @@
 package com.krake.core.login.orchard;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -191,12 +192,12 @@ public class OrchardRegisterFragment extends Fragment implements View.OnClickLis
             Bundle arguments = ComponentManager.createBundle()
                     .from(getActivity())
                     .with(new OrchardComponentModule()
-                            .webServiceUrl(getString(R.string.orchard_base_service_url) + getString(R.string.orchard_policies_service))
+                            .webServiceUrl(Uri.withAppendedPath(Uri.parse(getString(R.string.orchard_base_service_url)), getString(R.string.orchard_policies_service)).toString())
                             .dataClass(ClassUtils.dataClassForName(getString(R.string.policy_text_class_name)))
                             .displayPath(getString(R.string.policy_register_key))
                             .putExtraParameter(getString(R.string.policy_type_parameter), getString(R.string.policy_register_key)))
                     .build();
-//TODO: verificare
+
             OrchardRegisterPrivacyFragment fragment = new OrchardRegisterPrivacyFragment();
             fragment.setArguments(arguments);
             getChildFragmentManager().beginTransaction().replace(R.id.acceptPrivacyContainer, fragment).commit();
