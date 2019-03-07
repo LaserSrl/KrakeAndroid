@@ -64,6 +64,7 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         })
     }
 
+
     override fun requestPassages() {
     }
 
@@ -128,5 +129,6 @@ class BusStopsListActivity : ContentItemListMapActivity(),
 
     override fun onRefresh() {
         super.onRefresh()
+        sendBusStops(listOf())
     }
 }

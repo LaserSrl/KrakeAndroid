@@ -8,7 +8,7 @@ buildscript {
     ext.support_library_version = '1.0.0'
     ext.services_library_version = '15.0.1'
     ext.firebase_library_version = '16.0.7'
-    ext.firebase_messagging_version = '17.3.4'
+    ext.firebase_messagging_version = '17.4.0'
     ext.firebase_auth_version = '16.0.1'
     ext.lifecycle_version = '2.0.0'
     ext.glide_version = "4.8.0"
@@ -24,7 +24,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.3.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
         classpath 'com.google.gms:google-services:4.2.0'

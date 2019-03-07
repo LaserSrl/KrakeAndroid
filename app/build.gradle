@@ -70,7 +70,6 @@ android {
 
 }
 
-def krake_version = '9.1.11'
 def leak_canary_version = '1.6.2'
 
 dependencies {

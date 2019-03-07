@@ -21,15 +21,21 @@ class PatternPolylineTask(context: Context, listener: Listener) {
         cancel()
         task = async {
             val points = context?.let { context ->
+                var points: List<LatLng>? = null
                 val url = String.format(context.getString(R.string.bus_pattern_geometry_url_format), context.getString(R.string.open_trip_planner_base_url), patternID)
 
                 val request = RemoteRequest(url)
-                        .setMethod(RemoteRequest.Method.GET)
+                    .setMethod(RemoteRequest.Method.GET)
 
-                val jsonResult = RemoteClient.client(RemoteClient.Mode.DEFAULT)
+                try {
+                    val jsonResult = RemoteClient.client(RemoteClient.Mode.DEFAULT)
                         .execute(request).jsonObject()
 
-                PolyUtil.decode(jsonResult!!.get("points").asString)
+                    points = PolyUtil.decode(jsonResult!!.get("points").asString)
+                } catch (ignored: Exception) {
+
+                }
+                points
             }
             points ?: emptyList()
         }.completed {

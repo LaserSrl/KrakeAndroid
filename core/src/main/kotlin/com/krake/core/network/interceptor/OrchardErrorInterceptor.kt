@@ -2,6 +2,7 @@ package com.krake.core.network.interceptor
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.google.gson.JsonSyntaxException
 import com.krake.core.OrchardError
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -22,7 +23,12 @@ class OrchardErrorInterceptor : Interceptor
                 val content = body.string()
                 body.close()
 
-                val json = JsonParser().parse(content) as? JsonObject
+                var json: JsonObject? = null
+                try {
+                    json = JsonParser().parse(content) as? JsonObject
+                } catch (e: JsonSyntaxException) {
+                    json = null
+                }
 
                 if (json != null)
                 {
@@ -32,13 +38,15 @@ class OrchardErrorInterceptor : Interceptor
                     {
                         throw error
                     }
+
+                    val wrappedBody = ResponseBody.create(contentType, content)
+                    return response.newBuilder().body(wrappedBody).build()
                 }
 
-                val wrappedBody = ResponseBody.create(contentType, content)
-                return response.newBuilder().body(wrappedBody).build()
             }
         }
-        else if (!response.isSuccessful)
+
+        if (!response.isSuccessful)
         {
             throw OrchardError(String.format("%d %s", response.code(), response.message()));
         }

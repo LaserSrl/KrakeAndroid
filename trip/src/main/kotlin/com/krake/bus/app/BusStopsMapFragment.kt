@@ -26,6 +26,7 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
     private val patternPolylineTask: PatternPolylineTask by lazy { PatternPolylineTask(context ?:
             throw IllegalArgumentException("The context mustn't be null."), this) }
     private var polyline: Polyline? = null
+    private var selectedStop: ContentItemWithLocation? = null
 
     override fun onPassageChosen(passage: BusPassage) {
         currentPassage = passage
@@ -38,6 +39,7 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
     override fun loadItemsInMap(googleMap: GoogleMap, lazyList: List<ContentItemWithLocation>, cacheValid: Boolean)
     {
         val selectedId = orchardComponentModule.recordStringIdentifier
+        selectedStop = lazyList.first { it.identifierOrStringIdentifier == selectedId }
         lazyList.filterIsInstance(BusStop::class.java).forEach {
             it.isMainStop = it.identifierOrStringIdentifier == selectedId
         }
@@ -47,10 +49,16 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
     override fun onBusStopsReceived(stops: List<BusStop>) {
         var accepted = false
         val stringId = orchardComponentModule.recordStringIdentifier
-        onDataModelChanged(DataModel(stops.filter {
-            accepted = accepted || it.identifierOrStringIdentifier == stringId
-            accepted
-        }, true))
+        if (!stops.isEmpty()) {
+            onDataModelChanged(DataModel(stops.filter {
+                accepted = accepted || it.identifierOrStringIdentifier == stringId
+                accepted
+            }, true))
+        } else {
+            selectedStop?.let {
+                onDataModelChanged(DataModel(listOf(it), true))
+            }
+        }
     }
 
     override fun onDestroy() {

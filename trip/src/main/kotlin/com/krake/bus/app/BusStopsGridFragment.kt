@@ -41,6 +41,7 @@ class BusStopsGridFragment : ContentItemGridModelFragment(), BusPassagesReceiver
     }
 
     override fun onRefresh() {
+        super.onRefresh()
         // Vuoto per evitare il refresh tramite OrchardService.
     }
 }
