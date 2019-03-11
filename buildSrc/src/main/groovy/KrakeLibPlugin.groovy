@@ -36,7 +36,7 @@ class KrakeLibPlugin extends BasePlugin {
                     // Enable multiDex in library projects by default (used only for tests).
                     multiDexEnabled true
                     // Add the default test runner.
-                    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                 }
 
                 lintOptions.abortOnError = false
