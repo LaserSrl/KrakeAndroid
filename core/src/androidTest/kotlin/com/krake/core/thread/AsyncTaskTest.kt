@@ -32,6 +32,22 @@ class AsyncTaskTest {
     }
 
     @Test
+    fun taskErrorBlockCalledOnGenericException() {
+        val lock = lock()
+        var isCallbackCalled = false
+        async {
+            throw Exception()
+        }.error {
+            isCallbackCalled = true
+            lock.unlock()
+        }.load()
+
+        lock.lock()
+
+        assertTrue(isCallbackCalled)
+    }
+
+    @Test
     fun taskCompletedSuccessfullyAvoidErrorBlock() {
         val lock = lock()
 
@@ -114,6 +130,7 @@ class AsyncTaskTest {
         val finishLoadingLock = lock()
 
         var isCallbackCalled = false
+        var isErrorCallbackCalled = false
 
         val task = async {
             startLoadingLock.unlock()
@@ -121,6 +138,8 @@ class AsyncTaskTest {
             finishLoadingLock.lock()
         }.completed {
             isCallbackCalled = true
+        }.error {
+            isErrorCallbackCalled = true
         }.load()
 
         // Wait till the loading is sent to a background thread.
@@ -134,6 +153,7 @@ class AsyncTaskTest {
 
         // The task mustn't call the callback.
         assertFalse(isCallbackCalled)
+        assertFalse(isErrorCallbackCalled)
     }
 
     @Test
