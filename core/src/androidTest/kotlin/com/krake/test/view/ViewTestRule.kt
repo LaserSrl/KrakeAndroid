@@ -2,6 +2,8 @@ package com.krake.test.view
 
 import android.content.Intent
 import android.view.View
+import androidx.test.rule.ActivityTestRule
+import kotlinx.coroutines.*
 
 /**
  * An [ActivityTestRule] used to test a custom [View].
@@ -27,8 +29,10 @@ class ViewTestRule<out V : View>(private val viewClass: Class<out View>) : Activ
      * @param block the closure that must run on the UI thread.
      */
     fun evaluate(block: (V) -> Unit) {
-        runOnUiThread {
-            block(view)
+        GlobalScope.launch {
+            runBlocking {
+                block(view)
+            }
         }
     }
 }

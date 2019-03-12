@@ -25,21 +25,17 @@ class AsyncTask<T> private constructor(private val asyncBlock: AsyncBlock<T>,
      * on the UI thread if any of [completedBlock] or [errorBlock] was used.
      */
     fun load() {
-        CoroutineScope(Dispatchers.Main).launch {
+        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            (throwable as? Exception)?.let { errorBlock?.invoke(it) }
+        }
+
+        CoroutineScope(Dispatchers.Main).launch(exceptionHandler) {
             task = async(Dispatchers.Default, CoroutineStart.LAZY) {
                 // Invoke the block that must be executed in background.
                 asyncBlock()
             }
 
-            val result = try {
-                task?.await() ?: throw NullPointerException("The background task can't be null.")
-            } catch (e: Exception) {
-                if (!isCancelled) {
-                    // If the task was cancelled (e.g. with a CancellationException), execute the error block.
-                    errorBlock?.invoke(e)
-                }
-                return@launch
-            }
+            val result = task?.await() ?: throw NullPointerException("The background task can't be null.")
 
             if (isCancelled)
                 return@launch
