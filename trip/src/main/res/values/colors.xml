@@ -19,9 +19,8 @@
 
     <color name="tripStepDividerColor">#bbb</color>
 
-    <color name="trip_mode_selected_tint">@android:color/white</color>
-    <color name="trip_planner_button_color_normal">@color/colorAccent</color>
+    <color name="trip_planner_button_color_normal">@android:color/white</color>
     <color name="trip_tab_background_color">@android:color/transparent</color>
-    <color name="trip_tab_icon_selected_color">@color/colorAccent</color>
-    <color name="trip_tab_icon_unselected_color">@android:color/white</color>
+    <color name="trip_tab_selected_color">@color/colorAccent</color>
+    <color name="trip_tab_unselected_color">@android:color/white</color>
 </resources>

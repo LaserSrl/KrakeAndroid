@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="TripTabBar" parent="Widget.Design.TabLayout">
+        <item name="tabIconTint">@color/trip_mode_tint_color</item>
+        <item name="android:background">@color/trip_tab_background_color</item>
+        <item name="tabSelectedTextColor">@color/trip_tab_unselected_color</item>
+        <item name="tabTextColor">@color/trip_tab_selected_color</item>
+        <item name="tabIndicatorColor">@color/trip_tab_selected_color</item>
+    </style>
+
     <style name="TripDirectionImageView">
         <item name="android:tint">@color/colorPrimary</item>
     </style>

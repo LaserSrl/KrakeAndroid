@@ -9,11 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import android.widget.AutoCompleteTextView
-import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.core.content.ContextCompat
+import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -120,7 +116,7 @@ class TripPlannerSearchFragment : Fragment(),
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_trip_planner_search, container, false)
 
-        val tab = insertTravelTabType(view = view as ViewGroup)
+        val tab = insertTravelTabType(view as ViewGroup, inflater)
 
         progess = view.findViewById(R.id.searchProgress)
         progess.visibility = View.INVISIBLE
@@ -193,14 +189,15 @@ class TripPlannerSearchFragment : Fragment(),
         }
     }
 
-    private fun insertTravelTabType(view: ViewGroup): TabLayout {
+    private fun insertTravelTabType(view: ViewGroup, inflater: LayoutInflater): TabLayout {
+
         val activity = activity ?: throw IllegalArgumentException("The activity mustn't be null.")
-        val helper = TabLayoutHelper.CreationBuilder(activity)
-            .contentSelectedColor(ContextCompat.getColor(activity, R.color.trip_tab_icon_selected_color))
-            .contentUnselectedColor(ContextCompat.getColor(activity, R.color.trip_tab_icon_unselected_color))
-            .bgColor(ContextCompat.getColor(activity, R.color.trip_tab_background_color))
+        val params = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val helper = TabLayoutHelper.InflaterBuilder(inflater.context)
+            .layout(R.layout.partial_tripmode_tab)
             .tabShowImage(true)
             .tabShowTitle(false)
+            .layoutParams(params)
             .build()
 
         helper.addTab(null,
