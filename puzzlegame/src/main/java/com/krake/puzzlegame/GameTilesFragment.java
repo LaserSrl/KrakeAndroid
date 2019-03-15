@@ -534,9 +534,9 @@ public class GameTilesFragment extends OrchardDataModelFragment
             int minSize = Math.min(bitmap.getHeight(), bitmap.getWidth());
 
             Matrix matrix = new Matrix();
-            matrix.setScale(targetImageSize / minSize, targetImageSize / minSize);
-            int x = (int) Math.ceil((bitmap.getWidth() - minSize) / 2);
-            int y = (int) Math.ceil((bitmap.getHeight() - minSize) / 2);
+            matrix.setScale(1.0f * targetImageSize / minSize, 1.0f * targetImageSize / minSize);
+            int x = (int) Math.ceil((bitmap.getWidth() - minSize) / 2.0);
+            int y = (int) Math.ceil((bitmap.getHeight() - minSize) / 2.0);
 
             return Bitmap.createBitmap
                     (bitmap,
