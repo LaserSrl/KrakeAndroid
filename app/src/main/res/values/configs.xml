@@ -14,7 +14,7 @@
         <item>@string/login_button_manager_orchard</item>
         <item>@string/login_button_manager_facebook</item>
         <item>@string/login_button_manager_twitter</item>
-        <!--<item>@string/login_button_manager_google</item>-->
+        <item>@string/login_button_manager_google</item>
         <!--<item>@string/login_button_manager_linkedin</item>-->
         <!--<item>@string/login_button_manager_instagram</item>-->
     </string-array>

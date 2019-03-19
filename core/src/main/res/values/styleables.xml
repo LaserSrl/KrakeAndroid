@@ -148,6 +148,7 @@
         <attr format="reference" name="rootLayout"/>
         <attr format="reference" name="elementLayout"/>
         <attr format="reference" name="elementColorList"/>
+        <attr format="boolean" name="show_reaction_name"/>
     </declare-styleable>
 
     <declare-styleable name="content_item_grid">

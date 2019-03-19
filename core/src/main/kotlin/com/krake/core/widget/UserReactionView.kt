@@ -55,6 +55,7 @@ open class UserReactionView : FrameLayout,
     private var mUserAuthorized = true
     private var contentIdentifier: Long = 0
     private var tintColorList: Int = 0
+    private var showReactionName: Boolean = false
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         createContentView(context, attrs)
@@ -76,6 +77,8 @@ open class UserReactionView : FrameLayout,
         inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         inflater.inflate(a.getResourceId(R.styleable.UserReactionView_rootLayout, R.layout.user_reaction_root_layout), this, true)
+
+        showReactionName = a.getBoolean(R.styleable.UserReactionView_show_reaction_name, false)
 
         rootView = findViewById(R.id.userReactionRootLayout)
 
@@ -180,8 +183,17 @@ open class UserReactionView : FrameLayout,
                 DrawableCompat.setTintList(drawable, ResourcesCompat.getColorStateList(resources, tintColorList, null))
                 //drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
                 (v as AppCompatButton).setCompoundDrawablesRelativeWithIntrinsicBounds(null, drawable, null, null)
-                v.text = reaction.get(REACTION_QUANTITY_KEY).asString
 
+                val strindId = resources.getIdentifier("rc_" + reactionName, "string", context.packageName)
+                if (!showReactionName || strindId == 0) {
+                    v.text = reaction.get(REACTION_QUANTITY_KEY).asString
+                } else {
+                    v.text = String.format(
+                        getString(R.string.reaction_text_number_format),
+                        getString(strindId),
+                        reaction.get(REACTION_QUANTITY_KEY).asString
+                    )
+                }
                 v.setSelected(reaction.get(REACTION_CLICKED_KEY).asInt == 1)
             }
 
