@@ -3,6 +3,8 @@
     <!--Configurazioni base-->
     <string name="orchard_base_service_url" translatable="false">https://team00.mykrake.com/</string>
 
+    <string name="open_trip_planner_base_url">http://otp.laser-group.com:8080/otp/routers/agrigento/</string>
+
     <string name="orchard_language">it-IT</string>
 
     <integer name="orchard_default_page_size">25</integer>

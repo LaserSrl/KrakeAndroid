@@ -38,11 +38,10 @@ class OrchardErrorInterceptor : Interceptor
                     {
                         throw error
                     }
-
-                    val wrappedBody = ResponseBody.create(contentType, content)
-                    return response.newBuilder().body(wrappedBody).build()
                 }
 
+                val wrappedBody = ResponseBody.create(contentType, content)
+                return response.newBuilder().body(wrappedBody).build()
             }
         }
 

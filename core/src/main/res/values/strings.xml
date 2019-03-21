@@ -164,13 +164,13 @@
 
     <string name="website">Web</string>
     <string name="usernamePlaceholder">Anonymous</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
 
     <string name="default_notification_channel_name">Default</string>
-    <string name="loading_data">Loading data...</string>
+    <string name="loading_data">Loading data…</string>
     <string name="database_name">Db.en</string>
 
-    <string name="reaction_text_number_format">%1$s\n(%2$s)</string>
+    <string name="reaction_text_number_format">%1$s (%2$s)</string>
     <string name="rc_angry">Angry</string>
     <string name="rc_boring">Boring</string>
     <string name="rc_curious">Curious</string>
@@ -182,6 +182,7 @@
     <string name="rc_joke">Joke</string>
     <string name="rc_kiss">Kiss</string>
     <string name="rc_like">Like</string>
+    <string name="rc_love">Love</string>
     <string name="rc_normal">Normal</string>
     <string name="rc_pain">Pain</string>
     <string name="rc_sad">Sad</string>
