@@ -122,7 +122,7 @@ open class AutoUpdatePresenter(var activityf: FragmentActivity?,
     private fun handleApkRequestError(titleError: String, block: Boolean, messageError: String? = null)
     {
         showProgress(false)
-        val alert = android.app.AlertDialog.Builder(activity)
+        val alert = AlertDialog.Builder(activity)
                 .setCancelable(false)
                 .setTitle(titleError)
                 .setPositiveButton(android.R.string.ok) { _, _ ->
