@@ -1,1 +1,4 @@
-<resources></resources>
+<resources>
+    <string name="youtube_initialize_error_title">Warning</string>
+    <string name="youtube_initialize_error_message">Service unavailable, retry again later.</string>
+</resources>

@@ -42,6 +42,10 @@
                 android:id="@+id/nav_game"
                 android:icon="@android:drawable/ic_menu_manage"
                 android:title="Gioco"/>
+        <item
+                android:id="@+id/nav_video"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="YoutubeVideo"/>
     </group>
 
     <item android:title="Tu">

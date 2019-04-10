@@ -29,6 +29,7 @@ import com.krake.surveys.component.module.SurveyComponentModule
 import com.krake.trip.TripPlannerSearchActivity
 import com.krake.usercontent.UserCreatedContentActivity
 import com.krake.usercontent.component.module.UserContentComponentModule
+import com.krake.youtube.YoutubeVideoActivity
 import mykrake.com.krakesample.model.*
 import java.util.*
 
@@ -321,6 +322,18 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                     OrchardComponentModule()
                         .dataClass(Game::class.java)
                         .displayPath("gioco")
+                )
+                .build()
+
+            R.id.nav_video -> intent = ComponentManager.createIntent()
+                .from(context)
+                .to(YoutubeVideoActivity::class.java)
+                .with(
+                    OrchardComponentModule()
+                        .dataClass(Prodotto::class.java)
+                        .avoidPagination()
+                        .searchColumnsName("titlePartTitle")
+                        .displayPath(context.getString(R.string.orchard_path_products))
                 )
                 .build()
 

@@ -3,6 +3,7 @@
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.*
+import com.krake.youtube.model.YoutubeVideo
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.Index
@@ -10,7 +11,7 @@ import io.realm.annotations.PrimaryKey
 
 
 open class Prodotto : RealmObject() /*INTERFACES*/, ContentItemWithDescription, ContentItemWithGallery, RecordWithShare,
-    RecordWithAutoroute, RecordWithIdentifier, RecordWithFilter/*ENDINTERFACES*/ {
+    RecordWithAutoroute, RecordWithIdentifier, RecordWithFilter/*ENDINTERFACES*/,YoutubeVideo {
     /*FIELDS*/
     open var autoroutePartUseCulturePattern: Boolean? = null
     override var bodyPartText: String? = null
@@ -26,5 +27,7 @@ open class Prodotto : RealmObject() /*INTERFACES*/, ContentItemWithDescription, 
     @PrimaryKey
     override var identifier: Long = 0
     open var prezzoValue: Long? = null
-/*ENDFIELDS*/
+    /*ENDFIELDS*/
+    override val videoUrlValue: String
+        get() = "https://www.youtube.com/watch?v=C0DPdy98e4c"
 }

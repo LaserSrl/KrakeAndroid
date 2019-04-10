@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="youtube_initialize_error_title">Attention</string>
+    <string name="youtube_initialize_error_message">Le service ne peut pas être utilisé, réessayez plus tard.</string>
+</resources>
