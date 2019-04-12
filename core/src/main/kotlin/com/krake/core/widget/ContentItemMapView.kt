@@ -181,17 +181,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
 
         kmlTask = KmlTask(this)
 
-        mapManager.getMapAsync { googleMap ->
-            if (fullScreenMapId != 0) {
-                googleMap.setOnMapClickListener { showExpandedMap() }
-                googleMap.setOnMarkerClickListener { showExpandedMap(); false }
-            }
-
-            (container as? GoogleMap.OnInfoWindowClickListener)?.let {
-                googleMap.setOnInfoWindowClickListener(it)
-            }
-        }
-
+        mapManager.getMapAsync { googleMap -> setupMap(googleMap) }
 
         val coordinator = getCoordinatorLayout()
         if (fullScreenMapId != 0 && coordinator?.findViewById<View?>(fullScreenMapId) == null) {
@@ -216,10 +206,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        mapManager.getMapAsync {
-            it.setOnMarkerClickListener(null)
-            it.setOnMapClickListener(null)
-        }
+        mapManager.getMapAsync { googleMap -> unSetupMap(googleMap) }
 
         kmlTask?.release()
         directionRequest?.cancel()
@@ -271,7 +258,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     }
 
     @CallSuper
-    open protected fun showDataOnMap(map: GoogleMap, contentItem: ContentItemWithLocation, kmlFile: File?, cacheValid: Boolean) {
+    protected open fun showDataOnMap(map: GoogleMap, contentItem: ContentItemWithLocation, kmlFile: File?, cacheValid: Boolean) {
         val cameraBounds = LatLngBounds.builder()
         val mapPart = contentItem.mapPart
 
@@ -295,6 +282,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
 
 
         if (mapPart != null && mapPart.isMapValid) {
+            mLocationItemMarker?.remove()
             mLocationItemMarker = map.addMarker(MarkerCreator.shared.createMarker(context, contentItem))
 
             cameraBounds.include(mapPart.latLng)
@@ -316,6 +304,23 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
             mapZoomSupport.updateCamera(
                     CameraUpdateFactory.newLatLngZoom(mapPart.latLng, resources.getInteger(R.integer.default_zoom).toFloat()), map)
 
+    }
+
+    protected open fun setupMap(map: GoogleMap) {
+        if (fullScreenMapId != 0) {
+            map.setOnMapClickListener { showExpandedMap() }
+            map.setOnMarkerClickListener { showExpandedMap(); false }
+        }
+
+        (container as? GoogleMap.OnInfoWindowClickListener)?.let {
+            map.setOnInfoWindowClickListener(it)
+        }
+    }
+
+    protected open fun unSetupMap(map: GoogleMap) {
+        map.setOnMarkerClickListener(null)
+        map.setOnMapClickListener(null)
+        map.setOnInfoWindowClickListener(null)
     }
 
     private fun showExpandedMap() {

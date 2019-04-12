@@ -49,13 +49,14 @@ class KrakeApp : KrakeApplication(), UserNavigationViewListener {
         val near = ProximityBeaconRanger(this, beaconManger)
         beaconManger!!.addObserver(near)
         beaconManger!!.startRegionMonitoring()*/
-        registerDetailFragment(Itinerario::class.java, ContentItemDetailModelFragment::class.java, { original ->
+        registerDetailFragment(Itinerario::class.java, ContentItemDetailModelFragment::class.java) { original ->
             val module = DetailComponentModule(this@KrakeApp)
             module.readContent(this@KrakeApp, original)
             module.contentLayout(ItineraryComponentModule.DEFAULT_DETAIL_CONTENT_LAYOUT)
+            module.rootLayout(ItineraryComponentModule.DEFAULT_DETAIL_ROOT_LAYOUT)
             original.putModules(this@KrakeApp, module)
             original
-        })
+        }
         //registerDetailFragment(OtpStopItem::class.java, BusStopDetailFragment::class.java)
         addDetailSharingIntent(FacebookDetailSharingIntercept())
         registerDetailFragment(UserReport::class.java, UserContentDetailFragment::class.java)
