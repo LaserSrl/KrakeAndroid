@@ -51,18 +51,21 @@ class LoginManager internal constructor(context: Context)
             if (!TextUtils.isEmpty(savedLoginInfos))
             {
                 mutableLoggedUser.value = Gson().fromJson(savedLoginInfos, LoginUserOutput::class.java)
+            } else {
+                updateSavedLoginOutput(context, null)
+                RemoteClient.clients.forEach { it.value.removeAllCookies() }
             }
         }
         else
         {
+            mutableLoggedUser.value = null
             val savedTokenInfos = openSavePrefs(context).getString(TOKEN_INFOS, null)
             if (savedTokenInfos != null)
             {
                 val request = Gson().fromJson(savedTokenInfos, JsonObject::class.java).readRemoteRequest()
-
-
                 login(context, request, true)
             }
+
         }
     }
 
@@ -106,6 +109,7 @@ class LoginManager internal constructor(context: Context)
                     {
                         mutableLoginUserError.value = error
                         mutableLoggedUser.value = null
+                        RemoteClient.clients.forEach { it.value.removeAllCookies() }
                         openSavePrefs(context).edit().remove(TOKEN_INFOS).apply()
                     }
 

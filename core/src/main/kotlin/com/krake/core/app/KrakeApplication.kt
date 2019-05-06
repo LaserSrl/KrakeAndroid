@@ -303,6 +303,10 @@ abstract class KrakeApplication : Application(),
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             handleNotificationChannels()
         }
+
+        if (LoginManager.shared.isLoginIn.value == false) {
+            LoginManager.updateSavedLoginOutput(this, null)
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.O)
