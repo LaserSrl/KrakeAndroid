@@ -15,6 +15,7 @@ import androidx.annotation.LayoutRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.krake.core.ClassUtils
@@ -47,7 +48,10 @@ import com.krake.core.widget.*
  *
  * **Importante** l'activity che utilizza questo fragment deve implementare l'interfaccia [OnContentItemSelectedListener]
  */
-open class ContentItemGridModelFragment : OrchardDataModelFragment(), UpdatebleOrchardDataLoader, ObjectsRecyclerViewAdapter.ClickReceiver<ContentItem>
+open class ContentItemGridModelFragment : OrchardDataModelFragment(),
+    UpdatebleOrchardDataLoader,
+    ObjectsRecyclerViewAdapter.ClickReceiver<ContentItem>,
+    SwipeRefreshLayout.OnRefreshListener
 {
     @BundleResolvable
     lateinit var listMapComponentModule: ListMapComponentModule
@@ -363,7 +367,7 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(), UpdatebleO
         return ContentItemAdapter(activity, cellLayout, holderClass)
     }
 
-    open fun onRefresh()
+    override fun onRefresh()
     {
         val mActivity = activity
         if (mActivity != null)
