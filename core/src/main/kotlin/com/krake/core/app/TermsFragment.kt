@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.CallSuper
 import androidx.core.content.ContextCompat
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.tabs.TabLayout
 import com.krake.core.Constants
 import com.krake.core.OrchardError
@@ -24,7 +25,9 @@ import com.krake.core.model.TermPart
 import com.krake.core.view.TabLayoutHelper
 import java.util.*
 
-open class TermsFragment : OrchardDataModelFragment(), TabLayout.OnTabSelectedListener
+open class TermsFragment : OrchardDataModelFragment(),
+    TabLayout.OnTabSelectedListener,
+    SwipeRefreshLayout.OnRefreshListener
 {
     @BundleResolvable
     lateinit var termsModule: TermsModule
@@ -76,7 +79,7 @@ open class TermsFragment : OrchardDataModelFragment(), TabLayout.OnTabSelectedLi
         return tabLayout
     }
 
-    open protected fun createTabLayoutHelper(inflater: LayoutInflater): TabLayoutHelper
+    protected open fun createTabLayoutHelper(inflater: LayoutInflater): TabLayoutHelper
     {
         val params = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         return TabLayoutHelper.InflaterBuilder(inflater.context)
@@ -107,19 +110,12 @@ open class TermsFragment : OrchardDataModelFragment(), TabLayout.OnTabSelectedLi
     override fun onDataModelChanged(dataModel: DataModel?)
     {
         val lazyList = dataModel?.listData
-        if (lazyList != null && lazyList.size > 0)
+        if (lazyList != null && lazyList.isNotEmpty())
         {
-            val taxTerms: List<TermPart>
-
-            if (lazyList[0] is Taxonomy)
-            {
-                val taxonomy = lazyList[0] as Taxonomy
-
-                taxTerms = taxonomy.terms
-            }
-            else
-            {
-                taxTerms = lazyList as List<TermPart>
+            val taxTerms = if (lazyList[0] is Taxonomy) {
+                (lazyList[0] as Taxonomy).terms
+            } else {
+                lazyList as List<TermPart>
             }
 
             onTermsLoaded(taxTerms)
@@ -128,7 +124,8 @@ open class TermsFragment : OrchardDataModelFragment(), TabLayout.OnTabSelectedLi
 
     override fun onDataLoadingError(orchardError: OrchardError)
     {
-        setVisibility(View.GONE)
+        if (currentTerms.isEmpty())
+            setVisibility(View.GONE)
     }
 
     private fun addTermsToTab(terms: List<TermPart>, previouslySelectedIdentifier: Long)
@@ -247,7 +244,7 @@ open class TermsFragment : OrchardDataModelFragment(), TabLayout.OnTabSelectedLi
      * @param terms list of loaded [TermPart].
      */
     @CallSuper
-    open protected fun onTermsLoaded(terms: List<TermPart>)
+    protected open fun onTermsLoaded(terms: List<TermPart>)
     {
         if (terms.size > 1)
         {
@@ -280,6 +277,11 @@ open class TermsFragment : OrchardDataModelFragment(), TabLayout.OnTabSelectedLi
     protected fun getTermFromTab(tab: TabLayout.Tab): TermPart?
     {
         return tab.tag as TermPart?
+    }
+
+    override fun onRefresh() {
+        dataConnectionModel.page = 1
+        dataConnectionModel.loadDataFromRemote()
     }
 
     /**

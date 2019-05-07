@@ -101,6 +101,7 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
     private FloatSearchView mSearchView;
     private boolean mUsingMapAndGridLayout;
     private boolean mAppBarIsExpanded = true;
+    private boolean mIsSwipeRefreshing = false;
 
     /**
      * Salva l'altezza corrente dell'AppBarLayout per evitare cambiamenti inutili nell'offset dello SwipeRefreshLayout.
@@ -326,8 +327,10 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
 
     @Override
     public void onRefresh() {
-        if (mGridFragment != null && mGridFragment.isAdded()) {
-            mGridFragment.onRefresh();
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment.isAdded() && fragment instanceof SwipeRefreshLayout.OnRefreshListener) {
+                ((SwipeRefreshLayout.OnRefreshListener)fragment).onRefresh();
+            }
         }
     }
 
@@ -340,13 +343,9 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
      */
     protected void updateRefreshStatus(final boolean refreshing) {
         if (mRefresher != null) {
-            if ((refreshing && !mRefresher.isRefreshing()) || (!refreshing && mRefresher.isRefreshing())) {
-                mRefresher.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mRefresher.setRefreshing(refreshing);
-                    }
-                });
+            if ((refreshing && !mIsSwipeRefreshing) || (!refreshing && mIsSwipeRefreshing)) {
+                mIsSwipeRefreshing = refreshing;
+                mRefresher.post(() -> mRefresher.setRefreshing(mIsSwipeRefreshing));
             }
         }
     }
