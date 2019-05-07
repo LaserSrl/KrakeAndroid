@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -51,6 +53,8 @@ public class OrchardRegisterFragment extends Fragment implements View.OnClickLis
     private TextInputLayout mPasswordTextInput;
     private TextInputLayout mConfirmPasswordInputText;
     private TextInputLayout mTelephoneInputText;
+    private Button mRegistrerButton;
+    private ProgressBar mProgress;
 
     private ScrollView mScrollView;
 
@@ -151,6 +155,7 @@ public class OrchardRegisterFragment extends Fragment implements View.OnClickLis
                 }
             }
         });
+
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -158,7 +163,7 @@ public class OrchardRegisterFragment extends Fragment implements View.OnClickLis
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mScrollView = (ScrollView) view;
+        mScrollView = (ScrollView) view.findViewById(R.id.registerScrollView);
 
         TextView mLoginMessageTextView = view.findViewById(R.id.loginMessageTextView);
         mLoginMessageTextView.setText(R.string.registration);
@@ -178,8 +183,9 @@ public class OrchardRegisterFragment extends Fragment implements View.OnClickLis
         mPasswordTextInput = view.findViewById(R.id.password_input_text_layout);
         mConfirmPasswordInputText = view.findViewById(R.id.password_confirm_text_layout);
         mTelephoneInputText = view.findViewById(R.id.telephone_number_text_layout);
-
-        view.findViewById(R.id.btn_register).setOnClickListener(this);
+        mRegistrerButton = view.findViewById(R.id.btn_register);
+        mRegistrerButton.setOnClickListener(this);
+        mProgress = view.findViewById(R.id.progressBar);
 
         if (getResources().getBoolean(R.bool.orchard_registration_enable_telephone_number)) {
             mTelephoneInputText.setVisibility(View.VISIBLE);
@@ -226,6 +232,14 @@ public class OrchardRegisterFragment extends Fragment implements View.OnClickLis
             if (getResources().getBoolean(R.bool.orchard_registration_enable_telephone_number) && userInfo.getTelephone() != null)
                 mTelephoneInputText.getEditText().append(userInfo.getTelephone());
         }
+
+        LoginManager.getShared().isLoginIn().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                mRegistrerButton.setEnabled(!aBoolean);
+                mProgress.setVisibility(aBoolean ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 
     @Override
