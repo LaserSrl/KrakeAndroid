@@ -52,7 +52,6 @@ class LoginManager internal constructor(context: Context)
             {
                 mutableLoggedUser.value = Gson().fromJson(savedLoginInfos, LoginUserOutput::class.java)
             } else {
-                updateSavedLoginOutput(context, null)
                 RemoteClient.clients.forEach { it.value.removeAllCookies() }
             }
         }
