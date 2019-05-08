@@ -145,13 +145,15 @@ abstract class OrchardDataModelFragment : Fragment()
                 mDataLoadListener?.onDataLoading(loading, dataConnectionModel.page)
             }
         })
+
+        observeDataModel()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
 
-        observeDataModel()
+
     }
 
     protected open fun observeDataModel()

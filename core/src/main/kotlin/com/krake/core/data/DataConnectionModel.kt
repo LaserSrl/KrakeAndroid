@@ -13,19 +13,16 @@ import com.krake.core.login.PrivacyException
 import com.krake.core.model.*
 import com.krake.core.network.CancelableRequest
 import io.realm.Realm
-import io.realm.RealmChangeListener
 import io.realm.RealmModel
 import io.realm.RealmQuery
-import io.realm.kotlin.addChangeListener
-import io.realm.kotlin.removeChangeListener
 import java.util.*
 
 open class DataConnectionModel() : ViewModel(),
         LoginComponentModule.ValueListener,
         OrchardComponentModule.ValueListener,
         Observer<Boolean>,
-    DataConnectionBase,
-    RealmChangeListener<RequestCache>
+    DataConnectionBase/*,
+    RealmChangeListener<RequestCache>*/
 {
     private val mutableModel = MutableLiveData<DataModel>()
     val model: LiveData<DataModel> = mutableModel
@@ -48,11 +45,11 @@ open class DataConnectionModel() : ViewModel(),
     private var searchFilter: String? = null
 
     private var currentRequestCache: RequestCache? = null
-        set(value) {
-            field?.removeChangeListener(this)
-            field = value
-            field?.addChangeListener(this)
-        }
+    /* TODO: change set(value) {
+          field?.removeChangeListener(this)
+          field = value
+          field?.addChangeListener(this)
+      }*/
 
     private var cacheName: String? = null
 
@@ -148,7 +145,7 @@ open class DataConnectionModel() : ViewModel(),
             loginModule.valueListeners.remove(this)
             privacyViewModel.privacyStatus.removeObserver(privacyObserver)
             LoginManager.shared.isLogged.removeObserver(this)
-            currentRequestCache?.removeChangeListener(this)
+            //TODO: change currentRequestCache?.removeChangeListener(this)
         }
     }
 
@@ -312,11 +309,11 @@ open class DataConnectionModel() : ViewModel(),
                 RecordWithAutoroute::class.java.isAssignableFrom(orchardModule.dataClass) &&
                 orchardModule.displayPath == getCacheName()
     }
-
+/* TODO: change
     override fun onChange(t: RequestCache) {
 
         loadDataFromCache(t, model.value?.cacheValid ?: false)
-    }
+    }*/
 
 }
 
