@@ -12,6 +12,7 @@ import com.krake.core.network.CancelableRequest
 import com.krake.core.network.RemoteClient
 import com.krake.core.network.RemoteRequest
 import com.krake.core.thread.AsyncTask
+import io.realm.Realm
 
 class OrchardRemoteDataRepository(context: Context,
                                   override val dataMapper: DataMapper) :
@@ -66,7 +67,10 @@ class OrchardRemoteDataRepository(context: Context,
                                                               requestedPrivacy,
                                                               request.queryParameters)
                         }
-                        .completed { callback(RequestCache.findCacheWith(it), null) }
+                        .completed {
+                            Realm.getDefaultInstance().refresh()
+                            callback(RequestCache.findCacheWith(it), null)
+                        }
                         .error { callback(null, it as? OrchardError) }
                         .build()
                         .load()
