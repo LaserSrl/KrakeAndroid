@@ -195,7 +195,7 @@ public class ContentCreationActivity extends LoginAndPrivacyActivity implements 
                 RemoteRequest request = new RemoteRequest(this)
                         .setPath(getString(R.string.orchard_api_path_content_modify))
                         .setMethod(RemoteRequest.Method.GET)
-                        .setQuery(Constants.REQUEST_LANGUAGE_KEY, getString(R.string.orchard_language))
+                        .setQuery("Language", getString(R.string.orchard_language))
                         .setQuery("ContentType", mContentDefinition.getContentType());
 
                 RemoteClient.Companion.client(isLoginRequired())

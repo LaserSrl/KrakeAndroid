@@ -284,7 +284,7 @@ public class FieldsFragment extends Fragment implements
                     Boolean checked = (Boolean) mSaveFieldInfos.mFieldValues.get(orchardKey);
                     if (checked != null) {
                         switchCompat.setChecked(checked);
-                    } else if (defaultValue != null && defaultValue instanceof Boolean) {
+                    } else if (defaultValue instanceof Boolean) {
                         switchCompat.setChecked((Boolean) defaultValue);
                     }
 

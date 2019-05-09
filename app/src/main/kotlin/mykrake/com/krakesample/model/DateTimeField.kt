@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1902.11.10) on 12/02/2019, 10:17**/
+ * Created by Krake Generator 10.0 Bloody Mary (1903.22.10) on 09/05/2019, 09:16**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.RecordWithFilter

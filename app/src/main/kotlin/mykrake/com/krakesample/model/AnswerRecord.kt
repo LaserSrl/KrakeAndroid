@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1902.11.10) on 12/02/2019, 10:17**/
+ * Created by Krake Generator 10.0 Bloody Mary (1903.22.10) on 09/05/2019, 09:16**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.RecordWithFilter
@@ -10,13 +10,12 @@ import io.realm.annotations.PrimaryKey
 open class AnswerRecord : RealmObject() /*INTERFACES*/, com.krake.surveys.model.Answer,
     RecordWithFilter/*ENDINTERFACES*/ {
     /*FIELDS*/
-    override var answer: String? = null
     open var questionRecord_Id: Long? = null
-    override var published: Boolean = false
-    override var allFiles: String? = null
-    override var position: Long = 0
+    override var answer: String? = null
+    override var correctResponse: Boolean = false
     @PrimaryKey
     override var identifier: Long = 0
-    override var correctResponse: Boolean = false
+    override var published: Boolean = false
+    override var position: Long = 0
 /*ENDFIELDS*/
 }

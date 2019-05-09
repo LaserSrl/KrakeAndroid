@@ -84,7 +84,19 @@ class MultiEnumOrTermManager constructor(context: FragmentActivity,
         }()
 
         if (possibleValues != null) {
-            setValuesAndSelection(possibleValues.unwrapToSelectableValue())
+            val selectableValues = possibleValues.unwrapToSelectableValue()
+
+            val selectableUnwrappedValues = selectableValues.map { selectableValue -> selectableValue.value }
+
+            val nonValidValues = this.selectedValues.filterNot {
+                selectableUnwrappedValues.contains(it)
+            }
+
+            nonValidValues.forEach {
+                this.selectedValues.remove(it)
+            }
+
+            setValuesAndSelection(selectableValues)
         } else {
 
             val orchardModule = OrchardComponentModule()
