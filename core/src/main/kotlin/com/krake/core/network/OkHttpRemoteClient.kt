@@ -189,7 +189,7 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
 
             logBundle.putString("UpdatedCookies", allCookies().toJson().toString())
 
-            logBundle.putString("Response", remoteResponse.string())
+            // logBundle.putString("Response", remoteResponse.string())
 
             analytics?.logEvent("NetworkResponse", logBundle)
         }
