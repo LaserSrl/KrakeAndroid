@@ -304,7 +304,7 @@ abstract class KrakeApplication : Application(),
             handleNotificationChannels()
         }
 
-        if (LoginManager.shared.isLoginIn.value == false) {
+        if (LoginManager.shared.loggedUser.value == null) {
             LoginManager.updateSavedLoginOutput(this, null)
         }
     }
