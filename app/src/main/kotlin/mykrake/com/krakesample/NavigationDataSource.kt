@@ -191,7 +191,7 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                 fields.add(
                     ContentCreationTabInfo.FieldInfo(
                         R.string.intolleranze, "User.Intolleranze",
-                        "intolleranzeTerms", ContentCreationTabInfo.FIELD_TYPE_ENUM_OR_TERM_SELECTION, false
+                        "intolleranzeTerms", ContentCreationTabInfo.FIELD_TYPE_ENUM_OR_TERM_SELECTION, true
                     )
                 )
 

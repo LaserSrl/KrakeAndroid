@@ -3,6 +3,7 @@ package com.krake.core.network
 import android.content.Context
 import androidx.annotation.StringRes
 import com.google.gson.JsonArray
+import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.krake.core.R
 
@@ -75,4 +76,36 @@ class RemoteRequest(baseUrl: String)
      * Se contiene uno o file file viene utilizzato un multipartdata
      */
     fun setBodyParameters(parameters: Map<String, Any>): RemoteRequest = apply { this.body = parameters }
+
+    override fun toString(): String {
+
+        val json = JsonObject()
+
+        json.addProperty("method", method.value)
+        json.addProperty("baseUrl", baseUrl)
+        path?.let {
+            json.addProperty("path", it)
+        }
+
+        val queries = JsonObject()
+        queryParameters.forEach {
+            queries.addProperty(it.key, it.value)
+        }
+        json.add("queryParameters", queries)
+
+        val jHeaders = JsonObject()
+        headers.forEach {
+            jHeaders.addProperty(it.key, it.value)
+        }
+        json.add("headers", jHeaders)
+
+        body.let {
+            if (it is JsonObject || it is JsonArray) {
+                json.add("headers", it as JsonElement)
+            }
+        }
+
+        return json.toString()
+
+    }
 }

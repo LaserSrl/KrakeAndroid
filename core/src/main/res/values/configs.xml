@@ -22,8 +22,9 @@
     <integer name="around_me_max_radius">10000</integer>
     <integer name="around_me_minimum_radius">500</integer>
 
-
     <bool name="enable_analytics">false</bool>
+    <bool name="enable_network_logs">false</bool>
+
     <bool name="enable_social_sharing_on_details">true</bool>
     <bool name="show_location_poi_directions">true</bool>
 
