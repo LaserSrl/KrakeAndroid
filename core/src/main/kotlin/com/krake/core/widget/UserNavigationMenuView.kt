@@ -106,7 +106,7 @@ class UserNavigationMenuView @JvmOverloads constructor(
         dataConnection?.model?.observeForever(this)
         LoginManager.shared.isLogged.observeForever(loginObserver)
         if (LoginManager.shared.isLogged.value == true) {
-            updateUI(true, null)
+            updateUI(true, currentUser)
         }
         Signaler.shared.registerApiEndListener(getString(R.string.orchard_api_path_content_modify), this)
     }
