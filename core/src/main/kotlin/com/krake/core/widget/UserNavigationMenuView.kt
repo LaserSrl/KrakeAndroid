@@ -156,58 +156,56 @@ class UserNavigationMenuView @JvmOverloads constructor(
     {
         currentUser = user
         userLoggedIn = loggedIn
-        val photo = user?.firstPhoto
-        if (photo != null) {
-            MediaLoader.with(context, userImageView)
-                    .mediaPart(photo)
-                    .load()
 
-            userInitialsText.visibility = View.GONE
-        } else {
-            userImageView.setImageBitmap(null)
-            userInitialsText.visibility = View.VISIBLE
-        }
+        when {
+            user != null -> {
+                val photo = user.firstPhoto
+                if (photo != null) {
+                    MediaLoader.with(context, userImageView)
+                        .mediaPart(photo)
+                        .load()
 
-        if (user != null) {
-            logoutButton.visibility = View.VISIBLE
-
-            val nameSb = StringBuilder()
-            val firstLettersSb = StringBuilder()
-
-            val name = user.name
-            if (!name.isNullOrEmpty()) {
-                nameSb.append(name)
-                firstLettersSb.append(name.first())
-
-                val surname = user.surname
-                if (!surname.isNullOrEmpty()) {
-                    nameSb.append(" ").append(surname)
-                    firstLettersSb.append(surname.first())
+                    userInitialsText.visibility = View.GONE
+                } else {
+                    userImageView.setImageBitmap(null)
+                    userInitialsText.visibility = View.VISIBLE
                 }
-            } else {
-                val anonymousLabel = getString(R.string.usernamePlaceholder)
-                nameSb.append(anonymousLabel)
-                firstLettersSb.append(anonymousLabel.first())
+
+                logoutButton.visibility = View.VISIBLE
+
+                val nameSb = StringBuilder()
+                val firstLettersSb = StringBuilder()
+
+                val name = user.name
+                if (!name.isNullOrEmpty()) {
+                    nameSb.append(name)
+                    firstLettersSb.append(name.first())
+
+                    val surname = user.surname
+                    if (!surname.isNullOrEmpty()) {
+                        nameSb.append(" ").append(surname)
+                        firstLettersSb.append(surname.first())
+                    }
+                } else {
+                    val anonymousLabel = getString(R.string.usernamePlaceholder)
+                    nameSb.append(anonymousLabel)
+                    firstLettersSb.append(anonymousLabel.first())
+                }
+                usernameTextView.text = nameSb.toString()
+                userInitialsText.text = firstLettersSb.toString()
             }
-            usernameTextView.text = nameSb.toString()
-            userInitialsText.text = firstLettersSb.toString()
-
-
-        }
-        else if (loggedIn)
-        {
-            userImageView.setImageResource(R.drawable.user_image_placeholder)
-            userInitialsText.visibility = View.GONE
-            logoutButton.visibility = View.VISIBLE
-            usernameTextView.text = getString(R.string.loading_data)
-        }
-        else
-        {
-
-            userImageView.setImageResource(R.drawable.user_image_placeholder)
-            userInitialsText.visibility = View.GONE
-            logoutButton.visibility = View.GONE
-            usernameTextView.text = getString(R.string.login)
+            loggedIn -> {
+                userImageView.setImageResource(R.drawable.user_image_placeholder)
+                userInitialsText.visibility = View.GONE
+                logoutButton.visibility = View.VISIBLE
+                usernameTextView.text = getString(R.string.loading_data)
+            }
+            else -> {
+                userImageView.setImageResource(R.drawable.user_image_placeholder)
+                userInitialsText.visibility = View.GONE
+                logoutButton.visibility = View.GONE
+                usernameTextView.text = getString(R.string.login)
+            }
         }
 
         if (hideLoginButton)

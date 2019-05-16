@@ -19,6 +19,7 @@ class WebViewFetchableContent : FetchableContent {
         try {
             // Workaround used to initialize the static web factory once.
             WebView.setWebContentsDebuggingEnabled(false)
+            WebView.enableSlowWholeDocumentDraw()
         } catch (ignored: Exception) {
             // The exception is ignored because it will be thrown every time.
         }

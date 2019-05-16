@@ -58,30 +58,30 @@ public class ContentItemDetailActivity extends LoginAndPrivacyActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState, int layout) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window contextWindow = getWindow();
-            contextWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-
-            TypedValue value = new TypedValue();
-            String transitionClass = null;
-            if (getTheme().resolveAttribute(R.attr.listMapTransition, value, true)) {
-                transitionClass = value.string.toString();
-            }
-
-            Transition exitTransition = null;
-            if (!TextUtils.isEmpty(transitionClass)) {
-                try {
-                    Object o = Class.forName(transitionClass).getConstructor().newInstance();
-                    if (o instanceof Transition)
-                        exitTransition = (Transition) o;
-                } catch (Exception e) {
-                    Log.e(getClass().getSimpleName(), "check the attribute listMapTransition in your BaseTheme");
-                }
-            } else {
-                exitTransition = new Fade();
-            }
-            contextWindow.setExitTransition(exitTransition);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window contextWindow = getWindow();
+//            contextWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//
+//            TypedValue value = new TypedValue();
+//            String transitionClass = null;
+//            if (getTheme().resolveAttribute(R.attr.listMapTransition, value, true)) {
+//                transitionClass = value.string.toString();
+//            }
+//
+//            Transition exitTransition = null;
+//            if (!TextUtils.isEmpty(transitionClass)) {
+//                try {
+//                    Object o = Class.forName(transitionClass).getConstructor().newInstance();
+//                    if (o instanceof Transition)
+//                        exitTransition = (Transition) o;
+//                } catch (Exception e) {
+//                    Log.e(getClass().getSimpleName(), "check the attribute listMapTransition in your BaseTheme");
+//                }
+//            } else {
+//                exitTransition = new Fade();
+//            }
+//            contextWindow.setExitTransition(exitTransition);
+//        }
         super.onCreate(savedInstanceState, layout);
 
         mDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.activity_layout_coordinator);

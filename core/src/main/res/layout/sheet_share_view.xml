@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.krake.core.widget.IntentPickerSheetView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/shareSheetView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
+        app:layout_behavior="@string/behavior_bottom_sheet_not_under_action"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />

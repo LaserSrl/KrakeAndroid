@@ -84,31 +84,29 @@ open class ContentItemWebView : WebView, ContentItemView {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        setWebViewClient(object : DescriptionWebViewClient(getActivity() as? FragmentActivity) {
+        webViewClient = object : DescriptionWebViewClient(getActivity() as? FragmentActivity) {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
             }
-        })
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             this.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            this.setLayerType(View.LAYER_TYPE_HARDWARE, null)
         }
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        setWebViewClient(null)
+        webViewClient = null
     }
 
     private fun contentToDisplay(contentItem: ContentItem): String?
     {
-        if (contentMethodName.isNullOrEmpty())
-        {
-            return (contentItem as? ContentItemWithDescription)?.bodyPartText
-        }
-        else
-        {
-            return contentItem.getProperty(contentMethodName!!) as? String
+        return if (contentMethodName.isNullOrEmpty()) {
+            (contentItem as? ContentItemWithDescription)?.bodyPartText
+        } else {
+            contentItem.getProperty(contentMethodName!!) as? String
         }
     }
 

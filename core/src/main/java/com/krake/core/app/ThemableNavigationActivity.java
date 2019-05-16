@@ -180,16 +180,10 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
         mNavigationClearParallelsTask = elements.getBoolean(R.styleable.BaseTheme_navigationIntentClearParallelsTasks, false);
 
         if (layout == 0) {
-            switch (mNavigationMode) {
-                case MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW:
-                    layout = R.layout.activity_drawer_navigationview;
-                    break;
-
-                case MAIN_NAVIGATION_MODE_DRAWER_NONE:
-                default:
-                    layout = R.layout.activity_no_drawer;
-                    break;
-            }
+            if (mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW && themableComponentModule.getShowNavigationDrawer())
+                layout = R.layout.activity_drawer_navigationview;
+            else
+                layout = R.layout.activity_no_drawer;
         }
 
         setContentView(layout);
@@ -279,6 +273,9 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
             case MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW:
 
                 NavigationView navigationView = findViewById(R.id.nav_view);
+
+                if (navigationView == null)
+                    break;
 
                 TypedValue value = new TypedValue();
                 String className = null;

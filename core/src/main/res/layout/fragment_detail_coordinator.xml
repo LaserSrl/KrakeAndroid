@@ -14,13 +14,13 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.krake.core.widget.IntentPickerSheetView
-        android:id="@+id/shareSheetView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:behavior_hideable="true"
-        app:behavior_peekHeight="0dp"
-        app:layout_behavior="@string/behavior_bottom_sheet_not_under_action" />
+    <!--<com.krake.core.widget.IntentPickerSheetView-->
+        <!--android:id="@+id/shareSheetView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:behavior_hideable="true"-->
+        <!--app:behavior_peekHeight="0dp"-->
+        <!--app:layout_behavior="@string/behavior_bottom_sheet_not_under_action" />-->
 
     <ProgressBar
         android:id="@android:id/progress"

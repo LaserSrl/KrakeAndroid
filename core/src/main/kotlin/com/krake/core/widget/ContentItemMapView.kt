@@ -2,6 +2,7 @@ package com.krake.core.widget
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.location.Location
@@ -9,9 +10,11 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.RelativeLayout
 import androidx.annotation.CallSuper
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -91,7 +94,8 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
             (value as? ContentItemViewListenerMapSupport)?.addManagedMapView(this)
         }
 
-    protected lateinit var mapManager: MapManager private set
+    protected var mapManager: MapManager? = null
+        private set
     private var showKmlDetail: Boolean = false
     /**
      * Implica showUserPosition
@@ -102,17 +106,36 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
         private set
     protected val mapZoomSupport: MapZoomSupport by lazy { MapZoomSupport(this) }
     private var fullScreenMapId = 0
-    private var mapIdentifier = R.id.location_content_item_map_view
+    private var mapIdentifier = 0 // R.id.location_content_item_map_view
     protected var mLocationItem: ContentItemWithLocation? = null
         private set
     private var fullScreenMapLayout = R.layout.partial_full_screen_map
-    private val fullScreenMapBehavior: BottomSheetNotUnderActionBehavior<*> by lazy {
+
+    private val mapFullScreenView by lazy {
         val coordinator = getCoordinatorLayout()!!
 
-        val mapFullScreenView = coordinator.findViewById<View>(fullScreenMapId)
+        var view = coordinator.findViewById<View>(fullScreenMapId) as ContentItemMapView?
 
-        (mapFullScreenView.layoutParams as CoordinatorLayout.LayoutParams).behavior as BottomSheetNotUnderActionBehavior<*>
+        if (view == null) {
+            LayoutInflater.from(context).inflate(fullScreenMapLayout, coordinator, true)
+
+            view = coordinator.findViewById(fullScreenMapId)
+            view?.container = container
+            view?.onResume()
+
+            fullScreenMapBehavior = (view?.layoutParams as CoordinatorLayout.LayoutParams).behavior as BottomSheetNotUnderActionBehavior<*>
+
+            if (container is ContentItemDetailModelFragment) {
+                (container as ContentItemDetailModelFragment).addSheetCallback(fullScreenMapBehavior!!)
+            }
+
+            if (mShowAlreadyCalled) {
+                view?.show(mContentItem!!, mCacheValid)
+            }
+        }
+        view
     }
+    private var fullScreenMapBehavior: BottomSheetNotUnderActionBehavior<*>? = null
 
     private var directionRequest: Request? = null
     private var directionPolyline: List<LatLng>? = null
@@ -152,15 +175,18 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     override fun onFinishInflate() {
         super.onFinishInflate()
 
-        mapManager = ContextMapManager(context) {
-            val mapView = findViewById<MapView>(mapIdentifier)
-            mapView
+        if (mapIdentifier != 0) {
+            mapManager = ContextMapManager(context) {
+                val mapView = findViewById<MapView>(mapIdentifier)
+                mapView
+            }
         }
-        mapManager.onCreate(null)
+
+        mapManager?.onCreate(null)
 
         val osmCopyrightView = findViewById<View?>(R.id.osm_copyright_view) as? OSMCopyrightView
         osmCopyrightView?.let {
-            mapManager.getMapAsync {
+            mapManager?.getMapAsync {
                 if (it.mapType == GoogleMap.MAP_TYPE_NONE) {
                     osmCopyrightView.showOSMCopyright()
                 }
@@ -181,24 +207,28 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
 
         kmlTask = KmlTask(this)
 
-        mapManager.getMapAsync { googleMap -> setupMap(googleMap) }
+        mapManager?.getMapAsync { googleMap -> setupMap(googleMap) }
 
-        val coordinator = getCoordinatorLayout()
-        if (fullScreenMapId != 0 && coordinator?.findViewById<View?>(fullScreenMapId) == null) {
-
-            LayoutInflater.from(context).inflate(fullScreenMapLayout, coordinator, true)
-            val mapView = coordinator?.findViewById<ContentItemMapView?>(fullScreenMapId)
-            mapView?.container = container
-            mapView?.onResume()
-            if (container is ContentItemDetailModelFragment)
-            {
-                (container as ContentItemDetailModelFragment).addSheetCallback(fullScreenMapBehavior)
-            }
-            if (mShowAlreadyCalled) {
-                mapView?.show(mContentItem!!, mCacheValid)
-            }
+        if (fullScreenMapId != 0) {
+            this.setOnClickListener { showExpandedMap() }
         }
 
+//        val coordinator = getCoordinatorLayout()
+//        if (fullScreenMapId != 0 && coordinator?.findViewById<View?>(fullScreenMapId) == null) {
+//
+//            LayoutInflater.from(context).inflate(fullScreenMapLayout, coordinator, true)
+//            val mapView = coordinator?.findViewById<ContentItemMapView?>(fullScreenMapId)
+//            mapView?.container = container
+//            mapView?.onResume()
+//            if (container is ContentItemDetailModelFragment)
+//            {
+//                (container as ContentItemDetailModelFragment).addSheetCallback(fullScreenMapBehavior)
+//            }
+//            if (mShowAlreadyCalled) {
+//                mapView?.show(mContentItem!!, mCacheValid)
+//            }
+//        }
+//
         val behavior = (layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetNotUnderActionBehavior
         behavior?.setAllowUserDrag(false)
     }
@@ -206,7 +236,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        mapManager.getMapAsync { googleMap -> unSetupMap(googleMap) }
+        mapManager?.getMapAsync { googleMap -> unSetupMap(googleMap) }
 
         kmlTask?.release()
         directionRequest?.cancel()
@@ -221,7 +251,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
         showUserDirection = a.getBoolean(R.styleable.ContentItemMapView_showUserDirection, false)
         showUserPosition = showUserPosition || showUserDirection
         fullScreenMapId = a.getResourceId(R.styleable.ContentItemMapView_fullScreenMap, 0);
-        mapIdentifier = a.getResourceId(R.styleable.ContentItemMapView_mapViewId, R.id.location_content_item_map_view)
+        mapIdentifier = a.getResourceId(R.styleable.ContentItemMapView_mapViewId, 0)
         fullScreenMapLayout = a.getResourceId(R.styleable.ContentItemMapView_fullScreenMapLayout, R.layout.partial_full_screen_map)
         a.recycle()
 
@@ -231,7 +261,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
         if (contentItem is ContentItemWithLocation && shouldShowMapWithContentItem(contentItem)) {
             mLocationItem = contentItem
             visibility = View.VISIBLE
-            mapManager.getMapAsync {
+            mapManager?.getMapAsync {
                 it.clear()
                 MapUtils.styleMap(it, context)
                 showDataOnMap(it, contentItem, locationItemKmlFile, cacheValid)
@@ -307,10 +337,10 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     }
 
     protected open fun setupMap(map: GoogleMap) {
-        if (fullScreenMapId != 0) {
-            map.setOnMapClickListener { showExpandedMap() }
-            map.setOnMarkerClickListener { showExpandedMap(); false }
-        }
+//        if (fullScreenMapId != 0) {
+//            map.setOnMapClickListener { showExpandedMap() }
+//            map.setOnMarkerClickListener { showExpandedMap(); false }
+//        }
 
         (container as? GoogleMap.OnInfoWindowClickListener)?.let {
             map.setOnInfoWindowClickListener(it)
@@ -324,15 +354,28 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     }
 
     private fun showExpandedMap() {
-        fullScreenMapBehavior.setStateAndNotify(BottomSheetBehavior.STATE_EXPANDED)
-        fullScreenMapBehavior.isHideable = false
+        mapFullScreenView?.mapManager?.getMapAsync {
+            it.setOnMapLoadedCallback {
+                fullScreenMapBehavior?.setStateAndNotify(BottomSheetBehavior.STATE_EXPANDED)
+                fullScreenMapBehavior?.isHideable = false
+            }
+        }
+
+//        mapFullScreenView?.viewTreeObserver?.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+//
+//            override fun onGlobalLayout() {
+//                mapFullScreenView?.viewTreeObserver?.removeOnGlobalLayoutListener(this)
+//                fullScreenMapBehavior?.setStateAndNotify(BottomSheetBehavior.STATE_EXPANDED)
+//                fullScreenMapBehavior?.isHideable = false
+//            }
+//        })
     }
 
     @SuppressLint("MissingPermission")
     fun onLocationChanged(location: Location) {
         if (showUserDirection || showUserPosition)
         {
-            mapManager.getMapAsync { it.isMyLocationEnabled = true }
+            mapManager?.getMapAsync { it.isMyLocationEnabled = true }
 
             if (showUserDirection && directionRequest == null && mLocationItem != null)
             {
@@ -343,21 +386,21 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     }
 
     fun onResume() {
-        mapManager.onResume()
+        mapManager?.onResume()
     }
 
     fun onPause() {
-        mapManager.onPause()
+        mapManager?.onPause()
     }
 
     fun onLowMemory() {
-        mapManager.onLowMemory()
+        mapManager?.onLowMemory()
     }
 
     fun onDestroy() {
         kmlLayer?.removeLayerFromMap()
         kmlLayer = null
-        mapManager.onDestroy()
+        mapManager?.onDestroy()
     }
 
     override fun onCompleted(e: Exception?, r: List<LatLng>?) {
@@ -366,7 +409,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
         if (r != null) {
             directionPolyline = r
 
-            mapManager.getMapAsync {
+            mapManager?.getMapAsync {
                 it.addPolyline(PolylineOptions().addAll(directionPolyline).color(Color.RED))
                 val builder = LatLngBounds.builder()
                 for (i in r.indices) {
@@ -381,7 +424,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
 
     override fun onKmlLoadCompleted(kml: File) {
         locationItemKmlFile = kml
-        mapManager.getMapAsync { if (mLocationItem != null) showDataOnMap(it, mLocationItem!!, locationItemKmlFile, true) }
+        mapManager?.getMapAsync { if (mLocationItem != null) showDataOnMap(it, mLocationItem!!, locationItemKmlFile, true) }
     }
 }
 

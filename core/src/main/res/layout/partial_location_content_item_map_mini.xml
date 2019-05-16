@@ -6,18 +6,21 @@
     android:layout_height="@dimen/content_item_small_map_height"
     android:visibility="gone"
     app:fullScreenMap="@+id/fullScreenMapContainer"
-    app:mapViewId="@+id/location_content_item_map_view_lite"
     app:showKml="false"
     app:showUserDirection="false">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/location_content_item_map_view_lite"
-        style="@style/ContentMap.Mini"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="false"
-        app:cameraZoom="@integer/default_zoom"
+    <ImageView android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@android:color/black"/>
 
-        app:liteMode="true"
-        app:mapType="@string/miniMapType" />
+    <!--<com.google.android.gms.maps.MapView-->
+        <!--android:id="@+id/location_content_item_map_view_lite"-->
+        <!--style="@style/ContentMap.Mini"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:clickable="false"-->
+        <!--app:cameraZoom="@integer/default_zoom"-->
+
+        <!--app:liteMode="true"-->
+        <!--app:mapType="@string/miniMapType" />-->
 </com.krake.core.widget.ContentItemMapView>

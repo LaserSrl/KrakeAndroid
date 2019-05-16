@@ -139,30 +139,30 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
     @Override
     public void onCreate(Bundle savedInstanceState, int layout) {
         Trace.beginSection("startListMapActivity");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window contextWindow = getWindow();
-            contextWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-
-            TypedValue value = new TypedValue();
-            String transitionClass = null;
-            if (getTheme().resolveAttribute(R.attr.listMapTransition, value, true)) {
-                transitionClass = value.string.toString();
-            }
-
-            Transition exitTransition = null;
-            if (!TextUtils.isEmpty(transitionClass)) {
-                try {
-                    Object o = Class.forName(transitionClass).getConstructor().newInstance();
-                    if (o instanceof Transition)
-                        exitTransition = (Transition) o;
-                } catch (Exception e) {
-                    Log.e(getClass().getCanonicalName(), "check the attribute listMapTransition in your BaseTheme");
-                }
-            } else {
-                exitTransition = new Fade();
-            }
-            contextWindow.setExitTransition(exitTransition);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window contextWindow = getWindow();
+//            contextWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//
+//            TypedValue value = new TypedValue();
+//            String transitionClass = null;
+//            if (getTheme().resolveAttribute(R.attr.listMapTransition, value, true)) {
+//                transitionClass = value.string.toString();
+//            }
+//
+//            Transition exitTransition = null;
+//            if (!TextUtils.isEmpty(transitionClass)) {
+//                try {
+//                    Object o = Class.forName(transitionClass).getConstructor().newInstance();
+//                    if (o instanceof Transition)
+//                        exitTransition = (Transition) o;
+//                } catch (Exception e) {
+//                    Log.e(getClass().getCanonicalName(), "check the attribute listMapTransition in your BaseTheme");
+//                }
+//            } else {
+//                exitTransition = new Fade();
+//            }
+//            contextWindow.setExitTransition(exitTransition);
+//        }
         super.onCreate(savedInstanceState, layout);
 
         boolean showMap = listMapComponentModule.getShowMap();
@@ -443,6 +443,7 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
         ThemableComponentModule themableModule = new ThemableComponentModule();
         themableModule.readContent(this, detailBundle);
         themableModule.upIntent(getDetailUpNavigationIntent(contentItem));
+        themableModule.showNavigationDrawer(false);
 
         DetailComponentModule detailModule = new DetailComponentModule(this);
         detailModule.readContent(this, detailBundle);

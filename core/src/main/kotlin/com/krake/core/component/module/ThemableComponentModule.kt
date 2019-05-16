@@ -19,6 +19,7 @@ class ThemableComponentModule : ComponentModule {
         private const val ARG_THEME = "argTheme"
         private const val ARG_TITLE = "argTitle"
         private const val ARG_UP_INTENT = "argUpIntent"
+        private const val ARG_SHOW_NAVIGATION_DRAWER = "argShowNavigationDrawer"
     }
 
     var showFloating: Boolean
@@ -34,11 +35,15 @@ class ThemableComponentModule : ComponentModule {
     var upIntent: Intent?
         private set
 
+    var showNavigationDrawer: Boolean
+        private set
+
     init {
         showFloating = false
         theme = 0
         title = null
         upIntent = null
+        showNavigationDrawer = true
     }
 
     /**
@@ -75,6 +80,15 @@ class ThemableComponentModule : ComponentModule {
     fun upIntent(upIntent: Intent?) = apply { this.upIntent = upIntent }
 
     /**
+     * Specifica l'[Intent] da lanciare quando viene premuta l'up arrow.
+     * Se non presente, l'up arrow non verrà mostrata.
+     * DEFAULT: null
+     *
+     * @param upIntent [Intent] relativo all'azione da lanciare quando l'up arrow viene premuta.
+     */
+    fun showNavigationDrawer(show: Boolean) = apply { this.showNavigationDrawer = show }
+
+    /**
      * Legge il contenuto di un [Bundle] e modifica le sue proprietà.
      *
      * @param context il [Context] utilizzato per leggere il [Bundle].
@@ -85,6 +99,7 @@ class ThemableComponentModule : ComponentModule {
         theme = bundle.getInt(ARG_THEME, theme)
         upIntent = bundle.getParcelable(ARG_UP_INTENT)
         title = bundle.getString(ARG_TITLE)
+        showNavigationDrawer = bundle.getBoolean(ARG_SHOW_NAVIGATION_DRAWER)
     }
 
     /**
@@ -99,6 +114,7 @@ class ThemableComponentModule : ComponentModule {
         bundle.putInt(ARG_THEME, theme)
         bundle.putString(ARG_TITLE, title)
         bundle.putParcelable(ARG_UP_INTENT, upIntent)
+        bundle.putBoolean(ARG_SHOW_NAVIGATION_DRAWER, showNavigationDrawer)
         return bundle
     }
 }

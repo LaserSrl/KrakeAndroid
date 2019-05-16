@@ -184,15 +184,16 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
 
         progressBar?.visibility = View.VISIBLE
 
-        mShareSheetView = mCoordinator.findViewById(R.id.shareSheetView)
-        if (mShareSheetView != null)
-        {
-            mShareBehavior = (mShareSheetView?.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetNotUnderActionBehavior<*>
-        }
-        else
-        {
-            mEnableSocialSharing = false
-        }
+//        mShareSheetView = mCoordinator.findViewById(R.id.shareSheetView)
+
+//        if (mShareSheetView != null)
+//        {
+//            mShareBehavior = (mShareSheetView?.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetNotUnderActionBehavior<*>
+//        }
+//        else
+//        {
+//            mEnableSocialSharing = false
+//        }
 
         (fragmentView as ViewGroup).setVisibilityListenerToChild(this)
 
@@ -374,6 +375,11 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
 
     protected fun showShareSheetView()
     {
+        if (mShareSheetView == null) {
+            mShareSheetView = layoutInflater.inflate(R.layout.sheet_share_view, mCoordinator).findViewById(R.id.shareSheetView) as IntentPickerSheetView
+            mShareBehavior = (mShareSheetView?.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetNotUnderActionBehavior<*>
+        }
+
         val shareLinkPart = (contentItem  as? RecordWithShare)?.shareLinkPart
         val shareSheetView = mShareSheetView
         val shareBehavior = mShareBehavior
@@ -383,7 +389,11 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
 
             shareSheetView.setIntent(intent)
 
-            shareBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            shareSheetView.post {
+                shareBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+
+//            shareBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
             shareSheetView.setOnIntentPicked { activityInfo ->
                 shareBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
