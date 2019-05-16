@@ -21,8 +21,7 @@ open class DataConnectionModel() : ViewModel(),
         LoginComponentModule.ValueListener,
         OrchardComponentModule.ValueListener,
         Observer<Boolean>,
-    DataConnectionBase/*,
-    RealmChangeListener<RequestCache>*/
+    DataConnectionBase
 {
     private val mutableModel = MutableLiveData<DataModel>()
     val model: LiveData<DataModel> = mutableModel
@@ -45,11 +44,6 @@ open class DataConnectionModel() : ViewModel(),
     private var searchFilter: String? = null
 
     private var currentRequestCache: RequestCache? = null
-    /* TODO: change set(value) {
-          field?.removeChangeListener(this)
-          field = value
-          field?.addChangeListener(this)
-      }*/
 
     private var cacheName: String? = null
 
@@ -145,7 +139,6 @@ open class DataConnectionModel() : ViewModel(),
             loginModule.valueListeners.remove(this)
             privacyViewModel.privacyStatus.removeObserver(privacyObserver)
             LoginManager.shared.isLogged.removeObserver(this)
-            //TODO: change currentRequestCache?.removeChangeListener(this)
         }
     }
 
@@ -198,6 +191,7 @@ open class DataConnectionModel() : ViewModel(),
                 loadSingleElement(false,
                                   { it.equalTo(RecordWithAutoroute.AutorouteDisplayAliasFieldName, orchardModule.displayPath!!) })
 
+            cancelRemoteLoading()
             if (needToLoadDataFromWebService)
             {
                 if (!waitingLogin && !waitingPrivacy)
@@ -211,8 +205,8 @@ open class DataConnectionModel() : ViewModel(),
 
     override final fun loadDataFromRemote()
     {
+        cancelRemoteLoading()
         mutableLoadingData.value = true
-        cancelableDataLoading?.cancel()
         cancelableDataLoading = RemoteDataRepository.shared
                 .loadData(loginModule,
                           orchardModule,
@@ -248,6 +242,12 @@ open class DataConnectionModel() : ViewModel(),
                                   }
                               }
                           })
+    }
+
+    private fun cancelRemoteLoading() {
+        mutableLoadingData.value = false
+        cancelableDataLoading?.cancel()
+        cancelableDataLoading = null
     }
 
     private fun getCacheName(): String?
@@ -309,11 +309,6 @@ open class DataConnectionModel() : ViewModel(),
                 RecordWithAutoroute::class.java.isAssignableFrom(orchardModule.dataClass) &&
                 orchardModule.displayPath == getCacheName()
     }
-/* TODO: change
-    override fun onChange(t: RequestCache) {
-
-        loadDataFromCache(t, model.value?.cacheValid ?: false)
-    }*/
 
 }
 
