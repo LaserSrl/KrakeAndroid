@@ -3,6 +3,7 @@ package com.krake.core.widget;
 import android.content.Context;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -23,6 +24,7 @@ public class SafeBottomSheetBehavior<V extends View> extends BottomSheetBehavior
 
     private List<BottomSheetStateCallback> mCallbacks = new LinkedList<>();
     private WeakReference<V> mView;
+    private boolean mAllowUserDrag = true;
 
     /**
      * Costruttore di default per istanziare un SafeBottomSheetBehavior
@@ -30,6 +32,17 @@ public class SafeBottomSheetBehavior<V extends View> extends BottomSheetBehavior
     public SafeBottomSheetBehavior() {
         super();
     }
+
+    @Override
+    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, V child, View directTargetChild, View target, int nestedScrollAxes) {
+        return mAllowUserDrag && super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(CoordinatorLayout parent, V child, MotionEvent event) {
+        return mAllowUserDrag && super.onInterceptTouchEvent(parent, child, event);
+    }
+
     /**
      * Costruttore di default per l'inflate di un SafeBottomSheetBehavior da layout
      *
@@ -123,4 +136,21 @@ public class SafeBottomSheetBehavior<V extends View> extends BottomSheetBehavior
         public abstract void onStateWillChange(@NonNull View bottomSheet, int newState);
     }
 
+    /**
+     * Ottiene il valore del filtro per i touch event
+     *
+     * @return true se l BottomSheetBehavior deve intercettare i touch event, false se il touch event deve essere redirezionato al parent
+     */
+    public boolean isAllowedUserDrag() {
+        return mAllowUserDrag;
+    }
+
+    /**
+     * Setta il filtro per i touch events in modo da controllare il redirezionamento degli stessi
+     *
+     * @param handleTouch true se l BottomSheetBehavior deve intercettare i touch event, false se il touch event deve essere redirezionato al parent
+     */
+    public void setAllowUserDrag(boolean handleTouch) {
+        this.mAllowUserDrag = handleTouch;
+    }
 }

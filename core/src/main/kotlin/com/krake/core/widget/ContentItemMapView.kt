@@ -7,9 +7,11 @@ import android.content.Context
 import android.graphics.Color
 import android.location.Location
 import android.os.Build
+import android.os.Bundle
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.RelativeLayout
 import androidx.annotation.CallSuper
@@ -23,6 +25,7 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.maps.android.data.kml.KmlLayer
 import com.krake.core.R
 import com.krake.core.api.Request
@@ -123,7 +126,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
             view?.container = container
             view?.onResume()
 
-            fullScreenMapBehavior = (view?.layoutParams as CoordinatorLayout.LayoutParams).behavior as BottomSheetNotUnderActionBehavior<*>
+            fullScreenMapBehavior = (view?.layoutParams as CoordinatorLayout.LayoutParams).behavior as SafeBottomSheetBehavior<*>
 
             if (container is ContentItemDetailModelFragment) {
                 (container as ContentItemDetailModelFragment).addSheetCallback(fullScreenMapBehavior!!)
@@ -135,7 +138,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
         }
         view
     }
-    private var fullScreenMapBehavior: BottomSheetNotUnderActionBehavior<*>? = null
+    private var fullScreenMapBehavior: SafeBottomSheetBehavior<*>? = null
 
     private var directionRequest: Request? = null
     private var directionPolyline: List<LatLng>? = null
@@ -196,7 +199,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
         findViewById<View?>(R.id.map_navigate_fab)?.setOnClickListener { if (mLocationItem != null) NavigationIntentManager.startNavigationIntent(context, mLocationItem!!) }
 
         findViewById<View?>(R.id.map_close_map_bar)?.setOnClickListener {
-            val behavior = (layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetNotUnderActionBehavior
+            val behavior = (layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? SafeBottomSheetBehavior
             behavior?.isHideable = true
             behavior?.setStateAndNotify(BottomSheetBehavior.STATE_COLLAPSED)
         }
@@ -229,7 +232,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
 //            }
 //        }
 //
-        val behavior = (layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetNotUnderActionBehavior
+        val behavior = (layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? SafeBottomSheetBehavior
         behavior?.setAllowUserDrag(false)
     }
 

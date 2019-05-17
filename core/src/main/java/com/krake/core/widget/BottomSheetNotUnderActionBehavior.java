@@ -23,7 +23,6 @@ import com.krake.core.R;
 public class BottomSheetNotUnderActionBehavior<V extends View> extends SafeBottomSheetBehavior<V> {
 
     private int mTopPadding = 0;
-    private boolean mAllowUserDrag = true;
 
 
     /**
@@ -41,16 +40,6 @@ public class BottomSheetNotUnderActionBehavior<V extends View> extends SafeBotto
      */
     public BottomSheetNotUnderActionBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
-    }
-
-    @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, V child, View directTargetChild, View target, int nestedScrollAxes) {
-        return mAllowUserDrag && super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(CoordinatorLayout parent, V child, MotionEvent event) {
-        return mAllowUserDrag && super.onInterceptTouchEvent(parent, child, event);
     }
 
     @Override
@@ -90,23 +79,5 @@ public class BottomSheetNotUnderActionBehavior<V extends View> extends SafeBotto
         }
 
         return super.onDependentViewChanged(parent, child, dependency) || changedSize;
-    }
-
-    /**
-     * Ottiene il valore del filtro per i touch event
-     *
-     * @return true se l BottomSheetBehavior deve intercettare i touch event, false se il touch event deve essere redirezionato al parent
-     */
-    public boolean isAllowedUserDrag() {
-        return mAllowUserDrag;
-    }
-
-    /**
-     * Setta il filtro per i touch events in modo da controllare il redirezionamento degli stessi
-     *
-     * @param handleTouch true se l BottomSheetBehavior deve intercettare i touch event, false se il touch event deve essere redirezionato al parent
-     */
-    public void setAllowUserDrag(boolean handleTouch) {
-        this.mAllowUserDrag = handleTouch;
     }
 }

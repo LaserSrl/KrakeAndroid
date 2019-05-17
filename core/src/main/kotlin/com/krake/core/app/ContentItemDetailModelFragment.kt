@@ -102,7 +102,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
     private var mEnableSocialSharing: Boolean = false
     private var mSocialImageUri: Uri? = null
     private var mShareSheetView: IntentPickerSheetView? = null
-    private var mShareBehavior: BottomSheetNotUnderActionBehavior<*>? = null
+    private var mShareBehavior: SafeBottomSheetBehavior<*>? = null
     private val sheetCallback: SheetCallback by lazy { SheetCallback(this) }
     private lateinit var mAppBarLayout: AppBarLayout
     private var mToolbar: TouchControllableToolbar? = null
@@ -377,7 +377,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
     {
         if (mShareSheetView == null) {
             mShareSheetView = layoutInflater.inflate(R.layout.sheet_share_view, mCoordinator).findViewById(R.id.shareSheetView) as IntentPickerSheetView
-            mShareBehavior = (mShareSheetView?.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetNotUnderActionBehavior<*>
+            mShareBehavior = (mShareSheetView?.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? SafeBottomSheetBehavior<*>
         }
 
         val shareLinkPart = (contentItem  as? RecordWithShare)?.shareLinkPart
@@ -658,7 +658,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
         }
     }
 
-    fun addSheetCallback(behavior: BottomSheetNotUnderActionBehavior<*>)
+    fun addSheetCallback(behavior: SafeBottomSheetBehavior<*>)
     {
         behavior.addBottomSheetCallback(sheetCallback)
     }
