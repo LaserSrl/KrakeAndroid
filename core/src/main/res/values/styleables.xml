@@ -12,7 +12,7 @@
         <attr format="reference" name="navigationViewHeader"/>
         <attr format="reference" name="navigationViewMenu"/>
         <attr format="boolean" name="navigationIntentClearParallelsTasks"/>
-        <attr format="string" name="listMapTransition"/>
+        <attr format="reference" name="listMapTransition"/>
     </declare-styleable>
 
     <declare-styleable name="ButtonBarContainerTheme">

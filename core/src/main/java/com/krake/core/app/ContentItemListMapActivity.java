@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.os.Trace;
 import android.text.TextUtils;
-import android.transition.Fade;
 import android.transition.Transition;
-import android.util.Log;
+import android.transition.TransitionInflater;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.FrameLayout;
@@ -138,31 +136,8 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState, int layout) {
-        Trace.beginSection("startListMapActivity");
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            Window contextWindow = getWindow();
-//            contextWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-//
-//            TypedValue value = new TypedValue();
-//            String transitionClass = null;
-//            if (getTheme().resolveAttribute(R.attr.listMapTransition, value, true)) {
-//                transitionClass = value.string.toString();
-//            }
-//
-//            Transition exitTransition = null;
-//            if (!TextUtils.isEmpty(transitionClass)) {
-//                try {
-//                    Object o = Class.forName(transitionClass).getConstructor().newInstance();
-//                    if (o instanceof Transition)
-//                        exitTransition = (Transition) o;
-//                } catch (Exception e) {
-//                    Log.e(getClass().getCanonicalName(), "check the attribute listMapTransition in your BaseTheme");
-//                }
-//            } else {
-//                exitTransition = new Fade();
-//            }
-//            contextWindow.setExitTransition(exitTransition);
-//        }
+        setDefaultTransitions();
+
         super.onCreate(savedInstanceState, layout);
 
         boolean showMap = listMapComponentModule.getShowMap();
@@ -256,7 +231,6 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
         if (!mTwoPane) {
             initializeSwipeRefresh();
         }
-        Trace.endSection();
     }
 
     protected void updateContentsWithSearchFilter(String filter) {
@@ -266,6 +240,16 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
 
         if (mMapFragment != null) {
             updateDataFragmentFilter(filter, mMapFragment);
+        }
+    }
+
+    private void setDefaultTransitions() {
+        TypedValue value = new TypedValue();
+        if (getTheme().resolveAttribute(R.attr.listMapTransition, value, true)) {
+            Window contextWindow = getWindow();
+            contextWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            Transition transition = TransitionInflater.from(this).inflateTransition(value.resourceId);
+            contextWindow.setExitTransition(transition);
         }
     }
 

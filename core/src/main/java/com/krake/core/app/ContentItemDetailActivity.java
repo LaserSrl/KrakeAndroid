@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.transition.Fade;
 import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Window;
@@ -58,30 +59,8 @@ public class ContentItemDetailActivity extends LoginAndPrivacyActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState, int layout) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            Window contextWindow = getWindow();
-//            contextWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-//
-//            TypedValue value = new TypedValue();
-//            String transitionClass = null;
-//            if (getTheme().resolveAttribute(R.attr.listMapTransition, value, true)) {
-//                transitionClass = value.string.toString();
-//            }
-//
-//            Transition exitTransition = null;
-//            if (!TextUtils.isEmpty(transitionClass)) {
-//                try {
-//                    Object o = Class.forName(transitionClass).getConstructor().newInstance();
-//                    if (o instanceof Transition)
-//                        exitTransition = (Transition) o;
-//                } catch (Exception e) {
-//                    Log.e(getClass().getSimpleName(), "check the attribute listMapTransition in your BaseTheme");
-//                }
-//            } else {
-//                exitTransition = new Fade();
-//            }
-//            contextWindow.setExitTransition(exitTransition);
-//        }
+        setDefaultTransitions();
+
         super.onCreate(savedInstanceState, layout);
 
         mDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.activity_layout_coordinator);
@@ -105,6 +84,16 @@ public class ContentItemDetailActivity extends LoginAndPrivacyActivity
                 }
             }
         });
+    }
+
+    private void setDefaultTransitions() {
+        TypedValue value = new TypedValue();
+        if (getTheme().resolveAttribute(R.attr.listMapTransition, value, true)) {
+            Window contextWindow = getWindow();
+            contextWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            Transition transition = TransitionInflater.from(this).inflateTransition(value.resourceId);
+            contextWindow.setExitTransition(transition);
+        }
     }
 
     @Override

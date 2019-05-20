@@ -104,7 +104,7 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
         private set
     protected val mapZoomSupport: MapZoomSupport by lazy { MapZoomSupport(this) }
     private var fullScreenMapId = 0
-    private var mapIdentifier = 0 // R.id.location_content_item_map_view
+    private var mapIdentifier = 0
     protected var mLocationItem: ContentItemWithLocation? = null
         private set
     private var fullScreenMapLayout = R.layout.partial_full_screen_map
@@ -295,6 +295,11 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     }
 
     protected open fun setupMap(map: GoogleMap) {
+        if (fullScreenMapId != 0) {
+            map.setOnMapClickListener { showExpandedMap() }
+            map.setOnMarkerClickListener { showExpandedMap(); false }
+        }
+
         (container as? GoogleMap.OnInfoWindowClickListener)?.let {
             map.setOnInfoWindowClickListener(it)
         }
