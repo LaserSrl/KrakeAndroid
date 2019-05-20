@@ -99,7 +99,7 @@ class ThemableComponentModule : ComponentModule {
         theme = bundle.getInt(ARG_THEME, theme)
         upIntent = bundle.getParcelable(ARG_UP_INTENT)
         title = bundle.getString(ARG_TITLE)
-        showNavigationDrawer = bundle.getBoolean(ARG_SHOW_NAVIGATION_DRAWER)
+        showNavigationDrawer = bundle.getBoolean(ARG_SHOW_NAVIGATION_DRAWER, showNavigationDrawer)
     }
 
     /**
