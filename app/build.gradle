@@ -17,7 +17,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "mykrake.com.krakesample"
+        applicationId "mykrake.com.krakesample.test"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -95,4 +95,4 @@ dependencies {
     implementation project(':youtubevideo')
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'

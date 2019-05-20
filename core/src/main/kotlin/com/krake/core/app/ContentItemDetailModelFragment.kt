@@ -184,17 +184,6 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
 
         progressBar?.visibility = View.VISIBLE
 
-//        mShareSheetView = mCoordinator.findViewById(R.id.shareSheetView)
-
-//        if (mShareSheetView != null)
-//        {
-//            mShareBehavior = (mShareSheetView?.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetNotUnderActionBehavior<*>
-//        }
-//        else
-//        {
-//            mEnableSocialSharing = false
-//        }
-
         (fragmentView as ViewGroup).setVisibilityListenerToChild(this)
 
         val bottomSheetId: Int = savedInstanceState?.getInt(STATE_EXPANDED_BEHAVIOR, 0) ?: 0
@@ -393,8 +382,6 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
                 shareBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             }
 
-//            shareBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-
             shareSheetView.setOnIntentPicked { activityInfo ->
                 shareBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
@@ -413,8 +400,6 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
                 if (!krakeApplication.handleDetailSharingIntent(this, shareLinkPart, mSocialImageUri, finalIntent))
                     startActivity(finalIntent)
             }
-
-            mAppBarLayout.setExpanded(false, true)
         }
     }
 

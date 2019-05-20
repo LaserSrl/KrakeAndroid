@@ -2,21 +2,17 @@ package com.krake.core.widget
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
-import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.location.Location
 import android.os.Build
-import android.os.Bundle
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.RelativeLayout
 import androidx.annotation.CallSuper
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -25,7 +21,6 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.maps.android.data.kml.KmlLayer
 import com.krake.core.R
 import com.krake.core.api.Request
@@ -114,30 +109,6 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
         private set
     private var fullScreenMapLayout = R.layout.partial_full_screen_map
 
-    private val mapFullScreenView by lazy {
-        val coordinator = getCoordinatorLayout()!!
-
-        var view = coordinator.findViewById<View>(fullScreenMapId) as ContentItemMapView?
-
-        if (view == null) {
-            LayoutInflater.from(context).inflate(fullScreenMapLayout, coordinator, true)
-
-            view = coordinator.findViewById(fullScreenMapId)
-            view?.container = container
-            view?.onResume()
-
-            fullScreenMapBehavior = (view?.layoutParams as CoordinatorLayout.LayoutParams).behavior as SafeBottomSheetBehavior<*>
-
-            if (container is ContentItemDetailModelFragment) {
-                (container as ContentItemDetailModelFragment).addSheetCallback(fullScreenMapBehavior!!)
-            }
-
-            if (mShowAlreadyCalled) {
-                view?.show(mContentItem!!, mCacheValid)
-            }
-        }
-        view
-    }
     private var fullScreenMapBehavior: SafeBottomSheetBehavior<*>? = null
 
     private var directionRequest: Request? = null
@@ -216,22 +187,6 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
             this.setOnClickListener { showExpandedMap() }
         }
 
-//        val coordinator = getCoordinatorLayout()
-//        if (fullScreenMapId != 0 && coordinator?.findViewById<View?>(fullScreenMapId) == null) {
-//
-//            LayoutInflater.from(context).inflate(fullScreenMapLayout, coordinator, true)
-//            val mapView = coordinator?.findViewById<ContentItemMapView?>(fullScreenMapId)
-//            mapView?.container = container
-//            mapView?.onResume()
-//            if (container is ContentItemDetailModelFragment)
-//            {
-//                (container as ContentItemDetailModelFragment).addSheetCallback(fullScreenMapBehavior)
-//            }
-//            if (mShowAlreadyCalled) {
-//                mapView?.show(mContentItem!!, mCacheValid)
-//            }
-//        }
-//
         val behavior = (layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? SafeBottomSheetBehavior
         behavior?.setAllowUserDrag(false)
     }
@@ -340,11 +295,6 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     }
 
     protected open fun setupMap(map: GoogleMap) {
-//        if (fullScreenMapId != 0) {
-//            map.setOnMapClickListener { showExpandedMap() }
-//            map.setOnMarkerClickListener { showExpandedMap(); false }
-//        }
-
         (container as? GoogleMap.OnInfoWindowClickListener)?.let {
             map.setOnInfoWindowClickListener(it)
         }
@@ -357,21 +307,42 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
     }
 
     private fun showExpandedMap() {
-        mapFullScreenView?.mapManager?.getMapAsync {
-            it.setOnMapLoadedCallback {
-                fullScreenMapBehavior?.setStateAndNotify(BottomSheetBehavior.STATE_EXPANDED)
-                fullScreenMapBehavior?.isHideable = false
-            }
+        val expandBehavior = {
+            fullScreenMapBehavior!!.setStateAndNotify(BottomSheetBehavior.STATE_EXPANDED)
+            fullScreenMapBehavior!!.isHideable = false
         }
 
-//        mapFullScreenView?.viewTreeObserver?.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-//
-//            override fun onGlobalLayout() {
-//                mapFullScreenView?.viewTreeObserver?.removeOnGlobalLayoutListener(this)
-//                fullScreenMapBehavior?.setStateAndNotify(BottomSheetBehavior.STATE_EXPANDED)
-//                fullScreenMapBehavior?.isHideable = false
-//            }
-//        })
+        if (fullScreenMapBehavior == null) {
+            val coordinator = getCoordinatorLayout()!!
+            var mapFullScreenView = coordinator.findViewById<View>(fullScreenMapId) as ContentItemMapView?
+
+            if (mapFullScreenView == null) {
+                LayoutInflater.from(context).inflate(fullScreenMapLayout, coordinator, true)
+
+                mapFullScreenView = coordinator.findViewById(fullScreenMapId)
+                mapFullScreenView?.container = container
+                mapFullScreenView?.onResume()
+
+                fullScreenMapBehavior = (mapFullScreenView?.layoutParams as CoordinatorLayout.LayoutParams).behavior as SafeBottomSheetBehavior<*>
+
+                if (container is ContentItemDetailModelFragment) {
+                    (container as ContentItemDetailModelFragment).addSheetCallback(fullScreenMapBehavior!!)
+                }
+
+                if (mShowAlreadyCalled) {
+                    mapFullScreenView.show(mContentItem!!, mCacheValid)
+                }
+            }
+
+            mapFullScreenView.viewTreeObserver?.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    mapFullScreenView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    expandBehavior()
+                }
+            })
+        } else {
+            expandBehavior()
+        }
     }
 
     @SuppressLint("MissingPermission")
