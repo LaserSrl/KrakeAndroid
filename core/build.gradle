@@ -46,7 +46,7 @@ dependencies {
     api 'com.google.maps.android:android-maps-utils:0.5'
 
     api 'com.google.code.gson:gson:2.8.5'
-    api 'com.squareup.okhttp3:okhttp:3.14.0'
+    api 'com.squareup.okhttp3:okhttp:3.14.1'
     api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
     api 'androidx.constraintlayout:constraintlayout:1.1.3'

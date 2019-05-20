@@ -95,12 +95,13 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
                                  {
                                      override fun onResponse(call: Call?, response: Response?)
                                      {
-                                         if (response != null)
+                                         if (response != null && call?.isCanceled == false)
                                          {
                                              mainHandler.post {
-                                                 callback(OkHttpResponse(response)
-                                                     .apply {
-                                                         logRespondeAndCookies(remoteRequest, requestCookies, this)
+                                                 callback(
+                                                     OkHttpResponse(response)
+                                                         .apply {
+                                                             logRespondeAndCookies(remoteRequest, requestCookies, this)
                                                      }
                                                      , null)
                                              }
@@ -109,7 +110,7 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
 
                                      override fun onFailure(call: Call?, e: IOException?)
                                      {
-                                         if (e?.message != "Canceled")
+                                         if (call?.isCanceled != false)
                                          {
                                              mainHandler.post {
                                                  handleError(e as? OrchardError)

@@ -56,30 +56,48 @@ class OrchardRemoteDataRepository(context: Context,
         request.setQuery(Constants.REQUEST_COMPLEX_BEHAVIOUR, "returnnulls")
         request.setQuery(Constants.REQUEST_LANGUAGE_KEY, dataMapper.configurations.getLanguageIdentifier())
 
-        return client.enqueue(request) { remoteResponse, orchardError ->
+        val cancellableDataRequest = CancelableDataRequest()
+
+
+        cancellableDataRequest.networkRequest = client.enqueue(request) { remoteResponse, orchardError ->
             val result = remoteResponse?.jsonObject()
             if (result != null)
             {
-                AsyncTask.Builder<String>()
+                val task =
+                    AsyncTask.Builder<String>()
                         .background {
-                            dataMapper.parseContentFromResult(result,
-                                                              orchardError,
-                                                              requestedPrivacy,
-                                                              request.queryParameters)
+                            dataMapper.parseContentFromResult(
+                                result,
+                                orchardError,
+                                requestedPrivacy,
+                                request.queryParameters
+                            )
                         }
                         .completed {
+                            cancellableDataRequest.clean()
+                            cancellableDataRequest.asyncParsing = null
                             Realm.getDefaultInstance().refresh()
                             callback(RequestCache.findCacheWith(it), null)
                         }
-                        .error { callback(null, it as? OrchardError) }
+                        .error {
+                            cancellableDataRequest.clean()
+                            callback(null, it as? OrchardError)
+                        }
                         .build()
-                        .load()
+                        .apply {
+                            load()
+                        }
+
+                cancellableDataRequest.asyncParsing = task
             }
             else
             {
                 callback(null, orchardError)
+                cancellableDataRequest.clean()
             }
         }
+
+        return cancellableDataRequest
     }
 
     internal fun toRemoteRequest(orchardModule: OrchardComponentModule,
@@ -117,6 +135,21 @@ class OrchardRemoteDataRepository(context: Context,
         }
 
         return request
+    }
+}
+
+class CancelableDataRequest : CancelableRequest {
+    internal var networkRequest: CancelableRequest? = null
+    internal var asyncParsing: AsyncTask<String>? = null
+    override fun cancel() {
+        networkRequest?.cancel()
+        asyncParsing?.cancel()
+        clean()
+    }
+
+    internal fun clean() {
+        networkRequest = null
+        asyncParsing = null
     }
 }
 

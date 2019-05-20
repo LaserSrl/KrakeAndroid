@@ -1,5 +1,6 @@
 package com.krake.core.data
 
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.Observer
 import com.krake.core.OrchardError
@@ -220,6 +221,7 @@ open class DataConnectionModel() : ViewModel(),
                                   if (p1 != null)
                                   {
                                       currentRequestCache = p1
+                                      Log.d("LOADTEST", "Cache dalla chiamata")
                                       loadDataFromCache(p1, true)
                                       mutableDataError.value = null
                                   }
@@ -273,21 +275,27 @@ open class DataConnectionModel() : ViewModel(),
 
     private fun loadDataFromCache(currentRequestCache: RequestCache, isValid: Boolean)
     {
-        var elements = currentRequestCache.elements(orchardModule.dataClass)
+        Log.d(
+            "LOADTEST",
+            "Cache (${currentRequestCache.cacheName == cacheName}) key ($cacheName) newCache (${currentRequestCache.cacheName})"
+        )
+        if (currentRequestCache.cacheName == cacheName || cacheName == null) {
+            var elements = currentRequestCache.elements(orchardModule.dataClass)
 
-        if (orchardModule.searchColumnsName?.isNotEmpty() == true &&
+            if (orchardModule.searchColumnsName?.isNotEmpty() == true &&
                 !searchFilter.isNullOrEmpty() &&
-                orchardModule.pageSize == OrchardComponentModule.VALUE_PAGE_SIZE_NO_PAGING)
-        {
-            val searchFilter = searchFilter!!
+                orchardModule.pageSize == OrchardComponentModule.VALUE_PAGE_SIZE_NO_PAGING
+            ) {
+                val searchFilter = searchFilter!!
 
-            elements = elements.filter {
-                (it as? RecordWithFilter)?.recordContains(searchFilter, orchardModule.searchColumnsName!!)
+                elements = elements.filter {
+                    (it as? RecordWithFilter)?.recordContains(searchFilter, orchardModule.searchColumnsName!!)
                         ?: true
+                }
             }
-        }
 
-        mutableModel.value = DataModel(elements, isValid)
+            mutableModel.value = DataModel(elements, isValid)
+        }
     }
 
     private fun loadSingleElement(willCacheBeValid: Boolean, applyQuery: (RealmQuery<*>) -> RealmQuery<*>)
