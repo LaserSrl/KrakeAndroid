@@ -51,15 +51,10 @@ class BusStopsListActivity : ContentItemListMapActivity(),
 
         linesConnection.configure(lineModule, loginComponentModule, ViewModelProviders.of(this).get(PrivacyViewModel::class.java))
 
-        linesConnection.multiThreadModel.observe(this, object : Observer<DataModel>
-        {
-            override fun onChanged(t: DataModel?)
-            {
-                if (t != null)
-                {
-                    sendBusStops(t.listData as List<BusStop>)
-                    updateRefreshStatus(false)
-                }
+        linesConnection.multiThreadModel.observe(this, Observer<DataModel> { t ->
+            if (t != null) {
+                sendBusStops(t.listData as List<BusStop>)
+                updateRefreshStatus(false)
             }
         })
     }
