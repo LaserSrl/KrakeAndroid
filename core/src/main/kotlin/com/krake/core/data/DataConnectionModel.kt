@@ -206,44 +206,46 @@ open class DataConnectionModel() : ViewModel(),
 
     override final fun loadDataFromRemote()
     {
-        cancelRemoteLoading()
+        cancelableDataLoading?.cancel()
+        cancelableDataLoading = null
         mutableLoadingData.value = true
-        cancelableDataLoading = RemoteDataRepository.shared
+        Log.d("LOADTEST", "Inizio caricamento")
+        val dataLoading = RemoteDataRepository.shared
                 .loadData(loginModule,
                           orchardModule,
                           page,
-                          object : (RequestCache?, OrchardError?) -> Unit
+                    object : (Int, RequestCache?, OrchardError?) -> Unit
                           {
-                              override fun invoke(p1: RequestCache?, p2: OrchardError?)
+                              override fun invoke(code: Int, p1: RequestCache?, p2: OrchardError?)
                               {
-                                  cancelableDataLoading = null
-                                  mutableLoadingData.value = false
-                                  if (p1 != null)
-                                  {
-                                      currentRequestCache = p1
-                                      Log.d("LOADTEST", "Cache dalla chiamata")
-                                      loadDataFromCache(p1, true)
-                                      mutableDataError.value = null
-                                  }
-                                  else if (p2 != null)
-                                  {
-                                      mutableDataError.value = p2
+                                  if (cancelableDataLoading?.code == code) {
 
-                                      if (p2.reactionCode == OrchardError.REACTION_PRIVACY)
-                                      {
-                                          privacyViewModel.needToAcceptPrivacy(p2.originalException as PrivacyException)
-                                      }
-                                      else if (p2.reactionCode == OrchardError.REACTION_LOGIN)
-                                      {
-                                          if (loginModule.loginRequired == false)
-                                          {
-                                              loginModule.loginRequired(true)
-                                              restartDataLoading(searchFilter)
+                                      mutableLoadingData.value = false
+
+                                      cancelableDataLoading = null
+                                      if (p1 != null && isCacheRelativeTorCurrentParameters(p1)) {
+                                          currentRequestCache = p1
+                                          Log.d("LOADTEST", "Cache dalla chiamata")
+                                          loadDataFromCache(p1, true)
+                                          mutableDataError.value = null
+                                      } else if (p2 != null) {
+                                          mutableDataError.value = p2
+                                          Log.d("LOADTEST", p2.originalMessage)
+
+                                          if (p2.reactionCode == OrchardError.REACTION_PRIVACY) {
+                                              privacyViewModel.needToAcceptPrivacy(p2.originalException as PrivacyException)
+                                          } else if (p2.reactionCode == OrchardError.REACTION_LOGIN) {
+                                              if (loginModule.loginRequired == false) {
+                                                  loginModule.loginRequired(true)
+                                                  restartDataLoading(searchFilter)
+                                              }
                                           }
                                       }
                                   }
                               }
                           })
+
+        cancelableDataLoading = dataLoading
     }
 
     private fun cancelRemoteLoading() {
@@ -273,13 +275,17 @@ open class DataConnectionModel() : ViewModel(),
         }
     }
 
+    private fun isCacheRelativeTorCurrentParameters(currentRequestCache: RequestCache): Boolean {
+        return currentRequestCache.cacheName == cacheName || cacheName == null
+    }
+
     private fun loadDataFromCache(currentRequestCache: RequestCache, isValid: Boolean)
     {
         Log.d(
             "LOADTEST",
             "Cache (${currentRequestCache.cacheName == cacheName}) key ($cacheName) newCache (${currentRequestCache.cacheName})"
         )
-        if (currentRequestCache.cacheName == cacheName || cacheName == null) {
+        if (isCacheRelativeTorCurrentParameters(currentRequestCache)) {
             var elements = currentRequestCache.elements(orchardModule.dataClass)
 
             if (orchardModule.searchColumnsName?.isNotEmpty() == true &&

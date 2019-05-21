@@ -593,21 +593,25 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
             }
 
             // se il filtro è applicato in query, si setta l'extra ai fragment e si fa il reload dei dati in ognuno
-            getGridFragment().setExtraParameter(getString(R.string.orchard_query_term_ids), termId, true);
             if (getMapFragment() != null) {
-                getMapFragment().setExtraParameter(getString(R.string.orchard_query_term_ids), termId, true);
+                getMapFragment().setExtraParameter(getString(R.string.orchard_query_term_ids), termId, false);
             }
+
+            getGridFragment().setExtraParameter(getString(R.string.orchard_query_term_ids), termId, true);
+
         } else {
             String displayPath = orchardComponentModule.getDisplayPath();
             if (termPart != null) {
                 displayPath = termPart.getAutoroutePartDisplayAlias();
             }
 
-            // se il filtro è applicato sul displayPath, il displayPath viene ricaricato
-            getGridFragment().updateDisplayPath(displayPath);
             if (getMapFragment() != null) {
-                getMapFragment().updateDisplayPath(displayPath);
+                getMapFragment().updateDisplayPath(displayPath, false);
             }
+
+            // se il filtro è applicato sul displayPath, il displayPath viene ricaricato
+            getGridFragment().updateDisplayPath(displayPath, true);
+
         }
     }
 

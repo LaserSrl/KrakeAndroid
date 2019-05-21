@@ -24,6 +24,7 @@ import okhttp3.internal.http.HttpMethod
 import java.io.File
 import java.io.IOException
 import java.lang.ref.WeakReference
+import kotlin.random.Random
 
 internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClient.Mode) : RemoteClient
 {
@@ -275,6 +276,11 @@ private fun Any.asRequestBody(): RequestBody
 
 internal class OkHttpCancelable(private val call: Call) : CancelableRequest
 {
+    override val code: Int
+
+    init {
+        code = Random(System.currentTimeMillis()).nextInt()
+    }
     override fun cancel()
     {
         call.cancel()

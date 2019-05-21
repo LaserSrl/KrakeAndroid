@@ -217,19 +217,7 @@ abstract class KrakeApplication : Application(),
 
     override fun onCreate() {
         super.onCreate()
-/*
-        async {
-            try
-            {
-            ProviderInstaller.installIfNeeded(this);
-            }
-            catch (e: Exception)
-            {
-            e.printStackTrace();
-            }
-        }
-                .load()
-*/
+
         RemoteClient.clients[RemoteClient.Mode.LOGGED] = OkHttpRemoteClient(this, RemoteClient.Mode.LOGGED)
         RemoteClient.clients[RemoteClient.Mode.DEFAULT] = OkHttpRemoteClient(this, RemoteClient.Mode.DEFAULT)
         LoginManager.shared = LoginManager(this)

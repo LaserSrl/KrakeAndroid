@@ -67,9 +67,9 @@ class MessagingService : FirebaseMessagingService() {
                 .loadData(loginComponentModule,
                           orchardComponentModule,
                           1,
-                          object : (RequestCache?, OrchardError?) -> Unit
+                    object : (Int, RequestCache?, OrchardError?) -> Unit
                           {
-                              override fun invoke(p1: RequestCache?, p2: OrchardError?)
+                              override fun invoke(code: Int, p1: RequestCache?, p2: OrchardError?)
                               {
                                   if (p1 != null || !needToRedoDataLoadingWithUserCookie(p2!!, loginComponentModule))
                                   {

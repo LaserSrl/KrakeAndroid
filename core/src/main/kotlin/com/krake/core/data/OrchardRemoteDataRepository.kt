@@ -30,7 +30,8 @@ class OrchardRemoteDataRepository(context: Context,
     override fun loadData(loginModule: LoginComponentModule,
                           orchardModule: OrchardComponentModule,
                           page: Int,
-                          callback: (RequestCache?, OrchardError?) -> Unit): CancelableRequest
+                          callback: (Int, RequestCache?, OrchardError?) -> Unit
+    ): CancelableRequest
     {
 
         val request = this.toRemoteRequest(orchardModule, page)
@@ -49,7 +50,8 @@ class OrchardRemoteDataRepository(context: Context,
     override fun loadData(request: RemoteRequest,
                           client: RemoteClient,
                           requestedPrivacy: Boolean,
-                          callback: (RequestCache?, OrchardError?) -> Unit): CancelableRequest
+                          callback: (Int, RequestCache?, OrchardError?) -> Unit
+    ): CancelableRequest
     {
 
         request.setQuery(Constants.REQUEST_REAL_FORMAT, "true")
@@ -77,11 +79,11 @@ class OrchardRemoteDataRepository(context: Context,
                             cancellableDataRequest.clean()
                             cancellableDataRequest.asyncParsing = null
                             Realm.getDefaultInstance().refresh()
-                            callback(RequestCache.findCacheWith(it), null)
+                            callback(cancellableDataRequest.code, RequestCache.findCacheWith(it), null)
                         }
                         .error {
                             cancellableDataRequest.clean()
-                            callback(null, it as? OrchardError)
+                            callback(cancellableDataRequest.code, null, it as? OrchardError)
                         }
                         .build()
                         .apply {
@@ -92,7 +94,7 @@ class OrchardRemoteDataRepository(context: Context,
             }
             else
             {
-                callback(null, orchardError)
+                callback(cancellableDataRequest.code, null, orchardError)
                 cancellableDataRequest.clean()
             }
         }
@@ -139,7 +141,16 @@ class OrchardRemoteDataRepository(context: Context,
 }
 
 class CancelableDataRequest : CancelableRequest {
+    override var code: Int = 0
+
     internal var networkRequest: CancelableRequest? = null
+        set(value) {
+            field = value
+            if (value != null) {
+                code = value.code
+            }
+        }
+
     internal var asyncParsing: AsyncTask<String>? = null
     override fun cancel() {
         networkRequest?.cancel()

@@ -310,11 +310,10 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(),
         }
     }
 
-    override fun updateDisplayPath(displayPath: String)
+    override fun updateDisplayPath(displayPath: String?, reloadImmediately: Boolean)
     {
-        orchardComponentModule.displayPath(displayPath)
-        if (!dataConnectionModel.waitingLogin)
-        {
+        dataConnectionModel.orchardModule.displayPath(displayPath)
+        if (reloadImmediately && !dataConnectionModel.waitingLogin) {
             dataConnectionModel.restartDataLoading()
         }
     }

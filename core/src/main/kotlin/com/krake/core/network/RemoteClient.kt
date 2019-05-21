@@ -45,5 +45,6 @@ interface RemoteClient
 
 interface CancelableRequest
 {
+    val code: Int
     fun cancel()
 }
