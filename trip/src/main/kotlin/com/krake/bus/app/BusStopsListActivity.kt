@@ -59,7 +59,6 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         })
     }
 
-
     override fun requestPassages() {
     }
 
@@ -97,7 +96,7 @@ class BusStopsListActivity : ContentItemListMapActivity(),
 
             bundle.putAll(gridOrchard.writeContent(this))
 
-            return Bundle().putModules(this, gridOrchard, listMapComponentModule)
+            return Bundle().putModules(this, gridOrchard, listMapComponentModule, busComponentModule)
         }
 
         return super.getFragmentCreationExtras(mode)
@@ -125,5 +124,15 @@ class BusStopsListActivity : ContentItemListMapActivity(),
     override fun onRefresh() {
         super.onRefresh()
         sendBusStops(listOf())
+    }
+
+    override fun setSwipeRefreshEnabled(enabled: Boolean) {
+        //enable progress only when the auto refresh is not set
+        super.setSwipeRefreshEnabled(if (busComponentModule.busStopsAutoRefreshRange > 0) false else enabled)
+    }
+
+    override fun updateRefreshStatus(refreshing: Boolean) {
+        //enable progress only when the auto refresh is not set
+        super.updateRefreshStatus(if (busComponentModule.busStopsAutoRefreshRange > 0) false else refreshing)
     }
 }

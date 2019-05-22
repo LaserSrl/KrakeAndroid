@@ -32,6 +32,7 @@ class BusComponentModule : ComponentModule {
         private const val ARG_PATTERN_CLASS = "argPatternClass"
         private const val ARG_DEFAULT_LATITUDE = "argDefaultLat"
         private const val ARG_DEFAULT_LONGITUDE = "argDefaultLong"
+        private const val ARG_AUTO_REFRESH_BUS_STOP_LIST = "argAutoRefreshBusStopList"
 
         val DEFAULT_ACTIVITY = BusSearchActivity::class.java
         val DEFAULT_MAP_FRAGMENT = BusMapFragment::class.java
@@ -50,10 +51,14 @@ class BusComponentModule : ComponentModule {
     var stopItemClass: Class<out BusStop>
         private set
 
+    var busStopsAutoRefreshRange : Int
+        private set
+
     init {
         defaultLocation = null
         patternClass = BusPattern::class.java
         stopItemClass = BusStop::class.java
+        busStopsAutoRefreshRange = 0
     }
 
     /**
@@ -80,6 +85,11 @@ class BusComponentModule : ComponentModule {
     fun defaultLocation(defaultLocation: LatLng) = apply { this.defaultLocation = defaultLocation }
 
     /**
+     * auto refresh range in seconds for refresh the bus stops list
+     */
+    fun busStopsAutoRefreshRange(busStopsAutoRefreshRange: Int) = apply { this.busStopsAutoRefreshRange = busStopsAutoRefreshRange }
+
+    /**
      * Legge il contenuto di un [Bundle] e modifica le sue proprietà.
      *
      * @param context il [Context] utilizzato per leggere il [Bundle].
@@ -90,6 +100,7 @@ class BusComponentModule : ComponentModule {
         defaultLocation = LatLng(bundle.getDouble(ARG_DEFAULT_LATITUDE), bundle.getDouble(ARG_DEFAULT_LONGITUDE))
         patternClass = (bundle.getDataClass(ARG_PATTERN_CLASS) as Class<out BusPattern>)
         stopItemClass = (bundle.getDataClass(ARG_STOP_ITEM_CLASS) as Class<out BusStop>)
+        busStopsAutoRefreshRange = bundle.getInt(ARG_AUTO_REFRESH_BUS_STOP_LIST)
     }
 
     /**
@@ -106,6 +117,7 @@ class BusComponentModule : ComponentModule {
         }
         bundle.putDataClass(ARG_PATTERN_CLASS, patternClass)
         bundle.putDataClass(ARG_STOP_ITEM_CLASS, stopItemClass)
+        bundle.putInt(ARG_AUTO_REFRESH_BUS_STOP_LIST, busStopsAutoRefreshRange)
         return bundle
     }
 

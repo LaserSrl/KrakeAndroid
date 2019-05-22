@@ -382,7 +382,7 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(),
         mListener?.onShowContentItemDetails(this, item)
     }
 
-    private fun changeProgressVisibility(isLoading: Boolean)
+    protected open fun changeProgressVisibility(isLoading: Boolean)
     {
         if (isLoading && dataConnectionModel.page == 1)
         {
