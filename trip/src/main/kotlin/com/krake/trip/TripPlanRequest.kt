@@ -49,41 +49,36 @@ enum class TravelMode {
      * @return nome del modo per viaggiare oppure una stringa vuota
      */
     fun instructionDescription(context: Context): String {
-        when (this) {
-            CAR -> return context.getString(R.string.travel_mode_car)
-            TRANSIT -> return context.getString(R.string.travle_mode_transit)
-            WALK -> return context.getString(R.string.travel_mode_walk)
-            BICYCLE -> return context.getString(R.string.travel_mode_bike)
+        return when (this) {
+            CAR -> context.getString(R.string.travel_mode_car)
+            TRANSIT -> context.getString(R.string.travle_mode_transit)
+            WALK -> context.getString(R.string.travel_mode_walk)
+            BICYCLE -> context.getString(R.string.travel_mode_bike)
         }
     }
 
     fun name(context: Context): String {
-        when (this) {
-            CAR -> return context.getString(R.string.travel_mode_car_name)
-            TRANSIT -> return context.getString(R.string.travle_mode_transit_name)
-            WALK -> return context.getString(R.string.travel_mode_walk_name)
-            BICYCLE -> return context.getString(R.string.travel_mode_bike_name)
+        return when (this) {
+            CAR -> context.getString(R.string.travel_mode_car_name)
+            TRANSIT -> context.getString(R.string.travle_mode_transit_name)
+            WALK -> context.getString(R.string.travel_mode_walk_name)
+            BICYCLE -> context.getString(R.string.travel_mode_bike_name)
         }
     }
 
     fun drawableResource(): Int {
-        val modeDrawable: Int
-        when (this) {
-
-            TravelMode.BICYCLE -> modeDrawable = R.drawable.ic_directions_bike_36dp
-
-            TravelMode.CAR -> modeDrawable = R.drawable.ic_directions_car_36dp
-
-            TravelMode.WALK -> modeDrawable = R.drawable.ic_directions_walk_36dp
-            else -> modeDrawable = R.drawable.icona_trasporto
+        return when (this) {
+            BICYCLE -> R.drawable.ic_directions_bike_36dp
+            CAR -> R.drawable.ic_directions_car_36dp
+            WALK -> R.drawable.ic_directions_walk_36dp
+            TRANSIT -> R.drawable.ic_directions_bus_36dp
         }
-        return modeDrawable
     }
 
     companion object {
         fun valueOfOrDefault(value: String, default: TravelMode): TravelMode {
             try {
-                return TravelMode.valueOf(value)
+                return valueOf(value)
             } catch (ignored: Exception) {
 
             }

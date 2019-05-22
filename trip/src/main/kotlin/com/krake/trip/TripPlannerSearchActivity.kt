@@ -3,6 +3,7 @@ package com.krake.trip
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
@@ -35,32 +36,29 @@ class TripPlannerSearchActivity : LoginAndPrivacyActivity(),
     var listElementsBehavior: SafeBottomSheetBehavior<View>? = null
 
     private var searchFragmentIdentifier: Int = R.id.app_bar_layout
+    private val progressView by lazy { findViewById(R.id.searchProgress) as ProgressBar }
 
-    lateinit private var tripPlanTask: TripPlanViewModel
+    private lateinit var tripPlanTask: TripPlanViewModel
 
     override fun onCreate(savedInstanceState: Bundle?, layout: Int) {
         super.onCreate(savedInstanceState, layout)
         tripPlanTask = ViewModelProviders.of(this).get(OpenTripPlanTask::class.java)
 
-        tripPlanTask.tripResult.observe(this, object : Observer<TripResult>
-        {
-            override fun onChanged(t: TripResult?)
-            {
-                if (t != null)
-                {
-                    if (t.result != null)
-                    {
-                        val plan = t.result
-                        showPlannedTrip(plan)
-                    }
-                    else if (t.error != null)
-                    {
-                        AlertDialog.Builder(this@TripPlannerSearchActivity)
-                                .setTitle(R.string.trip_planning_failed)
-                                .setMessage(t.error.originalMessage)
-                                .setNeutralButton(android.R.string.ok, null)
-                                .show()
-                    }
+        tripPlanTask.loading.observe(this, Observer {
+            progressView.visibility = if (it == true) View.VISIBLE else View.GONE
+        })
+
+        tripPlanTask.tripResult.observe(this, Observer<TripResult> { t ->
+            if (t != null) {
+                if (t.result != null) {
+                    val plan = t.result
+                    showPlannedTrip(plan)
+                } else if (t.error != null) {
+                    AlertDialog.Builder(this@TripPlannerSearchActivity)
+                            .setTitle(R.string.trip_planning_failed)
+                            .setMessage(t.error.originalMessage)
+                            .setNeutralButton(android.R.string.ok, null)
+                            .show()
                 }
             }
         })
