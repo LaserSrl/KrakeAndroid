@@ -41,14 +41,14 @@ class BusStopsGridFragment : ContentItemGridModelFragment(), BusPassagesReceiver
     }
 
     private fun scheduleRefresh() {
-        if (busComponentModule.busStopsAutoRefreshRange <= 0 || isJobScheduled || !calledAtLeastOnce)
+        if (busComponentModule.busStopsAutoRefreshPeriod <= 0 || isJobScheduled || !calledAtLeastOnce)
             return
 
         val refreshAction = {
             isJobScheduled = false
             dataConnectionModel.restartDataLoading()
         }
-        val refreshTime = TimeUnit.SECONDS.toMillis(busComponentModule.busStopsAutoRefreshRange.toLong())
+        val refreshTime = TimeUnit.SECONDS.toMillis(busComponentModule.busStopsAutoRefreshPeriod.toLong())
         handler.postDelayed(refreshAction, refreshTime)
         isJobScheduled = true
     }

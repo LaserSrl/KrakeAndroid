@@ -30,6 +30,20 @@ import com.krake.trip.R
  * </ul>
  */
 class BusComponentModule : ComponentModule {
+    companion object {
+        private const val ARG_STOP_ITEM_CLASS = "argStopItemClass"
+        private const val ARG_PATTERN_CLASS = "argPatternClass"
+        private const val ARG_DEFAULT_LATITUDE = "argDefaultLat"
+        private const val ARG_DEFAULT_LONGITUDE = "argDefaultLong"
+        private const val ARG_AUTO_REFRESH_BUS_STOP_LIST = "argAutoRefreshBusStopList"
+
+        val DEFAULT_ACTIVITY = BusSearchActivity::class.java
+        val DEFAULT_MAP_FRAGMENT = BusMapFragment::class.java
+        @LayoutRes
+        val DEFAULT_LIST_CELL_LAYOUT = R.layout.cell_bus_stop_passage
+        @LayoutRes
+        val DEFAULT_LIST_ROOT_LAYOUT = R.layout.fragment_bus_list
+    }
 
     var defaultLocation: LatLng?
         private set
@@ -40,7 +54,7 @@ class BusComponentModule : ComponentModule {
     var stopItemClass: Class<out BusStop>
         private set
 
-    var busStopsAutoRefreshRange : Int
+    var busStopsAutoRefreshPeriod : Int
         private set
 
     var busMovementProvider: Class<out BusMovementProvider>? = null
@@ -50,7 +64,7 @@ class BusComponentModule : ComponentModule {
         defaultLocation = null
         patternClass = BusPattern::class.java
         stopItemClass = BusStop::class.java
-        busStopsAutoRefreshRange = 0
+        busStopsAutoRefreshPeriod = 0
     }
 
     /**
@@ -79,7 +93,7 @@ class BusComponentModule : ComponentModule {
     /**
      * auto refresh range in seconds for refresh the bus stops list
      */
-    fun busStopsAutoRefreshRange(busStopsAutoRefreshRange: Int) = apply { this.busStopsAutoRefreshRange = busStopsAutoRefreshRange }
+    fun busStopsAutoRefreshPeriod(busStopsAutoRefreshRange: Int) = apply { this.busStopsAutoRefreshPeriod = busStopsAutoRefreshRange }
 
     /**
      * provider used for search the actual location of a bus
@@ -97,7 +111,7 @@ class BusComponentModule : ComponentModule {
         defaultLocation = LatLng(bundle.getDouble(ARG_DEFAULT_LATITUDE), bundle.getDouble(ARG_DEFAULT_LONGITUDE))
         patternClass = (bundle.getDataClass(ARG_PATTERN_CLASS) as Class<out BusPattern>)
         stopItemClass = (bundle.getDataClass(ARG_STOP_ITEM_CLASS) as Class<out BusStop>)
-        busStopsAutoRefreshRange = bundle.getInt(ARG_AUTO_REFRESH_BUS_STOP_LIST)
+        busStopsAutoRefreshPeriod = bundle.getInt(ARG_AUTO_REFRESH_BUS_STOP_LIST)
         busMovementProvider = bundle.getClass(ARG_BUS_MOVEMENT_PROVIDER)
     }
 
@@ -115,7 +129,7 @@ class BusComponentModule : ComponentModule {
         }
         bundle.putDataClass(ARG_PATTERN_CLASS, patternClass)
         bundle.putDataClass(ARG_STOP_ITEM_CLASS, stopItemClass)
-        bundle.putInt(ARG_AUTO_REFRESH_BUS_STOP_LIST, busStopsAutoRefreshRange)
+        bundle.putInt(ARG_AUTO_REFRESH_BUS_STOP_LIST, busStopsAutoRefreshPeriod)
         bundle.putClass(ARG_BUS_MOVEMENT_PROVIDER, busMovementProvider)
         return bundle
     }

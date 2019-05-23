@@ -10,4 +10,9 @@ interface GpsSettingsListener {
      * il GPS è stato acceso con successo.
      */
     fun onGpsSettingsAcquired()
+
+    /**
+     * il GPS non è stato acceso o non è possibile accenderlo.
+     */
+    fun onGpsSettingsUnavailable()
 }
