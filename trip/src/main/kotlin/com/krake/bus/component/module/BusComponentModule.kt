@@ -51,14 +51,14 @@ class BusComponentModule : ComponentModule {
     var stopItemClass: Class<out BusStop>
         private set
 
-    var busStopsAutoRefreshRange : Int
+    var busStopsAutoRefreshPeriod : Int
         private set
 
     init {
         defaultLocation = null
         patternClass = BusPattern::class.java
         stopItemClass = BusStop::class.java
-        busStopsAutoRefreshRange = 0
+        busStopsAutoRefreshPeriod = 0
     }
 
     /**
@@ -87,7 +87,7 @@ class BusComponentModule : ComponentModule {
     /**
      * auto refresh range in seconds for refresh the bus stops list
      */
-    fun busStopsAutoRefreshRange(busStopsAutoRefreshRange: Int) = apply { this.busStopsAutoRefreshRange = busStopsAutoRefreshRange }
+    fun busStopsAutoRefreshPeriod(busStopsAutoRefreshRange: Int) = apply { this.busStopsAutoRefreshPeriod = busStopsAutoRefreshRange }
 
     /**
      * Legge il contenuto di un [Bundle] e modifica le sue proprietà.
@@ -100,7 +100,7 @@ class BusComponentModule : ComponentModule {
         defaultLocation = LatLng(bundle.getDouble(ARG_DEFAULT_LATITUDE), bundle.getDouble(ARG_DEFAULT_LONGITUDE))
         patternClass = (bundle.getDataClass(ARG_PATTERN_CLASS) as Class<out BusPattern>)
         stopItemClass = (bundle.getDataClass(ARG_STOP_ITEM_CLASS) as Class<out BusStop>)
-        busStopsAutoRefreshRange = bundle.getInt(ARG_AUTO_REFRESH_BUS_STOP_LIST)
+        busStopsAutoRefreshPeriod = bundle.getInt(ARG_AUTO_REFRESH_BUS_STOP_LIST)
     }
 
     /**
@@ -117,7 +117,7 @@ class BusComponentModule : ComponentModule {
         }
         bundle.putDataClass(ARG_PATTERN_CLASS, patternClass)
         bundle.putDataClass(ARG_STOP_ITEM_CLASS, stopItemClass)
-        bundle.putInt(ARG_AUTO_REFRESH_BUS_STOP_LIST, busStopsAutoRefreshRange)
+        bundle.putInt(ARG_AUTO_REFRESH_BUS_STOP_LIST, busStopsAutoRefreshPeriod)
         return bundle
     }
 

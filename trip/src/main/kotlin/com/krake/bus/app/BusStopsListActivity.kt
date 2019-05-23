@@ -128,11 +128,11 @@ class BusStopsListActivity : ContentItemListMapActivity(),
 
     override fun setSwipeRefreshEnabled(enabled: Boolean) {
         //enable progress only when the auto refresh is not set
-        super.setSwipeRefreshEnabled(if (busComponentModule.busStopsAutoRefreshRange > 0) false else enabled)
+        super.setSwipeRefreshEnabled(if (busComponentModule.busStopsAutoRefreshPeriod > 0) false else enabled)
     }
 
     override fun updateRefreshStatus(refreshing: Boolean) {
         //enable progress only when the auto refresh is not set
-        super.updateRefreshStatus(if (busComponentModule.busStopsAutoRefreshRange > 0) false else refreshing)
+        super.updateRefreshStatus(if (busComponentModule.busStopsAutoRefreshPeriod > 0) false else refreshing)
     }
 }
