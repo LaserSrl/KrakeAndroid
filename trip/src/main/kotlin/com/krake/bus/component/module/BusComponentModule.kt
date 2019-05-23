@@ -30,20 +30,6 @@ import com.krake.trip.R
  * </ul>
  */
 class BusComponentModule : ComponentModule {
-    companion object {
-        private const val ARG_STOP_ITEM_CLASS = "argStopItemClass"
-        private const val ARG_PATTERN_CLASS = "argPatternClass"
-        private const val ARG_DEFAULT_LATITUDE = "argDefaultLat"
-        private const val ARG_DEFAULT_LONGITUDE = "argDefaultLong"
-        private const val ARG_AUTO_REFRESH_BUS_STOP_LIST = "argAutoRefreshBusStopList"
-
-        val DEFAULT_ACTIVITY = BusSearchActivity::class.java
-        val DEFAULT_MAP_FRAGMENT = BusMapFragment::class.java
-        @LayoutRes
-        val DEFAULT_LIST_CELL_LAYOUT = R.layout.cell_bus_stop_passage
-        @LayoutRes
-        val DEFAULT_LIST_ROOT_LAYOUT = R.layout.fragment_bus_list
-    }
 
     var defaultLocation: LatLng?
         private set
