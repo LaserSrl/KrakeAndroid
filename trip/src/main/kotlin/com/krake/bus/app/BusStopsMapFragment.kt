@@ -2,6 +2,7 @@ package com.krake.bus.app
 
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*
@@ -17,8 +18,12 @@ import com.krake.core.map.MarkerCreator
 import com.krake.core.model.ContentItemWithLocation
 import com.krake.core.model.identifierOrStringIdentifier
 import com.krake.core.thread.async
-import com.krake.trip.R
 import java.util.concurrent.TimeUnit
+import com.google.android.gms.maps.model.LatLng
+import android.os.SystemClock
+import android.view.animation.AccelerateDecelerateInterpolator
+import com.krake.trip.R
+
 
 /**
  * Created by antoniolig on 27/04/2017.
@@ -41,8 +46,11 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
     }
     private val busMovementHandler = Handler(Looper.getMainLooper())
     private var currentBusMarker: Marker? = null
+    private val markerMovementHandler = Handler()
 
     override fun onPassageChosen(passage: BusPassage) {
+        stopBusLocationTracking()
+
         currentPassage = passage
 
         currentPassage?.pattern?.let { patternPolylineTask.loadKML(it.stringIdentifier) }
@@ -106,28 +114,82 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
     }
 
     private fun scheduleBusLocationTracking() {
-        if (busMovementProvider != null && currentPassage != null) {
-            val seconds = TimeUnit.SECONDS.toMillis(busMovementProvider!!.getRefreshPeriod().toLong())
-            val actionToPerform: () -> Unit = {
-                async {
-                    busMovementProvider!!.provideCurrentBusPosition(currentPassage!!)
-                }.completed { configuration ->
-                    mMapManager.getMapAsync {
-                        currentBusMarker?.remove()
-                        currentBusMarker = it.addMarker(MarkerCreator.shared.createMarker(activity!!, configuration))
-                    }
-                    scheduleBusLocationTracking()
-                }.error {
-
-                }.load()
-            }
-            busMovementHandler.postDelayed(actionToPerform, seconds)
+        if (busMovementProvider != null && currentPassage != null && activity != null) {
+            Log.d(TAG, "schedule bus current position retrieve action")
+            val seconds = TimeUnit.SECONDS.toMillis(busMovementProvider!!.getRefreshPeriod(activity!!).toLong())
+            busMovementHandler.postDelayed(::retrieveCurrentBusLocation, seconds)
         } else {
             stopBusLocationTracking()
         }
     }
 
+    private fun retrieveCurrentBusLocation() {
+        Log.d(TAG, "call to provider")
+        async {
+            busMovementProvider!!.provideCurrentBusPosition(activity!!, currentPassage!!)
+        }.completed { position ->
+            Log.d(TAG, "position retrieved")
+            mMapManager.getMapAsync {
+                if (currentBusMarker == null) {
+                    val configuration = busMovementProvider!!.provideBusMarkerConfiguration(activity!!, currentPassage!!)
+                    currentBusMarker = it.addMarker(MarkerCreator.shared.createMarker(activity!!, configuration))
+                    currentBusMarker!!.position = position
+                } else {
+                    moveBusMarker(position)
+                }
+            }
+            scheduleBusLocationTracking()
+        }.error {
+            Log.d(TAG, "error")
+            it.printStackTrace()
+            scheduleBusLocationTracking()
+        }.load()
+    }
+
     private fun stopBusLocationTracking() {
+        Log.d(TAG, "stop schedule bus current position retrieve action")
         busMovementHandler.removeCallbacksAndMessages(null)
+        markerMovementHandler.removeCallbacksAndMessages(null)
+        currentBusMarker?.remove()
+        currentBusMarker = null
+    }
+
+    private fun moveBusMarker(destination: LatLng) {
+        val startPosition = currentBusMarker!!.position
+        val start = SystemClock.uptimeMillis()
+        val interpolator = AccelerateDecelerateInterpolator()
+        val durationInMs = 1000f
+
+        markerMovementHandler.post(object : Runnable {
+            var elapsed = 0L
+            var t = 0f
+            var v = 0f
+
+            override fun run() {
+                // Calculate progress using interpolator
+                elapsed = SystemClock.uptimeMillis() - start
+                t = elapsed / durationInMs
+                v = interpolator.getInterpolation(t)
+
+                val currentPosition = LatLng(
+                    startPosition.latitude * (1 - t) + destination.latitude * t,
+                    startPosition.longitude * (1 - t) + destination.longitude * t
+                )
+
+                currentBusMarker?.position = currentPosition
+
+                // Repeat till progress is complete.
+                if (t < 1) {
+                    // Post again 16ms later.
+                    markerMovementHandler.postDelayed(this, 16)
+                } else {
+                    currentBusMarker?.isVisible = true
+                }
+            }
+        })
+    }
+
+    companion object {
+        private val TAG = BusStopsMapFragment::class.java.simpleName
     }
 }

@@ -6,7 +6,7 @@ import com.krake.bus.model.BusPassage
 import com.krake.bus.model.BusPattern
 import com.krake.core.data.DataConnectionModel
 import com.krake.core.data.DataModel
-import io.realm.RealmModel
+import io.realm.Realm
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
@@ -16,6 +16,7 @@ class BusPatternDataModel : DataConnectionModel()
     val busPatternModel: LiveData<DataModel> = Transformations.map(model) { source ->
         if (source != null)
         {
+            val realm = Realm.getDefaultInstance()
             val passages = ArrayList<BusPassage>()
 
             val now = Date()
@@ -38,12 +39,10 @@ class BusPatternDataModel : DataConnectionModel()
             {
                 for (time in pattern.stopTimes)
                 {
-                    val departure: Long?
-
-                    if (time.realtimeDeparture != null && time.realtimeDeparture != 0L)
-                        departure = time.realtimeDeparture
+                    val departure = if (time.realtimeDeparture != null && time.realtimeDeparture != 0L)
+                        time.realtimeDeparture
                     else
-                        departure = time.scheduledDeparture
+                        time.scheduledDeparture
 
                     val passageDate = Date(midNight.time + departure!! * 1000)
 
@@ -69,7 +68,8 @@ class BusPatternDataModel : DataConnectionModel()
 
                             passage.destination = name
                         }
-                        passage.pattern = pattern
+                        passage.pattern = realm.copyFromRealm(pattern)
+                        passage.tripId = time.tripId
                         passages.add(passage)
                     }
                 }
@@ -77,14 +77,14 @@ class BusPatternDataModel : DataConnectionModel()
 
             if (passages.isNotEmpty())
             {
-                Collections.sort(passages) { lhs, rhs -> lhs.passage!!.compareTo(rhs.passage) }
+                passages.sortWith(Comparator { lhs, rhs -> lhs.passage!!.compareTo(rhs.passage) })
             }
 
-            DataModel(passages, source.cacheValid);
+            DataModel(passages, source.cacheValid)
         }
         else
         {
-            DataModel(LinkedList<RealmModel>(), false);
+            DataModel(LinkedList(), false)
         }
     }
 }
