@@ -11,10 +11,13 @@ import com.krake.bus.app.BusSearchActivity
 import com.krake.bus.app.BusStopsListActivity
 import com.krake.bus.model.BusPattern
 import com.krake.bus.model.BusStop
+import com.krake.bus.provider.BusMovementProvider
 import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.component.base.ComponentModule
 import com.krake.core.component.module.ThemableComponentModule
+import com.krake.core.extension.getClass
 import com.krake.core.extension.getDataClass
+import com.krake.core.extension.putClass
 import com.krake.core.extension.putDataClass
 import com.krake.trip.R
 
@@ -27,20 +30,6 @@ import com.krake.trip.R
  * </ul>
  */
 class BusComponentModule : ComponentModule {
-    companion object {
-        private const val ARG_STOP_ITEM_CLASS = "argStopItemClass"
-        private const val ARG_PATTERN_CLASS = "argPatternClass"
-        private const val ARG_DEFAULT_LATITUDE = "argDefaultLat"
-        private const val ARG_DEFAULT_LONGITUDE = "argDefaultLong"
-        private const val ARG_AUTO_REFRESH_BUS_STOP_LIST = "argAutoRefreshBusStopList"
-
-        val DEFAULT_ACTIVITY = BusSearchActivity::class.java
-        val DEFAULT_MAP_FRAGMENT = BusMapFragment::class.java
-        @LayoutRes
-        val DEFAULT_LIST_CELL_LAYOUT = R.layout.cell_bus_stop_passage
-        @LayoutRes
-        val DEFAULT_LIST_ROOT_LAYOUT = R.layout.fragment_bus_list
-    }
 
     var defaultLocation: LatLng?
         private set
@@ -52,6 +41,9 @@ class BusComponentModule : ComponentModule {
         private set
 
     var busStopsAutoRefreshRange : Int
+        private set
+
+    var busMovementProvider: Class<out BusMovementProvider>? = null
         private set
 
     init {
@@ -90,6 +82,11 @@ class BusComponentModule : ComponentModule {
     fun busStopsAutoRefreshRange(busStopsAutoRefreshRange: Int) = apply { this.busStopsAutoRefreshRange = busStopsAutoRefreshRange }
 
     /**
+     * provider used for search the actual location of a bus
+     */
+    fun busMovementProvider(provider: Class<out BusMovementProvider>) = apply { this.busMovementProvider = provider }
+
+    /**
      * Legge il contenuto di un [Bundle] e modifica le sue proprietà.
      *
      * @param context il [Context] utilizzato per leggere il [Bundle].
@@ -101,6 +98,7 @@ class BusComponentModule : ComponentModule {
         patternClass = (bundle.getDataClass(ARG_PATTERN_CLASS) as Class<out BusPattern>)
         stopItemClass = (bundle.getDataClass(ARG_STOP_ITEM_CLASS) as Class<out BusStop>)
         busStopsAutoRefreshRange = bundle.getInt(ARG_AUTO_REFRESH_BUS_STOP_LIST)
+        busMovementProvider = bundle.getClass(ARG_BUS_MOVEMENT_PROVIDER)
     }
 
     /**
@@ -118,6 +116,7 @@ class BusComponentModule : ComponentModule {
         bundle.putDataClass(ARG_PATTERN_CLASS, patternClass)
         bundle.putDataClass(ARG_STOP_ITEM_CLASS, stopItemClass)
         bundle.putInt(ARG_AUTO_REFRESH_BUS_STOP_LIST, busStopsAutoRefreshRange)
+        bundle.putClass(ARG_BUS_MOVEMENT_PROVIDER, busMovementProvider)
         return bundle
     }
 
@@ -128,5 +127,21 @@ class BusComponentModule : ComponentModule {
      */
     override fun moduleDependencies(): Array<Class<out ComponentModule>> {
         return arrayOf(ThemableComponentModule::class.java)
+    }
+
+    companion object {
+        private const val ARG_STOP_ITEM_CLASS = "argStopItemClass"
+        private const val ARG_PATTERN_CLASS = "argPatternClass"
+        private const val ARG_DEFAULT_LATITUDE = "argDefaultLat"
+        private const val ARG_DEFAULT_LONGITUDE = "argDefaultLong"
+        private const val ARG_AUTO_REFRESH_BUS_STOP_LIST = "argAutoRefreshBusStopList"
+        private const val ARG_BUS_MOVEMENT_PROVIDER = "argBusMovementProvider"
+
+        val DEFAULT_ACTIVITY = BusSearchActivity::class.java
+        val DEFAULT_MAP_FRAGMENT = BusMapFragment::class.java
+        @LayoutRes
+        val DEFAULT_LIST_CELL_LAYOUT = R.layout.cell_bus_stop_passage
+        @LayoutRes
+        val DEFAULT_LIST_ROOT_LAYOUT = R.layout.fragment_bus_list
     }
 }

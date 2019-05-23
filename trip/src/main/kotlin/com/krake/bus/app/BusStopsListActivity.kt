@@ -1,6 +1,8 @@
 package com.krake.bus.app
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AlertDialog
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
@@ -18,7 +20,9 @@ import com.krake.core.data.DataConnectionModel
 import com.krake.core.data.DataModel
 import com.krake.core.extension.putModules
 import com.krake.core.model.ContentItem
+import com.krake.core.thread.async
 import com.krake.trip.R
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by antoniolig on 27/04/2017.
@@ -42,14 +46,19 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         (CacheManager.shared as? LocationCacheModifier)?.addLocationPath(stopTimesPath)
 
         val lineModule = OrchardComponentModule()
-                .startConnectionAfterActivityCreated(false)
-                .dataClass(orchardComponentModule.dataClass)
-                .displayPath(getString(R.string.orchard_bus_line_display_alias))
-                .avoidPagination()
+            .startConnectionAfterActivityCreated(false)
+            .dataClass(orchardComponentModule.dataClass)
+            .displayPath(getString(R.string.orchard_bus_line_display_alias))
+            .avoidPagination()
 
-        linesConnection = ViewModelProviders.of(this).get(CacheManager.shared.getModelKey(lineModule), DataConnectionModel::class.java)
+        linesConnection = ViewModelProviders.of(this)
+            .get(CacheManager.shared.getModelKey(lineModule), DataConnectionModel::class.java)
 
-        linesConnection.configure(lineModule, loginComponentModule, ViewModelProviders.of(this).get(PrivacyViewModel::class.java))
+        linesConnection.configure(
+            lineModule,
+            loginComponentModule,
+            ViewModelProviders.of(this).get(PrivacyViewModel::class.java)
+        )
 
         linesConnection.multiThreadModel.observe(this, Observer<DataModel> { t ->
             if (t != null) {
@@ -66,7 +75,8 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         // Reset the state of the RecyclerView when a BusStop is selected.
         gridFragment?.recycleView?.scrollToPosition(0)
         // Get the BottomSheetBehavior if possible.
-        val bottomBehavior = (gridContainer.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetBehavior
+        val bottomBehavior =
+            (gridContainer.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetBehavior
         bottomBehavior?.let {
             // Reset the state of the BottomSheetBehavior when a BusStop is selected.
             it.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -80,19 +90,17 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         }
     }
 
-    override fun getFragmentCreationExtras(mode: FragmentMode): Bundle
-    {
-        if (mode == FragmentMode.GRID)
-        {
+    override fun getFragmentCreationExtras(mode: FragmentMode): Bundle {
+        if (mode == FragmentMode.GRID) {
             val bundle = intent.extras
 
             val gridOrchard = OrchardComponentModule()
-                    .displayPath(getString(R.string.orchard_path_otp_stoptimes))
-                    .dataClass(busComponentModule.patternClass)
-                    .noCache()
-                    .avoidPagination()
-                    .putExtraParameter("Id", orchardComponentModule.recordStringIdentifier)
-                    .dataConnectionModelClass(BusPatternDataModel::class.java)
+                .displayPath(getString(R.string.orchard_path_otp_stoptimes))
+                .dataClass(busComponentModule.patternClass)
+                .noCache()
+                .avoidPagination()
+                .putExtraParameter("Id", orchardComponentModule.recordStringIdentifier)
+                .dataConnectionModelClass(BusPatternDataModel::class.java)
 
             bundle.putAll(gridOrchard.writeContent(this))
 
@@ -102,13 +110,12 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         return super.getFragmentCreationExtras(mode)
     }
 
-    private fun dataLoadFailedOrEmpty()
-    {
+    private fun dataLoadFailedOrEmpty() {
         AlertDialog.Builder(this@BusStopsListActivity)
-                .setMessage(getString(R.string.error_loading_stop_times))
-                .setCancelable(false)
-                .setNeutralButton(android.R.string.ok) { _, _ -> finish() }
-                .show()
+            .setMessage(getString(R.string.error_loading_stop_times))
+            .setCancelable(false)
+            .setNeutralButton(android.R.string.ok) { _, _ -> finish() }
+            .show()
     }
 
     private fun passageChosen(passage: BusPassage) {
