@@ -396,8 +396,11 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
         }
     }
 
-    override fun onGpsSettingsAcquired()
-    {
+    override fun onGpsSettingsAcquired() {
+
+    }
+
+    override fun onGpsSettingsUnavailable() {
 
     }
 
