@@ -111,7 +111,7 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
 
                                      override fun onFailure(call: Call?, e: IOException?)
                                      {
-                                         if (call?.isCanceled != false)
+                                         if (call?.isCanceled == false)
                                          {
                                              mainHandler.post {
                                                  handleError(e as? OrchardError)

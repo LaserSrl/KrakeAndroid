@@ -4,7 +4,9 @@ import com.krake.cards.CardsDetailFragment
 import com.krake.contentcreation.ContentCreationActivity
 import com.krake.contentcreation.ContentCreationTabInfo
 import com.krake.contentcreation.ContentDefinition
+import com.krake.contentcreation.UserInfoCacheInvalidatorApiEndListener
 import com.krake.contentcreation.component.module.ContentCreationComponentModule
+import com.krake.core.Signaler
 import com.krake.core.app.ContentItemDetailModelFragment
 import com.krake.core.app.KrakeApplication
 import com.krake.core.component.base.ComponentManager
@@ -71,6 +73,11 @@ class KrakeApp : KrakeApplication(), UserNavigationViewListener {
             .twitterAuthConfig(authConfig)
             .build()
         Twitter.initialize(config)
+
+        Signaler.shared.registerApiEndListener(
+            getString(R.string.orchard_api_path_content_modify),
+            UserInfoCacheInvalidatorApiEndListener()
+        )
     }
 
     override fun userDidClick(onView: UserNavigationMenuView) {
