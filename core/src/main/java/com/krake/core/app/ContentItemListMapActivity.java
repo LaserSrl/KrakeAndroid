@@ -802,22 +802,26 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
     public void onDataLoadFailed(@NonNull OrchardError error,
                                  @Nullable DataModel dataModel) {
         if ((dataModel == null || dataModel.getListData().size() == 0) && error.getReactionCode() == 0 && !snackBarVisible) {
-            snackBarVisible = true;
-            SnackbarUtils.createSnackbar(findViewById(R.id.activity_layout_coordinator), R.string.data_loading_failed, Snackbar.LENGTH_LONG)
-                    .addCallback(new Snackbar.Callback() {
-                        @Override
-                        public void onDismissed(Snackbar snackbar, int event) {
-                            super.onDismissed(snackbar, event);
-                            snackBarVisible = false;
-                        }
-
-                        @Override
-                        public void onShown(Snackbar snackbar) {
-                            super.onShown(snackbar);
-                        }
-                    })
-                    .show();
+            showError();
         }
+    }
+
+    protected void showError() {
+        snackBarVisible = true;
+        SnackbarUtils.createSnackbar(findViewById(R.id.activity_layout_coordinator), R.string.data_loading_failed, Snackbar.LENGTH_LONG)
+                .addCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        super.onDismissed(snackbar, event);
+                        snackBarVisible = false;
+                    }
+
+                    @Override
+                    public void onShown(Snackbar snackbar) {
+                        super.onShown(snackbar);
+                    }
+                })
+                .show();
     }
 
     @Override

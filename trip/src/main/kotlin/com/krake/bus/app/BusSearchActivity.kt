@@ -50,7 +50,7 @@ import com.krake.core.model.ContentItem
 import com.krake.core.model.identifierOrStringIdentifier
 import com.krake.core.permission.PermissionListener
 import com.krake.core.permission.PermissionManager
-import com.krake.trip.OtpBoundingBoxTask
+import com.krake.otp.task.OtpBoundingBoxTask
 import com.krake.trip.R
 import java.util.*
 

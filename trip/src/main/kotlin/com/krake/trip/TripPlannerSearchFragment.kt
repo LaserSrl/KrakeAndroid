@@ -12,7 +12,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.location.LocationListener
 import com.google.android.gms.location.LocationRequest
@@ -31,6 +30,7 @@ import com.krake.core.location.LocationRequirementsHelper
 import com.krake.core.permission.PermissionListener
 import com.krake.core.permission.PermissionManager
 import com.krake.core.view.TabLayoutHelper
+import com.krake.otp.task.OtpBoundingBoxTask
 import com.krake.trip.component.module.TripPlannerModule
 import java.lang.RuntimeException
 import java.text.DateFormat

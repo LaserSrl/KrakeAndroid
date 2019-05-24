@@ -72,13 +72,13 @@ class BusStopsListActivity : ContentItemListMapActivity(),
     }
 
     override fun onShowContentItemDetails(sender: Any, contentItem: ContentItem) {
-        // Reset the state of the RecyclerView when a BusStop is selected.
+        // Reset the state of the RecyclerView when a OtpBusStop is selected.
         gridFragment?.recycleView?.scrollToPosition(0)
         // Get the BottomSheetBehavior if possible.
         val bottomBehavior =
             (gridContainer.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetBehavior
         bottomBehavior?.let {
-            // Reset the state of the BottomSheetBehavior when a BusStop is selected.
+            // Reset the state of the BottomSheetBehavior when a OtpBusStop is selected.
             it.state = BottomSheetBehavior.STATE_COLLAPSED
         }
         (contentItem as? BusPassage)?.let {

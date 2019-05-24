@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit
 import com.google.android.gms.maps.model.LatLng
 import android.os.SystemClock
 import android.view.animation.AccelerateDecelerateInterpolator
+import com.krake.otp.task.PatternPolylineTask
 import com.krake.trip.R
 
 
@@ -36,8 +37,11 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
     lateinit var busComponentModule: BusComponentModule
 
     private var currentPassage: BusPassage? = null
-    private val patternPolylineTask: PatternPolylineTask by lazy { PatternPolylineTask(context ?:
-            throw IllegalArgumentException("The context mustn't be null."), this) }
+    private val patternPolylineTask: PatternPolylineTask by lazy {
+        PatternPolylineTask(
+            context ?: throw IllegalArgumentException("The context mustn't be null."), this
+        )
+    }
     private var polyline: Polyline? = null
     private var selectedStop: ContentItemWithLocation? = null
 
