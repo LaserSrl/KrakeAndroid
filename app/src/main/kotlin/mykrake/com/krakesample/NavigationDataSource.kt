@@ -340,7 +340,10 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                         .dataClass(Prodotto::class.java)
                         .avoidPagination()
                         .searchColumnsName("titlePartTitle")
-                        .displayPath(context.getString(R.string.orchard_path_products))
+                        .displayPath(context.getString(R.string.orchard_path_products)),
+                    YoutubeVideoActivity.defaultListMapComponentModule(context)
+                    /*ListMapComponentModule(context)
+                        .listFragmentClass(YoutubeVideosFragment::class.java)*/
                 )
                 .build()
 
