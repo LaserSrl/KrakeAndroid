@@ -8,6 +8,7 @@ class OtpBusRoute(val id: String,
                   val shortName: String,
                   val longName: String,
                   val agencyName: String,
+                  val color: String,
                   val mode: String): ContentItem, RecordWithStringIdentifier {
 
     override val stringIdentifier: String

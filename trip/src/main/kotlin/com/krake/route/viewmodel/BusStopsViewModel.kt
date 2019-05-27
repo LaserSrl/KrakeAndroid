@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonElement
 import com.krake.core.network.RemoteClient
 import com.krake.core.network.RemoteRequest
 import com.krake.core.thread.AsyncTask
@@ -60,7 +62,7 @@ class BusStopsViewModel : ViewModel() {
         busStopsTask?.load()
     }
 
-    fun loadBusTimesByDate(context: Context, stop: OtpBusStop, date: Date) {
+    fun loadBusTimesByDate(context: Context, stop: OtpBusStop, routeId: String, date: Date) {
         val url = String.format(context.getString(R.string.bus_stoptimes_by_stop_path), context.getString(R.string.open_trip_planner_base_url), stop.id, dateFormatter.format(date))
 
         mutableStatus.value = Loading
@@ -71,9 +73,17 @@ class BusStopsViewModel : ViewModel() {
 
             val jsonResult = RemoteClient.client(RemoteClient.Mode.DEFAULT)
                 .execute(request)
-                .jsonArray()
+                .jsonArray()?.filter {
+                    (it.asJsonObject).get("pattern").asJsonObject.get("id").asString.startsWith(routeId)
+                }?.map {
+                    (it.asJsonObject).get("times").asJsonArray
+                }?.flatten()
 
-            gson.fromJson(jsonResult, Array<OtpStopTime>::class.java).toList()
+            gson.fromJson(gson.toJsonTree(jsonResult), Array<OtpStopTime>::class.java)
+                .toList()
+                .sortedBy {
+                    it.scheduledDeparture
+                }
 
         }.completed {
             mutableStopTimes.value = it

@@ -26,14 +26,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!-- todo -->
         <activity
                 android:name="com.krake.route.app.RouteListActivity"
-                android:label="Linee"
+                android:label="@string/routes"
                 android:screenOrientation="@integer/activity_orientation" />
         <activity
                 android:name="com.krake.route.app.RouteStopListActivity"
-                android:label="Stops"
+                android:label="@string/stops"
                 android:screenOrientation="@integer/activity_orientation" />
     </application>
 </manifest>

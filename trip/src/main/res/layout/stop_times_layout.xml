@@ -6,7 +6,8 @@
         android:id="@+id/stopTimesContainer"
         android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/bottom_sheet_behavior">
+        android:background="@android:color/white"
+        app:layout_behavior="@string/behavior_bottom_sheet_not_under_action">
 
     <TextView
             android:layout_width="wrap_content"
@@ -17,23 +18,41 @@
             android:layout_marginStart="8dp" tools:text="Lunedì 1 Maggio "/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
-            android:layout_height="0dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/dateTextView" app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/stopTimesList"/>
-    <Button
-            android:text="@string/action_next"
-            android:layout_width="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/stopTimesList"
+            app:layout_constraintTop_toBottomOf="@+id/view2"/>
+    <ImageButton
+            app:srcCompat="@drawable/ic_keyboard_arrow_right"
+            android:background="@android:color/transparent"
+            android:layout_width="40dp"
             android:layout_height="0dp"
             android:id="@+id/nextButton"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" app:layout_constraintBottom_toTopOf="@+id/stopTimesList"/>
-    <Button
-            android:text="Prev"
-            android:layout_width="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/view2"/>
+    <ImageButton
+            app:srcCompat="@drawable/ic_keyboard_arrow_left"
+            android:background="@android:color/transparent"
+            android:layout_width="40dp"
             android:layout_height="0dp"
             android:id="@+id/previousButton" app:layout_constraintEnd_toStartOf="@+id/nextButton"
-            android:layout_marginEnd="8dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/stopTimesList"/>
+            android:layout_marginEnd="16dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/view2"/>
+
+    <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+                 app:layout_constraintTop_toTopOf="@+id/stopTimesList" app:layout_constraintStart_toStartOf="parent"
+                 android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                 android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+                 app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/stopTimesProgressBar"/>
+    <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/black"
+            android:id="@+id/view2" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/dateTextView" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,6 @@ class OtpStopTime(
     override val scheduledDeparture: Long?,
     override val tripId: String?
 ): BusStopTime, ContentItem {
-    //TODO
     override val titlePartTitle: String?
         get() = tripId
 }
