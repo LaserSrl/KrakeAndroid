@@ -1,7 +1,6 @@
 package com.krake.route.model
 
 import com.krake.core.model.ContentItem
-import com.krake.core.model.RecordWithIdentifier
 import com.krake.core.model.RecordWithStringIdentifier
 
 class OtpBusRoute(val id: String,

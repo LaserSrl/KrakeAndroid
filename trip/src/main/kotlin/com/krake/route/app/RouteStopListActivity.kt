@@ -11,6 +11,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.model.ContentItem
@@ -57,12 +58,24 @@ class RouteStopListActivity : ContentItemListMapActivity() {
             viewModel.loadBusTimesByDate(this, selectedStop!!, routeId, calendar.time)
         }
 
+        val callback = object : SafeBottomSheetBehavior.BottomSheetStateCallback() {
+            override fun onStateWillChange(bottomSheet: View, newState: Int) { }
+
+            override fun onSlide(p0: View, p1: Float) { }
+
+            override fun onStateChanged(p0: View, p1: Int) {
+                if (p1 == BottomSheetBehavior.STATE_EXPANDED)
+                    setSwipeRefreshEnabled(false)
+            }
+        }
+
         val stopTimesContainer = findViewById<ViewGroup>(R.id.stopTimesContainer)
         behavior = (stopTimesContainer.layoutParams as CoordinatorLayout.LayoutParams).behavior as SafeBottomSheetBehavior<View>
         behavior.apply {
             isHideable = true
             peekHeight = 0
             state = BottomSheetBehavior.STATE_HIDDEN
+            addBottomSheetCallback(callback)
         }
 
         val stopTimesProgressBar = findViewById<ProgressBar>(R.id.stopTimesProgressBar)
@@ -103,6 +116,5 @@ class RouteStopListActivity : ContentItemListMapActivity() {
         viewModel.loadBusTimesByDate(this, selectedStop!!, routeId, calendar.time)
 
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        setSwipeRefreshEnabled(false)
     }
 }

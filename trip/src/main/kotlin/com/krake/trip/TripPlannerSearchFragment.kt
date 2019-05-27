@@ -30,7 +30,6 @@ import com.krake.core.location.LocationRequirementsHelper
 import com.krake.core.permission.PermissionListener
 import com.krake.core.permission.PermissionManager
 import com.krake.core.view.TabLayoutHelper
-import com.krake.otp.task.OtpBoundingBoxTask
 import com.krake.trip.component.module.TripPlannerModule
 import java.lang.RuntimeException
 import java.text.DateFormat

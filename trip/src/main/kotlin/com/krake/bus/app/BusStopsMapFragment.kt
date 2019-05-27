@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit
 import com.google.android.gms.maps.model.LatLng
 import android.os.SystemClock
 import android.view.animation.AccelerateDecelerateInterpolator
-import com.krake.otp.task.PatternPolylineTask
 import com.krake.trip.R
 
 
