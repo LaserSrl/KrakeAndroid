@@ -15,7 +15,7 @@ import java.util.*
  * Altrimenti non sarà possibile rilasciare correttament i loader per youtube causando dei leak.
  * Created by joel on 14/11/14.
  */
-class YoutubeVideoAdapter(context: Context, layout: Int, holderClass: Class<*>?) :
+open class YoutubeVideoAdapter(context: Context, layout: Int, holderClass: Class<*>?) :
     ContentItemAdapter(context, layout, holderClass), YoutubeVideoHolder.OnThumbnailLoaderAvailable {
 
     private val mHolders = ArrayList<YoutubeVideoHolder>()

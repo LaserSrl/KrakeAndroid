@@ -12,7 +12,7 @@ import com.krake.core.model.ContentItem
 import com.krake.youtube.model.YoutubeVideo
 import com.krake.youtube.widget.YoutubeVideoHolder
 
-class YoutubeVideoActivity : ContentItemListMapActivity() {
+open class YoutubeVideoActivity : ContentItemListMapActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?, layout: Int) {
         super.onCreate(savedInstanceState, layout)

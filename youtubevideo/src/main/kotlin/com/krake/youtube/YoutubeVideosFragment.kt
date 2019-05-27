@@ -4,7 +4,7 @@ import com.krake.core.app.ContentItemGridModelFragment
 import com.krake.youtube.widget.YoutubeVideoHolder
 
 
-class YoutubeVideosFragment : ContentItemGridModelFragment(), YoutubeVideoHolder.OnThumbnailLoaderAvailable
+open class YoutubeVideosFragment : ContentItemGridModelFragment(), YoutubeVideoHolder.OnThumbnailLoaderAvailable
 {
     override fun onDestroyView()
     {

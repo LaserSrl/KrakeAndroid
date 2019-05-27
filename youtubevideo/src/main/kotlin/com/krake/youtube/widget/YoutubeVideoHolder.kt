@@ -11,7 +11,8 @@ import com.krake.youtube.R
 /**
  * Created by joel on 08/10/14.
  */
-class YoutubeVideoHolder(itemView: View) : ImageTextCellHolder(itemView), YouTubeThumbnailView.OnInitializedListener,
+open class YoutubeVideoHolder(itemView: View) : ImageTextCellHolder(itemView),
+    YouTubeThumbnailView.OnInitializedListener,
     ViewHolderWithClickGesture {
     val thumbnailView: YouTubeThumbnailView = itemView.findViewById(R.id.thumbnail_view)
     var thumbnailLoader: YouTubeThumbnailLoader? = null
