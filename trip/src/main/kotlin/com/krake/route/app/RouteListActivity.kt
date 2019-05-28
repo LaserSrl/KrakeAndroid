@@ -57,7 +57,7 @@ class RouteListActivity : ContentItemListMapActivity() {
                     .recordStringIdentifier(contentItem.identifierOrStringIdentifier),
                 ListMapComponentModule(this)
                     .activityLayout(R.layout.activity_bus_stops)
-                    .listCellLayout(R.layout.cell_bus_stop_passage)
+                    .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_BUS_STOP_LAYOUT)
                     .listFragmentClass(RouteStopListFragment::class.java)
                     .mapFragmentClass(RouteStopMapFragment::class.java),
                 busComponentModule)

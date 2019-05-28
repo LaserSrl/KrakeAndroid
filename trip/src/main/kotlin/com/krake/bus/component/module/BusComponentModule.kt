@@ -139,9 +139,8 @@ class BusComponentModule : ComponentModule {
 
         val DEFAULT_ACTIVITY = BusSearchActivity::class.java
         val DEFAULT_MAP_FRAGMENT = BusMapFragment::class.java
-        @LayoutRes
-        val DEFAULT_LIST_CELL_LAYOUT = R.layout.cell_bus_stop_passage
-        @LayoutRes
-        val DEFAULT_LIST_ROOT_LAYOUT = R.layout.fragment_bus_list
+        @LayoutRes val DEFAULT_LIST_CELL_LAYOUT = R.layout.cell_bus_stop_passage
+        @LayoutRes val DEFAULT_LIST_CELL_BUS_STOP_LAYOUT = R.layout.cell_bus_stop
+        @LayoutRes val DEFAULT_LIST_ROOT_LAYOUT = R.layout.fragment_bus_list
     }
 }

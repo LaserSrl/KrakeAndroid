@@ -79,7 +79,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         val defaultListMapModule: (Context) -> ListMapComponentModule = { context: Context ->
             ListMapComponentModule(context)
                     .contentPriority(ListMapComponentModule.PRIORITY_MAP)
-                    .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_LAYOUT)
+                    .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_BUS_STOP_LAYOUT)
                     .listRootLayout(BusComponentModule.DEFAULT_LIST_ROOT_LAYOUT)
                     .mapAvoidLocationPermissions()
                     .mapUseCluster(true)
@@ -419,7 +419,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
                                 .recordStringIdentifier(contentItem.identifierOrStringIdentifier),
                         ListMapComponentModule(this)
                                 .contentPriority(ListMapComponentModule.PRIORITY_MAP)
-                                .listCellLayout(R.layout.cell_bus_stop_passage)
+                                .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_LAYOUT)
                                 .listRootLayout(R.layout.fragment_bus_list)
                                 .listAdapterClass(BusPassageAdapter::class.java)
                                 .listViewHolderClass(BusPassageHolder::class.java)

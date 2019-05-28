@@ -3,7 +3,6 @@ package com.krake.route.app
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -11,11 +10,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.model.ContentItem
-import com.krake.core.widget.ContentItemAdapter
 import com.krake.core.widget.ImageTextCellHolder
 import com.krake.core.widget.SafeBottomSheetBehavior
 import com.krake.route.model.OtpBusStop
@@ -45,7 +42,7 @@ class RouteStopListActivity : ContentItemListMapActivity() {
         viewModel.loadStopsByBusRoute(this, routeId)
 
         val stopTimesList = findViewById<RecyclerView>(R.id.stopTimesList)
-        val adapter = StopTimesAdapter(this, R.layout.stop_times_cell, ImageTextCellHolder::class.java)
+        val adapter = StopTimesAdapter(this, R.layout.cell_stop_times, ImageTextCellHolder::class.java)
         stopTimesList.adapter = adapter
 
         findViewById<ImageButton>(R.id.previousButton).setOnClickListener {
