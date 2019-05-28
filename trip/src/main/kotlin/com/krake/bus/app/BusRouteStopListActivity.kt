@@ -78,10 +78,11 @@ class BusRouteStopListActivity : ContentItemListMapActivity() {
 
         val stopTimesProgressBar = findViewById<ProgressBar>(R.id.stopTimesProgressBar)
         val stopTimesDateTextView= findViewById<TextView>(R.id.dateTextView)
+        val noElementsView= findViewById<View>(R.id.noElementsView)
 
         viewModel.status.observe(this, Observer {
-            stopTimesProgressBar.visibility = if (behavior.state == BottomSheetBehavior.STATE_EXPANDED && it == Loading) View.VISIBLE else View.INVISIBLE
-            stopTimesList.visibility = if (behavior.state == BottomSheetBehavior.STATE_EXPANDED && it == Loading) View.INVISIBLE else View.VISIBLE
+            stopTimesProgressBar.visibility = if (behavior.state != BottomSheetBehavior.STATE_HIDDEN && it == Loading) View.VISIBLE else View.INVISIBLE
+            stopTimesList.visibility = if (behavior.state != BottomSheetBehavior.STATE_HIDDEN && it == Loading) View.INVISIBLE else View.VISIBLE
             updateRefreshStatus(behavior.state != BottomSheetBehavior.STATE_EXPANDED && it == Loading)
 
             if (it == Error) {
@@ -92,6 +93,7 @@ class BusRouteStopListActivity : ContentItemListMapActivity() {
         viewModel.stopTimes.observe(this, Observer {
             stopTimesDateTextView.text = dateFormatter.format(calendar.time)
             adapter.swapList(it, true)
+            noElementsView.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
         })
     }
 

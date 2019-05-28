@@ -69,4 +69,15 @@
             app:layout_constraintTop_toTopOf="@+id/dateTextView"
             app:layout_constraintBottom_toBottomOf="@+id/dateTextView"/>
 
+    <TextView
+            android:id="@+id/noElementsView"
+            android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+            android:visibility="invisible"
+              android:text="@string/content_item_grid_no_elements_available"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              app:layout_constraintBottom_toBottomOf="@+id/stopTimesList"
+              app:layout_constraintTop_toBottomOf="@+id/view2" app:layout_constraintEnd_toEndOf="@+id/stopTimesList"
+              app:layout_constraintStart_toStartOf="@+id/stopTimesList"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

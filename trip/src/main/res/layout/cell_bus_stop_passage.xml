@@ -16,9 +16,7 @@
         android:id="@+id/cellImageView"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:background="@drawable/bus_bg_shape_rectangle"
-        android:padding="2dp"
-        app:srcCompat="@drawable/ic_directions_bus_36dp"
+        style="@style/BusRouteCellImageView"
         tools:ignore="ContentDescription" />
 
     <LinearLayout
