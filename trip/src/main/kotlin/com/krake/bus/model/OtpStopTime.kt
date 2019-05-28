@@ -1,4 +1,4 @@
-package com.krake.route.model
+package com.krake.bus.model
 
 import com.krake.bus.model.BusStopTime
 import com.krake.core.model.ContentItem

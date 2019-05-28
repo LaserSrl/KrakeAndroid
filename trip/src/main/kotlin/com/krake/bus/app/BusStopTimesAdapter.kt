@@ -1,13 +1,13 @@
-package com.krake.route.app
+package com.krake.bus.app
 
 import android.content.Context
 import com.krake.core.widget.ContentItemAdapter
 import com.krake.core.widget.ImageTextCellHolder
-import com.krake.route.model.OtpStopTime
+import com.krake.bus.model.OtpStopTime
 import java.text.SimpleDateFormat
 import java.util.*
 
-class StopTimesAdapter(context: Context?, layout: Int, holderClass: Class<*>?) : ContentItemAdapter(context, layout, holderClass) {
+class BusStopTimesAdapter(context: Context?, layout: Int, holderClass: Class<*>?) : ContentItemAdapter(context, layout, holderClass) {
     private val calendar = Calendar.getInstance().apply {
         time = Date()
     }

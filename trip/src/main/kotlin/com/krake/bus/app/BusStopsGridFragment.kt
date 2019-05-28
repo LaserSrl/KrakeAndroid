@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.model.BusPassage
 import com.krake.bus.model.BusPassagesReceiver
+import com.krake.bus.viewmodel.BusPatternDataModel
 import com.krake.core.OrchardError
 import com.krake.core.app.ContentItemGridModelFragment
 import com.krake.core.component.annotation.BundleResolvable

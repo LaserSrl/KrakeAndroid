@@ -1,4 +1,4 @@
-package com.krake.route.viewmodel
+package com.krake.bus.viewmodel
 
 sealed class Status
 object Idle : Status()

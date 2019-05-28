@@ -1,8 +1,6 @@
 package com.krake.bus.app
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AlertDialog
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
@@ -10,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.model.*
+import com.krake.bus.viewmodel.BusPatternDataModel
 import com.krake.core.PrivacyViewModel
 import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.cache.CacheManager
@@ -20,9 +19,7 @@ import com.krake.core.data.DataConnectionModel
 import com.krake.core.data.DataModel
 import com.krake.core.extension.putModules
 import com.krake.core.model.ContentItem
-import com.krake.core.thread.async
 import com.krake.trip.R
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by antoniolig on 27/04/2017.

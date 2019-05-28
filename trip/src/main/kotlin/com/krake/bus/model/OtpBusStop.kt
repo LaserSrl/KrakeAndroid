@@ -1,6 +1,4 @@
-package com.krake.route.model
-
-import com.krake.bus.model.BusStop
+package com.krake.bus.model
 
 /**
  * Created by joel on 08/03/17.

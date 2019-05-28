@@ -1,4 +1,4 @@
-package com.krake.route.app
+package com.krake.bus.app
 
 import android.os.Bundle
 import android.view.View
@@ -15,15 +15,15 @@ import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.model.ContentItem
 import com.krake.core.widget.ImageTextCellHolder
 import com.krake.core.widget.SafeBottomSheetBehavior
-import com.krake.route.model.OtpBusStop
-import com.krake.route.viewmodel.BusStopsViewModel
-import com.krake.route.viewmodel.Error
-import com.krake.route.viewmodel.Loading
+import com.krake.bus.model.OtpBusStop
+import com.krake.bus.viewmodel.BusStopsViewModel
+import com.krake.bus.viewmodel.Error
+import com.krake.bus.viewmodel.Loading
 import com.krake.trip.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RouteStopListActivity : ContentItemListMapActivity() {
+class BusRouteStopListActivity : ContentItemListMapActivity() {
 
     private lateinit var viewModel: BusStopsViewModel
     private var selectedStop: OtpBusStop? = null
@@ -39,20 +39,21 @@ class RouteStopListActivity : ContentItemListMapActivity() {
 
         viewModel = ViewModelProviders.of(this).get(BusStopsViewModel::class.java)
 
-        viewModel.loadStopsByBusRoute(this, routeId)
+        viewModel.loadStopsByBusRoute(routeId)
 
         val stopTimesList = findViewById<RecyclerView>(R.id.stopTimesList)
-        val adapter = StopTimesAdapter(this, R.layout.cell_stop_times, ImageTextCellHolder::class.java)
+        val adapter =
+            BusStopTimesAdapter(this, R.layout.cell_stop_times, ImageTextCellHolder::class.java)
         stopTimesList.adapter = adapter
 
         findViewById<ImageButton>(R.id.previousButton).setOnClickListener {
             calendar.add(Calendar.DATE, -1)
-            viewModel.loadBusTimesByDate(this, selectedStop!!, routeId, calendar.time)
+            viewModel.loadBusTimesByDate(selectedStop!!, routeId, calendar.time)
         }
 
         findViewById<ImageButton>(R.id.nextButton).setOnClickListener {
             calendar.add(Calendar.DATE, 1)
-            viewModel.loadBusTimesByDate(this, selectedStop!!, routeId, calendar.time)
+            viewModel.loadBusTimesByDate(selectedStop!!, routeId, calendar.time)
         }
 
         val callback = object : SafeBottomSheetBehavior.BottomSheetStateCallback() {
@@ -96,7 +97,7 @@ class RouteStopListActivity : ContentItemListMapActivity() {
 
     override fun onRefresh() {
         val routeId = orchardComponentModule.recordStringIdentifier!!
-        viewModel.loadStopsByBusRoute(this, routeId)
+        viewModel.loadStopsByBusRoute(routeId)
     }
 
     override fun onBackPressed() {
@@ -110,7 +111,7 @@ class RouteStopListActivity : ContentItemListMapActivity() {
         selectedStop = contentItem as OtpBusStop
 
         calendar.time = Date()
-        viewModel.loadBusTimesByDate(this, selectedStop!!, routeId, calendar.time)
+        viewModel.loadBusTimesByDate(selectedStop!!, routeId, calendar.time)
 
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }

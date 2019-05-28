@@ -1,17 +1,17 @@
-package com.krake.route.app
+package com.krake.bus.app
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.krake.bus.viewmodel.BusPatternDataModel
 import com.krake.core.app.ContentItemGridModelFragment
 import com.krake.core.data.DataModel
-import com.krake.route.viewmodel.BusRoutesViewModel
-import com.krake.route.viewmodel.Error
-import com.krake.route.viewmodel.Loading
+import com.krake.bus.viewmodel.Error
+import com.krake.bus.viewmodel.Loading
 
-class RouteListFragment : ContentItemGridModelFragment() {
+class BusRouteListFragment : ContentItemGridModelFragment() {
 
     override fun observeDataModel() {
-        val viewModel = ViewModelProviders.of(activity!!).get(BusRoutesViewModel::class.java)
+        val viewModel = ViewModelProviders.of(activity!!).get(BusPatternDataModel::class.java)
 
         viewModel.busRoutes.observe(this, Observer {
             val dataModel = DataModel(it, true)

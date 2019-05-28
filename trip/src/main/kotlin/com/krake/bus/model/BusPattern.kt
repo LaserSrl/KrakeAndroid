@@ -13,4 +13,6 @@ interface BusPattern : RecordWithStringIdentifier {
     val stopTimes get() = stopTimesList as List<BusStopTime>
 
     val descriptionText: String?
+
+    var busRoute: BusRoute?
 }

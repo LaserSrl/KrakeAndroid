@@ -37,9 +37,7 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
 
     private var currentPassage: BusPassage? = null
     private val patternPolylineTask: PatternPolylineTask by lazy {
-        PatternPolylineTask(
-            context ?: throw IllegalArgumentException("The context mustn't be null."), this
-        )
+        PatternPolylineTask(this)
     }
     private var polyline: Polyline? = null
     private var selectedStop: ContentItemWithLocation? = null
@@ -95,12 +93,14 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
 
     override fun onPatternPolylineLoaded(patternID: String, polyline: List<LatLng>) {
         if (patternID == currentPassage?.pattern?.stringIdentifier) {
+            //TODO decomment this when the new feature must be released
+            val lineColor = ResourcesCompat.getColor(resources, R.color.itinerary_step_color_transit, null)
+//            val lineColor = currentPassage?.pattern?.busRoute?.color ?: ResourcesCompat.getColor(resources, R.color.itinerary_step_color_transit, null)
+
             val line = PolylineOptions()
                     .addAll(polyline)
                     .width(10f)
-                    .color(ResourcesCompat.getColor(resources,
-                                                    R.color.itinerary_step_color_transit,
-                                                    null))
+                    .color(lineColor)
 
             mMapManager.getMapAsync { this.polyline = it.addPolyline(line) }
         }
