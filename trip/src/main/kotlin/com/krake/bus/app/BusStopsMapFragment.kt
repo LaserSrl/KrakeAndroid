@@ -1,5 +1,6 @@
 package com.krake.bus.app
 
+import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -45,9 +46,13 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
     private val busMovementProvider by lazy {
         busComponentModule.busMovementProvider?.newInstance()
     }
+    private val busMovementRangeMillis
+    get() = TimeUnit.SECONDS.toMillis(busMovementProvider!!.getRefreshPeriod(activity!!).toLong())
+
     private val busMovementHandler = Handler(Looper.getMainLooper())
     private var currentBusMarker: Marker? = null
     private val markerMovementHandler = Handler()
+    private var busMovementTask: com.krake.core.thread.AsyncTask<*>? = null
 
     override fun onPassageChosen(passage: BusPassage) {
         stopBusLocationTracking()
@@ -58,7 +63,7 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
 
         polyline?.remove()
 
-        scheduleBusLocationTracking()
+        scheduleBusLocationTracking(true)
     }
 
     override fun loadItemsInMap(googleMap: GoogleMap, lazyList: List<ContentItemWithLocation>, cacheValid: Boolean)
@@ -108,7 +113,7 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
 
     override fun onResume() {
         super.onResume()
-        scheduleBusLocationTracking()
+        scheduleBusLocationTracking(true)
     }
 
     override fun onPause() {
@@ -116,11 +121,14 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
         stopBusLocationTracking()
     }
 
-    private fun scheduleBusLocationTracking() {
+    private fun scheduleBusLocationTracking(startNow: Boolean) {
         if (busMovementProvider != null && currentPassage != null && activity != null) {
             Log.d(TAG, "schedule bus current position retrieve action")
-            val seconds = TimeUnit.SECONDS.toMillis(busMovementProvider!!.getRefreshPeriod(activity!!).toLong())
-            busMovementHandler.postDelayed(::retrieveCurrentBusLocation, seconds)
+
+            if (startNow)
+                retrieveCurrentBusLocation()
+
+            busMovementHandler.postDelayed(::retrieveCurrentBusLocation, busMovementRangeMillis)
         } else {
             stopBusLocationTracking()
         }
@@ -128,7 +136,7 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
 
     private fun retrieveCurrentBusLocation() {
         Log.d(TAG, "call to provider")
-        async {
+        busMovementTask = async {
             busMovementProvider!!.provideCurrentBusPosition(activity!!, currentPassage!!)
         }.completed { position ->
             Log.d(TAG, "position retrieved")
@@ -141,11 +149,11 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
                     moveBusMarker(position)
                 }
             }
-            scheduleBusLocationTracking()
+            scheduleBusLocationTracking(false)
         }.error {
             Log.d(TAG, "error")
             it.printStackTrace()
-            scheduleBusLocationTracking()
+            scheduleBusLocationTracking(false)
         }.load()
     }
 
@@ -153,6 +161,8 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
         Log.d(TAG, "stop schedule bus current position retrieve action")
         busMovementHandler.removeCallbacksAndMessages(null)
         markerMovementHandler.removeCallbacksAndMessages(null)
+        busMovementTask?.cancel()
+        busMovementTask = null
         currentBusMarker?.remove()
         currentBusMarker = null
     }
@@ -161,7 +171,7 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
         val startPosition = currentBusMarker!!.position
         val start = SystemClock.uptimeMillis()
         val interpolator = AccelerateDecelerateInterpolator()
-        val durationInMs = 1000f
+        val durationInMs = busMovementRangeMillis.toFloat()
 
         markerMovementHandler.post(object : Runnable {
             var elapsed = 0L
