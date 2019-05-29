@@ -21,9 +21,9 @@ import java.util.regex.Pattern
 
 class BusPatternDataModel : DataConnectionModel()
 {
-    private var busRoutesTask: AsyncTask<List<OtpBusRoute>>? = null
-    private val mutableBusRoutes = MutableLiveData<List<OtpBusRoute>>()
-    val busRoutes: LiveData<List<OtpBusRoute>> = mutableBusRoutes
+    private var busRoutesTask: AsyncTask<List<BusRoute>>? = null
+    private val mutableBusRoutes = MutableLiveData<List<BusRoute>>()
+    val busRoutes: LiveData<List<BusRoute>> = mutableBusRoutes
 
     private val mutableStatus = MutableLiveData<Status>()
     val status: LiveData<Status> = mutableStatus

@@ -17,6 +17,8 @@ import com.krake.core.model.ContentItem
 import com.krake.core.model.identifierOrStringIdentifier
 import com.krake.bus.viewmodel.Error
 import com.krake.bus.viewmodel.Loading
+import com.krake.bus.widget.BusRouteListAdapter
+import com.krake.bus.widget.BusStopListAdapter
 import com.krake.trip.R
 
 class BusRouteListActivity : ContentItemListMapActivity() {
@@ -56,6 +58,7 @@ class BusRouteListActivity : ContentItemListMapActivity() {
                 ListMapComponentModule(this)
                     .activityLayout(R.layout.activity_bus_stops)
                     .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_BUS_STOP_LAYOUT)
+                    .listAdapterClass(BusStopListAdapter::class.java)
                     .listFragmentClass(BusRouteStopListFragment::class.java)
                     .mapFragmentClass(BusRouteStopMapFragment::class.java),
                 busComponentModule)

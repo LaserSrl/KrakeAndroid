@@ -96,7 +96,6 @@
     </style>
 
     <style name="BusStopCellImageView">
-        <item name="android:background">@drawable/bus_bg_shape_rectangle</item>
         <item name="android:padding">2dp</item>
         <item name="srcCompat">@drawable/ic_directions_bus_36dp</item>
     </style>

@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.krake.OtpDataRepository
+import com.krake.bus.model.BusStop
 import com.krake.core.thread.AsyncTask
 import com.krake.core.thread.async
-import com.krake.bus.model.OtpBusStop
 import com.krake.bus.model.OtpStopTime
 import java.util.*
 
 class BusStopsViewModel : ViewModel() {
-    private var busStopsTask: AsyncTask<List<OtpBusStop>>? = null
-    private val mutableBusStops = MutableLiveData<List<OtpBusStop>>()
-    val busStops: LiveData<List<OtpBusStop>> = mutableBusStops
+    private var busStopsTask: AsyncTask<List<BusStop>>? = null
+    private val mutableBusStops = MutableLiveData<List<BusStop>>()
+    val busStops: LiveData<List<BusStop>> = mutableBusStops
 
     private var stopTimesTask: AsyncTask<List<OtpStopTime>>? = null
     private val mutableStopTimes = MutableLiveData<List<OtpStopTime>>()
@@ -40,7 +40,7 @@ class BusStopsViewModel : ViewModel() {
         busStopsTask?.load()
     }
 
-    fun loadBusTimesByDate(stop: OtpBusStop, routeId: String, date: Date) {
+    fun loadBusTimesByDate(stop: BusStop, routeId: String, date: Date) {
         mutableStatus.value = Loading
 
         stopTimesTask = async {

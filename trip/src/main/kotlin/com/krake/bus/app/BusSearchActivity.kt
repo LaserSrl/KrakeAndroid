@@ -30,6 +30,7 @@ import com.krake.bus.map.MapModifier
 import com.krake.bus.provider.PinDropListener
 import com.krake.bus.widget.BusPassageAdapter
 import com.krake.bus.widget.BusPassageHolder
+import com.krake.bus.widget.BusStopListAdapter
 import com.krake.core.Constants
 import com.krake.core.address.*
 import com.krake.core.api.GoogleApiClientFactory
@@ -81,6 +82,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
                     .contentPriority(ListMapComponentModule.PRIORITY_MAP)
                     .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_BUS_STOP_LAYOUT)
                     .listRootLayout(BusComponentModule.DEFAULT_LIST_ROOT_LAYOUT)
+                    .listAdapterClass(BusStopListAdapter::class.java)
                     .mapAvoidLocationPermissions()
                     .mapUseCluster(true)
                     .mapFragmentClass(BusComponentModule.DEFAULT_MAP_FRAGMENT)

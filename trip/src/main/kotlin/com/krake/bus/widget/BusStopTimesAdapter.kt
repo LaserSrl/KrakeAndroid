@@ -1,4 +1,4 @@
-package com.krake.bus.app
+package com.krake.bus.widget
 
 import android.content.Context
 import com.krake.core.widget.ContentItemAdapter

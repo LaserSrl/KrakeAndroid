@@ -11,22 +11,28 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.krake.bus.component.module.BusComponentModule
+import com.krake.bus.model.BusStop
 import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.model.ContentItem
 import com.krake.core.widget.ImageTextCellHolder
 import com.krake.core.widget.SafeBottomSheetBehavior
-import com.krake.bus.model.OtpBusStop
 import com.krake.bus.viewmodel.BusStopsViewModel
 import com.krake.bus.viewmodel.Error
 import com.krake.bus.viewmodel.Loading
+import com.krake.bus.widget.BusStopTimesAdapter
+import com.krake.core.component.annotation.BundleResolvable
+import com.krake.core.extension.isInSameDay
 import com.krake.trip.R
 import java.text.SimpleDateFormat
 import java.util.*
 
 class BusRouteStopListActivity : ContentItemListMapActivity() {
+    @BundleResolvable
+    lateinit var busComponentModule: BusComponentModule
 
     private lateinit var viewModel: BusStopsViewModel
-    private var selectedStop: OtpBusStop? = null
+    private var selectedStop: BusStop? = null
 
     private lateinit var behavior : SafeBottomSheetBehavior<View>
     private val dateFormatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
@@ -47,7 +53,11 @@ class BusRouteStopListActivity : ContentItemListMapActivity() {
         stopTimesList.adapter = adapter
 
         findViewById<ImageButton>(R.id.previousButton).setOnClickListener {
+            if (calendar.time.isInSameDay(Date()))
+                return@setOnClickListener
+
             calendar.add(Calendar.DATE, -1)
+
             viewModel.loadBusTimesByDate(selectedStop!!, routeId, calendar.time)
         }
 
@@ -110,7 +120,7 @@ class BusRouteStopListActivity : ContentItemListMapActivity() {
     }
 
     override fun onShowContentItemDetails(sender: Any, contentItem: ContentItem) {
-        selectedStop = contentItem as OtpBusStop
+        selectedStop = contentItem as BusStop
 
         calendar.time = Date()
         viewModel.loadBusTimesByDate(selectedStop!!, routeId, calendar.time)

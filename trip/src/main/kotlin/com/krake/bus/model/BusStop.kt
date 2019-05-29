@@ -1,6 +1,7 @@
 package com.krake.bus.model
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.core.content.ContextCompat
 import com.krake.core.model.ContentItemWithLocation
@@ -12,6 +13,7 @@ import com.krake.trip.R
  * Created by joel on 08/03/17.
  */
 interface BusStop : ContentItemWithLocation, RecordWithStringIdentifier, MapPart {
+    val id: String
 
     var isMainStop: Boolean
         get() = true

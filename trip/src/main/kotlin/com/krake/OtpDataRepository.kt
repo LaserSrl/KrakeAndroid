@@ -5,24 +5,25 @@ import android.content.Context
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.maps.android.PolyUtil
+import com.krake.bus.model.*
 import com.krake.core.network.RemoteClient
 import com.krake.core.network.RemoteRequest
-import com.krake.bus.model.OtpBusRoute
-import com.krake.bus.model.OtpBusStop
-import com.krake.bus.model.OtpStopTime
-import com.krake.trip.R
+import com.krake.core.model.identifierOrStringIdentifier
 import java.text.SimpleDateFormat
 import java.util.*
+import com.krake.bus.component.module.BusComponentModule
+import com.krake.trip.R
+
 
 /**
  * repository used for fetch data from otp server.
  * this must be initialized in application
  */
-class OtpDataRepository private constructor(private val context: Context) {
+class OtpDataRepository private constructor(private val context: Context, private val busComponentModule: BusComponentModule) {
     private val gson = Gson()
     private val otpBaseUrl = context.getString(R.string.open_trip_planner_base_url)
 
-    suspend fun loadBusRoutes(): List<OtpBusRoute> {
+    suspend fun loadBusRoutes(): List<BusRoute> {
         val url = String.format(context.getString(R.string.bus_routes_path), otpBaseUrl)
 
         val request = RemoteRequest(url)
@@ -32,10 +33,10 @@ class OtpDataRepository private constructor(private val context: Context) {
             .execute(request)
             .jsonArray()
 
-        return gson.fromJson(jsonResult, Array<OtpBusRoute>::class.java).toList()
+        return gson.fromJson(jsonResult, Array<OtpBusRoute>::class.java).toList().sortedBy { it.longName }
     }
 
-    suspend fun loadStopsByBusRoute(routeId: String): List<OtpBusStop> {
+    suspend fun loadStopsByBusRoute(routeId: String): List<BusStop> {
         val url = String.format(context.getString(R.string.bus_stops_by_route_path), otpBaseUrl, routeId)
 
         val request = RemoteRequest(url)
@@ -45,10 +46,13 @@ class OtpDataRepository private constructor(private val context: Context) {
             .execute(request)
             .jsonArray()
 
-        return gson.fromJson(jsonResult, Array<OtpBusStop>::class.java).toList()
+        val clazz = java.lang.reflect.Array.newInstance(busComponentModule.stopItemClass, 0).javaClass
+
+        @Suppress("UNCHECKED_CAST")
+        return (gson.fromJson(jsonResult, clazz) as Array<BusStop>).toList()
     }
 
-    suspend fun loadBusTimesByDate(stop: OtpBusStop, routeId: String, date: Date): List<OtpStopTime> {
+    suspend fun loadBusTimesByDate(stop: BusStop, routeId: String, date: Date): List<OtpStopTime> {
         val dateFormatter = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
         val url = String.format(context.getString(R.string.bus_stoptimes_by_stop_path), otpBaseUrl, stop.id, dateFormatter.format(date))
 
@@ -57,7 +61,9 @@ class OtpDataRepository private constructor(private val context: Context) {
 
         val jsonResult = RemoteClient.client(RemoteClient.Mode.DEFAULT)
             .execute(request)
-            .jsonArray()?.filter {
+            .jsonArray()?.distinctBy {
+                (it.asJsonObject).get("pattern").asJsonObject.get("id").asString
+            }?.filter {
                 (it.asJsonObject).get("pattern").asJsonObject.get("id").asString.startsWith(routeId)
             }?.map {
                 (it.asJsonObject).get("times").asJsonArray
@@ -92,8 +98,8 @@ class OtpDataRepository private constructor(private val context: Context) {
         @SuppressLint("StaticFieldLeak")
         lateinit var shared: OtpDataRepository
 
-        fun create(context: Context) {
-            this.shared = OtpDataRepository(context)
+        fun create(context: Context, busComponentModule: BusComponentModule) {
+            this.shared = OtpDataRepository(context, busComponentModule)
         }
     }
 }
