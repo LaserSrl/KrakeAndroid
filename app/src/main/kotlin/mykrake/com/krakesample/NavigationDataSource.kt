@@ -7,6 +7,7 @@ import android.view.MenuItem
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
+import com.krake.bus.app.BusRouteListActivity
 import com.krake.bus.app.BusSearchActivity
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.cards.CardsActivity
@@ -234,6 +235,17 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                         .displayPath(context.getString(R.string.orchard_path_products)),
                     ListMapComponentModule(context)
                         .showMap(false)
+                )
+                .build()
+
+            R.id.nav_routes -> intent = ComponentManager.createIntent()
+                .from(context)
+                .to(BusRouteListActivity::class.java)
+                .with(
+                    BusRouteListActivity.defaultListMapModule(context),
+                    BusComponentModule()
+                        .patternClass(Pattern::class.java)
+                        .stopItemClass(OtpStopItem::class.java)
                 )
                 .build()
 

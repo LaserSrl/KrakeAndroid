@@ -1,5 +1,7 @@
 package mykrake.com.krakesample
 
+import com.krake.OtpDataRepository
+import com.krake.bus.component.module.BusComponentModule
 import com.krake.cards.CardsDetailFragment
 import com.krake.contentcreation.ContentCreationActivity
 import com.krake.contentcreation.ContentCreationTabInfo
@@ -25,10 +27,7 @@ import com.squareup.leakcanary.LeakCanary
 import com.twitter.sdk.android.core.Twitter
 import com.twitter.sdk.android.core.TwitterAuthConfig
 import com.twitter.sdk.android.core.TwitterConfig
-import mykrake.com.krakesample.model.Immagine
-import mykrake.com.krakesample.model.Itinerario
-import mykrake.com.krakesample.model.User
-import mykrake.com.krakesample.model.UserReport
+import mykrake.com.krakesample.model.*
 import java.util.*
 
 /**
@@ -77,6 +76,11 @@ class KrakeApp : KrakeApplication(), UserNavigationViewListener {
         Signaler.shared.registerApiEndListener(
             getString(R.string.orchard_api_path_content_modify),
             UserInfoCacheInvalidatorApiEndListener()
+        )
+
+        OtpDataRepository.create(
+            this, BusComponentModule()
+                .stopItemClass(OtpStopItem::class.java)
         )
     }
 

@@ -1,9 +1,11 @@
 package com.krake.bus.widget
 
 import android.content.Context
+import android.view.View
+import com.krake.bus.model.OtpStopTime
 import com.krake.core.widget.ContentItemAdapter
 import com.krake.core.widget.ImageTextCellHolder
-import com.krake.bus.model.OtpStopTime
+import com.krake.trip.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,7 +24,24 @@ class BusStopTimesAdapter(context: Context?, layout: Int, holderClass: Class<*>?
         calendar.set(Calendar.MILLISECOND, 0)
 
         val item = getItem(position) as OtpStopTime
-        calendar.add(Calendar.SECOND, item.scheduledDeparture!!.toInt())
+
+        val scheduled = item.scheduledDeparture!!.toInt()
+        val real = item.realtimeDeparture!!.toInt()
+
+        calendar.add(Calendar.SECOND, real)
+
+        val colorRef: Int
+        if (scheduled == real) {
+            colorRef = R.color.time_scheduled_text_color
+            holder.imageView?.visibility = View.INVISIBLE
+
+        } else {
+            colorRef = R.color.time_real_text_color
+            holder.imageView?.visibility = View.VISIBLE
+        }
+
+        holder.titleTextView.setTextColor(context!!.resources.getColor(colorRef))
+
 
         holder.titleTextView.text = dateFormatter.format(calendar.time)
     }

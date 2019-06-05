@@ -7,6 +7,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.viewmodel.BusPatternDataModel
+import com.krake.bus.viewmodel.Error
+import com.krake.bus.viewmodel.Loading
+import com.krake.bus.widget.BusRouteListAdapter
+import com.krake.bus.widget.BusStopListAdapter
 import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.component.annotation.BundleResolvable
 import com.krake.core.component.base.ComponentManager
@@ -15,10 +19,6 @@ import com.krake.core.component.module.OrchardComponentModule
 import com.krake.core.component.module.ThemableComponentModule
 import com.krake.core.model.ContentItem
 import com.krake.core.model.identifierOrStringIdentifier
-import com.krake.bus.viewmodel.Error
-import com.krake.bus.viewmodel.Loading
-import com.krake.bus.widget.BusRouteListAdapter
-import com.krake.bus.widget.BusStopListAdapter
 import com.krake.trip.R
 
 class BusRouteListActivity : ContentItemListMapActivity() {
@@ -61,7 +61,9 @@ class BusRouteListActivity : ContentItemListMapActivity() {
                     .listAdapterClass(BusStopListAdapter::class.java)
                     .listFragmentClass(BusRouteStopListFragment::class.java)
                     .mapFragmentClass(BusRouteStopMapFragment::class.java),
-                busComponentModule)
+                busComponentModule.apply {
+                    busStopsAutoRefreshPeriod(resources.getInteger(R.integer.bus_stop_time_refresh))
+                })
             .build()
     }
 

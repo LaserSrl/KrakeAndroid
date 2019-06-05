@@ -23,4 +23,7 @@
     <color name="trip_tab_background_color">@android:color/transparent</color>
     <color name="trip_tab_selected_color">@color/colorAccent</color>
     <color name="trip_tab_unselected_color">@android:color/white</color>
+
+    <color name="time_scheduled_text_color">@android:color/black</color>
+    <color name="time_real_text_color">@color/colorPrimary</color>
 </resources>

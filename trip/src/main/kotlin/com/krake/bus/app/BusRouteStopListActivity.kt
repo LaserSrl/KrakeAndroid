@@ -1,6 +1,8 @@
 package com.krake.bus.app
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
@@ -13,19 +15,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.model.BusStop
-import com.krake.core.app.ContentItemListMapActivity
-import com.krake.core.model.ContentItem
-import com.krake.core.widget.ImageTextCellHolder
-import com.krake.core.widget.SafeBottomSheetBehavior
 import com.krake.bus.viewmodel.BusStopsViewModel
 import com.krake.bus.viewmodel.Error
 import com.krake.bus.viewmodel.Loading
 import com.krake.bus.widget.BusStopTimesAdapter
+import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.component.annotation.BundleResolvable
 import com.krake.core.extension.isInSameDay
+import com.krake.core.model.ContentItem
+import com.krake.core.widget.ImageTextCellHolder
+import com.krake.core.widget.SafeBottomSheetBehavior
 import com.krake.trip.R
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class BusRouteStopListActivity : ContentItemListMapActivity() {
     @BundleResolvable
@@ -37,6 +40,9 @@ class BusRouteStopListActivity : ContentItemListMapActivity() {
     private lateinit var behavior : SafeBottomSheetBehavior<View>
     private val dateFormatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
     private val calendar = Calendar.getInstance()
+
+    private val handler = Handler(Looper.getMainLooper())
+    private var isJobScheduled = false
 
     private val routeId by lazy { orchardComponentModule.recordStringIdentifier!! }
 
@@ -103,8 +109,14 @@ class BusRouteStopListActivity : ContentItemListMapActivity() {
         viewModel.stopTimes.observe(this, Observer {
             stopTimesDateTextView.text = dateFormatter.format(calendar.time)
             adapter.swapList(it, true)
+            scheduleRefresh()
             noElementsView.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
         })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopRefresh()
     }
 
     override fun onRefresh() {
@@ -122,9 +134,33 @@ class BusRouteStopListActivity : ContentItemListMapActivity() {
     override fun onShowContentItemDetails(sender: Any, contentItem: ContentItem) {
         selectedStop = contentItem as BusStop
 
-        calendar.time = Date()
-        viewModel.loadBusTimesByDate(selectedStop!!, routeId, calendar.time)
-
+        stopRefresh()
+        reloadTimesFromService()
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+
+    private fun reloadTimesFromService() {
+        if (selectedStop != null) {
+            calendar.time = Date()
+            viewModel.loadBusTimesByDate(selectedStop!!, routeId, calendar.time)
+        }
+    }
+
+    private fun scheduleRefresh() {
+        if (busComponentModule.busStopsAutoRefreshPeriod <= 0 || isJobScheduled)
+            return
+
+        val refreshAction = {
+            isJobScheduled = false
+            reloadTimesFromService()
+        }
+        val refreshTime = TimeUnit.SECONDS.toMillis(busComponentModule.busStopsAutoRefreshPeriod.toLong())
+        handler.postDelayed(refreshAction, refreshTime)
+        isJobScheduled = true
+    }
+
+    private fun stopRefresh() {
+        handler.removeCallbacksAndMessages(null)
+        isJobScheduled = false
     }
 }
