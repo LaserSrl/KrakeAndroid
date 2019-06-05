@@ -17,5 +17,3 @@ include ':trip'
 include ':twitterstream'
 include ':userreport'
 include ':youtubevideo'
-
-project(':app').projectDir = new File(settingsDir, '../tuaagrigentoandroid/app')

@@ -4,6 +4,7 @@ package mykrake.com.krakesample.model
 
 import com.krake.core.model.RecordWithFilter
 import io.realm.RealmObject
+import io.realm.annotations.Ignore
 import io.realm.annotations.PrimaryKey
 
 
@@ -17,4 +18,11 @@ open class OtpStopItem : RealmObject() /*INTERFACES*/, com.krake.bus.model.BusSt
     open var originalId: String? = null
     override var name: String = ""
 /*ENDFIELDS*/
+
+    override val id: String
+        get() = originalId!!
+
+    @Ignore
+    override var isMainStop: Boolean = true
+
 }

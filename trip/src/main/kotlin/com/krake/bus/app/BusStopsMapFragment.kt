@@ -1,12 +1,16 @@
 package com.krake.bus.app
 
-import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.util.Log
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.Polyline
+import com.google.android.gms.maps.model.PolylineOptions
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.model.BusPassage
 import com.krake.bus.model.BusPassagesReceiver
@@ -19,11 +23,8 @@ import com.krake.core.map.MarkerCreator
 import com.krake.core.model.ContentItemWithLocation
 import com.krake.core.model.identifierOrStringIdentifier
 import com.krake.core.thread.async
-import java.util.concurrent.TimeUnit
-import com.google.android.gms.maps.model.LatLng
-import android.os.SystemClock
-import android.view.animation.AccelerateDecelerateInterpolator
 import com.krake.trip.R
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -98,9 +99,11 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
 
     override fun onPatternPolylineLoaded(patternID: String, polyline: List<LatLng>) {
         if (patternID == currentPassage?.pattern?.stringIdentifier) {
-            //TODO decomment this when the new feature must be released
-            val lineColor = ResourcesCompat.getColor(resources, R.color.itinerary_step_color_transit, null)
-//            val lineColor = currentPassage?.pattern?.busRoute?.color ?: ResourcesCompat.getColor(resources, R.color.itinerary_step_color_transit, null)
+            val lineColor = currentPassage?.pattern?.busRoute?.color ?: ResourcesCompat.getColor(
+                resources,
+                R.color.itinerary_step_color_transit,
+                null
+            )
 
             val line = PolylineOptions()
                     .addAll(polyline)
