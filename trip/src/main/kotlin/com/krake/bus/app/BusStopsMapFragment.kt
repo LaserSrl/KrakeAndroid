@@ -59,6 +59,7 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
         stopBusLocationTracking()
 
         currentPassage = passage
+        (selectedStop as? BusStop)?.selectedReferencePassage = currentPassage
 
         currentPassage?.pattern?.let { patternPolylineTask.loadKML(it.stringIdentifier) }
 
@@ -73,7 +74,10 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
         selectedStop = lazyList.first { it.identifierOrStringIdentifier == selectedId }
         lazyList.filterIsInstance(BusStop::class.java).forEach {
             it.isMainStop = it.identifierOrStringIdentifier == selectedId
+            it.selectedReferencePassage = null
         }
+        (selectedStop as? BusStop)?.selectedReferencePassage = currentPassage
+
         super.loadItemsInMap(googleMap, lazyList, cacheValid)
     }
 
