@@ -12,4 +12,5 @@ class BusPassage : ContentItem {
     var passage: Date? = null
     var pattern: BusPattern? = null
     override val titlePartTitle: String? = null
+    var tripId: String? = null
 }

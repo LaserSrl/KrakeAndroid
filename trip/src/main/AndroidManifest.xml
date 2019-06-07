@@ -26,5 +26,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+                android:name="com.krake.bus.app.BusRouteListActivity"
+                android:label="@string/routes"
+                android:screenOrientation="@integer/activity_orientation" />
+        <activity
+                android:name="com.krake.bus.app.BusRouteStopListActivity"
+                android:label="@string/stops"
+                android:screenOrientation="@integer/activity_orientation" />
     </application>
 </manifest>

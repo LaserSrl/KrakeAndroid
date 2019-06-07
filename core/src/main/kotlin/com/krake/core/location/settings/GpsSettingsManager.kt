@@ -121,4 +121,8 @@ open class GpsSettingsManager constructor(protected val activity: Activity, prot
     override fun showSettingsChangeUnavailableMessage(message: String) {
         presenter.showSettingsChangeUnavailableMessage(activity, message)
     }
+
+    override fun onGpsSettingsUnavailable() {
+        listeners.forEach(GpsSettingsListener::onGpsSettingsUnavailable)
+    }
 }

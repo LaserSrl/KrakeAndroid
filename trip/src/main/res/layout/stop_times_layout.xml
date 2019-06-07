@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/stopTimesContainer"
+        android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:layout_behavior="@string/behavior_bottom_sheet_not_under_action">
+
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateTextView" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:text="Lunedì 1 Maggio " app:layout_constraintStart_toEndOf="@+id/imageView"
+            android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/previousButton"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/stopTimesList"
+            app:layout_constraintTop_toBottomOf="@+id/view2"/>
+
+    <com.krake.core.widget.DividerView android:layout_height="1dp" android:layout_width="match_parent" tools:ignore="MissingConstraints"/>
+
+    <ImageButton
+            app:srcCompat="@drawable/ic_keyboard_arrow_right"
+            android:background="@android:color/transparent"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:id="@+id/nextButton"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/view2"/>
+    <ImageButton
+            app:srcCompat="@drawable/ic_keyboard_arrow_left"
+            android:background="@android:color/transparent"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:id="@+id/previousButton" app:layout_constraintEnd_toStartOf="@+id/nextButton"
+            android:layout_marginEnd="16dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/view2"/>
+
+    <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+                 app:layout_constraintTop_toTopOf="@+id/stopTimesList" app:layout_constraintStart_toStartOf="parent"
+                 android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                 android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+                 app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/stopTimesProgressBar"/>
+    <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/black"
+            android:id="@+id/view2" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/dateTextView" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_calendar_24dp"
+            android:id="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/view2"
+            android:tint="@android:color/black"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@+id/dateTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/dateTextView"/>
+
+    <TextView
+            android:id="@+id/noElementsView"
+            android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+            android:visibility="invisible"
+              android:text="@string/content_item_grid_no_elements_available"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              app:layout_constraintBottom_toBottomOf="@+id/stopTimesList"
+              app:layout_constraintTop_toBottomOf="@+id/view2" app:layout_constraintEnd_toEndOf="@+id/stopTimesList"
+              app:layout_constraintStart_toStartOf="@+id/stopTimesList"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

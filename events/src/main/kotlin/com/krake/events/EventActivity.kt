@@ -131,9 +131,10 @@ open class EventActivity : ContentItemListMapActivity(), DateTimePickerFragment.
 
         formattedDate = orchardDateFormat.format(endSelectedDate)
 
-        gridFragment.setExtraParameter(getString(R.string.orchard_event_end_date_key), formattedDate, true)
         if (mapFragment != null)
-            mapFragment.setExtraParameter(getString(R.string.orchard_event_end_date_key), formattedDate, true)
+            mapFragment.setExtraParameter(getString(R.string.orchard_event_end_date_key), formattedDate, false)
+
+        gridFragment.setExtraParameter(getString(R.string.orchard_event_end_date_key), formattedDate, true)
 
     }
 
@@ -162,7 +163,9 @@ open class EventActivity : ContentItemListMapActivity(), DateTimePickerFragment.
 
     override fun selectedFilterTermPart(termPart: TermPart?, termsModule: TermsModule) {
         super.selectedFilterTermPart(termPart, termsModule)
-        if (startSelectedDate != null)
-            updateDateSelected(startSelectedDate!!, endSelectedDate)
+        /* TODO: verificare perchè presente  if (startSelectedDate != null)
+              updateDateSelected(startSelectedDate!!, endSelectedDate)
+
+  */
     }
 }

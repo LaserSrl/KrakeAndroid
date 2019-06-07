@@ -19,4 +19,6 @@ interface BusStopTime {
     val realtimeDeparture: Long?
 
     val scheduledDeparture: Long?
+
+    val tripId: String?
 }

@@ -10,8 +10,8 @@
         android:layout_height="match_parent" />
 
     <TextView
-        android:id="@+id/video_thumbnail_title"
-        style="@style/ContentItems.Cell.Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            android:id="@+id/cellTextView"
+            style="@style/ContentItems.Cell.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 </FrameLayout>

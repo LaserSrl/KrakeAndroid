@@ -413,6 +413,7 @@ public class FieldsFragment extends Fragment implements
                         }
                     }
 
+                    //TODO visualizzare errori per multiterm
                     if (TextUtils.isEmpty(error))
                         fieldInfos.mFieldsErrors.remove(orchardKey);
                     else

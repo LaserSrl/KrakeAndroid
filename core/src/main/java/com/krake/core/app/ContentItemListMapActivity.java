@@ -578,21 +578,25 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
             }
 
             // se il filtro è applicato in query, si setta l'extra ai fragment e si fa il reload dei dati in ognuno
-            getGridFragment().setExtraParameter(getString(R.string.orchard_query_term_ids), termId, true);
             if (getMapFragment() != null) {
-                getMapFragment().setExtraParameter(getString(R.string.orchard_query_term_ids), termId, true);
+                getMapFragment().setExtraParameter(getString(R.string.orchard_query_term_ids), termId, false);
             }
+
+            getGridFragment().setExtraParameter(getString(R.string.orchard_query_term_ids), termId, true);
+
         } else {
             String displayPath = orchardComponentModule.getDisplayPath();
             if (termPart != null) {
                 displayPath = termPart.getAutoroutePartDisplayAlias();
             }
 
-            // se il filtro è applicato sul displayPath, il displayPath viene ricaricato
-            getGridFragment().updateDisplayPath(displayPath);
             if (getMapFragment() != null) {
-                getMapFragment().updateDisplayPath(displayPath);
+                getMapFragment().updateDisplayPath(displayPath, false);
             }
+
+            // se il filtro è applicato sul displayPath, il displayPath viene ricaricato
+            getGridFragment().updateDisplayPath(displayPath, true);
+
         }
     }
 
@@ -783,22 +787,26 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
     public void onDataLoadFailed(@NonNull OrchardError error,
                                  @Nullable DataModel dataModel) {
         if ((dataModel == null || dataModel.getListData().size() == 0) && error.getReactionCode() == 0 && !snackBarVisible) {
-            snackBarVisible = true;
-            SnackbarUtils.createSnackbar(findViewById(R.id.activity_layout_coordinator), R.string.data_loading_failed, Snackbar.LENGTH_LONG)
-                    .addCallback(new Snackbar.Callback() {
-                        @Override
-                        public void onDismissed(Snackbar snackbar, int event) {
-                            super.onDismissed(snackbar, event);
-                            snackBarVisible = false;
-                        }
-
-                        @Override
-                        public void onShown(Snackbar snackbar) {
-                            super.onShown(snackbar);
-                        }
-                    })
-                    .show();
+            showError();
         }
+    }
+
+    protected void showError() {
+        snackBarVisible = true;
+        SnackbarUtils.createSnackbar(findViewById(R.id.activity_layout_coordinator), R.string.data_loading_failed, Snackbar.LENGTH_LONG)
+                .addCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        super.onDismissed(snackbar, event);
+                        snackBarVisible = false;
+                    }
+
+                    @Override
+                    public void onShown(Snackbar snackbar) {
+                        super.onShown(snackbar);
+                    }
+                })
+                .show();
     }
 
     @Override

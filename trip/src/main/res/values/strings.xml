@@ -65,5 +65,7 @@
     <string name="travel_mode_bike_name">By bike</string>
     <string name="date_start">Departure</string>
     <string name="date_arrival">Arrival</string>
+    <string name="routes">Routes</string>
+    <string name="stops">Stops</string>
 
 </resources>

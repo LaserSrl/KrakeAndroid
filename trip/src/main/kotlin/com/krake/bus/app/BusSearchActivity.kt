@@ -30,6 +30,7 @@ import com.krake.bus.map.MapModifier
 import com.krake.bus.provider.PinDropListener
 import com.krake.bus.widget.BusPassageAdapter
 import com.krake.bus.widget.BusPassageHolder
+import com.krake.bus.widget.BusStopListAdapter
 import com.krake.core.Constants
 import com.krake.core.address.*
 import com.krake.core.api.GoogleApiClientFactory
@@ -49,6 +50,7 @@ import com.krake.core.location.settings.GpsSettingsListener
 import com.krake.core.model.ContentItem
 import com.krake.core.model.identifierOrStringIdentifier
 import com.krake.core.permission.PermissionListener
+import com.krake.core.permission.PermissionManager
 import com.krake.trip.OtpBoundingBoxTask
 import com.krake.trip.R
 import java.util.*
@@ -78,8 +80,9 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         val defaultListMapModule: (Context) -> ListMapComponentModule = { context: Context ->
             ListMapComponentModule(context)
                     .contentPriority(ListMapComponentModule.PRIORITY_MAP)
-                    .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_LAYOUT)
+                    .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_BUS_STOP_LAYOUT)
                     .listRootLayout(BusComponentModule.DEFAULT_LIST_ROOT_LAYOUT)
+                    .listAdapterClass(BusStopListAdapter::class.java)
                     .mapAvoidLocationPermissions()
                     .mapUseCluster(true)
                     .mapFragmentClass(BusComponentModule.DEFAULT_MAP_FRAGMENT)
@@ -93,7 +96,6 @@ open class BusSearchActivity : ContentItemListMapActivity(),
     private lateinit var placesResultTask: PlacesResultTask
     private lateinit var placeIdTask: PlaceIdTask
     private lateinit var geocoderTask: GeocoderTask
-    private var firstLocationSearch = false
 
     private lateinit var searchFormFragment: BusSearchFormFragment
     private lateinit var frameContainer: FrameLayout
@@ -243,7 +245,6 @@ open class BusSearchActivity : ContentItemListMapActivity(),
     }
 
     override fun onApiClientConnected() {
-        firstLocationSearch = true
         if (selectedPlace?.isUserLocation != false) {
             searchLocation()
         } else {
@@ -254,13 +255,22 @@ open class BusSearchActivity : ContentItemListMapActivity(),
     override fun onPermissionsHandled(acceptedPermissions: Array<out String>)
     {
         mapFragment.onPermissionsHandled(acceptedPermissions)
+
+        if (!PermissionManager.containLocationPermissions(acceptedPermissions))
+            geocoderTask.load(busComponentModule.defaultLocation!!)
     }
 
     override fun onGpsSettingsAcquired() {
         mapFragment.onGpsSettingsAcquired()
-        if (selectedPlace?.isUserLocation == true) {
+
+        if (selectedPlace == null || selectedPlace?.isUserLocation == true) {
             searchLocation()
         }
+    }
+
+    override fun onGpsSettingsUnavailable() {
+        mapFragment.onGpsSettingsUnavailable()
+        geocoderTask.load(busComponentModule.defaultLocation!!)
     }
 
     override fun onPlacesResultLoaded(requestId: Int, places: MutableList<PlaceResult>) {
@@ -308,7 +318,6 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         selectedPlace = place
         Log.d(TAG, "searching place, is user location: ${place.isUserLocation}")
         if (place.isUserLocation) {
-            firstLocationSearch = false
             searchLocation()
             return
         }
@@ -339,10 +348,8 @@ open class BusSearchActivity : ContentItemListMapActivity(),
                 request.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
                 LocationServices.FusedLocationApi.requestLocationUpdates(locationClientFactory.apiClient, request, this)
             }
-        } else if (!firstLocationSearch) {
+        } else {
             locationRequirementsHelper.request(true)
-        } else if (busComponentModule.defaultLocation != null) {
-            geocoderTask.load(busComponentModule.defaultLocation!!)
         }
     }
 
@@ -352,7 +359,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
             val userLatLng = LatLng(location.latitude, location.longitude)
             searchBounds?.contains(userLatLng) ?: false
         }
-        if (!firstLocationSearch || locationIsInBounds()) {
+        if (locationIsInBounds()) {
             // location valid
             Log.d(TAG, "notifying current location with latitude: ${location.latitude} and longitude: ${location.longitude}")
             selectedPlace?.location = location
@@ -360,8 +367,6 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         } else if (busComponentModule.defaultLocation != null) {
             geocoderTask.load(busComponentModule.defaultLocation!!)
         }
-
-        firstLocationSearch = false
     }
 
     fun onPlaceChanged() {
@@ -416,7 +421,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
                                 .recordStringIdentifier(contentItem.identifierOrStringIdentifier),
                         ListMapComponentModule(this)
                                 .contentPriority(ListMapComponentModule.PRIORITY_MAP)
-                                .listCellLayout(R.layout.cell_bus_stop_passage)
+                                .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_LAYOUT)
                                 .listRootLayout(R.layout.fragment_bus_list)
                                 .listAdapterClass(BusPassageAdapter::class.java)
                                 .listViewHolderClass(BusPassageHolder::class.java)

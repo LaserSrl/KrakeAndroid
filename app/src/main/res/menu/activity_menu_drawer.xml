@@ -27,6 +27,10 @@
                 android:icon="@android:drawable/ic_menu_manage"
                 android:title="Cartoline"/>
         <item
+                android:id="@+id/nav_routes"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Rotte"/>
+        <item
                 android:id="@+id/nav_news"
                 android:icon="@android:drawable/ic_menu_manage"
                 android:title="Notizie"/>

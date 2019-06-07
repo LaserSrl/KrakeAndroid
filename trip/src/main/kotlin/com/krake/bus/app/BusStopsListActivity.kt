@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.model.*
+import com.krake.bus.viewmodel.BusPatternDataModel
 import com.krake.core.PrivacyViewModel
 import com.krake.core.app.ContentItemListMapActivity
 import com.krake.core.cache.CacheManager
@@ -42,39 +43,39 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         (CacheManager.shared as? LocationCacheModifier)?.addLocationPath(stopTimesPath)
 
         val lineModule = OrchardComponentModule()
-                .startConnectionAfterActivityCreated(false)
-                .dataClass(orchardComponentModule.dataClass)
-                .displayPath(getString(R.string.orchard_bus_line_display_alias))
-                .avoidPagination()
+            .startConnectionAfterActivityCreated(false)
+            .dataClass(orchardComponentModule.dataClass)
+            .displayPath(getString(R.string.orchard_bus_line_display_alias))
+            .avoidPagination()
 
-        linesConnection = ViewModelProviders.of(this).get(CacheManager.shared.getModelKey(lineModule), DataConnectionModel::class.java)
+        linesConnection = ViewModelProviders.of(this)
+            .get(CacheManager.shared.getModelKey(lineModule), DataConnectionModel::class.java)
 
-        linesConnection.configure(lineModule, loginComponentModule, ViewModelProviders.of(this).get(PrivacyViewModel::class.java))
+        linesConnection.configure(
+            lineModule,
+            loginComponentModule,
+            ViewModelProviders.of(this).get(PrivacyViewModel::class.java)
+        )
 
-        linesConnection.multiThreadModel.observe(this, object : Observer<DataModel>
-        {
-            override fun onChanged(t: DataModel?)
-            {
-                if (t != null)
-                {
-                    sendBusStops(t.listData as List<BusStop>)
-                    updateRefreshStatus(false)
-                }
+        linesConnection.multiThreadModel.observe(this, Observer<DataModel> { t ->
+            if (t != null) {
+                sendBusStops(t.listData as List<BusStop>)
+                updateRefreshStatus(false)
             }
         })
     }
-
 
     override fun requestPassages() {
     }
 
     override fun onShowContentItemDetails(sender: Any, contentItem: ContentItem) {
-        // Reset the state of the RecyclerView when a BusStop is selected.
+        // Reset the state of the RecyclerView when a OtpBusStop is selected.
         gridFragment?.recycleView?.scrollToPosition(0)
         // Get the BottomSheetBehavior if possible.
-        val bottomBehavior = (gridContainer.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetBehavior
+        val bottomBehavior =
+            (gridContainer.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? BottomSheetBehavior
         bottomBehavior?.let {
-            // Reset the state of the BottomSheetBehavior when a BusStop is selected.
+            // Reset the state of the BottomSheetBehavior when a OtpBusStop is selected.
             it.state = BottomSheetBehavior.STATE_COLLAPSED
         }
         (contentItem as? BusPassage)?.let {
@@ -86,35 +87,32 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         }
     }
 
-    override fun getFragmentCreationExtras(mode: FragmentMode): Bundle
-    {
-        if (mode == FragmentMode.GRID)
-        {
+    override fun getFragmentCreationExtras(mode: FragmentMode): Bundle {
+        if (mode == FragmentMode.GRID) {
             val bundle = intent.extras
 
             val gridOrchard = OrchardComponentModule()
-                    .displayPath(getString(R.string.orchard_path_otp_stoptimes))
-                    .dataClass(busComponentModule.patternClass)
-                    .noCache()
-                    .avoidPagination()
-                    .putExtraParameter("Id", orchardComponentModule.recordStringIdentifier)
-                    .dataConnectionModelClass(BusPatternDataModel::class.java)
+                .displayPath(getString(R.string.orchard_path_otp_stoptimes))
+                .dataClass(busComponentModule.patternClass)
+                .noCache()
+                .avoidPagination()
+                .putExtraParameter("Id", orchardComponentModule.recordStringIdentifier)
+                .dataConnectionModelClass(BusPatternDataModel::class.java)
 
             bundle.putAll(gridOrchard.writeContent(this))
 
-            return Bundle().putModules(this, gridOrchard, listMapComponentModule)
+            return Bundle().putModules(this, gridOrchard, listMapComponentModule, busComponentModule)
         }
 
         return super.getFragmentCreationExtras(mode)
     }
 
-    private fun dataLoadFailedOrEmpty()
-    {
+    private fun dataLoadFailedOrEmpty() {
         AlertDialog.Builder(this@BusStopsListActivity)
-                .setMessage(getString(R.string.error_loading_stop_times))
-                .setCancelable(false)
-                .setNeutralButton(android.R.string.ok) { _, _ -> finish() }
-                .show()
+            .setMessage(getString(R.string.error_loading_stop_times))
+            .setCancelable(false)
+            .setNeutralButton(android.R.string.ok) { _, _ -> finish() }
+            .show()
     }
 
     private fun passageChosen(passage: BusPassage) {
@@ -130,5 +128,15 @@ class BusStopsListActivity : ContentItemListMapActivity(),
     override fun onRefresh() {
         super.onRefresh()
         sendBusStops(listOf())
+    }
+
+    override fun setSwipeRefreshEnabled(enabled: Boolean) {
+        //enable progress only when the auto refresh is not set
+        super.setSwipeRefreshEnabled(if (busComponentModule.busStopsAutoRefreshPeriod > 0) false else enabled)
+    }
+
+    override fun updateRefreshStatus(refreshing: Boolean) {
+        //enable progress only when the auto refresh is not set
+        super.updateRefreshStatus(if (busComponentModule.busStopsAutoRefreshPeriod > 0) false else refreshing)
     }
 }

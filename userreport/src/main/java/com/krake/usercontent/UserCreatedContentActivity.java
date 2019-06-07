@@ -199,13 +199,14 @@ public class UserCreatedContentActivity extends ContentItemListMapActivity imple
     private void updateFragmentsAlias(boolean loginRequired, String displayPath) {
         setLoginRequired(loginRequired);
         onLoginUserChanged(LoginManager.getShared().getLoggedUser().getValue());
-        getGridFragment().getLoginComponentModule().loginRequired(loginRequired);
-        getGridFragment().updateDisplayPath(displayPath);
 
         if (getMapFragment() != null) {
             getMapFragment().getLoginComponentModule().loginRequired(loginRequired);
-            getMapFragment().updateDisplayPath(displayPath);
+            getMapFragment().updateDisplayPath(displayPath, false);
         }
+
+        getGridFragment().getLoginComponentModule().loginRequired(loginRequired);
+        getGridFragment().updateDisplayPath(displayPath, true);
     }
 
     @SuppressWarnings("ConstantConditions")

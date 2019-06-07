@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TripPlannerSearchContainer"
-            app:layout_behavior="@string/behavior_not_under_action_bar"
             app:layout_constraintBottom_toTopOf="@+id/tripResultSteps"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/tripResultMap"
@@ -24,31 +23,13 @@
 
         </FrameLayout>
 
-        <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                         xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                         android:id="@+id/app_bar_layout"
-                                                         android:layout_width="match_parent"
-                                                         android:layout_height="wrap_content"
-                                                         android:theme="@style/AppBarStyle"
-                                                         app:expanded="false"
-                                                         app:layout_constraintBottom_toTopOf="@+id/tripResultSteps"
-                                                         app:layout_constraintLeft_toLeftOf="parent"
-                                                         app:layout_constraintRight_toLeftOf="@+id/tripResultMap"
-                                                         app:layout_constraintTop_toTopOf="parent">
-
-            <com.krake.core.widget.TouchControllableToolbar
-                android:id="@+id/toolbar_actionbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:theme="@style/ActionBarThemeOverlay"
-                android:visibility="gone"
-                app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/Theme.AppCompat.Light"
-                app:subtitleTextAppearance="@style/SubtitleTextAppearance"
-                app:titleTextAppearance="@style/ActionBar.TitleText" />
-
-        </com.google.android.material.appbar.AppBarLayout>
+        <ProgressBar
+            android:id="@+id/searchProgress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:layout_behavior="@string/behavior_avoid_bottom_sheet_and_action"/>
 
         <FrameLayout
             android:id="@+id/tripResultSteps"
@@ -61,7 +42,6 @@
             android:paddingRight="@dimen/activity_vertical_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-
             app:layout_constraintRight_toLeftOf="@+id/tripResultMap"
             app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
     </LinearLayout>

@@ -123,6 +123,7 @@ class GpsSettingsFragment : Fragment(),
                 // Il GPS non può essere attivato.
                 Log.d(TAG, "settings change is unavailable")
                 callback?.showSettingsChangeUnavailableMessage(settingsChangeUnavailableMsg)
+                dispatchGpsSettingsUnavailable()
             }
         }
     }
@@ -138,6 +139,8 @@ class GpsSettingsFragment : Fragment(),
         if (resultCode == Activity.RESULT_OK) {
             // Il GPS è attivo.
             dispatchGpsSettingsAcquired()
+        } else {
+            dispatchGpsSettingsUnavailable()
         }
     }
 
@@ -157,6 +160,11 @@ class GpsSettingsFragment : Fragment(),
         callback?.onGpsSettingsAcquired()
     }
 
+    private fun dispatchGpsSettingsUnavailable() {
+        Log.d(TAG, "GPS settings unavailable")
+        callback?.onGpsSettingsUnavailable()
+    }
+
     /**
      * Listener che viene notificato quando ci sono delle modifiche al GPS o c'è bisogno di mostrare un messaggio.
      */
@@ -167,6 +175,11 @@ class GpsSettingsFragment : Fragment(),
          * il GPS è stato acceso con successo.
          */
         fun onGpsSettingsAcquired()
+
+        /**
+         * il GPS non è stato acceso.
+         */
+        fun onGpsSettingsUnavailable()
 
         /**
          * Specifica come deve essere mostrato il messaggio quando è impossibile cambiare le impostazioni del GPS.

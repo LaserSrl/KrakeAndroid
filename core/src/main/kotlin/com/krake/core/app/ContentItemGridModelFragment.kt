@@ -310,11 +310,10 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(),
         }
     }
 
-    override fun updateDisplayPath(displayPath: String)
+    override fun updateDisplayPath(displayPath: String?, reloadImmediately: Boolean)
     {
-        orchardComponentModule.displayPath(displayPath)
-        if (!dataConnectionModel.waitingLogin)
-        {
+        dataConnectionModel.orchardModule.displayPath(displayPath)
+        if (reloadImmediately && !dataConnectionModel.waitingLogin) {
             dataConnectionModel.restartDataLoading()
         }
     }
@@ -383,7 +382,7 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(),
         mListener?.onShowContentItemDetails(this, item)
     }
 
-    private fun changeProgressVisibility(isLoading: Boolean)
+    protected open fun changeProgressVisibility(isLoading: Boolean)
     {
         if (isLoading && dataConnectionModel.page == 1)
         {

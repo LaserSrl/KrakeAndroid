@@ -67,39 +67,58 @@ class MessagingService : FirebaseMessagingService() {
                 .loadData(loginComponentModule,
                           orchardComponentModule,
                           1,
-                          object : (RequestCache?, OrchardError?) -> Unit
+                    object : (Int, RequestCache?, OrchardError?) -> Unit
                           {
-                              override fun invoke(p1: RequestCache?, p2: OrchardError?)
+                              override fun invoke(code: Int, p1: RequestCache?, p2: OrchardError?)
                               {
-                                  if (p1 != null || !needToRedoDataLoadingWithUserCookie(p2!!, loginComponentModule))
-                                  {
-                                      val parsedResult = p1?.elements(null)
+                                  //Se tutto null è stato inviato un contenuto non mappato in App
+                                  if (p1 != null || p2 != null) {
+                                      if (p1 != null || !needToRedoDataLoadingWithUserCookie(
+                                              p2!!,
+                                              loginComponentModule
+                                          )
+                                      ) {
+                                          val parsedResult = p1?.elements(null)
 
-                                      val resultForNotification: Any?
+                                          val resultForNotification: Any?
 
-                                      if (parsedResult?.size ?: 0 == 1)
-                                      {
-                                          resultForNotification = parsedResult?.first()
+                                          if (parsedResult?.size ?: 0 == 1) {
+                                              resultForNotification = parsedResult?.first()
+                                          } else {
+                                              resultForNotification = parsedResult
+                                          }
+
+                                          OrchardContentNotifier.showNotification(
+                                              this@MessagingService,
+                                              remoteExtras[Constants.RESPONSE_PUSH_TEXT],
+                                              resultForNotification,
+                                              orchardComponentModule.displayPath,
+                                              null,
+                                              remoteExtras
+                                          )
+                                      } else {
+                                          loginComponentModule.loginRequired(true)
+                                          loadDataFromOrchard(
+                                              orchardComponentModule,
+                                              loginComponentModule,
+                                              remoteExtras
+                                          )
                                       }
-                                      else
-                                      {
-                                          resultForNotification = parsedResult
-                                      }
-
-                                      OrchardContentNotifier.showNotification(this@MessagingService,
-                                                                              remoteExtras[Constants.RESPONSE_PUSH_TEXT],
-                                                                              resultForNotification,
-                                                                              orchardComponentModule.displayPath,
-                                                                              null,
-                                                                              remoteExtras)
                                   }
-                                  else
-                                  {
-                                      loginComponentModule.loginRequired(true)
-                                      loadDataFromOrchard(orchardComponentModule, loginComponentModule, remoteExtras)
+                                  else {
+                                      OrchardContentNotifier.showNotification(
+                                          this@MessagingService,
+                                          remoteExtras[Constants.RESPONSE_PUSH_TEXT],
+                                          null,
+                                          null,
+                                          null,
+                                          remoteExtras
+                                      )
                                   }
                               }
-                          })
+
+                          }
+                          )
     }
 
     private fun needToRedoDataLoadingWithUserCookie(e: OrchardError, loginModule: LoginComponentModule): Boolean

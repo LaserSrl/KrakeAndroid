@@ -1,19 +1,19 @@
 package com.krake.youtube.widget
 
 import android.view.View
-import android.widget.TextView
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubeThumbnailLoader
 import com.google.android.youtube.player.YouTubeThumbnailView
-import com.krake.core.widget.GestureViewHolder
+import com.krake.core.widget.ImageTextCellHolder
 import com.krake.core.widget.ViewHolderWithClickGesture
 import com.krake.youtube.R
 
 /**
  * Created by joel on 08/10/14.
  */
-class YoutubeVideoHolder(itemView: View) : GestureViewHolder(itemView), YouTubeThumbnailView.OnInitializedListener, ViewHolderWithClickGesture {
-    val thumbnailViewTitle: TextView = itemView.findViewById(R.id.video_thumbnail_title)
+open class YoutubeVideoHolder(itemView: View) : ImageTextCellHolder(itemView),
+    YouTubeThumbnailView.OnInitializedListener,
+    ViewHolderWithClickGesture {
     val thumbnailView: YouTubeThumbnailView = itemView.findViewById(R.id.thumbnail_view)
     var thumbnailLoader: YouTubeThumbnailLoader? = null
         private set
@@ -30,12 +30,10 @@ class YoutubeVideoHolder(itemView: View) : GestureViewHolder(itemView), YouTubeT
 
     override fun onInitializationSuccess(youTubeThumbnailView: YouTubeThumbnailView, youTubeThumbnailLoader: YouTubeThumbnailLoader) {
         if (thumbnailLoader !== youTubeThumbnailLoader && thumbnailLoader != null)
-            thumbnailLoader!!.release()
+            thumbnailLoader?.release()
 
         thumbnailLoader = youTubeThumbnailLoader
-
-        if (listener != null)
-            listener!!.onThumbnailAvailable(index)
+        listener?.onThumbnailAvailable(index)
     }
 
     override fun onInitializationFailure(youTubeThumbnailView: YouTubeThumbnailView, youTubeInitializationResult: YouTubeInitializationResult) {

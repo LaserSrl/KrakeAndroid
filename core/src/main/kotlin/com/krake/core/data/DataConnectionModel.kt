@@ -1,5 +1,6 @@
 package com.krake.core.data
 
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.Observer
 import com.krake.core.OrchardError
@@ -21,8 +22,7 @@ open class DataConnectionModel() : ViewModel(),
         LoginComponentModule.ValueListener,
         OrchardComponentModule.ValueListener,
         Observer<Boolean>,
-    DataConnectionBase/*,
-    RealmChangeListener<RequestCache>*/
+    DataConnectionBase
 {
     private val mutableModel = MutableLiveData<DataModel>()
     val model: LiveData<DataModel> = mutableModel
@@ -45,11 +45,6 @@ open class DataConnectionModel() : ViewModel(),
     private var searchFilter: String? = null
 
     private var currentRequestCache: RequestCache? = null
-    /* TODO: change set(value) {
-          field?.removeChangeListener(this)
-          field = value
-          field?.addChangeListener(this)
-      }*/
 
     private var cacheName: String? = null
 
@@ -145,7 +140,6 @@ open class DataConnectionModel() : ViewModel(),
             loginModule.valueListeners.remove(this)
             privacyViewModel.privacyStatus.removeObserver(privacyObserver)
             LoginManager.shared.isLogged.removeObserver(this)
-            //TODO: change currentRequestCache?.removeChangeListener(this)
         }
     }
 
@@ -198,6 +192,7 @@ open class DataConnectionModel() : ViewModel(),
                 loadSingleElement(false,
                                   { it.equalTo(RecordWithAutoroute.AutorouteDisplayAliasFieldName, orchardModule.displayPath!!) })
 
+            cancelRemoteLoading()
             if (needToLoadDataFromWebService)
             {
                 if (!waitingLogin && !waitingPrivacy)
@@ -211,43 +206,52 @@ open class DataConnectionModel() : ViewModel(),
 
     override final fun loadDataFromRemote()
     {
-        mutableLoadingData.value = true
         cancelableDataLoading?.cancel()
-        cancelableDataLoading = RemoteDataRepository.shared
+        cancelableDataLoading = null
+        mutableLoadingData.value = true
+        Log.d("LOADTEST", "Inizio caricamento")
+        val dataLoading = RemoteDataRepository.shared
                 .loadData(loginModule,
                           orchardModule,
                           page,
-                          object : (RequestCache?, OrchardError?) -> Unit
+                    object : (Int, RequestCache?, OrchardError?) -> Unit
                           {
-                              override fun invoke(p1: RequestCache?, p2: OrchardError?)
+                              override fun invoke(code: Int, p1: RequestCache?, p2: OrchardError?)
                               {
-                                  cancelableDataLoading = null
-                                  mutableLoadingData.value = false
-                                  if (p1 != null)
-                                  {
-                                      currentRequestCache = p1
-                                      loadDataFromCache(p1, true)
-                                      mutableDataError.value = null
-                                  }
-                                  else if (p2 != null)
-                                  {
-                                      mutableDataError.value = p2
+                                  if (cancelableDataLoading?.code == code) {
 
-                                      if (p2.reactionCode == OrchardError.REACTION_PRIVACY)
-                                      {
-                                          privacyViewModel.needToAcceptPrivacy(p2.originalException as PrivacyException)
-                                      }
-                                      else if (p2.reactionCode == OrchardError.REACTION_LOGIN)
-                                      {
-                                          if (loginModule.loginRequired == false)
-                                          {
-                                              loginModule.loginRequired(true)
-                                              restartDataLoading(searchFilter)
+                                      mutableLoadingData.value = false
+
+                                      cancelableDataLoading = null
+                                      if (p1 != null && isCacheRelativeTorCurrentParameters(p1)) {
+                                          currentRequestCache = p1
+                                          Log.d("LOADTEST", "Cache dalla chiamata")
+                                          loadDataFromCache(p1, true)
+                                          mutableDataError.value = null
+                                      } else if (p2 != null) {
+                                          mutableDataError.value = p2
+                                          Log.d("LOADTEST", p2.originalMessage)
+
+                                          if (p2.reactionCode == OrchardError.REACTION_PRIVACY) {
+                                              privacyViewModel.needToAcceptPrivacy(p2.originalException as PrivacyException)
+                                          } else if (p2.reactionCode == OrchardError.REACTION_LOGIN) {
+                                              if (loginModule.loginRequired == false) {
+                                                  loginModule.loginRequired(true)
+                                                  restartDataLoading(searchFilter)
+                                              }
                                           }
                                       }
                                   }
                               }
                           })
+
+        cancelableDataLoading = dataLoading
+    }
+
+    private fun cancelRemoteLoading() {
+        mutableLoadingData.value = false
+        cancelableDataLoading?.cancel()
+        cancelableDataLoading = null
     }
 
     private fun getCacheName(): String?
@@ -271,23 +275,33 @@ open class DataConnectionModel() : ViewModel(),
         }
     }
 
+    private fun isCacheRelativeTorCurrentParameters(currentRequestCache: RequestCache): Boolean {
+        return currentRequestCache.cacheName == cacheName || cacheName == null
+    }
+
     private fun loadDataFromCache(currentRequestCache: RequestCache, isValid: Boolean)
     {
-        var elements = currentRequestCache.elements(orchardModule.dataClass)
+        Log.d(
+            "LOADTEST",
+            "Cache (${currentRequestCache.cacheName == cacheName}) key ($cacheName) newCache (${currentRequestCache.cacheName})"
+        )
+        if (isCacheRelativeTorCurrentParameters(currentRequestCache)) {
+            var elements = currentRequestCache.elements(orchardModule.dataClass)
 
-        if (orchardModule.searchColumnsName?.isNotEmpty() == true &&
+            if (orchardModule.searchColumnsName?.isNotEmpty() == true &&
                 !searchFilter.isNullOrEmpty() &&
-                orchardModule.pageSize == OrchardComponentModule.VALUE_PAGE_SIZE_NO_PAGING)
-        {
-            val searchFilter = searchFilter!!
+                orchardModule.pageSize == OrchardComponentModule.VALUE_PAGE_SIZE_NO_PAGING
+            ) {
+                val searchFilter = searchFilter!!
 
-            elements = elements.filter {
-                (it as? RecordWithFilter)?.recordContains(searchFilter, orchardModule.searchColumnsName!!)
+                elements = elements.filter {
+                    (it as? RecordWithFilter)?.recordContains(searchFilter, orchardModule.searchColumnsName!!)
                         ?: true
+                }
             }
-        }
 
-        mutableModel.value = DataModel(elements, isValid)
+            mutableModel.value = DataModel(elements, isValid)
+        }
     }
 
     private fun loadSingleElement(willCacheBeValid: Boolean, applyQuery: (RealmQuery<*>) -> RealmQuery<*>)
@@ -309,11 +323,6 @@ open class DataConnectionModel() : ViewModel(),
                 RecordWithAutoroute::class.java.isAssignableFrom(orchardModule.dataClass) &&
                 orchardModule.displayPath == getCacheName()
     }
-/* TODO: change
-    override fun onChange(t: RequestCache) {
-
-        loadDataFromCache(t, model.value?.cacheValid ?: false)
-    }*/
 
 }
 

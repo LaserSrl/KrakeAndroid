@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- otp -->
     <string name="open_trip_planner_base_url">http://otp.laser-group.com:8080/otp/routers/default/</string>
     <string name="bus_pattern_geometry_url_format" translatable="false">%sindex/patterns/%s/geometry</string>
     <string name="plan_trip_command">plan</string>
+    <string name="bus_routes_path" translatable="false">%sindex/routes</string>
+    <string name="bus_stops_by_route_path" translatable="false">%sindex/routes/%s/stops</string>
+    <string name="bus_stoptimes_by_stop_path" translatable="false">%sindex/stops/%s/stoptimes/%s</string>
+
     <bool name="show_calendar_spinner">false</bool>
 
     <integer name="show_step_zoom_level">16</integer>
@@ -30,4 +35,5 @@
     <integer name="bus_passage_minutes_interval">120</integer>
     <string name="orchard_path_otp_stoptimes">otp/otp-stop-times</string>
 
+    <integer name="bus_stop_time_refresh">30</integer>
 </resources>

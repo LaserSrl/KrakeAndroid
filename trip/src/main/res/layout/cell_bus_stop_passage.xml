@@ -1,48 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:foreground="@drawable/state_list_background"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingBottom="16dp"
-    android:paddingEnd="8dp"
-    android:paddingStart="8dp"
-    android:paddingTop="16dp">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:foreground="@drawable/state_list_background"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingBottom="16dp"
+              android:paddingEnd="8dp"
+              android:paddingStart="8dp"
+              android:paddingTop="16dp">
 
     <ImageView
-        android:id="@+id/cellImageView"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:background="@drawable/bus_bg_shape_rectangle"
-        android:padding="2dp"
-        app:srcCompat="@drawable/ic_directions_bus_36dp"
-        tools:ignore="ContentDescription" />
+            android:id="@+id/cellImageView"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            style="@style/BusRouteCellImageView"
+            tools:ignore="ContentDescription"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="12dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/cellTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="?android:textColorPrimary"
-            tools:text="Line 31" />
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
 
         <TextView
-            android:id="@+id/time_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?android:textColorSecondary"
-            android:visibility="gone"
-            tools:text="48 min" />
+                android:id="@+id/cellTextView"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:textColorPrimary"
+                tools:text="Line 31"/>
+
+        <TextView
+                android:id="@+id/time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="?android:textColorSecondary"
+                android:visibility="gone"
+                tools:text="48 min"/>
     </LinearLayout>
 </LinearLayout>

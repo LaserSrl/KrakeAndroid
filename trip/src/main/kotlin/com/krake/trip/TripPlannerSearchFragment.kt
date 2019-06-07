@@ -12,7 +12,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.location.LocationListener
 import com.google.android.gms.location.LocationRequest
@@ -32,6 +31,7 @@ import com.krake.core.permission.PermissionListener
 import com.krake.core.permission.PermissionManager
 import com.krake.core.view.TabLayoutHelper
 import com.krake.trip.component.module.TripPlannerModule
+import java.lang.RuntimeException
 import java.text.DateFormat
 import java.util.*
 
@@ -52,7 +52,7 @@ class TripPlannerSearchFragment : Fragment(),
     PlacesResultTask.Listener,
     GeocoderTask.Listener,
     PermissionListener,
-    GoogleApiClientFactory.ConnectionListener, Observer<Boolean>
+    GoogleApiClientFactory.ConnectionListener
 {
     companion object {
         private const val ARRIVAL_REQUEST_ID = 546
@@ -91,7 +91,6 @@ class TripPlannerSearchFragment : Fragment(),
 
     private lateinit var planDateTextView: TextView
     private lateinit var arrivalEditText: AutoCompleteTextView
-    private lateinit var progess: ProgressBar
 
     private lateinit var tripPlanTask: TripPlanViewModel
 
@@ -100,7 +99,6 @@ class TripPlannerSearchFragment : Fragment(),
 
         val activity = activity!!
         tripPlanTask = ViewModelProviders.of(activity).get(OpenTripPlanTask::class.java)
-        tripPlanTask.loading.observe(this, this)
         locationClientFactory = GoogleApiClientFactory(activity, this, LocationServices.API)
         locationRequirementsHelper = LocationRequirementsHelper(this, this)
         locationRequirementsHelper.permissionManager.rationalMsg(getString(R.string.error_location_permission_required_to_select_your_position))
@@ -115,11 +113,6 @@ class TripPlannerSearchFragment : Fragment(),
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_trip_planner_search, container, false)
-
-        val tab = insertTravelTabType(view as ViewGroup, inflater)
-
-        progess = view.findViewById(R.id.searchProgress)
-        progess.visibility = View.INVISIBLE
 
         arrivalEditText = view.findViewById(R.id.arrivalEditText)
 
@@ -138,6 +131,14 @@ class TripPlannerSearchFragment : Fragment(),
         else if (arguments != null)
             tripModule.readContent(activity!!, activity!!.intent.extras)
 
+        val tab = when {
+            tripModule.travelModes.size > 1 -> insertTravelTabType(view as ViewGroup, inflater)
+            tripModule.travelModes.size == 1 -> {
+                selectTravelMode(tripModule.travelModes.first())
+                null
+            }
+            else -> throw RuntimeException("You must specify at least one travel mode.")
+        }
         restoreUI(departureEditText, arrivalEditText, tab)
 
         if (searchBounds == null) {
@@ -190,7 +191,6 @@ class TripPlannerSearchFragment : Fragment(),
     }
 
     private fun insertTravelTabType(view: ViewGroup, inflater: LayoutInflater): TabLayout {
-
         val activity = activity ?: throw IllegalArgumentException("The activity mustn't be null.")
         val params = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         val helper = TabLayoutHelper.InflaterBuilder(inflater.context)
@@ -200,25 +200,11 @@ class TripPlannerSearchFragment : Fragment(),
             .layoutParams(params)
             .build()
 
-        helper.addTab(null,
-            ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_car_36dp, null),
-            TravelMode.CAR
-        )
-
-        helper.addTab(null,
-            ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_bus_36dp, null),
-            TravelMode.TRANSIT
-        )
-
-        helper.addTab(null,
-            ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_walk_36dp, null),
-            TravelMode.WALK
-        )
-
-        helper.addTab(null,
-            ResourcesCompat.getDrawable(resources, R.drawable.ic_directions_bike_36dp, null),
-            TravelMode.BICYCLE
-        )
+        tripModule.travelModes.forEach {
+            helper.addTab(null,
+                    ResourcesCompat.getDrawable(resources, it.drawableResource(), null),
+                    it)
+        }
 
         val tab = helper.layout()
 
@@ -300,20 +286,23 @@ class TripPlannerSearchFragment : Fragment(),
         }
     }
 
-    private fun restoreUI(departureEditText: AutoCompleteTextView, arrivalEditText: AutoCompleteTextView, travelModeTab: TabLayout) {
+    private fun restoreUI(departureEditText: AutoCompleteTextView, arrivalEditText: AutoCompleteTextView, travelModeTab: TabLayout?) {
         val request = tripModule.request
 
         request.from?.let { departureEditText.setText(it.name) }
         request.to?.let { arrivalEditText.setText(it.name) }
 
-        for (index in 0 until travelModeTab.tabCount) {
-            val tab = travelModeTab.getTabAt(index)!!
+        travelModeTab?.let {
+            for (index in 0 until it.tabCount) {
+                val tab = it.getTabAt(index)!!
 
-            val mode = tab.tag as? TravelMode
+                val mode = tab.tag as? TravelMode
 
-            if (mode?.equals(request.travelMode) == true) {
-                tab.select()
-                break
+                if (mode?.equals(request.travelMode) == true) {
+                    tab.select()
+                    selectTravelMode(mode)
+                    break
+                }
             }
         }
 
@@ -392,15 +381,19 @@ class TripPlannerSearchFragment : Fragment(),
     override fun onTabSelected(tab: TabLayout.Tab?) {
         if (tab != null) {
             val mode = tab.tag as TravelMode
-            tripModule.request.travelMode = mode
-
-            if (mode == TravelMode.TRANSIT)
-                planDateTextView.visibility = View.VISIBLE
-            else
-                planDateTextView.visibility = View.GONE
-
-            startTripPlanningIfRequestIsValid()
+            selectTravelMode(mode)
         }
+    }
+
+    private fun selectTravelMode(travelMode: TravelMode) {
+        tripModule.request.travelMode = travelMode
+
+        if (travelMode == TravelMode.TRANSIT)
+            planDateTextView.visibility = View.VISIBLE
+        else
+            planDateTextView.visibility = View.GONE
+
+        startTripPlanningIfRequestIsValid()
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) {}
@@ -428,18 +421,6 @@ class TripPlannerSearchFragment : Fragment(),
         val apiClient = factory.apiClient
         if (apiClient.isConnected) {
             LocationServices.FusedLocationApi.removeLocationUpdates(apiClient, this)
-        }
-    }
-
-    override fun onChanged(t: Boolean?)
-    {
-        if (t == true)
-        {
-            progess.visibility = View.VISIBLE
-        }
-        else
-        {
-            progess.visibility = View.INVISIBLE
         }
     }
 }

@@ -1,8 +1,11 @@
 package com.krake.bus.widget
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import com.krake.bus.model.BusPassage
+import com.krake.core.extension.contrastTextColor
+import com.krake.core.extension.setTintCompat
 import com.krake.core.widget.ContentItemAdapter
 import com.krake.core.widget.ImageTextCellHolder
 import com.krake.trip.R
@@ -33,5 +36,10 @@ class BusPassageAdapter(context: Context, layout: Int, holderClass: Class<*>?) :
         }
         passageHolder.timeTextView.text = timeGap
         passageHolder.timeTextView.visibility = View.VISIBLE
+
+        passage.pattern?.busRoute?.let { route ->
+            holder.imageView?.background = ColorDrawable(route.color)
+            holder.imageView?.drawable?.setTintCompat(route.color.contrastTextColor())
+        }
     }
 }

@@ -20,11 +20,13 @@ interface RemoteDataRepository
     fun loadData(loginModule: LoginComponentModule,
                  orchardModule: OrchardComponentModule,
                  page: Int,
-                 callback: (RequestCache?, OrchardError?) -> Unit): CancelableRequest
+                 callback: (Int, RequestCache?, OrchardError?) -> Unit
+    ): CancelableRequest
 
 
     fun loadData(request: RemoteRequest,
                  client: RemoteClient,
                  requestedPrivacy: Boolean,
-                 callback: (RequestCache?, OrchardError?) -> Unit): CancelableRequest
+                 callback: (Int, RequestCache?, OrchardError?) -> Unit
+    ): CancelableRequest
 }

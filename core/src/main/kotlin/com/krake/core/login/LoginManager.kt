@@ -64,14 +64,12 @@ class LoginManager internal constructor(context: Context)
                 val request = Gson().fromJson(savedTokenInfos, JsonObject::class.java).readRemoteRequest()
                 login(context, request, true)
             }
-
         }
     }
 
     @JvmOverloads
     fun login(context: Context, request: RemoteRequest, saveLoginParametersToRefreshCookie: Boolean = false)
     {
-
         if (saveLoginParametersToRefreshCookie)
         {
             openSavePrefs(context).edit().putString(TOKEN_INFOS, Gson().toJson(request.saveAsJson())).apply()
@@ -80,7 +78,6 @@ class LoginManager internal constructor(context: Context)
         {
             openSavePrefs(context).edit().remove(TOKEN_INFOS).apply()
         }
-
 
         request.setQuery(Constants.REQUEST_LANGUAGE_KEY, context.getString(R.string.orchard_language))
         request.setQuery("UUID", TokenIDService.getUUID(context))
@@ -118,9 +115,9 @@ class LoginManager internal constructor(context: Context)
 
     fun logout()
     {
-        mutableLoggedUser.value = null
-
         RemoteClient.clients.forEach { it.value.removeAllCookies() }
+
+        mutableLoggedUser.value = null
     }
 
     internal fun cleanSavedToken(context: Context)

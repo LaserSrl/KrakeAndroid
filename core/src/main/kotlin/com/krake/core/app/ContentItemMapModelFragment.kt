@@ -351,10 +351,12 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
         }
     }
 
-    override fun updateDisplayPath(displayPath: String)
+    override fun updateDisplayPath(displayPath: String?, reloadImmediately: Boolean)
     {
         dataConnectionModel.orchardModule.displayPath(displayPath)
-        dataConnectionModel.restartDataLoading()
+        if (reloadImmediately && !dataConnectionModel.waitingLogin) {
+            dataConnectionModel.restartDataLoading()
+        }
     }
 
     open fun getItemForMarker(marker: Marker): ContentItemWithLocation?
@@ -394,8 +396,11 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
         }
     }
 
-    override fun onGpsSettingsAcquired()
-    {
+    override fun onGpsSettingsAcquired() {
+
+    }
+
+    override fun onGpsSettingsUnavailable() {
 
     }
 

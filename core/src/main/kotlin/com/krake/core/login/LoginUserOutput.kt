@@ -8,7 +8,7 @@ import com.google.gson.JsonObject
  * Created by joel on 17/10/17.
  */
 
-class LoginUserOutput {
+class LoginUserOutput(orchardData: JsonObject) {
     companion object {
         private val gson: Gson by lazy { Gson() }
         @JvmStatic
@@ -21,19 +21,14 @@ class LoginUserOutput {
     }
 
     val roles: ArrayList<String> = ArrayList()
-    val completeOutput: JsonObject
+    val completeOutput: JsonObject = orchardData
     val userIdentifier: String?
     val contactIdentifier: String?
 
-    constructor(orchardData: JsonObject) {
-        completeOutput = orchardData
-
+    init {
         userIdentifier = orchardData.get("UserId")?.asString
-
         contactIdentifier = orchardData.get("ContactId")?.asString
-
         val jsonRoles = orchardData.getAsJsonArray("Roles")
-
         if (jsonRoles != null) {
             for (index in 0 until jsonRoles.size())
                 roles.add(jsonRoles.get(index).asString)

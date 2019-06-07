@@ -62,4 +62,6 @@
     <string name="travel_mode_walk_name">A piedi</string>
     <string name="date_start">Partenza</string>
     <string name="date_arrival">Arrivo entro</string>
+    <string name="routes">Linee</string>
+    <string name="stops">Fermate</string>
 </resources>

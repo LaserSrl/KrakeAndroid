@@ -1,0 +1,31 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:tools="http://schemas.android.com/tools"
+                                                     android:id="@+id/root_grid_sliding_up"
+                                                     style="@style/ContentItems.GridMap"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="fill_parent"
+                                                     android:layout_gravity="fill_vertical"
+                                                     android:orientation="vertical"
+                                                     android:tag="@string/tag_no_switcher"
+                                                     tools:context="com.krake.core.app.ContentItemListMapActivity"
+                                                     tools:layout="@android:layout/list_content">
+
+    <FrameLayout
+            android:id="@+id/contentitem_map"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="fill_vertical"
+            app:layout_behavior="@string/behavior_avoid_bottom_sheet_and_action" />
+
+    <FrameLayout
+            android:id="@+id/contentitem_list"
+            style="?attr/bottomSheetStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:behavior_peekHeight="@dimen/slidingUpMinHeight"
+            app:layout_behavior="@string/behavior_bottom_sheet_not_under_action" />
+
+    <include layout="@layout/stop_times_layout" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
