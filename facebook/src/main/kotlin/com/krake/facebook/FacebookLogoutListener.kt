@@ -11,7 +11,7 @@ import com.krake.core.login.LogoutListener
 class FacebookLogoutListener : LogoutListener {
     override fun onChanged(t: Boolean?)
     {
-        if (t != null && !t && com.krake.core.login.LoginManager.shared.isLogged.value == true)
+        if (t == false)
         {
             LoginManager.getInstance().logOut()
         }
