@@ -25,7 +25,7 @@
             <include layout="@layout/ci_title_layout_with_map" />
         </RelativeLayout>
 
-        <com.krake.core.widget.TouchControllableToolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_actionbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"

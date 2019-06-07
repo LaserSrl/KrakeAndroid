@@ -40,13 +40,13 @@
     </LinearLayout>
 
     <include
-        android:id="@+id/container_location_content_item_map_view_lite"
-        layout="@layout/partial_location_content_item_map_mini"
-        android:layout_width="@dimen/list_map_small_width"
-        android:layout_height="@dimen/list_map_small_height"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="end|right"
-        tools:ignore="RtlHardcoded" />
+            android:id="@+id/container_location_content_item_map_view_lite"
+            layout="@layout/partial_location_content_item_map_mini"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/list_map_small_height"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="end|right"
+            tools:ignore="RtlHardcoded" />
 </com.krake.core.widget.TitleAndTermView>

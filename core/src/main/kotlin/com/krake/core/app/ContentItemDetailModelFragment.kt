@@ -12,6 +12,7 @@ import android.widget.ProgressBar
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ShareCompat
 import androidx.core.widget.NestedScrollView
@@ -74,7 +75,6 @@ import java.util.*
  */
 open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
         FloatingActionButtonMapBehavior.VisibilityListener,
-        AppBarLayout.OnOffsetChangedListener,
         BackPressHandler,
         ContentItemViewContainer,
         LocationListener,
@@ -105,7 +105,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
     private var mShareBehavior: SafeBottomSheetBehavior<*>? = null
     private val sheetCallback: SheetCallback by lazy { SheetCallback(this) }
     private lateinit var mAppBarLayout: AppBarLayout
-    private var mToolbar: TouchControllableToolbar? = null
+    private var mToolbar: Toolbar? = null
     private var mCollapsingToolbarLayout: CollapsingToolbarLayout? = null
     private var mAppBarLockBehavior: LockAppbarLayoutBehavior? = null
 
@@ -164,12 +164,9 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
         val appbar: AppBarLayout? = fragmentView.findViewById(R.id.app_bar_layout)
         if (appbar != null)
         {
-
             mAppBarLayout = appbar
             mCollapsingToolbarLayout = fragmentView.findViewById(R.id.collapsing_toolbar_layout)
             mToolbar = fragmentView.findViewById(R.id.toolbar_actionbar)
-
-            mAppBarLayout.addOnOffsetChangedListener(this)
 
             (activity as? AppCompatActivity)?.setSupportActionBar(mToolbar)
         }
@@ -321,7 +318,6 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean
     {
-
         val state = mShareBehavior?.state ?: BottomSheetBehavior.STATE_HIDDEN
         if (state != BottomSheetBehavior.STATE_COLLAPSED && state != BottomSheetBehavior.STATE_HIDDEN)
         {
@@ -484,7 +480,6 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
 
         if (!detailComponentModule.disableAnalytics && !sentAnalytics)
         {
-
             sentAnalytics = true
             sendToAnalyticsSelection(contentItem)
         }
@@ -563,7 +558,6 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
 
     override fun onBackPressed(): Boolean
     {
-
         for (index in 0 until mCoordinator.childCount)
         {
             val view = mCoordinator.getChildAt(index)
@@ -579,28 +573,6 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
         }
 
         return false
-    }
-
-    override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int)
-    {
-        val toolbar = mToolbar
-        val collapsingLayout = mCollapsingToolbarLayout
-
-        if (toolbar != null && collapsingLayout != null)
-        {
-            // se il check passa, vuol dire che l'AppBarLayout è compresso, in quel caso non deve essere cliccabile
-            if (toolbar.height - collapsingLayout.bottom == verticalOffset)
-            {
-                if (!toolbar.isEatingTouchGestures)
-                {
-                    toolbar.eatTouchGestures(true)
-                }
-            }
-            else if (toolbar.isEatingTouchGestures)
-            {
-                toolbar.eatTouchGestures(false)
-            }
-        }
     }
 
     private fun expandedBottomSheetId(): Int
