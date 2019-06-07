@@ -137,6 +137,7 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                         .displayPath("elenco-poi")
                         .searchColumnsName("titlePartTitle", "bodyPartText"),
                     ListMapComponentModule(context)
+                        .activityLayout(R.layout.activity_content_items_map_or_grid_fab)
                         .termsModules(
                             TermsModule()
                                 .filterQueryString(false),
@@ -235,6 +236,7 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                         .displayPath(context.getString(R.string.orchard_path_products)),
                     ListMapComponentModule(context)
                         .showMap(false)
+                        .activityLayout(R.layout.activity_content_items_map_or_grid_fab)
                 )
                 .build()
 

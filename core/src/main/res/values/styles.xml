@@ -487,6 +487,16 @@
         <item name="layout_anchor">@id/content_item_header_titlebar</item>
     </style>
 
+    <style name="MapFloatingButton" parent="Widget.Design.FloatingActionButton">
+        <item name="srcCompat">@drawable/ic_map_24dp</item>
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="layout_anchorGravity">bottom|right|end</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
+
+
     <style name="SubtitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionMode.Subtitle" />
 
     <style name="TabBar" parent="Widget.Design.TabLayout">

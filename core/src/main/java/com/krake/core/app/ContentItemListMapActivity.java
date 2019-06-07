@@ -185,7 +185,7 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
         if (mGridFragmentContainer.getLayoutParams() instanceof CoordinatorLayout.LayoutParams) {
             CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) mGridFragmentContainer.getLayoutParams()).getBehavior();
 
-            useOffsetListener = behavior == null || !(behavior instanceof BottomSheetNotUnderActionBehavior);
+            useOffsetListener = !(behavior instanceof BottomSheetNotUnderActionBehavior);
 
             if (behavior instanceof BottomSheetNotUnderActionBehavior) {
                 bottomSheetCallback = new BottomSheetCallback(this);
@@ -214,8 +214,9 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
                     else
                         mapVisible = listMapComponentModule.getContentPriority() == ListMapComponentModule.PRIORITY_MAP;
 
-                    mMapListSwitcher = new MapListSwitcher(this, mMapFragment, mGridFragment, mapVisible);
-                    mMapListSwitcher.setMenuEnabled(true);
+                    mMapListSwitcher = new MapListSwitcher(this,
+                            findViewById(R.id.switch_maplist_fab),
+                            mapVisible);
                 } else {
                     mUsingMapAndGridLayout = true;
                 }
@@ -700,7 +701,8 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
     }
 
     @Override
-    public void onMapVisibilityChanged(boolean mapVisible) {
+    public void onMapVisibilityChanged(boolean mapVisible, @org.jetbrains.annotations.Nullable View source) {
+
         View viewToShow;
         View viewToHide;
 
@@ -712,7 +714,7 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
             viewToHide = mMapFragmentContainer;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && viewToShow.isAttachedToWindow()) {
-            animateViewChanges(viewToHide, viewToShow);
+            animateViewChanges(viewToHide, viewToShow, source);
 
         } else {
             viewToShow.setVisibility(View.VISIBLE);
@@ -721,11 +723,27 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void animateViewChanges(final View viewToHide, final View viewToShow) {
+    private void animateViewChanges(final View viewToHide, final View viewToShow, @Nullable final View sourceView) {
         viewToHide.setVisibility(View.INVISIBLE);
+        Animator revealAnimation;
 
-        Animator revealAnimation =
-                ViewAnimationUtils.createCircularReveal(viewToShow, viewToShow.getRight(), viewToShow.getTop(), 0, Math.max(viewToShow.getWidth(), viewToShow.getHeight()));
+        if (sourceView == null) {
+            revealAnimation =
+                    ViewAnimationUtils.createCircularReveal(viewToShow,
+                            viewToShow.getRight(),
+                            viewToShow.getTop(),
+                            0,
+                            Math.max(viewToShow.getWidth(), viewToShow.getHeight()));
+
+        } else {
+            int[] location = new int[2];
+            sourceView.getLocationInWindow(location);
+            revealAnimation = ViewAnimationUtils.createCircularReveal(viewToShow,
+                    location[0],
+                    location[1],
+                    0,
+                    Math.max(viewToShow.getWidth(), viewToShow.getHeight()));
+        }
 
         viewToShow.setVisibility(View.VISIBLE);
 
