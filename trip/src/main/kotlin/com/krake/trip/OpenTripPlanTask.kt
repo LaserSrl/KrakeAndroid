@@ -45,7 +45,7 @@ class OpenTripPlanTask : TripPlanViewModel()
                 .setQuery("date", SimpleDateFormat("MM-dd-yyyy", Locale.US).format(request.dateSelectedForPlan))
                 .setQuery("arriveBy", (request.datePlanChoice == DatePlanChoice.ARRIVAL).toString())
 
-        if (request.maxWalkDistance == 0) {
+        if (request.maxWalkDistance != 0) {
             clientRequest.setQuery("maxWalkDistance", request.maxWalkDistance.toString())
         }
 
