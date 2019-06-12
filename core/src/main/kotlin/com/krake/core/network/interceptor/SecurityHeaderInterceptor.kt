@@ -5,7 +5,7 @@ import android.os.SystemClock
 import android.text.TextUtils
 import android.util.Base64
 import com.krake.core.R
-import com.krake.core.gcm.TokenIDService
+import com.krake.core.messaging.MessagingService
 import com.krake.core.net.SntpClient
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -27,7 +27,7 @@ class SecurityHeaderInterceptor(context: Context) : Interceptor
 
     init
     {
-        deviceUUID = TokenIDService.getUUID(context)
+        deviceUUID = MessagingService.getUUID(context)
         encryptionKey = context.getString(R.string.header_key)
         orchardApiKey = context.getString(R.string.orchard_api_key)
         ntpServers = context.resources.getStringArray(R.array.ntp_servers)

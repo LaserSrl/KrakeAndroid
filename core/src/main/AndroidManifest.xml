@@ -15,6 +15,7 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
     <application tools:ignore="ManifestResource">
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -45,13 +46,6 @@
             android:name=".OrchardUploadService"
             android:enabled="true"
             android:exported="false" />
-        <service
-            android:name=".gcm.TokenIDService"
-            tools:ignore="ExportedService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
         <service
             android:name=".messaging.MessagingService"
             tools:ignore="ExportedService">

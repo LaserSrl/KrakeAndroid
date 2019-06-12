@@ -9,7 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.AutoCompleteTextView
+import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -31,7 +34,6 @@ import com.krake.core.permission.PermissionListener
 import com.krake.core.permission.PermissionManager
 import com.krake.core.view.TabLayoutHelper
 import com.krake.trip.component.module.TripPlannerModule
-import java.lang.RuntimeException
 import java.text.DateFormat
 import java.util.*
 
@@ -106,7 +108,7 @@ class TripPlannerSearchFragment : Fragment(),
 
         boundingBoxTask = OtpBoundingBoxTask(activity, this)
         val client = PlacesClient.createClient(activity)
-        placesResultTask = PlacesResultTask(activity, client, this)
+        placesResultTask = PlacesResultTask(activity, client, true, this)
         placeIdTask = PlaceIdTask(client, this)
         geocoderTask = GeocoderTask(activity, this)
     }

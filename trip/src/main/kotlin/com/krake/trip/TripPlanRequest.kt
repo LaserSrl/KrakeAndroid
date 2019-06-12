@@ -21,6 +21,7 @@ data class TripPlanRequest(var from: PlaceResult? = null,
     var travelMode: TravelMode = TravelMode.TRANSIT
     var datePlanChoice: DatePlanChoice = DatePlanChoice.DEPARTURE
     var dateSelectedForPlan = Date()
+    var maxWalkDistance: Int = 0
 
     fun isValid(): Boolean {
         return from?.location != null && to?.location != null

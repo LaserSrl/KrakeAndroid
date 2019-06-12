@@ -12,7 +12,7 @@ import com.google.gson.JsonObject
 import com.krake.core.Constants
 import com.krake.core.OrchardError
 import com.krake.core.R
-import com.krake.core.gcm.TokenIDService
+import com.krake.core.messaging.MessagingService
 import com.krake.core.model.RequestCache
 import com.krake.core.network.RemoteClient
 import com.krake.core.network.RemoteRequest
@@ -80,7 +80,7 @@ class LoginManager internal constructor(context: Context)
         }
 
         request.setQuery(Constants.REQUEST_LANGUAGE_KEY, context.getString(R.string.orchard_language))
-        request.setQuery("UUID", TokenIDService.getUUID(context))
+        request.setQuery("UUID", MessagingService.getUUID(context))
 
         request.setHeader("Cache-Control", "no-cache, no-store, must-revalidate")
                 .setHeader("Pragma", "no-cache")
