@@ -102,7 +102,7 @@ class LocationSelectionFragment : Fragment(),
         locationRequirementsHelper.create()
 
         val placesClient = PlacesClient.createClient(activity)
-        placesResultTask = PlacesResultTask(activity, placesClient, this)
+        placesResultTask = PlacesResultTask(activity, placesClient, true, this)
         placeIdTask = PlaceIdTask(placesClient, this)
     }
 

@@ -1,6 +1,8 @@
 package com.krake.core.address
 
 import android.content.Context
+import android.os.Handler
+import android.os.Message
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.tasks.Tasks
@@ -25,10 +27,24 @@ import com.krake.core.thread.async
  * @param listener [Listener] per ricevere la callback quando la lista di luoghi è stata caricata.
  * @constructor crea un nuovo [PlacesResultTask].
  */
-class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: Listener?) {
+class PlacesResultTask(
+    context: Context,
+    apiClient: PlacesClient,
+    waitToSearch: Boolean,
+    var listener: Listener?
+) : Handler.Callback {
     private var context: Context? = context
     private var apiClient: PlacesClient? = apiClient
     private var task: AsyncTask<MutableList<PlaceResult>?>? = null
+    private var handler: Handler?
+
+    init {
+        if (waitToSearch) {
+            handler = Handler(this)
+        } else {
+            handler = null
+        }
+    }
 
     /**
      * Fa partire il caricamento dei dati.
@@ -86,13 +102,18 @@ class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: 
                 listener?.onPlacesResultLoaded(requestId, it)
             }
         }.build()
-        task?.load()
+
+        if (handler == null)
+            task?.load()
+        else
+            handler?.sendEmptyMessageDelayed(SEARCH_MESSAGE, MESSAGE_DELAY)
     }
 
     /**
      * Cancella il task attivo fermando il caricamento dei dati.
      */
     fun cancel() {
+        handler?.removeMessages(SEARCH_MESSAGE)
         task?.cancel()
     }
 
@@ -104,6 +125,17 @@ class PlacesResultTask(context: Context, apiClient: PlacesClient, var listener: 
         apiClient = null
         context = null
         listener = null
+        handler = null
+    }
+
+    override fun handleMessage(p0: Message?): Boolean {
+        task?.load()
+        return true
+    }
+
+    companion object {
+        private val SEARCH_MESSAGE = 876
+        private val MESSAGE_DELAY = 200L
     }
 
     /**

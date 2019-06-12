@@ -153,7 +153,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         boundingBoxTask = OtpBoundingBoxTask(this, this)
 
         val placeClient = PlacesClient.createClient(this)
-        placesResultTask = PlacesResultTask(this, placeClient, this)
+        placesResultTask = PlacesResultTask(this, placeClient, true, this)
         placeIdTask = PlaceIdTask(placeClient, this)
         geocoderTask = GeocoderTask(this, this)
 
