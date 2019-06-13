@@ -45,6 +45,7 @@ android {
 
     buildTypes {
         debug {
+            signingConfig signingConfigs.keystore
             if(project.hasProperty("SAMPLE_orchard_api_key")) {
                 resValue "string", "orchard_api_key", project.properties["SAMPLE_orchard_api_key"] ?: ""
                 resValue "string", "header_key", project.properties["SAMPLE_header_key"] ?: ""
