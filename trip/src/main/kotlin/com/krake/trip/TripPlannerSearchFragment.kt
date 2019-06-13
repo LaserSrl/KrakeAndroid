@@ -183,7 +183,7 @@ class TripPlannerSearchFragment : Fragment(),
     }
 
     override fun onApiClientConnected() {
-        locationRequirementsHelper.request()
+        locationRequirementsHelper.request(false, true)
     }
 
     override fun onPermissionsHandled(acceptedPermissions: Array<out String>) {

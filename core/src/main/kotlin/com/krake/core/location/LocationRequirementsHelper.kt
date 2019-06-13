@@ -28,6 +28,7 @@ class LocationRequirementsHelper private constructor(activity: Activity,
                                                      gpsSettingsListener: GpsSettingsListener?) : PermissionListener {
 
     private var forcingRequest: Boolean = false
+    private var showGpsDialogIfDisabled: Boolean = false
 
     val permissionManager = PermissionManager(activity, fragmentManager)
             .permissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -83,8 +84,9 @@ class LocationRequirementsHelper private constructor(activity: Activity,
      * @param force true se si vuole forzare la richiesta del GPS ogni volta, altrimenti, la richiesta
      * verrà spedita solo una volta per tutta la durata della sezione.
      */
-    fun request(force: Boolean = false) {
+    fun request(force: Boolean = false, showDialogIfGpsDisabled: Boolean = false) {
         forcingRequest = force
+        showGpsDialogIfDisabled = showDialogIfGpsDisabled || force
         permissionManager.request()
     }
 
@@ -93,7 +95,7 @@ class LocationRequirementsHelper private constructor(activity: Activity,
         if (PermissionManager.containLocationPermissions(acceptedPermissions))
         {
             // Se i permessi della localizzazione sono stati accettati, viene richiesto l'accesso al GPS.
-            gpsSettingsManager.request(forcingRequest)
+            gpsSettingsManager.request(forcingRequest, showGpsDialogIfDisabled)
         }
     }
 }

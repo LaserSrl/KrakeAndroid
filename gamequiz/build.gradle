@@ -6,6 +6,6 @@ new KrakeLibPlugin(
 
 dependencies {
     api project(':surveys')
-    api "com.google.android.gms:play-services-games:$services_library_version"
-    api "com.google.android.gms:play-services-auth:$services_library_version"
+    api "com.google.android.gms:play-services-games:17.0.0"
+    api "com.google.android.gms:play-services-auth:$firebase_auth_version"
 }

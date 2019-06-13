@@ -52,6 +52,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
         private const val ARG_NO_DETAILS = "argNoDetails"
         private const val ARG_SHOW_MAP = "argShowMap"
         private const val ARG_TERMS_MODULE = "argTermsModule"
+        private const val ARG_SHOW_GPS_DIALOG = "argShowGpsDialog"
     }
 
     @LayoutRes
@@ -105,6 +106,9 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
     var mapAvoidLocationPermissions: Boolean
         private set
 
+    var mapShowGpsDialogIfDisabled: Boolean
+        private set
+
     var mapFragmentClass: Class<out ContentItemMapModelFragment>
         private set
 
@@ -141,6 +145,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
         mapUseCluster = false
         noDetails = false
         showMap = true
+        mapShowGpsDialogIfDisabled = false
         termsModules = emptyArray()
         termsBundle = createBundleWithModules(context, *termsModules)
     }
@@ -264,6 +269,12 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
     fun mapAvoidLocationPermissions() = apply { this.mapAvoidLocationPermissions = true }
 
     /**
+     * Specifica se il [Fragment] che estende [ContentItemMapFragment] deve mostrare l'accensione del gps in caso fosse spento
+     * DEFAULT: false
+     */
+    fun mapShowGpsDialogIfDisabled() = apply { this.mapShowGpsDialogIfDisabled = true }
+
+    /**
      * Specifica il [Fragment] che estende [ContentItemMapFragment] utilizzato all'interno dell'[Activity] per mostrare la mappa.
      * DEFAULT: [ContentItemMapFragment]
      *
@@ -327,6 +338,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
         noDetails = bundle.getBoolean(ARG_NO_DETAILS, noDetails)
         showMap = bundle.getBoolean(ARG_SHOW_MAP, showMap)
         termsBundle = bundle.getBundle(ARG_TERMS_MODULE)
+        mapShowGpsDialogIfDisabled = bundle.getBoolean(ARG_SHOW_GPS_DIALOG)
     }
 
     /**
@@ -355,6 +367,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
         bundle.putBoolean(ARG_MAP_USE_CLUSTER, mapUseCluster)
         bundle.putBoolean(ARG_NO_DETAILS, noDetails)
         bundle.putBoolean(ARG_SHOW_MAP, showMap)
+        bundle.putBoolean(ARG_SHOW_GPS_DIALOG, mapShowGpsDialogIfDisabled)
         if (termsModules.isNotEmpty()) {
             bundle.putModules(context, ARG_TERMS_MODULE, *termsModules)
         }

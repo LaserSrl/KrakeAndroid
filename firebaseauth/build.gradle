@@ -2,5 +2,5 @@ new KrakeLibPlugin().apply(project)
 
 dependencies {
     api project(':core')
-    api "com.google.android.gms:play-services-auth:16.0.1"
+    api "com.google.android.gms:play-services-auth:$firebase_auth_version"
 }

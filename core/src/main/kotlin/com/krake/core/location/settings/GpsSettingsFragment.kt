@@ -46,7 +46,7 @@ class GpsSettingsFragment : Fragment(),
     var callback: Callback? = null
 
     private lateinit var settingsChangeUnavailableMsg: String
-    private var avoidAskingDialog = false
+    var avoidAskingDialog = false
     private var askingGpsAccess = false
     private var forcingRequest = false
     private lateinit var apiClientFactory: GoogleApiClientFactory

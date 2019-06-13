@@ -71,6 +71,7 @@ class BusRouteListActivity : ContentItemListMapActivity() {
         val defaultListMapModule: (Context) -> ListMapComponentModule = { context: Context ->
             ListMapComponentModule(context)
                 .showMap(false)
+                .mapShowGpsDialogIfDisabled()
                 .listCellLayout(BusComponentModule.DEFAULT_LIST_CELL_LAYOUT)
                 .listRootLayout(BusComponentModule.DEFAULT_LIST_ROOT_LAYOUT)
                 .listAdapterClass(BusRouteListAdapter::class.java)

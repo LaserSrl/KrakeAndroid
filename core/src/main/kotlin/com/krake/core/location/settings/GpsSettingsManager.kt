@@ -91,7 +91,7 @@ open class GpsSettingsManager constructor(protected val activity: Activity, prot
      * verrà spedita solo una volta per tutta la durata della sezione.
      */
     @SuppressLint("CommitTransaction")
-    open fun request(force: Boolean = false) {
+    open fun request(force: Boolean, showDialogIsDisabled: Boolean) {
         val tag = GpsSettingsFragment.FRAGMENT_TAG
         gpsFragment = fragmentManager.findFragmentByTag(tag) as? GpsSettingsFragment
         if (gpsFragment == null) {
@@ -102,6 +102,7 @@ open class GpsSettingsManager constructor(protected val activity: Activity, prot
         }
         gpsFragment?.callback = this
         // Richiede il GPS.
+        gpsFragment?.avoidAskingDialog = !force && !showDialogIsDisabled
         gpsFragment?.requireGps(force)
     }
 

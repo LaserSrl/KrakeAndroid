@@ -124,7 +124,7 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
 
         if (!listMapComponentModule.mapAvoidLocationPermissions)
         {
-            locationRequirementsHelper.request(false)
+            locationRequirementsHelper.request(false, listMapComponentModule.mapShowGpsDialogIfDisabled)
         }
 
         Trace.endSection()
@@ -256,7 +256,6 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
                 items = LinkedList(lazyList as? List<ContentItemWithLocation>)
             }
 
-
             for (cItem in itemsToLoad)
             {
                 val mapPart = cItem.mapPart
@@ -273,6 +272,7 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
                     }
                 }
             }
+
             if (clusterManager != null)
                 clusterManager?.cluster()
 

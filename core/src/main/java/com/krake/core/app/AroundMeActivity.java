@@ -146,7 +146,7 @@ public class AroundMeActivity extends ContentItemListMapActivity
 
     @Override
     public void onApiClientConnected() {
-        mLocationRequirementsHelper.request(false);
+        mLocationRequirementsHelper.request(false, true);
     }
 
     @Override
