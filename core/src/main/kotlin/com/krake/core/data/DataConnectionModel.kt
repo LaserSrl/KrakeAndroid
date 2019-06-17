@@ -201,6 +201,8 @@ open class DataConnectionModel() : ViewModel(),
 
             if (currentRequestCache != null)
                 loadDataFromCache(currentRequestCache!!, !needToLoadDataFromWebService)
+            else
+                mutableModel.value = DataModel(listOf(), false)
         }
     }
 
