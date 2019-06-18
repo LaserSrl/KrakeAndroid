@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1903.22.10) on 09/05/2019, 09:16**/
+ * Created by Krake Generator 10.0 Bloody Mary (1905.28.11) on 18/06/2019, 11:43**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.MediaPart

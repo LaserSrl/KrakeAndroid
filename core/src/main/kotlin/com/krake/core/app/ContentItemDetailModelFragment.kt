@@ -445,7 +445,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
     {
         if (dataModel?.listData != null)
         {
-            contentItem = dataModel.listData.first() as? ContentItem
+            contentItem = dataModel.listData.firstOrNull() as? ContentItem
 
             contentItem?.let { loadDataInUI(it, dataModel.cacheValid) }
 
