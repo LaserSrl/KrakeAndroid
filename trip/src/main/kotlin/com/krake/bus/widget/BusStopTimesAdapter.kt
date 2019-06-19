@@ -28,20 +28,19 @@ class BusStopTimesAdapter(context: Context?, layout: Int, holderClass: Class<*>?
         val scheduled = item.scheduledDeparture!!.toInt()
         val real = item.realtimeDeparture!!.toInt()
 
-        calendar.add(Calendar.SECOND, real)
-
         val colorRef: Int
-        if (scheduled == real) {
+        if (scheduled == real || real <= 0) {
             colorRef = R.color.time_scheduled_text_color
             holder.imageView?.visibility = View.INVISIBLE
+            calendar.add(Calendar.SECOND, scheduled)
 
         } else {
             colorRef = R.color.time_real_text_color
             holder.imageView?.visibility = View.VISIBLE
+            calendar.add(Calendar.SECOND, real)
         }
 
         holder.titleTextView.setTextColor(context!!.resources.getColor(colorRef))
-
 
         holder.titleTextView.text = dateFormatter.format(calendar.time)
     }
