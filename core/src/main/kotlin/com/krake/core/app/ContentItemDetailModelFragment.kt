@@ -551,9 +551,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
 
     override fun onVisibilityChange(visible: Boolean)
     {
-        activity?.let {
-            it.invalidateOptionsMenu()
-        }
+        activity?.invalidateOptionsMenu()
     }
 
     override fun onBackPressed(): Boolean
