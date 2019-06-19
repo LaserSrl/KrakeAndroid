@@ -1,14 +1,15 @@
 <com.krake.core.widget.ContentItemMapView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fullScreenMapContainer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:mapViewId="@id/location_content_item_map_view"
-    app:behavior_hideable="true"
-    app:behavior_peekHeight="0dp"
-    app:behavior_skipCollapsed="true"
-    app:layout_behavior="com.krake.core.widget.SafeBottomSheetBehavior"
-    app:showUserDirection="true">
+                                          xmlns:app="http://schemas.android.com/apk/res-auto"
+                                          android:id="@+id/fullScreenMapContainer"
+                                          android:layout_width="match_parent"
+                                          android:layout_height="match_parent"
+                                          app:mapViewId="@id/location_content_item_map_view"
+                                          app:behavior_hideable="true"
+                                          app:behavior_peekHeight="0dp"
+                                          app:behavior_skipCollapsed="true"
+                                          app:layout_behavior="com.krake.core.widget.SafeBottomSheetBehavior"
+                                          android:elevation="20dp"
+                                          app:showUserDirection="true">
 
     <com.krake.core.widget.osm.WebOSMCopyrightView
         android:id="@+id/osm_copyright_view"
