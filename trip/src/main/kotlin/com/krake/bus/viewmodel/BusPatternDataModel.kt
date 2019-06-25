@@ -3,7 +3,6 @@ package com.krake.bus.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import com.krake.OtpDataRepository
 import com.krake.bus.model.BusPassage
 import com.krake.bus.model.BusPattern
@@ -13,7 +12,6 @@ import com.krake.core.data.DataModel
 import com.krake.core.model.identifierOrStringIdentifier
 import com.krake.core.thread.AsyncTask
 import com.krake.core.thread.async
-import com.krake.bus.model.OtpBusRoute
 import io.realm.Realm
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -105,6 +103,7 @@ class BusPatternDataModel : DataConnectionModel()
 
                         passage.destination = name
                     }
+                    passage.lastStop = time.isLastStop()
                     passage.pattern = realm.copyFromRealm(pattern)
                     passage.tripId = time.tripId
 
@@ -123,7 +122,17 @@ class BusPatternDataModel : DataConnectionModel()
             passages.sortWith(Comparator { lhs, rhs -> lhs.passage!!.compareTo(rhs.passage) })
         }
 
-        busPatternMutableModel.value = DataModel(passages, source.cacheValid)
+
+        val distinc = passages.distinctBy {
+            var uniqueCode = ""
+            uniqueCode += it.destination
+            uniqueCode += it.lineNumber
+            uniqueCode += it.tripId
+
+            uniqueCode
+        }
+
+        busPatternMutableModel.value = DataModel(distinc, source.cacheValid)
     }
 
     fun loadBusRoutes() {

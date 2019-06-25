@@ -52,7 +52,7 @@
     <string name="meters">mt</string>
 
     <string name="public_transport">Public Transport</string>
-    <string name="bus_line_destination_format">Line %1$s - %2$s</string>
+    <string name="bus_line_destination_format">Line %1$s - %2$s %3$s</string>
     <string name="bus_time_minutes_format">%d min.</string>
     <string name="error_loading_stop_times">it has not been possible to load the times of the
         stops
@@ -67,5 +67,6 @@
     <string name="date_arrival">Arrival</string>
     <string name="routes">Routes</string>
     <string name="stops">Stops</string>
+    <string name="last_stop">(Last stop)</string>
 
 </resources>

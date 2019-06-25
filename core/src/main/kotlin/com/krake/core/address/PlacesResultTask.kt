@@ -78,7 +78,6 @@ class PlacesResultTask(
                 val convertedBounds = RectangularBounds.newInstance(bounds)
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setLocationBias(convertedBounds)
-                    .setTypeFilter(typeFilter)
                     .setSessionToken(token)
                     .setQuery(addressName)
                     .build()

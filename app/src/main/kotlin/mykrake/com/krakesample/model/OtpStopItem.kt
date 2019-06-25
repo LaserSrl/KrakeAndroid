@@ -25,5 +25,4 @@ open class OtpStopItem : RealmObject() /*INTERFACES*/, com.krake.bus.model.BusSt
 
     @Ignore
     override var isMainStop: Boolean = true
-
 }

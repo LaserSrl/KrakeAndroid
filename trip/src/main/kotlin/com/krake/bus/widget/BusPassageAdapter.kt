@@ -25,7 +25,14 @@ class BusPassageAdapter(context: Context, layout: Int, holderClass: Class<*>?) :
         val passage = getItem(i) as BusPassage
         val passageHolder = holder as BusPassageHolder
 
-        holder.titleTextView.text = String.format(context!!.getString(R.string.bus_line_destination_format), passage.lineNumber, passage.destination)
+        val lastStop: String = if (!passage.lastStop) "" else context!!.getString(R.string.last_stop)
+
+        holder.titleTextView.text = String.format(
+            context!!.getString(R.string.bus_line_destination_format),
+            passage.lineNumber,
+            passage.destination,
+            lastStop
+        )
 
         val millisDiff  = Math.abs(passage.passage!!.time - Date().time)
         val timeGap: String

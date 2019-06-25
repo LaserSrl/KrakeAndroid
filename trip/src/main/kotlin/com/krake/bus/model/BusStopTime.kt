@@ -21,4 +21,10 @@ interface BusStopTime {
     val scheduledDeparture: Long?
 
     val tripId: String?
+
+    fun isLastStop(): Boolean {
+
+        return false
+    }
+
 }

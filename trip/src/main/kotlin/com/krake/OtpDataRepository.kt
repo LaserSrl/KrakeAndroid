@@ -5,14 +5,16 @@ import android.content.Context
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.maps.android.PolyUtil
-import com.krake.bus.model.*
+import com.krake.bus.component.module.BusComponentModule
+import com.krake.bus.model.BusRoute
+import com.krake.bus.model.BusStop
+import com.krake.bus.model.OtpBusRoute
+import com.krake.bus.model.OtpStopTime
 import com.krake.core.network.RemoteClient
 import com.krake.core.network.RemoteRequest
-import com.krake.core.model.identifierOrStringIdentifier
+import com.krake.trip.R
 import java.text.SimpleDateFormat
 import java.util.*
-import com.krake.bus.component.module.BusComponentModule
-import com.krake.trip.R
 
 
 /**
@@ -71,6 +73,7 @@ class OtpDataRepository private constructor(private val context: Context, privat
 
         return gson.fromJson(gson.toJsonTree(jsonResult), Array<OtpStopTime>::class.java)
             .toList()
+            .filter { it.realtimeState != "CANCELED" }
             .sortedBy {
                 it.scheduledDeparture
             }
