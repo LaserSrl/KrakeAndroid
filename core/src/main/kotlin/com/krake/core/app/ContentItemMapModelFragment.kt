@@ -69,7 +69,7 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
     private val mMarkersToIdentifier = HashMap<Marker, String>()
     private val mIdentifiersToMarker = HashMap<String, Marker>()
 
-    lateinit private var mapZoomSupport: MapZoomSupport
+    lateinit var mapZoomSupport: MapZoomSupport
     protected var clusterManager: ClusterManager<MarkerConfiguration>? = null
         private set
     private var mListener: OnContentItemSelectedListener? = null
@@ -291,14 +291,30 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
                     }
                 }
 
-                if (boundsContent > 1)
-                    mapZoomSupport.updateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), resources.getDimensionPixelSize(R.dimen.map_padding)), googleMap)
-                else if (boundsContent > 0)
-                    mapZoomSupport.updateCamera(CameraUpdateFactory.newLatLngZoom(builder.build().center, resources.getInteger(R.integer.default_zoom).toFloat()), googleMap)
+                if (boundsContent > 0) {
+                    zoomMap(googleMap, builder.build(), boundsContent)
+                }
             }
             mMapPager.onDataLoaded(lazyList)
         }
         Trace.endSection()
+    }
+
+    open fun zoomMap(map: GoogleMap, latLng: LatLngBounds, count: Int) {
+        if (count > 1)
+            mapZoomSupport.updateCamera(
+                CameraUpdateFactory.newLatLngBounds(
+                    latLng,
+                    resources.getDimensionPixelSize(R.dimen.map_padding)
+                ), map
+            )
+        else if (count > 0)
+            mapZoomSupport.updateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    latLng.center,
+                    resources.getInteger(R.integer.default_zoom).toFloat()
+                ), map
+            )
     }
 
     private fun onMarkerCreated(marker: Marker, configuration: MarkerConfiguration)

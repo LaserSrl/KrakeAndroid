@@ -6,11 +6,9 @@ import android.os.SystemClock
 import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.Polyline
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.*
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.model.BusPassage
 import com.krake.bus.model.BusPassagesReceiver
@@ -114,7 +112,47 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
                     .width(10f)
                     .color(lineColor)
 
-            mMapManager.getMapAsync { this.polyline = it.addPolyline(line) }
+            zoomOnPolyline(polyline)
+
+            mMapManager.getMapAsync {
+                this.polyline = it.addPolyline(line)
+            }
+        }
+    }
+
+    override fun zoomMap(map: GoogleMap, latLng: LatLngBounds, count: Int) {
+        if (polyline != null) {
+            val points = polyline!!.points
+
+            zoomOnPolyline(points)
+        } else {
+            super.zoomMap(map, latLng, count)
+        }
+    }
+
+    private fun zoomOnPolyline(points: List<LatLng>) {
+        if (!points.isEmpty()) {
+            var bounds: LatLngBounds? = null
+            val builder = LatLngBounds.Builder()
+
+            points.forEach {
+                builder.include(it)
+            }
+
+            bounds = builder.build()
+            mMapManager.getMapAsync {
+                if (bounds != null) {
+                    mapZoomSupport.updateCamera(
+
+                        CameraUpdateFactory.newLatLngBounds(
+                            bounds, resources.getDimensionPixelSize(
+                                com.krake.core.R.dimen.map_padding
+                            )
+                        ), it
+                    )
+                }
+            }
+
         }
     }
 
