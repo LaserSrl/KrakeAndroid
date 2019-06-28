@@ -328,14 +328,16 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
     }
 
     private void setupFloatingWindow() {
+        TypedArray elements = obtainStyledAttributes(R.styleable.FloatingWindow);
         // configure this Activity as a floating window, dimming the background
         WindowManager.LayoutParams params = getWindow().getAttributes();
-        params.width = getResources().getDimensionPixelSize(R.dimen.content_details_floating_width);
-        params.height = getResources().getDimensionPixelSize(R.dimen.content_details_floating_height);
-        params.alpha = 1;
-        params.dimAmount = 0.4f;
+        params.width = elements.getDimensionPixelSize(R.styleable.FloatingWindow_width, getResources().getDimensionPixelSize(R.dimen.content_details_floating_width));
+        params.height = elements.getDimensionPixelSize(R.styleable.FloatingWindow_height, getResources().getDimensionPixelSize(R.dimen.content_details_floating_height));
+        params.alpha = elements.getFloat(R.styleable.FloatingWindow_alpha, 1);
+        params.dimAmount = elements.getFloat(R.styleable.FloatingWindow_dim, 0.4f);
         params.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         getWindow().setAttributes(params);
+        elements.recycle();
     }
 
     protected void lockClosedDrawer(boolean lockClosed) {

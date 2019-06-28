@@ -81,6 +81,13 @@ abstract class OrchardDataModelFragment : Fragment()
             {
                 module.deepLevel(deepLevel)
             }
+
+            module.startConnectionAfterActivityCreated(
+                attrs.getBoolean(
+                    R.styleable.orchard_data_fragment_start_connection_after_activity_created,
+                    true
+                )
+            )
         }
     }
 

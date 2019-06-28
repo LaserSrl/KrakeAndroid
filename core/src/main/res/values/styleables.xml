@@ -15,6 +15,13 @@
         <attr format="reference" name="listMapTransition"/>
     </declare-styleable>
 
+    <declare-styleable name="FloatingWindow">
+        <attr name="width" format="dimension"/>
+        <attr name="height" format="dimension"/>
+        <attr name="alpha" format="float"/>
+        <attr name="dim" format="float"/>
+    </declare-styleable>
+
     <declare-styleable name="ButtonBarContainerTheme">
         <attr format="reference" name="metaButtonBarStyle"/>
         <attr format="reference" name="metaButtonBarButtonStyle"/>
@@ -169,6 +176,7 @@
         <attr format="integer" name="orchard_page_size"/>
         <attr format="integer" name="deep_level"/>
         <attr format="string" name="item_attributes_filter"/>
+        <attr format="boolean" name="start_connection_after_activity_created"/>
     </declare-styleable>
 
     <declare-styleable name="UserNavigationMenuView">
