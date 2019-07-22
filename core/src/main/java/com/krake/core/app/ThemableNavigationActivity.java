@@ -243,7 +243,8 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NONE && item.getItemId() == android.R.id.home) {
+        if ((mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NONE || !themableComponentModule.getShowNavigationDrawer())
+                && item.getItemId() == android.R.id.home) {
             onUpNavigationButtonSelected();
             return true;
         }
