@@ -180,7 +180,7 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
         mNavigationClearParallelsTask = elements.getBoolean(R.styleable.BaseTheme_navigationIntentClearParallelsTasks, false);
 
         if (layout == 0) {
-            if (mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW && themableComponentModule.getShowNavigationDrawer())
+            if (mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW)
                 layout = R.layout.activity_drawer_navigationview;
             else
                 layout = R.layout.activity_no_drawer;
@@ -243,7 +243,7 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if ((mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NONE || !themableComponentModule.getShowNavigationDrawer())
+        if (mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NONE
                 && item.getItemId() == android.R.id.home) {
             onUpNavigationButtonSelected();
             return true;

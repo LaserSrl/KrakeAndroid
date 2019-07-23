@@ -428,7 +428,6 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
         ThemableComponentModule themableModule = new ThemableComponentModule();
         themableModule.readContent(this, detailBundle);
         themableModule.upIntent(getDetailUpNavigationIntent(contentItem));
-        themableModule.showNavigationDrawer(false);
 
         DetailComponentModule detailModule = new DetailComponentModule(this);
         detailModule.readContent(this, detailBundle);

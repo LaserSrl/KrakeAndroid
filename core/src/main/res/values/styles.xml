@@ -226,6 +226,7 @@
     <style name="ContentItemsDetailTheme" parent="AppTheme">
         <item name="isFloatingWindow">false</item>
         <item name="includeToolbar">false</item>
+        <item name="mainNavigationMode">None</item>
     </style>
 
     <style name="ContentMap">
