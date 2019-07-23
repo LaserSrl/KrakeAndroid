@@ -156,12 +156,6 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
 
         ComponentManager.resolveIntent(this);
 
-        mResultManager = new ResultManager();
-
-        @StyleRes int theme = themableComponentModule.getTheme();
-        if (theme != 0) {
-            setTheme(theme);
-        }
 
         // set the orientation taking the value from ActivityInfo.ScreenOrientation
         final int activityOrientation = getResources().getInteger(R.integer.activity_orientation);
@@ -171,9 +165,22 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
             setRequestedOrientation(activityOrientation);
         }
 
+        TypedArray elements = obtainStyledAttributes(R.styleable.BaseTheme);
+        mResultManager = new ResultManager();
+
+        @StyleRes int theme = themableComponentModule.getTheme();
+        if (theme != 0) {
+            elements.recycle();
+            setTheme(theme);
+            elements = obtainStyledAttributes(R.styleable.BaseTheme);
+        }
+
+        if (themableComponentModule.getShowFloating() ||
+                elements.getBoolean(R.styleable.BaseTheme_isFloatingWindow, false)) {
+            setupFloatingWindow(elements.getBoolean(R.styleable.BaseTheme_isFloatingWindow, false));
+        }
         super.onCreate(savedInstanceState);
 
-        TypedArray elements = obtainStyledAttributes(R.styleable.BaseTheme);
 
         mNavigationMode = elements.getInt(R.styleable.BaseTheme_mainNavigationMode, MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW);
 
@@ -204,10 +211,6 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
         }
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
-        }
-
-        if (themableComponentModule.getShowFloating() || elements.getBoolean(R.styleable.BaseTheme_isFloatingWindow, false)) {
-            setupFloatingWindow();
         }
 
         String title = themableComponentModule.getTitle();
@@ -328,9 +331,12 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
         }
     }
 
-    private void setupFloatingWindow() {
+    private void setupFloatingWindow(boolean themeIncludesFloating) {
         TypedArray elements = obtainStyledAttributes(R.styleable.FloatingWindow);
-        // configure this Activity as a floating window, dimming the background
+
+        if (!themeIncludesFloating) {
+            setTheme(R.style.ContentItemsDetailThemeFloating);
+        }
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.width = elements.getDimensionPixelSize(R.styleable.FloatingWindow_width, getResources().getDimensionPixelSize(R.dimen.content_details_floating_width));
         params.height = elements.getDimensionPixelSize(R.styleable.FloatingWindow_height, getResources().getDimensionPixelSize(R.dimen.content_details_floating_height));
@@ -338,6 +344,7 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
         params.dimAmount = elements.getFloat(R.styleable.FloatingWindow_dim, 0.4f);
         params.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         getWindow().setAttributes(params);
+
         elements.recycle();
     }
 

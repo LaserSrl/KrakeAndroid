@@ -74,15 +74,6 @@ class MainActivity : LoginAndPrivacyActivity(), OnContentItemSelectedListener, O
 
         val s = Gson().toJson(bounds)
         s.toCharArray()
-
-        locationClientFactory = GoogleApiClientFactory(this, this, LocationServices.API)
-        locationRequirementsHelper = LocationRequirementsHelper(this, this)
-        locationRequirementsHelper.permissionManager.rationalMsg(getString(com.krake.trip.R.string.error_location_permission_required_to_select_your_position))
-        locationRequirementsHelper.create()
-
-        locationRequirementsHelper.request()
-
-        locationClientFactory.connect()
     }
 
     override fun onStart() {

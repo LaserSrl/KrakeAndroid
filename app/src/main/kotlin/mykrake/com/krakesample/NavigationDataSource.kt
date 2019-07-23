@@ -137,7 +137,7 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                         .displayPath("elenco-poi")
                         .searchColumnsName("titlePartTitle", "bodyPartText"),
                     ListMapComponentModule(context)
-                        .activityLayout(R.layout.activity_record_grid_details)
+                        .activityLayout(R.layout.activity_content_items_map_or_grid)
                         .termsModules(
                             TermsModule()
                                 .filterQueryString(false),
@@ -148,7 +148,13 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                         .loadDetailsByPath(true)
                         .listCellLayout(R.layout.cell_content_item_cardview)
                         .mapUseCluster(true)
-                        .detailModules(DetailComponentModule(context))
+                        .detailModules(DetailComponentModule(context),
+
+                            ThemableComponentModule().apply {
+                                if (context.resources.getBoolean(R.bool.is_tablet)) theme(
+                                    R.style.ContentItemsDetailThemeFloating
+                                )
+                            })
                 )
                 .build()
 

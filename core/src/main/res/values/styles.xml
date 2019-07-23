@@ -82,7 +82,9 @@
         <item name="drawableTintCompat">?colorPrimary</item>
     </style>
 
-    <style name="ContentItems.Detail.Content" />
+    <style name="ContentItems.Detail.Content">
+        <item name="android:background">@android:color/white</item>
+    </style>
 
     <style name="ContentItems.Detail.DescriptionWebview" parent="ContentItems.Detail">
         <item name="android:transitionGroup">true</item>
@@ -223,10 +225,32 @@
         <item name="android:horizontalSpacing">@dimen/content_item_grid_vertical_padding</item>
     </style>
 
+
+    <bool name="detailWindowTraslucent">false</bool>
     <style name="ContentItemsDetailTheme" parent="AppTheme">
         <item name="isFloatingWindow">false</item>
         <item name="includeToolbar">false</item>
         <item name="mainNavigationMode">None</item>
+
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:colorBackgroundCacheHint">@null</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+    </style>
+
+    <style name="ContentItemsDetailThemeFloating" parent="ContentItemsDetailTheme">
+        <item name="isFloatingWindow">true</item>
+        <item name="includeToolbar">false</item>
+        <item name="mainNavigationMode">None</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <!--<item name="android:background">@android:color/transparent</item>-->
+        <item name="android:backgroundDimAmount">0.4</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        ì
     </style>
 
     <style name="ContentMap">
