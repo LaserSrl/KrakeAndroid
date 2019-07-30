@@ -36,7 +36,3 @@ interface MediaPart {
         const val MIME_TYPE_AUDIO = "audio"
     }
 }
-
-interface MediaPartUrlSerializable {
-    val urlColumnFieldName: String
-}

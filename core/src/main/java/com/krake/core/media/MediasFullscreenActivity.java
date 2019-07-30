@@ -95,7 +95,7 @@ public abstract class MediasFullscreenActivity extends AppCompatActivity impleme
     };
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mMediaPager;
-    private List mMediasList;
+    private List mMediasOrUrlsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,12 +146,12 @@ public abstract class MediasFullscreenActivity extends AppCompatActivity impleme
         delayedHide(100);
     }
 
-    protected void showLoadedData(List loadedMedias, Object selectedMedia) {
-        mMediasList = loadedMedias;
+    protected void showLoadedMedias(List loadedMedias, Object selectedMedia) {
+        mMediasOrUrlsList = loadedMedias;
         mPagerAdapter = createPagerAdapter();
         mMediaPager.setAdapter(mPagerAdapter);
 
-        mMediaPager.setCurrentItem(mMediasList.indexOf(selectedMedia));
+        mMediaPager.setCurrentItem(mMediasOrUrlsList.indexOf(selectedMedia));
     }
 
     protected abstract FragmentPagerAdapter createPagerAdapter();
@@ -164,7 +164,7 @@ public abstract class MediasFullscreenActivity extends AppCompatActivity impleme
     @Override
     public void onPageSelected(int position) {
 
-        if (mMediasList != null) {
+        if (mMediasOrUrlsList != null) {
 
             notifySelectedItemChanged(position - 1);
             notifySelectedItemChanged(position);
@@ -186,7 +186,7 @@ public abstract class MediasFullscreenActivity extends AppCompatActivity impleme
     }
 
     private void notifySelectedItemChanged(int position) {
-        if (position > 0 && position < mMediasList.size()) {
+        if (position > 0 && position < mMediasOrUrlsList.size()) {
             Fragment fragment = mPagerAdapter.getItem(position);
             if (fragment instanceof VideoFragment) {
                 ((VideoFragment) fragment).onPagerSelectionChanged(position == getCurrentPagerItem());
@@ -238,6 +238,6 @@ public abstract class MediasFullscreenActivity extends AppCompatActivity impleme
     }
 
     public List getMediasList() {
-        return mMediasList;
+        return mMediasOrUrlsList;
     }
 }

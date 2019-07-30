@@ -1,6 +1,7 @@
 package com.krake.core.media;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -11,7 +12,9 @@ import com.krake.core.component.base.ComponentManager;
 import com.krake.core.component.module.MediaComponentModule;
 import com.krake.core.media.streaming.StreamingProvider;
 import com.krake.core.media.support.VideoFragment;
-import com.krake.core.model.*;
+import com.krake.core.model.MediaPart;
+import com.krake.core.model.RecordWithIdentifier;
+import com.krake.core.model.RecordWithStringIdentifier;
 import com.krake.core.widget.CachedFragmentPagerAdapter;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -60,13 +63,8 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
                     .findAllAsync()
                     .addChangeListener(this);
             mMediasIds = mediaStringIds;
-        } else if (mediaUrls != null && mediaComponentModule.getUrlColumnName() != null) {
-            Realm.getDefaultInstance()
-                    .where(mediaClass)
-                    .in(mediaComponentModule.getUrlColumnName(), mediaUrls.toArray(new String[mediaUrls.size()]))
-                    .findAllAsync()
-                    .addChangeListener(this);
-            mMediasIds = mediaUrls;
+        } else if (mediaUrls != null) {
+            showLoadedMedias(mediaUrls, mediaUrls.get(mediaComponentModule.getMediaIndex()));
         }
     }
 
@@ -75,21 +73,27 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
         return new CachedFragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment createFragment(int position) {
-                MediaPart mediaPart = (MediaPart) getMediasList().get(position);
+                Object mediaRef = getMediasList().get(position);
 
-                if (mediaPart.getMediaType() == MediaType.IMAGE) {
-                    return ZoomableMediaFragment.Companion.newInstance(MediaPartFullscreenActivity.this, mediaPart);
-                } else {
-                    String mimeType;
-                    String mediaUrl = mediaPart.getMediaUrl();
+                if (mediaRef instanceof MediaPart) {
+                    MediaPart mediaPart = (MediaPart) mediaRef;
 
-                    if ((mimeType = mediaPart.getMimeType()) != null && mimeType.equals(MediaPart.MIME_TYPE_TEXT_HTML) && mediaUrl != null) {
-                        StreamingProvider provider = ((KrakeApplication) getApplication()).getStreamingProvider(mediaUrl);
-                        if (provider != null) {
-                            mediaUrl = provider.retrieveVideoUrl(MediaPartFullscreenActivity.this, mediaUrl);
+                    if (mediaPart.getMediaType() == MediaType.IMAGE) {
+                        return ZoomableMediaFragment.Companion.newInstance(MediaPartFullscreenActivity.this, mediaPart);
+                    } else {
+                        String mimeType;
+                        String mediaUrl = mediaPart.getMediaUrl();
+
+                        if ((mimeType = mediaPart.getMimeType()) != null && mimeType.equals(MediaPart.MIME_TYPE_TEXT_HTML) && mediaUrl != null) {
+                            StreamingProvider provider = ((KrakeApplication) getApplication()).getStreamingProvider(mediaUrl);
+                            if (provider != null) {
+                                mediaUrl = provider.retrieveVideoUrl(MediaPartFullscreenActivity.this, mediaUrl);
+                            }
                         }
+                        return VideoFragment.newInstance(mediaUrl, position);
                     }
-                    return VideoFragment.newInstance(mediaUrl, position);
+                } else {
+                    return ZoomableMediaFragment.Companion.newInstance(Uri.parse((String) mediaRef));
                 }
             }
 
@@ -116,40 +120,7 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
 
         LinkedList mMediasList = new LinkedList<>(element);
 
-        if (mMediasList.isEmpty() || !(mMediasList.get(0) instanceof MediaPartUrlSerializable)) {
-            Collections.sort(mMediasList, new Comparator<MediaPart>() {
-                @Override
-                public int compare(MediaPart mediaPart,
-                                   MediaPart mediaPart2) {
-                    Integer idIndex = mMediasIds.indexOf(RecordKt.getIdentifierOrStringIdentifier(mediaPart));
-                    Integer id2Index = mMediasIds.indexOf(RecordKt.getIdentifierOrStringIdentifier(mediaPart2));
-                    return idIndex.compareTo(id2Index);
-                }
-            });
-
-            LinkedList filteredList = new LinkedList();
-
-            int index = 0;
-
-            for (index = 0; index < mMediasList.size(); ++index) {
-                MediaPart part = (MediaPart) mMediasList.get(index);
-                int internalIndex = 0;
-                boolean found = false;
-                for (internalIndex = 0; internalIndex < filteredList.size(); ++internalIndex) {
-                    MediaPart internalMedia = (MediaPart) filteredList.get(internalIndex);
-                    if (internalMedia.getMediaUrl().equals(part.getMediaUrl())) {
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found) {
-                    filteredList.add(part);
-                }
-            }
-
-        } else {
-            Collections.sort(mMediasList, new Comparator<MediaPart>() {
+        Collections.sort(mMediasList, new Comparator<MediaPart>() {
                 @Override
                 public int compare(MediaPart mediaPart,
                                    MediaPart mediaPart2) {
@@ -158,8 +129,8 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
                     return idIndex.compareTo(id2Index);
                 }
             });
-        }
 
-        showLoadedData(mMediasList, mMediasList.get(mediaComponentModule.getMediaIndex()));
+
+        showLoadedMedias(mMediasList, mMediasList.get(mediaComponentModule.getMediaIndex()));
     }
 }

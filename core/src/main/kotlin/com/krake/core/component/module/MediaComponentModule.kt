@@ -10,7 +10,6 @@ import com.krake.core.extension.getDataClass
 import com.krake.core.extension.putDataClass
 import com.krake.core.media.MediaPartFullscreenActivity
 import com.krake.core.model.MediaPart
-import com.krake.core.model.MediaPartUrlSerializable
 import com.krake.core.model.RecordWithIdentifier
 import com.krake.core.model.RecordWithStringIdentifier
 import io.realm.RealmModel
@@ -29,7 +28,6 @@ class MediaComponentModule : ComponentModule {
         private const val ARG_MEDIA_STRING_IDS = "argMediaStringIds"
         private const val ARG_MEDIA_URLS = "argMediaUrls"
         private const val ARG_MEDIA_INDEX = "argMediaIndex"
-        private const val ARG_MEDIA_URL_COLUMN_NAME = "argColumName"
     }
 
     var mediaPartClass: Class<out RealmModel>?
@@ -48,9 +46,6 @@ class MediaComponentModule : ComponentModule {
     var mediaUrls: MutableList<String>?
         private set
 
-    var urlColumnName: String?
-        private set
-
     val gson = Gson()
 
     init {
@@ -61,7 +56,6 @@ class MediaComponentModule : ComponentModule {
         mediaIds = null
         mediaStringIds = null
         mediaUrls = null
-        urlColumnName = null
     }
 
     /**
@@ -116,7 +110,6 @@ class MediaComponentModule : ComponentModule {
             }.type
             mediaUrls = gson.fromJson(valueUrls, stringListTYpe)
         }
-        urlColumnName = bundle.getString(ARG_MEDIA_URL_COLUMN_NAME)
     }
 
     /**
@@ -142,13 +135,10 @@ class MediaComponentModule : ComponentModule {
         } else if (RecordWithStringIdentifier::class.java.isAssignableFrom(mediaPartClass)) {
             val ids = mediaPartList.mapTo(LinkedList<String>()) { (it as RecordWithStringIdentifier).stringIdentifier }
             bundle.putString(ARG_MEDIA_STRING_IDS, gson.toJson(ids))
-        } else if (MediaPartUrlSerializable::class.java.isAssignableFrom(mediaPartClass) && !mediaPartList.isEmpty()) {
+        } else {
+
             val ids = mediaPartList.filter { it.mediaUrl != null }.mapTo(LinkedList()) { it.mediaUrl!! }
             bundle.putString(ARG_MEDIA_URLS, gson.toJson(ids))
-            bundle.putString(
-                ARG_MEDIA_URL_COLUMN_NAME,
-                (mediaPartList.first() as MediaPartUrlSerializable).urlColumnFieldName
-            )
         }
 
         return bundle

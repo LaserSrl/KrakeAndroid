@@ -45,7 +45,7 @@ public class CameraPickedFullScreenActivity extends MediasFullscreenActivity {
         List infos = gson.fromJson(intent.getStringExtra(EXTRA_CAMERA_INFOS), new TypeToken<LinkedList<UploadableMediaInfo>>() {
         }.getType());
 
-        showLoadedData(infos, infos.get(intent.getIntExtra(EXTRA_INTENT_INDEX, 0)));
+        showLoadedMedias(infos, infos.get(intent.getIntExtra(EXTRA_INTENT_INDEX, 0)));
     }
 
     @Override
