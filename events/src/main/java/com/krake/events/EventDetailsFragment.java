@@ -35,6 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Classe per mostrare i dettagli di un evento
@@ -241,13 +242,26 @@ public class EventDetailsFragment extends ContentItemDetailModelFragment {
         if (beginCalendar.get(Calendar.DAY_OF_YEAR) != endCalendar.get(Calendar.DAY_OF_YEAR) ||
                 beginCalendar.get(Calendar.YEAR) != endCalendar.get(Calendar.YEAR)) {
 
+            Calendar originalStart = beginCalendar;
+            Calendar originalEnd = endCalendar;
+
+            beginCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+            endCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+
             //noinspection ConstantConditions
-            if (mEvent.getActivityPart().getDateTimeStart().before(new Date()))
+            if (mEvent.getActivityPart().getDateTimeStart().before(new Date())) {
                 beginCalendar.setTime(new Date());
-            beginCalendar.set(Calendar.HOUR_OF_DAY, 0);
-            beginCalendar.set(Calendar.MINUTE, 0);
+            } else {
+                beginCalendar.set(Calendar.YEAR, originalStart.get(Calendar.YEAR));
+                beginCalendar.set(Calendar.MONTH, originalStart.get(Calendar.MONTH));
+                beginCalendar.set(Calendar.DAY_OF_MONTH, originalStart.get(Calendar.DAY_OF_MONTH));
+            }
+
             endCalendar.set(Calendar.HOUR_OF_DAY, 0);
-            endCalendar.set(Calendar.MINUTE, 0);
+            endCalendar.set(Calendar.YEAR, originalEnd.get(Calendar.YEAR));
+            endCalendar.set(Calendar.MONTH, originalEnd.get(Calendar.MONTH));
+            endCalendar.set(Calendar.DAY_OF_MONTH, originalEnd.get(Calendar.DAY_OF_MONTH) + 1);
+
 
             values.put(CalendarContract.Events.DTSTART, beginCalendar.getTimeInMillis());
             values.put(CalendarContract.Events.DTEND, endCalendar.getTimeInMillis());

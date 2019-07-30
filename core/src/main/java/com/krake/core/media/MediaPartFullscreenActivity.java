@@ -11,10 +11,7 @@ import com.krake.core.component.base.ComponentManager;
 import com.krake.core.component.module.MediaComponentModule;
 import com.krake.core.media.streaming.StreamingProvider;
 import com.krake.core.media.support.VideoFragment;
-import com.krake.core.model.MediaPart;
-import com.krake.core.model.RecordKt;
-import com.krake.core.model.RecordWithIdentifier;
-import com.krake.core.model.RecordWithStringIdentifier;
+import com.krake.core.model.*;
 import com.krake.core.widget.CachedFragmentPagerAdapter;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -47,6 +44,7 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
     protected void startDataLoading(Intent intent) {
         List<Long> mediaIds = mediaComponentModule.getMediaIds();
         List<String> mediaStringIds = mediaComponentModule.getMediaStringIds();
+        List<String> mediaUrls = mediaComponentModule.getMediaUrls();
         Class mediaClass = mediaComponentModule.getMediaPartClass();
         if (mediaIds != null) {
             Realm.getDefaultInstance()
@@ -62,6 +60,13 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
                     .findAllAsync()
                     .addChangeListener(this);
             mMediasIds = mediaStringIds;
+        } else {
+            Realm.getDefaultInstance()
+                    .where(mediaClass)
+                    .in(mediaComponentModule.getUrlColumnName(), mediaUrls.toArray(new String[mediaUrls.size()]))
+                    .findAllAsync()
+                    .addChangeListener(this);
+            mMediasIds = mediaUrls;
         }
     }
 
@@ -111,15 +116,49 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
 
         LinkedList mMediasList = new LinkedList<>(element);
 
-        Collections.sort(mMediasList, new Comparator<MediaPart>() {
-            @Override
-            public int compare(MediaPart mediaPart, MediaPart mediaPart2) {
+        if (mMediasList.isEmpty() || !(mMediasList.get(0) instanceof MediaPartUrlSerializable)) {
+            Collections.sort(mMediasList, new Comparator<MediaPart>() {
+                @Override
+                public int compare(MediaPart mediaPart,
+                                   MediaPart mediaPart2) {
+                    Integer idIndex = mMediasIds.indexOf(RecordKt.getIdentifierOrStringIdentifier(mediaPart));
+                    Integer id2Index = mMediasIds.indexOf(RecordKt.getIdentifierOrStringIdentifier(mediaPart2));
+                    return idIndex.compareTo(id2Index);
+                }
+            });
 
-                Integer idIndex = mMediasIds.indexOf(RecordKt.getIdentifierOrStringIdentifier(mediaPart));
-                Integer id2Index = mMediasIds.indexOf(RecordKt.getIdentifierOrStringIdentifier(mediaPart2));
-                return idIndex.compareTo(id2Index);
+            LinkedList filteredList = new LinkedList();
+
+            int index = 0;
+
+            for (index = 0; index < mMediasList.size(); ++index) {
+                MediaPart part = (MediaPart) mMediasList.get(index);
+                int internalIndex = 0;
+                boolean found = false;
+                for (internalIndex = 0; internalIndex < filteredList.size(); ++internalIndex) {
+                    MediaPart internalMedia = (MediaPart) filteredList.get(internalIndex);
+                    if (internalMedia.getMediaUrl().equals(part.getMediaUrl())) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    filteredList.add(part);
+                }
             }
-        });
+
+        } else {
+            Collections.sort(mMediasList, new Comparator<MediaPart>() {
+                @Override
+                public int compare(MediaPart mediaPart,
+                                   MediaPart mediaPart2) {
+                    Integer idIndex = mMediasIds.indexOf(mediaPart.getMediaUrl());
+                    Integer id2Index = mMediasIds.indexOf(mediaPart2.getMediaUrl());
+                    return idIndex.compareTo(id2Index);
+                }
+            });
+        }
 
         showLoadedData(mMediasList, mMediasList.get(mediaComponentModule.getMediaIndex()));
     }
