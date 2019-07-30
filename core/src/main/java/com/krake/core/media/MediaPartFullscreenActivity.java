@@ -73,7 +73,7 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
         return new CachedFragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment createFragment(int position) {
-                Object mediaRef = getMediasList().get(position);
+                Object mediaRef = getMediasOrUrlsList().get(position);
 
                 if (mediaRef instanceof MediaPart) {
                     MediaPart mediaPart = (MediaPart) mediaRef;
@@ -99,7 +99,7 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
 
             @Override
             public int getCount() {
-                return getMediasList().size();
+                return getMediasOrUrlsList().size();
             }
         };
     }
@@ -107,10 +107,13 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
     @Override
     public void onPageSelected(int position) {
         super.onPageSelected(position);
-        if (getMediasList() != null) {
-            MediaPart mediaPart = (MediaPart) getMediasList().get(position);
-            mMediaPartTextView.setText(mediaPart.getTitle());
+        if (getMediasOrUrlsList() != null) {
+            Object mediaRef = getMediasOrUrlsList().get(position);
+            if (mediaRef instanceof MediaPart) {
+                MediaPart mediaPart = (MediaPart) mediaRef;
+                mMediaPartTextView.setText(mediaPart.getTitle());
 
+            }
         }
     }
 

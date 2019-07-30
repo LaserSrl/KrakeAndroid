@@ -53,7 +53,7 @@ public class CameraPickedFullScreenActivity extends MediasFullscreenActivity {
         return new CachedFragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment createFragment(int position) {
-                UploadableMediaInfo mediaPart = (UploadableMediaInfo) getMediasList().get(position);
+                UploadableMediaInfo mediaPart = (UploadableMediaInfo) getMediasOrUrlsList().get(position);
                 if (mediaPart.getType() == MediaType.IMAGE)
                     return ZoomableMediaFragment.Companion.newInstance(mediaPart.getUri());
                 else
@@ -62,7 +62,7 @@ public class CameraPickedFullScreenActivity extends MediasFullscreenActivity {
 
             @Override
             public int getCount() {
-                return getMediasList().size();
+                return getMediasOrUrlsList().size();
             }
         };
     }

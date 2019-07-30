@@ -237,7 +237,7 @@ public abstract class MediasFullscreenActivity extends AppCompatActivity impleme
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    public List getMediasList() {
+    public List getMediasOrUrlsList() {
         return mMediasOrUrlsList;
     }
 }
