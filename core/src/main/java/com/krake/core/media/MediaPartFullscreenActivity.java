@@ -60,7 +60,7 @@ public class MediaPartFullscreenActivity extends MediasFullscreenActivity implem
                     .findAllAsync()
                     .addChangeListener(this);
             mMediasIds = mediaStringIds;
-        } else {
+        } else if (mediaUrls != null && mediaComponentModule.getUrlColumnName() != null) {
             Realm.getDefaultInstance()
                     .where(mediaClass)
                     .in(mediaComponentModule.getUrlColumnName(), mediaUrls.toArray(new String[mediaUrls.size()]))

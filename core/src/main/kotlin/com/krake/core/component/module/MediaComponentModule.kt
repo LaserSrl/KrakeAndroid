@@ -114,7 +114,7 @@ class MediaComponentModule : ComponentModule {
         if (valueUrls != null) {
             val stringListTYpe: Type = object : TypeToken<MutableList<String>>() {
             }.type
-            mediaUrls = gson.fromJson(valueIds, stringListTYpe)
+            mediaUrls = gson.fromJson(valueUrls, stringListTYpe)
         }
         urlColumnName = bundle.getString(ARG_MEDIA_URL_COLUMN_NAME)
     }
