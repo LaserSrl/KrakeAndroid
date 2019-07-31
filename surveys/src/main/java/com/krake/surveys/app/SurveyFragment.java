@@ -188,7 +188,8 @@ public class SurveyFragment extends OrchardDataModelFragment implements View.OnC
                 //add views only if question type is SingleChoice or OpenAnswer (for now)
                 String questionType = record.getQuestionType();
                 if (questionType.equalsIgnoreCase(Question.Type.SingleChoice) ||
-                        questionType.equalsIgnoreCase(Question.Type.OpenAnswer)) {
+                        questionType.equalsIgnoreCase(Question.Type.OpenAnswer) ||
+                        questionType.equalsIgnoreCase(Question.Type.MultiChoice)) {
 
                     View questionView = inflater.inflate(R.layout.survey_question_text_image, null);
                     setQuestionTextAndImage(questionView, record);
@@ -252,6 +253,38 @@ public class SurveyFragment extends OrchardDataModelFragment implements View.OnC
                         editText.setTag(record.getIdentifier());
 
                         mLinear.addView(view, mLinear.getChildCount() - 1);
+                    } else if (questionType.equalsIgnoreCase(Question.Type.MultiChoice)) {
+
+                        List<Answer> answers = new ArrayList<>(record.getPublishedAnswers());
+
+                        Collections.sort(answers, new Comparator<Answer>() {
+                            @Override
+                            public int compare(Answer lhs, Answer rhs) {
+                                return lhs.getPosition().compareTo(rhs.getPosition());
+                            }
+                        });
+
+
+                        for (Answer answer : answers) {
+                            CheckBox check = (CheckBox) inflater.inflate(R.layout.survey_check_box, null);
+
+
+                            check.setText(answer.getAnswer());
+                            check.setId((int) answer.getIdentifier());
+                            check.setTag(answer.getIdentifier());
+
+                            mLinear.addView(check, mLinear.getChildCount() - 1);
+
+                            MediaPart media = answer.getImage();
+                            if (media != null) {
+                                ImageView imageView = (ImageView) inflater.inflate(R.layout.survey_image, null);
+                                MediaLoader.Companion.with(this, (MediaLoadable) imageView)
+                                        .mediaPart(media)
+                                        .load();
+
+                                mLinear.addView(imageView, mLinear.getChildCount() - 1);
+                            }
+                        }
                     }
                 }
             }
@@ -319,7 +352,12 @@ public class SurveyFragment extends OrchardDataModelFragment implements View.OnC
                     answer.addProperty("AnswerText", mChoicesContainer.getText().toString());
                 } else
                     continue;
+            } else if (view instanceof CheckBox) {
+                if (((CheckBox) view).isChecked()) {
+                    answer.addProperty("Id", view.getTag().toString());
+                }
             }
+
 
             if (answer.entrySet().size() > 0) {
                 answers.add(answer);

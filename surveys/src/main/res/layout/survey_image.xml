@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.krake.core.media.widget.LoadableImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/SurveyImage.Question"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/questionImageHeight"/>
