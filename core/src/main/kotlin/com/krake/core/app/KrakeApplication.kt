@@ -412,9 +412,12 @@ abstract class KrakeApplication : Application(),
         logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
     }
 
-    override fun logItemList(itemCategory: String) {
+    override fun logItemList(itemCategory: String, extraParameters: Bundle?) {
         val bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, itemCategory)
+        extraParameters?.let {
+            bundle.putAll(it)
+        }
         logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, bundle)
     }
 

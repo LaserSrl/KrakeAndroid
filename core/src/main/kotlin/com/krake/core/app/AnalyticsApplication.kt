@@ -19,7 +19,7 @@ interface AnalyticsApplication {
 
     fun logSelectContent(contentType: String, itemId: String?, extraParameters: Bundle? = null)
 
-    fun logItemList(itemCategory: String)
+    fun logItemList(itemCategory: String, extraParameters: Bundle? = null)
 
     /**
      * Metodo radice: tutti gli altri richiamano questo metodo

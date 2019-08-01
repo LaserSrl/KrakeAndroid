@@ -36,6 +36,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
 
         private const val ARG_ACTIVITY_LAYOUT = "argActivityLayout"
         private const val ARG_ANALYTICS_NAME = "argAnalyticsName"
+        private const val ARG_ANALYTICS_EXTRAS = "argAnalyticsExtras"
         private const val ARG_CONTENT_PRIORITY = "argContentPriority"
         private const val ARG_DETAIL_ACTIVITY = "argDetActivity"
         private const val ARG_DETAIL_BUNDLE = "argDetFragmentArgs"
@@ -60,6 +61,9 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
         private set
 
     var analyticsName: String?
+        private set
+
+    var analyticsExtra: Bundle
         private set
 
     @Priority
@@ -129,6 +133,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
     init {
         activityLayout = 0
         analyticsName = null
+        analyticsExtra = Bundle()
         contentPriority = PRIORITY_LIST
         detailActivity = ContentItemDetailActivity::class.java
         detailModules = mutableListOf(DetailComponentModule(context))
@@ -339,6 +344,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
         showMap = bundle.getBoolean(ARG_SHOW_MAP, showMap)
         termsBundle = bundle.getBundle(ARG_TERMS_MODULE)
         mapShowGpsDialogIfDisabled = bundle.getBoolean(ARG_SHOW_GPS_DIALOG)
+        analyticsExtra = bundle.getBundle(ARG_ANALYTICS_EXTRAS)
     }
 
     /**
@@ -368,6 +374,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
         bundle.putBoolean(ARG_NO_DETAILS, noDetails)
         bundle.putBoolean(ARG_SHOW_MAP, showMap)
         bundle.putBoolean(ARG_SHOW_GPS_DIALOG, mapShowGpsDialogIfDisabled)
+        bundle.putBundle(ARG_ANALYTICS_EXTRAS, analyticsExtra)
         if (termsModules.isNotEmpty()) {
             bundle.putModules(context, ARG_TERMS_MODULE, *termsModules)
         }

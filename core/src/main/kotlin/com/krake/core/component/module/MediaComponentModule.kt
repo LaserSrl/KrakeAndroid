@@ -137,7 +137,7 @@ class MediaComponentModule : ComponentModule {
             bundle.putString(ARG_MEDIA_STRING_IDS, gson.toJson(ids))
         } else {
 
-            val ids = mediaPartList.filter { it.mediaUrl != null }.mapTo(LinkedList()) { it.mediaUrl!! }
+            val ids = mediaPartList.mapTo(LinkedList()) { it.mediaUrl ?: "" }
             bundle.putString(ARG_MEDIA_URLS, gson.toJson(ids))
         }
 

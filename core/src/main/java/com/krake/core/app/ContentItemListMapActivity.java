@@ -483,7 +483,7 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
         }
 
         if (!TextUtils.isEmpty(name))
-            ((AnalyticsApplication) getApplication()).logItemList(name);
+            ((AnalyticsApplication) getApplication()).logItemList(name, listMapComponentModule.getAnalyticsExtra());
 
     }
 
