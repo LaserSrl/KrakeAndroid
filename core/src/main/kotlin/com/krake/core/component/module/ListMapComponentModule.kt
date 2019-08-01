@@ -296,6 +296,14 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
     fun mapUseCluster(mapUseCluster: Boolean) = apply { this.mapUseCluster = mapUseCluster }
 
     /**
+     * Specifica se utilizzare o meno il [ClusterManager] nel [ContentItemMapFragment].
+     * DEFAULT: false
+     *
+     * @param mapUseCluster true nel caso in cui si voglia utilizzare il [ClusterManager].
+     */
+    fun analyticsExtra(analyticsExtra: Bundle) = apply { this.analyticsExtra = analyticsExtra }
+
+    /**
      * Impedisce l'apertura dei dettagli dopo il tap su una cella.
      * DEFAULT: false (i dettagli vengono sempre aperti)
      */

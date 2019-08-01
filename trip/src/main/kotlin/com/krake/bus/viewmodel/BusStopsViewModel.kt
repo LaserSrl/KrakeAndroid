@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.krake.OtpDataRepository
 import com.krake.bus.model.BusStop
+import com.krake.bus.model.OtpStopTime
 import com.krake.core.thread.AsyncTask
 import com.krake.core.thread.async
-import com.krake.bus.model.OtpStopTime
 import java.util.*
 
 class BusStopsViewModel : ViewModel() {
@@ -32,7 +32,7 @@ class BusStopsViewModel : ViewModel() {
         busStopsTask = async {
             OtpDataRepository.shared.loadStopsByBusRoute(routeId)
         }.completed {
-            mutableBusStops.value = it
+            mutableBusStops.value = it.sortedBy { it.name }
             mutableStatus.value = Idle
         }.error {
             mutableStatus.value = Error
