@@ -22,6 +22,8 @@ interface BusStopTime {
 
     val tripId: String?
 
+    val realtime: String?
+
     fun isLastStop(): Boolean {
 
         return false

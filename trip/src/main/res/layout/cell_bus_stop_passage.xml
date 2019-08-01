@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_height="wrap_content"
               android:foreground="@drawable/state_list_background"
               android:gravity="center_vertical"
               android:orientation="horizontal"
@@ -34,13 +34,22 @@
                 android:textColor="?android:textColorPrimary"
                 tools:text="Line 31"/>
 
-        <TextView
-                android:id="@+id/time_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="?android:textColorSecondary"
-                android:visibility="gone"
-                tools:text="48 min"/>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:tint="@color/time_real_text_color"
+                    android:layout_height="wrap_content" app:srcCompat="@drawable/icona_durata"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/realTimeImageView" android:visibility="gone"/>
+            <TextView
+                    android:id="@+id/time_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="?android:textColorSecondary"
+                    android:visibility="gone"
+                    tools:text="48 min"/>
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

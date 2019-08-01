@@ -14,4 +14,5 @@ class BusPassage : ContentItem {
     override val titlePartTitle: String? = null
     var tripId: String? = null
     var lastStop: Boolean = false
+    var realTime: Boolean = false
 }

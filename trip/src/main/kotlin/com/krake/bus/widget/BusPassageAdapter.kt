@@ -44,6 +44,16 @@ class BusPassageAdapter(context: Context, layout: Int, holderClass: Class<*>?) :
         passageHolder.timeTextView.text = timeGap
         passageHolder.timeTextView.visibility = View.VISIBLE
 
+        val colorRef: Int
+        if (!passage.realTime) {
+            colorRef = R.color.time_scheduled_text_color
+            passageHolder.realTimeImage.visibility = View.GONE
+        } else {
+            colorRef = R.color.time_real_text_color
+            passageHolder.realTimeImage.visibility = View.VISIBLE
+        }
+        passageHolder.timeTextView.setTextColor(colorRef)
+
         passage.pattern?.busRoute?.let { route ->
             holder.imageView?.background = ColorDrawable(route.color)
             holder.imageView?.drawable?.setTintCompat(route.color.contrastTextColor())

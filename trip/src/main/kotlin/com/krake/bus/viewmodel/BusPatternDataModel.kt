@@ -85,6 +85,7 @@ class BusPatternDataModel : DataConnectionModel()
                 {
                     val passage = BusPassage()
                     passage.passage = passageDate
+                    passage.realTime = time.realtime == "true"
                     var matcher = fromRegexPattern.matcher(pattern.descriptionText!!)
 
                     if (!matcher.matches())

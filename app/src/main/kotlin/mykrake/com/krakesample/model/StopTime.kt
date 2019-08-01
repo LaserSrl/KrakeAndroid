@@ -17,7 +17,7 @@ open class StopTime : RealmObject() /*INTERFACES*/, com.krake.bus.model.BusStopT
     override var scheduledArrival: Long? = null
     override var departureDelay: Long? = null
     override var timePoint: Boolean? = null
-    open var realtime: String? = null
+    override var realtime: String? = null
     open var stopId: Long? = null
     override var realtimeArrival: Long? = null
     override var scheduledDeparture: Long? = null

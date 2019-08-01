@@ -11,6 +11,8 @@ class OtpStopTime(
     override val realtimeDeparture: Long?,
     override val scheduledDeparture: Long?,
     override val tripId: String?,
+    override val realtime: String?,
+
     val stopIndex: Int?,
     val stopCount: Int?,
     val realtimeState: String?
