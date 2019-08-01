@@ -352,7 +352,7 @@ class ListMapComponentModule(val context: Context) : ComponentModule {
         showMap = bundle.getBoolean(ARG_SHOW_MAP, showMap)
         termsBundle = bundle.getBundle(ARG_TERMS_MODULE)
         mapShowGpsDialogIfDisabled = bundle.getBoolean(ARG_SHOW_GPS_DIALOG)
-        analyticsExtra = bundle.getBundle(ARG_ANALYTICS_EXTRAS)
+        analyticsExtra = bundle.getBundle(ARG_ANALYTICS_EXTRAS) ?: Bundle()
     }
 
     /**
