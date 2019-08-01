@@ -3,6 +3,8 @@ package com.krake.bus.model
 import android.content.Context
 import android.util.Log
 import androidx.core.content.ContextCompat
+import com.krake.core.image.BitmapGenerator
+import com.krake.core.map.image.DefaultMarkerBitmapGenerator
 import com.krake.core.model.ContentItemWithLocation
 import com.krake.core.model.MapPart
 import com.krake.core.model.RecordWithStringIdentifier
@@ -59,4 +61,20 @@ interface BusStop : ContentItemWithLocation, RecordWithStringIdentifier, MapPart
         } else {
             ContextCompat.getColor(context, R.color.otp_map_default_item_color)
         }
+
+    override fun markerBitmapGenerator(context: Context): BitmapGenerator {
+        return DefaultMarkerBitmapGenerator(
+            context,
+            color = markerColor(context),
+            innerDrawable = markerInnerDrawable(context),
+            label = markerLabel(context)
+        )
+            .apply {
+                if (!isMainStop) {
+                    val res = context.resources
+                    pinViewHeight = res.getDimensionPixelSize(R.dimen.bus_non_main_pin_height)
+                    pinViewWidth = res.getDimensionPixelSize(R.dimen.bus_non_main_pin_width)
+                }
+            }
+    }
 }

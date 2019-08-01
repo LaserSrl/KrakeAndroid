@@ -7,4 +7,5 @@
     <!-- Impostazioni delle dimensioni utilizzate di default per il caricamento delle immagini da WS-->
     <dimen name="orchard_image_default_width">400dp</dimen>
     <dimen name="orchard_image_default_height">300dp</dimen>
+
 </resources>

@@ -5,4 +5,7 @@
     <dimen name="bus_stop_times_height">250dp</dimen>
     <dimen name="otp_map_circle_stroke_width">3dp</dimen>
     <dimen name="tripPlanStepsPeekHeight">80dp</dimen>
+
+    <dimen name="bus_non_main_pin_height">54dp</dimen>
+    <dimen name="bus_non_main_pin_width">36dp</dimen>
 </resources>

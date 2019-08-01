@@ -24,8 +24,8 @@ import com.krake.core.widget.PinView
  * @param label [View] aggiuntiva applicata sopra il [Marker] per aggiungere del testo oltre all'annotation. Se null, non verrà inserita.
  */
 class DefaultMarkerBitmapGenerator(context: Context, @ColorInt val color: Int, val innerDrawable: Drawable? = null, val label: String? = null) : BitmapGenerator {
-    private val pinViewHeight: Int
-    private val pinViewWidth: Int
+    var pinViewHeight: Int
+    var pinViewWidth: Int
     private val labelMaxWidth: Int
     private val labelInnerPadding: Int
     private val inflater = LayoutInflater.from(context)
