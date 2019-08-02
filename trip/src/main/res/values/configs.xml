@@ -34,6 +34,7 @@
     <string name="orchard_bus_line_display_alias">otp/otpstopspattern</string>
     <integer name="bus_passage_minutes_interval">120</integer>
     <string name="orchard_path_otp_stoptimes">otp/otp-stop-times</string>
+    <string name="otp_geocode_path">geocode</string>
 
     <integer name="bus_stop_time_refresh">30</integer>
 </resources>

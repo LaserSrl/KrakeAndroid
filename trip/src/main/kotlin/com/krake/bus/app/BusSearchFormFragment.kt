@@ -8,10 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import android.widget.AdapterView
-import android.widget.AutoCompleteTextView
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.krake.core.address.AddressFilterableArrayAdapter
 import com.krake.core.address.PlaceResult
@@ -22,7 +19,12 @@ import com.krake.trip.R
 /**
  * Created by antoniolig on 28/04/2017.
  */
-class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterChangedListener, AdapterView.OnItemClickListener, SeekBar.OnSeekBarChangeListener {
+class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterChangedListener,
+    AdapterView.OnItemClickListener,
+    SeekBar.OnSeekBarChangeListener,
+    AdapterView.OnItemSelectedListener {
+
+
     companion object {
         private val TAG = BusSearchFormFragment::class.java.simpleName
         private const val PREFS_BUS_SEARCH = "prefsBusSearch"
@@ -44,6 +46,7 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
     private lateinit var seekBar: SeekBar
     private lateinit var distanceTextView: TextView
     private var listener: Listener? = null
+    private lateinit var searchModeTab: Spinner
 
     private var minimumDistance: Int = 0
     var radius: Int = 0
@@ -66,6 +69,14 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
         addressAutocomplete = view.findViewById(R.id.searchAddressEditText)
         seekBar = view.findViewById(R.id.distanceSeekBar)
         distanceTextView = view.findViewById(R.id.distanceTextView)
+        searchModeTab = view.findViewById(R.id.busSearchModeTab)
+
+        searchModeTab.onItemSelectedListener = this
+        searchModeTab.adapter = ArrayAdapter(
+            activity,
+            android.R.layout.simple_list_item_1, android.R.id.text1,
+            arrayOf(getString(R.string.address), getString(R.string.bus_stop_name))
+        )
 
         addressAutocomplete.setAdapter(AddressFilterableArrayAdapter(context!!, 0, this))
         addressAutocomplete.onItemClickListener = this
@@ -90,6 +101,7 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
             }
         })
     }
+
 
     override fun onDetach() {
         super.onDetach()
@@ -139,10 +151,28 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
         adapter.notifyDataSetChanged()
     }
 
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+        listener?.changeAddressSearchMode(if (p2 == 0) AddressSearchMode.Google else AddressSearchMode.Otp)
+
+        if (addressAutocomplete.text.length > 0) {
+            listener?.onAddressTextChange(addressAutocomplete.text.toString())
+        }
+    }
+
     interface Listener {
         fun onSearchFormLayoutReady()
         fun onRadiusChange(finished: Boolean)
         fun onAddressTextChange(addressName: String)
         fun onPlaceResultChosen(placeResult: PlaceResult)
+        fun changeAddressSearchMode(mode: AddressSearchMode)
+    }
+
+    enum class AddressSearchMode {
+        Google, Otp
     }
 }

@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.material.appbar.AppBarLayout
 import com.google.gson.Gson
+import com.krake.bus.OtpAddressSearcher
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.bus.map.MapModifier
 import com.krake.bus.provider.PinDropListener
@@ -122,6 +123,8 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         }
     }
 
+    private lateinit var placeClient: com.google.android.libraries.places.api.net.PlacesClient
+
     private lateinit var busStopsPath: String
 
     @SuppressLint("CommitTransaction")
@@ -151,7 +154,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
 
         boundingBoxTask = OtpBoundingBoxTask(this, this)
 
-        val placeClient = PlacesClient.createClient(this)
+        placeClient = PlacesClient.createClient(this)
         placesResultTask = PlacesResultTask(
             this,
             GooglePlaceAddressSearcher(placeClient),
@@ -308,6 +311,14 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         location.longitude = address.longitude
         selectedPlace?.location = location
         onPlaceChanged()
+    }
+
+    override fun changeAddressSearchMode(mode: BusSearchFormFragment.AddressSearchMode) {
+
+        placesResultTask.searcher = if (mode == BusSearchFormFragment.AddressSearchMode.Google)
+            GooglePlaceAddressSearcher(placeClient)
+        else
+            OtpAddressSearcher(this)
     }
 
     fun searchAddress(constraint: CharSequence?) {

@@ -66,4 +66,5 @@
     <string name="stops">Fermate</string>
     <string name="last_stop">(Fine corsa)</string>
     <string name="arriving">in arrivo</string>
+    <string name="bus_stop_name">Nome della fermata</string>
 </resources>
