@@ -19,7 +19,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.Marker
 import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -102,7 +101,7 @@ class LocationSelectionFragment : Fragment(),
         locationRequirementsHelper.create()
 
         val placesClient = PlacesClient.createClient(activity)
-        placesResultTask = PlacesResultTask(activity, placesClient, true, this)
+        placesResultTask = PlacesResultTask(activity, GooglePlaceAddressSearcher(placesClient), true, this)
         placeIdTask = PlaceIdTask(placesClient, this)
     }
 
@@ -244,7 +243,7 @@ class LocationSelectionFragment : Fragment(),
         bindLocation()
     }
 
-    override fun onPlacesResultLoaded(requestId: Int, places: MutableList<PlaceResult>) {
+    override fun onPlacesResultLoaded(requestId: Int, places: List<PlaceResult>) {
         (locationEditText.adapter as AddressFilterableArrayAdapter).apply {
             // Change the list.
             setResultList(places)
@@ -291,7 +290,7 @@ class LocationSelectionFragment : Fragment(),
         if (constraint?.length ?: 0 >= minimumThreshold && constraint != selectedPoint?.name) {
             // Search the places if there are at least a specific number of letters (minimumThreshold)
             // and if the current point is not the same of the one that the user is searching.
-            placesResultTask.load(constraint.toString(), TypeFilter.ADDRESS)
+            placesResultTask.load(constraint.toString())
         }
     }
 
@@ -308,6 +307,9 @@ class LocationSelectionFragment : Fragment(),
 
         if (point.placeId != null && point.location == null) {
             placeIdTask.load(point.placeId!!)
+        } else if (point.latLng != null) {
+            persistData()
+            bindLocation()
         }
     }
 

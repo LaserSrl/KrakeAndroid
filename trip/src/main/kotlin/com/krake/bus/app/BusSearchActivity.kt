@@ -22,7 +22,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.material.appbar.AppBarLayout
 import com.google.gson.Gson
 import com.krake.bus.component.module.BusComponentModule
@@ -153,7 +152,12 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         boundingBoxTask = OtpBoundingBoxTask(this, this)
 
         val placeClient = PlacesClient.createClient(this)
-        placesResultTask = PlacesResultTask(this, placeClient, true, this)
+        placesResultTask = PlacesResultTask(
+            this,
+            GooglePlaceAddressSearcher(placeClient),
+            true,
+            this
+        )
         placeIdTask = PlaceIdTask(placeClient, this)
         geocoderTask = GeocoderTask(this, this)
 
@@ -273,7 +277,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         geocoderTask.load(busComponentModule.defaultLocation!!)
     }
 
-    override fun onPlacesResultLoaded(requestId: Int, places: MutableList<PlaceResult>) {
+    override fun onPlacesResultLoaded(requestId: Int, places: List<PlaceResult>) {
         searchFormFragment.setPlaceResultList(places)
     }
 
@@ -310,7 +314,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         placesResultTask.cancel()
 
         if (constraint != null && constraint.length >= resources.getInteger(R.integer.geocoder_autocompletion_threshold)) {
-            placesResultTask.load(constraint.toString(), TypeFilter.ADDRESS, this)
+            placesResultTask.load(constraint.toString(), this)
         }
     }
 
@@ -324,6 +328,8 @@ open class BusSearchActivity : ContentItemListMapActivity(),
 
         if (place.placeId != null) {
             placeIdTask.load(place.placeId!!)
+        } else if (place.latLng != null) {
+            onPlaceChanged()
         }
     }
 

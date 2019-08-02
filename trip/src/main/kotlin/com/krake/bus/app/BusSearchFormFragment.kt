@@ -133,7 +133,7 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
         addressAutocomplete.clearFocus()
     }
 
-    fun setPlaceResultList(places: MutableList<PlaceResult>) {
+    fun setPlaceResultList(places: List<PlaceResult>) {
         val adapter = addressAutocomplete.adapter as AddressFilterableArrayAdapter
         adapter.setResultList(places)
         adapter.notifyDataSetChanged()

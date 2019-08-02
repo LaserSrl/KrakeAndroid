@@ -68,5 +68,6 @@
     <string name="routes">Routes</string>
     <string name="stops">Stops</string>
     <string name="last_stop">(Last stop)</string>
+    <string name="arriving">arriving</string>
 
 </resources>

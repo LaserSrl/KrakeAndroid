@@ -16,7 +16,7 @@ class AddressFilterableArrayAdapter(context: Context,
                                     private val mListener: FilterChangedListener) :
         ArrayAdapter<PlaceResult>(context, R.layout.row_spinner_and_autocomplete, android.R.id.text1), Filterable {
 
-    private var resultList: MutableList<PlaceResult>? = null
+    private var resultList: List<PlaceResult>? = null
     private val userLocationAddress: PlaceResult
     private val googleFakePlace: PlaceResult
 
@@ -83,7 +83,7 @@ class AddressFilterableArrayAdapter(context: Context,
         return textView
     }
 
-    fun setResultList(resultList: MutableList<PlaceResult>?) {
+    fun setResultList(resultList: List<PlaceResult>?) {
         this.resultList = resultList
     }
 
@@ -94,12 +94,11 @@ class AddressFilterableArrayAdapter(context: Context,
 
                 mListener.filterChanged(constraint, this@AddressFilterableArrayAdapter)
 
-                filterResults.values = resultList
                 if (constraint == null) {
-
-                    resultList!!.clear()
+                    resultList = emptyList()
                 }
 
+                filterResults.values = resultList
                 filterResults.count = resultList!!.size
                 return filterResults
             }

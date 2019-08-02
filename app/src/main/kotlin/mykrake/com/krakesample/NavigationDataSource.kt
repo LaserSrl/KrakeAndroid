@@ -309,6 +309,7 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                     BusSearchActivity.defaultListMapModule(context), BusComponentModule()
                         .patternClass(Pattern::class.java)
                         .stopItemClass(OtpStopItem::class.java)
+                        .busMovementProvider(BusLocationTracker::class.java)
                 )
                 .build()
 

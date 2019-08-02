@@ -5,15 +5,8 @@ import android.os.Handler
 import android.os.Message
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.tasks.Tasks
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.AutocompleteSessionToken
-import com.google.android.libraries.places.api.model.RectangularBounds
-import com.google.android.libraries.places.api.model.TypeFilter
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.PlacesClient
-import com.google.gson.Gson
-import com.krake.core.R
 import com.krake.core.address.PlacesResultTask.Listener
 import com.krake.core.thread.AsyncTask
 import com.krake.core.thread.async
@@ -29,13 +22,12 @@ import com.krake.core.thread.async
  */
 class PlacesResultTask(
     context: Context,
-    apiClient: PlacesClient,
+    var searcher: RemoteAddressSeacher,
     waitToSearch: Boolean,
     var listener: Listener?
 ) : Handler.Callback {
     private var context: Context? = context
-    private var apiClient: PlacesClient? = apiClient
-    private var task: AsyncTask<MutableList<PlaceResult>?>? = null
+    private var task: AsyncTask<List<PlaceResult>?>? = null
     private var handler: Handler?
 
     init {
@@ -57,44 +49,17 @@ class PlacesResultTask(
     @JvmOverloads
     fun load(
         addressName: String,
-        typeFilter: TypeFilter = TypeFilter.ADDRESS,
         searchBoundsProvider: SearchBoundsProvider? = null,
         requestId: Int = 0
     ) {
         cancel()
         task = async {
-            var places: MutableList<PlaceResult>? = null
+            var places: List<PlaceResult>? = null
             val context = this@PlacesResultTask.context
-            val apiClient = this@PlacesResultTask.apiClient
-            if (context != null && apiClient != null) {
-                // Se non ci sono bounds disponibili, vengono caricati quelli di default.
-                val bounds: LatLngBounds = if (searchBoundsProvider?.searchBounds == null) {
-                    Gson().fromJson(context.getString(R.string.place_search_default_json), LatLngBounds::class.java)
-                } else {
-                    searchBoundsProvider.searchBounds!!
-                }
-
-                val token = AutocompleteSessionToken.newInstance()
-                val convertedBounds = RectangularBounds.newInstance(bounds)
-                val request = FindAutocompletePredictionsRequest.builder()
-                    .setLocationBias(convertedBounds)
-                    .setSessionToken(token)
-                    .setQuery(addressName)
-                    .build()
-
-                try {
-                    val predictions =
-                        Tasks.await(apiClient.findAutocompletePredictions(request)).autocompletePredictions
-
-                    places = predictions.map {
-                        PlaceResult(context, it)
-                    }.toMutableList()
-                } catch (e: Exception) {
-                    e.toString()
-                }
+            if (context != null) {
+                places = searcher.searchAddress(context, addressName, searchBoundsProvider)
             }
             places
-
         }.completed {
             if (it != null) {
                 // Notifica il listener del corretto scaricamento dei dati.
@@ -121,7 +86,7 @@ class PlacesResultTask(
      */
     fun release() {
         cancel()
-        apiClient = null
+        searcher.release()
         context = null
         listener = null
         handler = null
@@ -148,6 +113,6 @@ class PlacesResultTask(
          * @param requestId id della richiesta associato all'inizio.
          * @param places lista di [PlaceResult] caricati a partire da una stringa.
          */
-        fun onPlacesResultLoaded(requestId: Int, places: MutableList<PlaceResult>)
+        fun onPlacesResultLoaded(requestId: Int, places: List<PlaceResult>)
     }
 }

@@ -21,7 +21,6 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.material.tabs.TabLayout
 import com.krake.core.address.*
 import com.krake.core.api.GoogleApiClientFactory
@@ -108,7 +107,7 @@ class TripPlannerSearchFragment : Fragment(),
 
         boundingBoxTask = OtpBoundingBoxTask(activity, this)
         val client = PlacesClient.createClient(activity)
-        placesResultTask = PlacesResultTask(activity, client, true, this)
+        placesResultTask = PlacesResultTask(activity, GooglePlaceAddressSearcher(client), true, this)
         placeIdTask = PlaceIdTask(client, this)
         geocoderTask = GeocoderTask(activity, this)
     }
@@ -254,7 +253,7 @@ class TripPlannerSearchFragment : Fragment(),
         ) {
 
             val requestId = if (adapter.viewIdentifier == R.id.arrivalEditText) ARRIVAL_REQUEST_ID else DEPARTURE_REQUEST_ID
-            placesResultTask.load(constraint.toString(), TypeFilter.ADDRESS, this, requestId)
+            placesResultTask.load(constraint.toString(), this, requestId)
         }
     }
 
@@ -335,7 +334,7 @@ class TripPlannerSearchFragment : Fragment(),
         return null
     }
 
-    override fun onPlacesResultLoaded(requestId: Int, places: MutableList<PlaceResult>) {
+    override fun onPlacesResultLoaded(requestId: Int, places: List<PlaceResult>) {
         val adapter = if (requestId == ARRIVAL_REQUEST_ID) toAdapter else fromAdapter
         adapter.setResultList(places)
         adapter.notifyDataSetChanged()

@@ -65,4 +65,5 @@
     <string name="routes">Linee</string>
     <string name="stops">Fermate</string>
     <string name="last_stop">(Fine corsa)</string>
+    <string name="arriving">in arrivo</string>
 </resources>

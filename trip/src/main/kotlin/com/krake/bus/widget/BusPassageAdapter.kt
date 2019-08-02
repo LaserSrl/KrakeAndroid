@@ -36,11 +36,14 @@ class BusPassageAdapter(context: Context, layout: Int, holderClass: Class<*>?) :
 
         val millisDiff  = Math.abs(passage.passage!!.time - Date().time)
         val timeGap: String
-        if (millisDiff < TimeUnit.HOURS.toMillis(1)) {
-            timeGap = String.format(context!!.getString(R.string.bus_time_minutes_format), millisDiff / TimeUnit.MINUTES.toMillis(1))
-        } else {
-            timeGap = DateFormat.getTimeInstance().format(passage.passage)
-        }
+        if (millisDiff < TimeUnit.MINUTES.toMillis(1)) {
+            timeGap = context!!.getString(R.string.arriving)
+        } else
+            if (millisDiff < TimeUnit.HOURS.toMillis(1)) {
+                timeGap = String.format(context!!.getString(R.string.bus_time_minutes_format), millisDiff / TimeUnit.MINUTES.toMillis(1))
+            } else {
+                timeGap = DateFormat.getTimeInstance().format(passage.passage)
+            }
         passageHolder.timeTextView.text = timeGap
         passageHolder.timeTextView.visibility = View.VISIBLE
 
