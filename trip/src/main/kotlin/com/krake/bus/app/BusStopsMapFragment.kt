@@ -188,7 +188,8 @@ class BusStopsMapFragment : ContentItemMapModelFragment(),
             mMapManager.getMapAsync {
                 if (currentBusMarker == null) {
                     val configuration = busMovementProvider!!.provideBusMarkerConfiguration(activity!!, currentPassage!!)
-                    currentBusMarker = it.addMarker(MarkerCreator.shared.createMarker(activity!!, configuration))
+                    val marker = MarkerCreator.shared.createMarker(activity!!, configuration).zIndex(10.0f)
+                    currentBusMarker = it.addMarker(marker)
                     currentBusMarker!!.position = position
                 } else {
                     moveBusMarker(position)

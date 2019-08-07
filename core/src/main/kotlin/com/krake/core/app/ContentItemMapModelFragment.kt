@@ -55,9 +55,11 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
         TouchableMapView.OnMapTouchListener,
         ClusterManager.OnClusterItemClickListener<MarkerConfiguration>,
         ClusterManager.OnClusterItemInfoWindowClickListener<MarkerConfiguration>,
+    GoogleMap.OnInfoWindowCloseListener,
         PermissionListener,
         GpsSettingsListener
 {
+
     @BundleResolvable
     lateinit var listMapComponentModule: ListMapComponentModule
 
@@ -154,6 +156,7 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
                     it.setOnClusterItemInfoWindowClickListener(this@ContentItemMapModelFragment)
                     googleMap.setOnInfoWindowClickListener(it)
                     googleMap.setOnMarkerClickListener(it)
+                    googleMap.setOnInfoWindowCloseListener(this)
                     googleMap.setOnCameraIdleListener(it)
                 }
 
@@ -163,6 +166,7 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
                 MapUtils.styleMap(googleMap, activity!!)
                 googleMap.setOnMarkerClickListener(this@ContentItemMapModelFragment)
                 googleMap.setOnInfoWindowClickListener(this@ContentItemMapModelFragment)
+                googleMap.setOnInfoWindowCloseListener(this)
             }
         }
 
@@ -398,6 +402,13 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
             mListener?.onContentItemInEvidence(this, contentItemWithLocation)
         }
         return false
+    }
+
+    override fun onInfoWindowClose(marker: Marker) {
+        val contentItemWithLocation = getItemForMarker(marker)
+        if (contentItemWithLocation != null) {
+            mListener?.onContentItemNoMoreInEvidence(this, contentItemWithLocation)
+        }
     }
 
     @SuppressLint("MissingPermission")
