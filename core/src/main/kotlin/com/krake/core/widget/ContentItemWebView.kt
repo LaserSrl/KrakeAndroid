@@ -92,7 +92,6 @@ open class ContentItemWebView : WebView, ContentItemView {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             this.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-            this.setLayerType(View.LAYER_TYPE_HARDWARE, null)
         }
     }
 
