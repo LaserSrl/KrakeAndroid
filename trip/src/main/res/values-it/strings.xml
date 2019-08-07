@@ -67,4 +67,13 @@
     <string name="last_stop">(Fine corsa)</string>
     <string name="arriving">in arrivo</string>
     <string name="bus_stop_name">Nome della fermata</string>
+    <string name="error_geofence_permission_required">Devi abilitare la localizzazione per essere notificato nei pressi
+        delle fermate
+    </string>
+    <string name="no">No</string>
+    <string name="yes">Si</string>
+    <string name="bus_geofence_want_notification">Vuoi essere notificato quando sei nei paraggi della fermata?
+    </string>
+    <string name="bus_geofence_disable_notification">Vuoi disabilitare la notifica?</string>
+    <string name="geofence_arriving_bus">Stai per arrivare alla fermata \'%s\'</string>
 </resources>

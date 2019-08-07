@@ -31,7 +31,7 @@ public class OrchardContentNotifier {
                                         @Nullable String text,
                                         @Nullable Object resultObject,
                                         @Nullable String displayPath,
-                                        Map<String, String> connectionExtras,
+                                        @Nullable Map<String, String> connectionExtras,
                                         @Nullable Map<String, String> remoteMessageExtras) {
         showNotification(context,text,resultObject,displayPath,connectionExtras,null, KrakeApplication.KRAKE_NOTIFICATION_CHANNEL);
     }
@@ -40,7 +40,7 @@ public class OrchardContentNotifier {
                                         @Nullable String text,
                                         @Nullable Object resultObject,
                                         @Nullable String displayPath,
-                                        Map<String, String> connectionExtras,
+                                        @Nullable Map<String, String> connectionExtras,
                                         @Nullable Map<String, String> remoteMessageExtras,
                                         String channelId) {
         if (!TextUtils.isEmpty(text)) {

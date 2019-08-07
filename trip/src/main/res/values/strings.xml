@@ -70,5 +70,14 @@
     <string name="last_stop">(Last stop)</string>
     <string name="arriving">arriving</string>
     <string name="bus_stop_name">Bus stop</string>
+    <string name="error_geofence_permission_required">You need to enable localization if you want to be notified when
+        you\'re near a bus stop
+    </string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="bus_geofence_want_notification">Would you like to be notified when you are about to reach the stop?
+    </string>
+    <string name="bus_geofence_disable_notification">Do you want to disable the notification?</string>
+    <string name="geofence_arriving_bus">You are about to arrive at the \'%s\' stop</string>
 
 </resources>

@@ -6,10 +6,8 @@ buildscript {
     ext.dokka_version = '0.9.17'
     ext.realm_version = '5.11.0'
     ext.support_library_version = '1.0.0'
-    ext.services_library_version = '15.0.1'
-    ext.firebase_library_version = '16.0.9'
-    ext.firebase_messagging_version = '18.0.0'
-    ext.firebase_auth_version = '16.0.1'
+    ext.services_library_version = '17.0.0'
+    ext.firebase_auth_version = '17.0.0'
     ext.lifecycle_version = '2.0.0'
     ext.glide_version = "4.8.0"
 

@@ -37,4 +37,5 @@
     <string name="otp_geocode_path">geocode</string>
 
     <integer name="bus_stop_time_refresh">30</integer>
+    <integer name="geofence_radius_meters">250</integer>
 </resources>
