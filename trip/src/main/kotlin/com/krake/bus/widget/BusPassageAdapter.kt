@@ -16,7 +16,8 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by antoniolig on 28/04/2017.
  */
-class BusPassageAdapter(context: Context, layout: Int, holderClass: Class<*>?) : ContentItemAdapter(context, layout, holderClass)
+open class BusPassageAdapter(context: Context, layout: Int, holderClass: Class<*>?) :
+    ContentItemAdapter(context, layout, holderClass)
 {
 
     override fun onBindViewHolder(holder: ImageTextCellHolder, i: Int)
