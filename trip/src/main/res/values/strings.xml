@@ -79,5 +79,7 @@
     </string>
     <string name="bus_geofence_disable_notification">Do you want to disable the notification?</string>
     <string name="geofence_arriving_bus">You are about to arrive at the \'%s\' stop</string>
+    <string name="search_by">Search by</string>
+    <string name="disable_all_geofence">Do you want to disable all notifications?</string>
 
 </resources>

@@ -3,6 +3,7 @@ package com.krake.bus.app
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.location.Address
@@ -14,6 +15,7 @@ import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AlertDialog
 import androidx.collection.ArrayMap
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationListener
@@ -69,7 +71,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         PlacesResultTask.Listener,
         PlaceIdTask.Listener,
         GeocoderTask.Listener,
-        BusSearchFormFragment.Listener {
+    BusSearchFormFragment.Listener, BusStopGeofenceManager.Listener {
 
     companion object {
         private val TAG = BusSearchActivity::class.java.simpleName
@@ -126,6 +128,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
     private lateinit var placeClient: com.google.android.libraries.places.api.net.PlacesClient
 
     private lateinit var busStopsPath: String
+    private lateinit var busGeofenceManager: BusStopGeofenceManager
 
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?, layout: Int) {
@@ -163,7 +166,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         )
         placeIdTask = PlaceIdTask(placeClient, this)
         geocoderTask = GeocoderTask(this, this)
-
+        busGeofenceManager = BusStopGeofenceManager(this, this)
         searchFormFragment = BusSearchFormFragment.newInstance(selectedPlace?.name)
         supportFragmentManager.beginTransaction()
                 .replace(frameContainer.id, searchFormFragment)
@@ -185,6 +188,8 @@ open class BusSearchActivity : ContentItemListMapActivity(),
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_bus_search, menu)
+        menuInflater.inflate(R.menu.menu_bus_stop_geofence, menu)
+        menu.findItem(R.id.bus_stop_add_geofence_menu_item).setVisible(false)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -192,6 +197,7 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         val busSearchItem = menu.findItem(R.id.action_bus_search)
         busSearchItem.isVisible = compressAnimator != null
         busSearchItem.icon = getSearchItemIcon()
+        menu.findItem(R.id.bus_stop_remove_geofence_menu_item).setVisible(busGeofenceManager.isMonitoringRegions)
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -208,6 +214,8 @@ open class BusSearchActivity : ContentItemListMapActivity(),
                     item.icon = getSearchItemIcon()
                 }
             }
+        } else if (item.itemId == R.id.bus_stop_remove_geofence_menu_item) {
+            removeGeofenceShowAlert()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -221,6 +229,26 @@ open class BusSearchActivity : ContentItemListMapActivity(),
         geocoderTask.release()
         removeLocationUpdates(locationClientFactory)
         locationClientFactory.disconnect()
+    }
+
+    override fun geofenceChanged(identifier: String, enabled: Boolean, success: Boolean) {
+        invalidateOptionsMenu()
+    }
+
+    private fun removeGeofenceShowAlert() {
+        AlertDialog.Builder(this)
+            .setMessage(R.string.disable_all_geofence)
+            .setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
+                busGeofenceManager.removeAllGeofences()
+                invalidateOptionsMenu()
+            })
+            .setNegativeButton(R.string.no, null)
+            .show()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        invalidateOptionsMenu()
     }
 
     override fun onSearchFormLayoutReady() {

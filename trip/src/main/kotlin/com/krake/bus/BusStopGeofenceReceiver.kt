@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingEvent
+import com.google.gson.Gson
 import com.krake.bus.app.BusStopGeofenceManager
+import com.krake.bus.app.GeofencePref
 import com.krake.core.gcm.OrchardContentNotifier
 import com.krake.trip.R
 
@@ -38,11 +40,19 @@ class BusStopGeofenceReceiver : BroadcastReceiver() {
                     Context.MODE_PRIVATE
                 )
 
-                val name = prefs.getString(triggeringGeofences.requestId, null)
+                val json = prefs.getString(triggeringGeofences.requestId, null)
 
-                if (name != null) {
+                if (!json.isNullOrEmpty()) {
+
+                    val geofence = Gson().fromJson(json, GeofencePref::class.java)
+                    BusStopGeofenceManager(context, object : BusStopGeofenceManager.Listener {
+                        override fun geofenceChanged(identifier: String, enabled: Boolean, success: Boolean) {
+                        }
+                    })
+                        .removeGeofence(triggeringGeofences.requestId)
+
                     OrchardContentNotifier.showNotification(
-                        context, String.format(context.getString(R.string.geofence_arriving_bus), name),
+                        context, String.format(context.getString(R.string.geofence_arriving_bus), geofence.name),
                         null,
                         null,
                         null,

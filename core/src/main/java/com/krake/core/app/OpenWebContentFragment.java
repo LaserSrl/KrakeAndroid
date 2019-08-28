@@ -61,9 +61,15 @@ public class OpenWebContentFragment extends DialogFragment implements View.OnCli
         Intent intent = null;
         final Activity activity = getActivity();
 
-        if (dataConnection != null && dataConnection.getModel().getValue() != null) {
+        DataModel dataModel = null;
 
-            Class mResultClass = dataConnection.getModel().getValue().getListData().get(0).getClass();
+        if (dataConnection != null) {
+            dataModel = dataConnection.getModel().getValue();
+        }
+
+        if (dataModel != null && !dataModel.getListData().isEmpty()) {
+
+            Class mResultClass = dataModel.getListData().get(0).getClass();
             if (mDisplayPath != null && ((KrakeApplication) activity.getApplication()).isDataClassMappedForDetails(mResultClass)) {
                 intent = ComponentManager.createIntent()
                         .from(activity)

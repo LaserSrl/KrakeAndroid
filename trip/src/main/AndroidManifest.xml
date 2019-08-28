@@ -42,6 +42,14 @@
                 android:name="com.krake.bus.app.BusRouteStopListActivity"
                 android:label="@string/stops"
                 android:screenOrientation="@integer/activity_orientation"/>
+
+        <receiver android:name="com.krake.bus.BootBusGeofence"
+                  android:enabled="true"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
