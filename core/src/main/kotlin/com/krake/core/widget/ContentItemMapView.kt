@@ -167,7 +167,9 @@ open class ContentItemMapView : RelativeLayout, ContentItemView, Request.Listene
             }
         }
 
-        findViewById<View?>(R.id.map_navigate_fab)?.setOnClickListener { if (mLocationItem != null) NavigationIntentManager.startNavigationIntent(context, mLocationItem!!) }
+        findViewById<View?>(R.id.map_navigate_fab)?.setOnClickListener {
+            if (mLocationItem != null) NavigationIntentManager.startNavigationIntent(context, mLocationItem!!)
+        }
 
         findViewById<View?>(R.id.map_close_map_bar)?.setOnClickListener {
             val behavior = (layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? SafeBottomSheetBehavior
