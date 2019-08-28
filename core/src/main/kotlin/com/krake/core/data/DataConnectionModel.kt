@@ -227,12 +227,10 @@ open class DataConnectionModel() : ViewModel(),
                                       cancelableDataLoading = null
                                       if (p1 != null && isCacheRelativeTorCurrentParameters(p1)) {
                                           currentRequestCache = p1
-                                          Log.d("LOADTEST", "Cache dalla chiamata")
                                           loadDataFromCache(p1, true)
                                           mutableDataError.value = null
                                       } else if (p2 != null) {
                                           mutableDataError.value = p2
-                                          Log.d("LOADTEST", p2.originalMessage)
 
                                           if (p2.reactionCode == OrchardError.REACTION_PRIVACY) {
                                               privacyViewModel.needToAcceptPrivacy(p2.originalException as PrivacyException)
