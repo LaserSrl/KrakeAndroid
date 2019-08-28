@@ -1,6 +1,9 @@
 package com.krake.bus.app
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
@@ -19,13 +22,15 @@ import com.krake.core.data.DataConnectionModel
 import com.krake.core.data.DataModel
 import com.krake.core.extension.putModules
 import com.krake.core.model.ContentItem
+import com.krake.core.model.ContentItemWithLocation
+import com.krake.core.model.identifierOrStringIdentifier
 import com.krake.trip.R
 
 /**
  * Created by antoniolig on 27/04/2017.
  */
 class BusStopsListActivity : ContentItemListMapActivity(),
-        BusPassagesSender {
+    BusPassagesSender, BusStopGeofenceManager.Listener {
 
     @BundleResolvable
     lateinit var busComponentModule: BusComponentModule
@@ -33,11 +38,14 @@ class BusStopsListActivity : ContentItemListMapActivity(),
     private lateinit var linesConnection: DataConnectionModel
 
     private var stopIdentifier: String? = null
+    private var conteItemInEvidence: ContentItemWithLocation? = null
+    private lateinit var geofenceManager: BusStopGeofenceManager
 
     override fun onCreate(savedInstanceState: Bundle?, layout: Int) {
         super.onCreate(savedInstanceState, layout)
         stopIdentifier = orchardComponentModule.recordStringIdentifier
 
+        geofenceManager = BusStopGeofenceManager(this, this)
         val stopTimesPath = getString(R.string.orchard_path_otp_stoptimes)
         // Aggiunge il path al provider dei paths di around me
         (CacheManager.shared as? LocationCacheModifier)?.addLocationPath(stopTimesPath)
@@ -87,9 +95,78 @@ class BusStopsListActivity : ContentItemListMapActivity(),
         }
     }
 
+    override fun onContentItemInEvidence(senderFragment: Any, contentItem: ContentItem) {
+        super.onContentItemInEvidence(senderFragment, contentItem)
+        conteItemInEvidence = geofenceManager.canGeofence(contentItem)
+        invalidateOptionsMenu()
+    }
+
+    override fun onContentItemNoMoreInEvidence(senderFragment: Any, contentItem: ContentItem) {
+        super.onContentItemNoMoreInEvidence(senderFragment, contentItem)
+        conteItemInEvidence = null
+        invalidateOptionsMenu()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+
+        menuInflater.inflate(R.menu.menu_bus_stop_geofence, menu)
+        return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+
+        val mainStop = (conteItemInEvidence as? BusStop)?.isMainStop ?: false
+        menu?.findItem(R.id.bus_stop_add_geofence_menu_item)?.isVisible = conteItemInEvidence != null &&
+                !geofenceManager.isGeofenceMonitored(conteItemInEvidence!!) &&
+                !mainStop
+        menu?.findItem(R.id.bus_stop_remove_geofence_menu_item)?.isVisible = conteItemInEvidence != null &&
+                geofenceManager.isGeofenceMonitored(conteItemInEvidence!!) &&
+                !mainStop
+
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (item?.itemId == R.id.bus_stop_add_geofence_menu_item) {
+            conteItemInEvidence?.let {
+
+                AlertDialog.Builder(this)
+                    .setMessage(getString(R.string.bus_geofence_want_notification))
+                    .setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i ->
+                        ;
+                    })
+                    .setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
+                        geofenceManager.addGeofence(it)
+                    })
+                    .show()
+
+            }
+
+            return true
+        } else if (item?.itemId == R.id.bus_stop_remove_geofence_menu_item) {
+            conteItemInEvidence?.let {
+                AlertDialog.Builder(this)
+                    .setMessage(getString(R.string.bus_geofence_disable_notification))
+                    .setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i ->
+                        ;
+                    })
+                    .setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
+
+                        geofenceManager.removeGeofence(it)
+                    })
+                    .show()
+            }
+
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun getFragmentCreationExtras(mode: FragmentMode): Bundle {
         if (mode == FragmentMode.GRID) {
-            val bundle = intent.extras
+            val bundle = intent.extras ?: Bundle()
 
             val gridOrchard = OrchardComponentModule()
                 .displayPath(getString(R.string.orchard_path_otp_stoptimes))
@@ -106,6 +183,15 @@ class BusStopsListActivity : ContentItemListMapActivity(),
 
         return super.getFragmentCreationExtras(mode)
     }
+
+    override fun geofenceChanged(identifier: String, enabled: Boolean, success: Boolean) {
+        if (conteItemInEvidence?.identifierOrStringIdentifier == identifier) {
+            if (success) {
+                invalidateOptionsMenu()
+            }
+        }
+    }
+
 
     private fun dataLoadFailedOrEmpty() {
         AlertDialog.Builder(this@BusStopsListActivity)

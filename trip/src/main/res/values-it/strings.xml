@@ -76,4 +76,6 @@
     </string>
     <string name="bus_geofence_disable_notification">Vuoi disabilitare la notifica?</string>
     <string name="geofence_arriving_bus">Stai per arrivare alla fermata \'%s\'</string>
+    <string name="search_by">Cerca per</string>
+    <string name="disable_all_geofence">Vuoi disabilitare tutte le notifiche?</string>
 </resources>

@@ -9,5 +9,5 @@
 
     <integer name="geocoder_autocompletion_threshold">3</integer>
 
-    <integer name="push_max_text_length">120</integer>
+    <integer name="push_max_text_length">50</integer>
 </resources>

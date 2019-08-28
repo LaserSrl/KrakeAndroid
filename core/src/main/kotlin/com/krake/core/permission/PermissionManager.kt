@@ -71,6 +71,21 @@ open class PermissionManager constructor(protected val activity: Activity, prote
         fun containLocationPermissions(permissions: Array<out String>): Boolean {
             return permissions.contains(Manifest.permission.ACCESS_COARSE_LOCATION) && permissions.contains(Manifest.permission.ACCESS_FINE_LOCATION)
         }
+
+        /**
+         * Verifica che una lista di permessi contenga i due permessi necessari per la localizzazione.
+         *
+         * @param permissions lista di permessi in cui cercare.
+         * @return true se la lista dei permessi contiene entrambi i permessi della localizzazione.
+         */
+        @JvmStatic
+        fun locationPermissionsGranted(context: Context): Boolean {
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION).forEach {
+                if (ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED)
+                    return false
+            }
+            return true
+        }
     }
 
     protected var listeners: MutableSet<PermissionListener> = HashSet()

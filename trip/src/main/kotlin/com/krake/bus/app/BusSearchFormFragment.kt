@@ -58,11 +58,8 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
         listener = context as? Listener
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.partial_bus_search_layout, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.partial_bus_search_layout, container, false)
 
         val prefs = context!!.getSharedPreferences(PREFS_BUS_SEARCH, Context.MODE_PRIVATE)
 
@@ -100,8 +97,9 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
                 listener?.onSearchFormLayoutReady()
             }
         })
-    }
 
+        return view
+    }
 
     override fun onDetach() {
         super.onDetach()

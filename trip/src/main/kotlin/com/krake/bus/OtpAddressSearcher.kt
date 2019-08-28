@@ -68,7 +68,7 @@ class OtpAddressSearcher(context: Context) : RemoteAddressSeacher {
     }
 
     override fun release() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
 }

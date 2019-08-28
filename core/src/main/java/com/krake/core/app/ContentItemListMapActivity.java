@@ -461,6 +461,11 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
         }
     }
 
+    @Override
+    public void onContentItemNoMoreInEvidence(@NonNull Object senderFragment, @NonNull ContentItem contentItem) {
+
+    }
+
     /**
      * Metodo per specificare l'intent da associare all'up navigation dell'acitvity che mostra il dettaglio di un
      * elemento selezionato.

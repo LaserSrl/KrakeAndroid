@@ -1,38 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.krake.trip">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.krake.trip">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application tools:ignore="ManifestResource">
+        <receiver
+                android:name="com.krake.bus.BusStopGeofenceReceiver"
+                android:enabled="true"
+                android:exported="false">
+        </receiver>
+
         <activity
-            android:name="com.krake.bus.app.BusSearchActivity"
-            android:label="@string/public_transport"
-            android:screenOrientation="@integer/activity_orientation"
-            android:windowSoftInputMode="adjustNothing" />
+                android:name="com.krake.bus.app.BusSearchActivity"
+                android:label="@string/public_transport"
+                android:screenOrientation="@integer/activity_orientation"
+                android:windowSoftInputMode="adjustNothing"/>
         <activity
-            android:name="com.krake.bus.app.BusStopsListActivity"
-            android:screenOrientation="@integer/activity_orientation" />
+                android:name="com.krake.bus.app.BusStopsListActivity"
+                android:screenOrientation="@integer/activity_orientation"/>
         <activity
-            android:name="com.krake.trip.TripPlannerSearchActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="@integer/activity_orientation"
-            android:theme="@style/TripPlannerTheme"
-            android:windowSoftInputMode="adjustPan">
+                android:name=".TripPlannerSearchActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="@integer/activity_orientation"
+                android:theme="@style/TripPlannerTheme"
+                android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="com.krake.trip.plan_trip" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.krake.trip.plan_trip"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity
                 android:name="com.krake.bus.app.BusRouteListActivity"
                 android:label="@string/routes"
-                android:screenOrientation="@integer/activity_orientation" />
+                android:screenOrientation="@integer/activity_orientation"/>
         <activity
                 android:name="com.krake.bus.app.BusRouteStopListActivity"
                 android:label="@string/stops"
-                android:screenOrientation="@integer/activity_orientation" />
+                android:screenOrientation="@integer/activity_orientation"/>
+
+        <receiver android:name="com.krake.bus.BootBusGeofence"
+                  android:enabled="true"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
     </application>
+
 </manifest>

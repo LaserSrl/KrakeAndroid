@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/bus_stop_add_geofence_menu_item"
+          android:icon="@drawable/add_bus_geofence"
+          android:title=""
+          app:showAsAction="always"/>
+    <item android:id="@+id/bus_stop_remove_geofence_menu_item" android:title=""
+          app:showAsAction="always" android:icon="@drawable/remove_bus_geofence"/>
+</menu>
