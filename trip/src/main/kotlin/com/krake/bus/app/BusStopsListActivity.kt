@@ -116,10 +116,13 @@ class BusStopsListActivity : ContentItemListMapActivity(),
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
 
+        val mainStop = (conteItemInEvidence as? BusStop)?.isMainStop ?: false
         menu?.findItem(R.id.bus_stop_add_geofence_menu_item)?.isVisible = conteItemInEvidence != null &&
-                !geofenceManager.isGeofenceMonitored(conteItemInEvidence!!)
+                !geofenceManager.isGeofenceMonitored(conteItemInEvidence!!) &&
+                !mainStop
         menu?.findItem(R.id.bus_stop_remove_geofence_menu_item)?.isVisible = conteItemInEvidence != null &&
-                geofenceManager.isGeofenceMonitored(conteItemInEvidence!!)
+                geofenceManager.isGeofenceMonitored(conteItemInEvidence!!) &&
+                !mainStop
 
         return super.onPrepareOptionsMenu(menu)
     }
