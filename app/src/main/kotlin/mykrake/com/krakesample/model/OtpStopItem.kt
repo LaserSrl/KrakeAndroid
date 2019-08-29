@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1905.28.11) on 18/06/2019, 11:43**/
+ * Created by Krake Generator 10.0 Bloody Mary (1906.25.14) on 29/08/2019, 10:23**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.RecordWithFilter
@@ -8,7 +8,8 @@ import io.realm.annotations.Ignore
 import io.realm.annotations.PrimaryKey
 
 
-open class OtpStopItem : RealmObject() /*INTERFACES*/, com.krake.bus.model.BusStop, RecordWithFilter/*ENDINTERFACES*/ {
+open class OtpStopItem : RealmObject() /*INTERFACES*/, com.krake.bus.model.BusStop,
+    RecordWithFilter/*ENDINTERFACES*/ {
     /*FIELDS*/
     override var dist: Long? = null
     open var code: String? = null

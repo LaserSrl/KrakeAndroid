@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1905.28.11) on 18/06/2019, 11:43**/
+ * Created by Krake Generator 10.0 Bloody Mary (1906.25.14) on 29/08/2019, 10:23**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.ContentItemWithDescription
@@ -10,13 +10,13 @@ import io.realm.annotations.Index
 import io.realm.annotations.PrimaryKey
 
 
-open class PolicyText : RealmObject() /*INTERFACES*/, ContentItemWithDescription, com.krake.core.model.PolicyText,
-    RecordWithAutoroute, RecordWithFilter/*ENDINTERFACES*/ {
+open class PolicyText : RealmObject() /*INTERFACES*/, ContentItemWithDescription,
+    com.krake.core.model.PolicyText, RecordWithAutoroute, RecordWithFilter/*ENDINTERFACES*/ {
     /*FIELDS*/
     open var autoroutePartUseCulturePattern: Boolean? = null
     override var bodyPartText: String? = null
     override var policyTextInfoPartPriority: Long? = null
-    override var titlePartTitle: String? = null
+    open var policyTextInfoPartAddPolicyToRegistration: Boolean? = null
     override var policyTextInfoPartPolicyType: String? = null
     open var autoroutePartPromoteToHomePage: Boolean? = null
     override var policyTextInfoPartUserHaveToAccept: Boolean = false
@@ -24,6 +24,7 @@ open class PolicyText : RealmObject() /*INTERFACES*/, ContentItemWithDescription
     override var autoroutePartDisplayAlias: String = ""
     open var contentType: String? = null
     open var bodyPartFormat: String? = null
+    override var titlePartTitle: String? = null
     @PrimaryKey
     override var identifier: Long = 0
 /*ENDFIELDS*/

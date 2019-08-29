@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1905.28.11) on 18/06/2019, 11:43**/
+ * Created by Krake Generator 10.0 Bloody Mary (1906.25.14) on 29/08/2019, 10:23**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.RecordWithFilter
@@ -9,8 +9,8 @@ import io.realm.annotations.PrimaryKey
 import java.util.*
 
 
-open class GamePart : RealmObject() /*INTERFACES*/, com.krake.gamequiz.model.GamePart, RecordWithIdentifier,
-    RecordWithFilter/*ENDINTERFACES*/ {
+open class GamePart : RealmObject() /*INTERFACES*/, com.krake.gamequiz.model.GamePart,
+    RecordWithIdentifier, RecordWithFilter/*ENDINTERFACES*/ {
     /*FIELDS*/
     override var state: Long = 0
     override var answerPoint: Long? = null

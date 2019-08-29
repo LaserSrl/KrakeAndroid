@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1905.28.11) on 18/06/2019, 11:43**/
+ * Created by Krake Generator 10.0 Bloody Mary (1906.25.14) on 29/08/2019, 10:23**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.RecordWithFilter
@@ -8,8 +8,8 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
 
-open class MediaPart : RealmObject() /*INTERFACES*/, com.krake.core.model.MediaPart, RecordWithIdentifier,
-    RecordWithFilter/*ENDINTERFACES*/ {
+open class MediaPart : RealmObject() /*INTERFACES*/, com.krake.core.model.MediaPart,
+    RecordWithIdentifier, RecordWithFilter/*ENDINTERFACES*/ {
     /*FIELDS*/
     override var mimeType: String? = null
     open var alternateText: String? = null

@@ -7,13 +7,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+
 import com.krake.core.R;
 import com.krake.core.app.ContentItemDetailActivity;
 import com.krake.core.app.KrakeApplication;
 import com.krake.core.component.module.OrchardComponentModule;
+import com.krake.core.component.module.ThemableComponentModule;
 
 import java.util.List;
 import java.util.Map;
@@ -94,6 +97,15 @@ public class OrchardContentNotifier {
                     orchardComponentModule.extraParameters(connectionExtras);
 
                 activityIntent.putExtras(orchardComponentModule.writeContent(context));
+                PackageManager pm = context.getPackageManager();
+
+                if (((KrakeApplication) context.getApplicationContext()).getForegroundActivitiesCount() == 0) {
+
+                    ThemableComponentModule module = new ThemableComponentModule().upIntent(
+                            pm.getLaunchIntentForPackage(context.getApplicationContext().getPackageName()));
+
+                    activityIntent.putExtras(module.writeContent(context));
+                }
             } else if (displayPath == null || !displayPath.startsWith("http")) {
                 PackageManager pm = context.getPackageManager();
 

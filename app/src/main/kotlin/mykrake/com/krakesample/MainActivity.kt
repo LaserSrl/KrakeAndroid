@@ -99,6 +99,8 @@ class MainActivity : LoginAndPrivacyActivity(), OnContentItemSelectedListener, O
 
     }
 
+    override fun onContentItemNoMoreInEvidence(senderFragment: Any, contentItem: ContentItem) {
+    }
     override fun update(observable: Observable, data: Any) {
 
     }

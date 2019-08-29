@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1905.28.11) on 18/06/2019, 11:43**/
+ * Created by Krake Generator 10.0 Bloody Mary (1906.25.14) on 29/08/2019, 10:23**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.*
@@ -10,8 +10,9 @@ import io.realm.annotations.Index
 import io.realm.annotations.PrimaryKey
 
 
-open class Prodotto : RealmObject() /*INTERFACES*/, ContentItemWithDescription, ContentItemWithGallery, RecordWithShare,
-    RecordWithAutoroute, RecordWithIdentifier, RecordWithFilter/*ENDINTERFACES*/, YoutubeVideo {
+open class Prodotto : RealmObject() /*INTERFACES*/, ContentItemWithDescription,
+    ContentItemWithGallery, RecordWithShare, RecordWithAutoroute, RecordWithIdentifier,
+    RecordWithFilter/*ENDINTERFACES*/, YoutubeVideo {
     /*FIELDS*/
     open var autoroutePartUseCulturePattern: Boolean? = null
     override var bodyPartText: String? = null
