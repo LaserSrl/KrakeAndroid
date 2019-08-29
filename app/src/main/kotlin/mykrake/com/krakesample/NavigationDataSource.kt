@@ -75,6 +75,15 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                 true
             )
         )
+        fields.add(
+            ContentCreationTabInfo.FieldInfo(
+                com.krake.contentcreation.R.string.subtitle,
+                "",
+                null,
+                ContentCreationTabInfo.FIELD_TYPE_BOOLEAN,
+                true
+            )
+        )
         val bodyArray = SparseArray<Int>(1)
         bodyArray.put(FieldExtras.Text.KEY_MAX_LINES, FieldExtras.Text.MAX_LINES_NO_LIMIT)
         fields.add(

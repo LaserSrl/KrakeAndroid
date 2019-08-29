@@ -16,14 +16,22 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.collection.ArrayMap;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import com.krake.core.ClassUtils;
 import com.krake.core.model.RecordWithIdentifier;
 import com.krake.core.model.RecordWithStringIdentifier;
@@ -33,7 +41,11 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.StringTokenizer;
 
 /**
  * Fragment per caricare dati in input di tipo diverso per i nuovi contenuti.
@@ -279,7 +291,8 @@ public class FieldsFragment extends Fragment implements
                     break;
 
                 case ContentCreationTabInfo.FIELD_TYPE_BOOLEAN:
-                    SwitchCompat switchCompat = (SwitchCompat) inflater.inflate(R.layout.creation_boolean_field, null);
+                    LinearLayout switchContainer = (LinearLayout) inflater.inflate(R.layout.creation_boolean_field, null);
+                    SwitchCompat switchCompat = (SwitchCompat) switchContainer.getChildAt(0);
                     switchCompat.setText(fieldInfo.getName());
                     Boolean checked = (Boolean) mSaveFieldInfos.mFieldValues.get(orchardKey);
                     if (checked != null) {
@@ -291,8 +304,8 @@ public class FieldsFragment extends Fragment implements
                     switchCompat.setOnCheckedChangeListener(new OnFieldCheckedListener(orchardKey));
 
                     switchCompat.setEnabled(fieldInfo.isEditingEnabled());
-                    linearContainer.addView(switchCompat);
-                    mKeyRowMap.put(orchardKey, switchCompat);
+                    linearContainer.addView(switchContainer);
+                    mKeyRowMap.put(orchardKey, switchContainer);
                     break;
 
                 case ContentCreationTabInfo.FIELD_TYPE_DATE:
@@ -496,6 +509,7 @@ public class FieldsFragment extends Fragment implements
                     break;
                 case ContentCreationTabInfo.FIELD_TYPE_BOOLEAN:
                     Boolean oBool = (Boolean) fieldInfos.mFieldValues.get(orchardKey);
+                    TextView errorText = (TextView) ((LinearLayout) rowObj).getChildAt(1);
 
                     if (oBool != null) {
                         ContentCreationTabInfo.FieldInfoValidator.Result fieldInfoValidatorResult = validateField(activity, fieldInfo, oBool);
@@ -503,13 +517,18 @@ public class FieldsFragment extends Fragment implements
                             valid = false;
                             error = fieldInfoValidatorResult.getErrorMessage();
                         }
+                    } else if (fieldInfo.isRequired()) {
+                        error = getString(R.string.error_invalid_bool);
                     }
 
                     //TODO visualizzare errori per boolean
                     if (TextUtils.isEmpty(error)) {
                         fieldInfos.mFieldsErrors.remove(orchardKey);
+                        errorText.setVisibility(View.GONE);
                     } else {
                         fieldInfos.mFieldsErrors.put(orchardKey, error);
+                        errorText.setText(error);
+                        errorText.setVisibility(View.VISIBLE);
                     }
 
                     break;

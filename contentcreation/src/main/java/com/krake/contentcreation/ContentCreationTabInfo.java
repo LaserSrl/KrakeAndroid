@@ -2,10 +2,13 @@ package com.krake.contentcreation;
 
 import android.content.Context;
 import android.util.SparseArray;
+
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+
+import com.krake.contentcreation.validator.FieldInfoBoolValidator;
 import com.krake.core.media.MediaType;
 import com.krake.core.media.watermark.Watermark;
 import com.krake.core.model.TermPart;
@@ -557,6 +560,10 @@ public class ContentCreationTabInfo {
 
             if (fieldInfoValidator != null)
                 addFieldInfoValidator(fieldInfoValidator);
+
+            if (type == FIELD_TYPE_BOOLEAN && required) {
+                addFieldInfoValidator(new FieldInfoBoolValidator());
+            }
         }
 
         public int getName() {

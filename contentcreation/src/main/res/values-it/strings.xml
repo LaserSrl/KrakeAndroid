@@ -41,4 +41,5 @@
     <string name="title">Titolo</string>
 
     <string name="updated_content">Informazioni aggiornate</string>
+    <string name="error_invalid_bool">Devi accettare per continuare</string>
 </resources>

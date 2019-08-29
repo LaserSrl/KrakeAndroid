@@ -41,4 +41,5 @@
     <string name="title_activity_content_creation">Content Creation</string>
 
     <string name="updated_content">Infos saved</string>
+    <string name="error_invalid_bool">You need to accept to proceed</string>
 </resources>
