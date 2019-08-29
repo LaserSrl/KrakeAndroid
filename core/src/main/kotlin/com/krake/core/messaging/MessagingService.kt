@@ -34,7 +34,7 @@ class MessagingService : FirebaseMessagingService() {
         }
     }
 
-    override fun onNewToken(p0: String?) {
+    override fun onNewToken(p0: String) {
         super.onNewToken(p0)
         val refreshedToken = p0
         Log.d("FCM id", "onTokenRefresh: " + (refreshedToken ?: "null"))
