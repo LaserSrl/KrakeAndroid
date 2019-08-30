@@ -426,11 +426,16 @@ public class FieldsFragment extends Fragment implements
                         }
                     }
 
-                    //TODO visualizzare errori per multiterm
-                    if (TextUtils.isEmpty(error))
+                    TextView multiErrotText = ((MultiEnumOrTermManager) rowObj).getErrorView();
+
+                    if (TextUtils.isEmpty(error)) {
                         fieldInfos.mFieldsErrors.remove(orchardKey);
-                    else
+                        multiErrotText.setVisibility(View.GONE);
+                    } else {
                         fieldInfos.mFieldsErrors.put(orchardKey, error);
+                        multiErrotText.setVisibility(View.VISIBLE);
+                        multiErrotText.setText(error);
+                    }
 
                     break;
 
@@ -521,7 +526,6 @@ public class FieldsFragment extends Fragment implements
                         error = getString(R.string.error_invalid_bool);
                     }
 
-                    //TODO visualizzare errori per boolean
                     if (TextUtils.isEmpty(error)) {
                         fieldInfos.mFieldsErrors.remove(orchardKey);
                         errorText.setVisibility(View.GONE);

@@ -31,6 +31,7 @@ class MultiEnumOrTermManager constructor(context: FragmentActivity,
     private val selectedValues: MutableList<Any>
     private val mAdapter: EnumOrTermPartAdapter
     private val progress: ProgressBar = layout.findViewById(android.R.id.progress)
+    val errorView = layout.findViewWithTag<TextView>("Error")
     private var mDataConnection: DataConnectionModel? = null
     private val modelObserver = object : Observer<DataModel>
     {
