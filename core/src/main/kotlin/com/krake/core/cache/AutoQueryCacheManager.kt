@@ -87,9 +87,9 @@ class AutoQueryCacheManager(context: Context) : CacheManager, LocationCacheModif
         val cacheName = if (extras.containsKey(Constants.REQUEST_DISPLAY_PATH_KEY))
             extras[Constants.REQUEST_DISPLAY_PATH_KEY]
         else
-            cache.cacheName
+            cache.cacheName.substringBefore(AliasParametersDivider)
 
-        if (aroundMePaths.contains(cache.cacheName)) {
+        if (aroundMePaths.contains(cacheName)) {
             val requestRadius = extras[Constants.REQUEST_RADIUS]?.toInt() ?: 0
             val cacheRadius = cacheExtras[Constants.REQUEST_RADIUS]?.toInt() ?: 0
 
@@ -162,6 +162,7 @@ class AutoQueryCacheManager(context: Context) : CacheManager, LocationCacheModif
     override fun getCacheKey(displayPath: String, extras: Map<String, String>): String {
         val sb = StringBuilder(displayPath)
         if (displayPath != userInfoAlias) {
+            sb.append(AliasParametersDivider)
             val keys = extras.keys.toMutableList()
             // Sort keys to manage the bundle.putAll() re-order.
             Collections.sort(keys)
@@ -180,5 +181,10 @@ class AutoQueryCacheManager(context: Context) : CacheManager, LocationCacheModif
 
     override fun addLocationPath(path: String) {
         aroundMePaths.add(path)
+    }
+
+    companion object {
+        @JvmStatic
+        val AliasParametersDivider = "||"
     }
 }

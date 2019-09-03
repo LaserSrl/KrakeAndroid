@@ -132,4 +132,5 @@ interface RequestCache : RealmModel {
                     .findFirst() as? RequestCache
         }
     }
+
 }
