@@ -60,7 +60,12 @@ interface RequestCache : RealmModel {
         }
 
         val allElements = LinkedList<RealmModel>()
-        cachedElementsClassNames.forEach { @Suppress("UNCHECKED_CAST") allElements.addAll(getProperty(it) as RealmList<RealmModel>) }
+        cachedElementsClassNames.forEach {
+            @Suppress("UNCHECKED_CAST")
+            (getProperty(it) as? RealmList<RealmModel>)?.let {
+                allElements.addAll(it)
+            }
+        }
 
         val sort = sortIdentifiers
         allElements.sortBy { sort.indexOf(it.identifierOrStringIdentifier) }
@@ -69,7 +74,7 @@ interface RequestCache : RealmModel {
     }
 
     fun clearAllLists() {
-        cachedElementsClassNames.forEach { @Suppress("UNCHECKED_CAST") (getProperty(it) as RealmList<RealmModel>).clear() }
+        cachedElementsClassNames.forEach { @Suppress("UNCHECKED_CAST") (getProperty(it) as? RealmList<RealmModel>)?.clear() }
         _sort = ""
     }
 
