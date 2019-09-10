@@ -1,6 +1,7 @@
 package com.krake.surveys.app;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -10,10 +11,23 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CheckedTextView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.JsonArray;
@@ -36,14 +50,16 @@ import com.krake.surveys.component.module.SurveyComponentModule;
 import com.krake.surveys.model.Answer;
 import com.krake.surveys.model.Question;
 import com.krake.surveys.model.Questionnaire;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 /**
  * Fragment per il caricamento dei questionari.
@@ -380,26 +396,29 @@ public class SurveyFragment extends OrchardDataModelFragment implements View.OnC
                         public Unit invoke(RemoteResponse remoteResponse, OrchardError orchardError) {
                             updateUiWithSendingAnswers(false);
 
-                            if (remoteResponse != null) {
-                                if (questionnaire != null) {
-                                    Bundle b = new Bundle();
-                                    b.putString(FirebaseAnalytics.Param.CONTENT_TYPE, questionnaire.getClass().getSimpleName());
-                                    b.putString(FirebaseAnalytics.Param.ITEM_ID, questionnaire.getAutoroutePartDisplayAlias());
+                            Activity activity = getActivity();
+                            if (activity != null) {
+                                if (remoteResponse != null) {
+                                    if (questionnaire != null) {
+                                        Bundle b = new Bundle();
+                                        b.putString(FirebaseAnalytics.Param.CONTENT_TYPE, questionnaire.getClass().getSimpleName());
+                                        b.putString(FirebaseAnalytics.Param.ITEM_ID, questionnaire.getAutoroutePartDisplayAlias());
 
-                                    ((AnalyticsApplication) getActivity().getApplication())
-                                            .logEvent("survey_answered", b);
+                                        ((AnalyticsApplication) activity.getApplication())
+                                                .logEvent("survey_answered", b);
 
+                                    }
+                                    SnackbarUtils.showCloseSnackbar(mLinear, R.string.thanks_for_taking_survey,
+                                            mHandler, new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (listener != null)
+                                                        listener.onSurveySent(SurveyFragment.this);
+                                                }
+                                            });
+                                } else {
+                                    SnackbarUtils.createSnackbar(mLinear, orchardError.getUserFriendlyMessage(activity), Snackbar.LENGTH_LONG).show();
                                 }
-                                SnackbarUtils.showCloseSnackbar(mLinear, R.string.thanks_for_taking_survey,
-                                        mHandler, new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                if (listener != null)
-                                                    listener.onSurveySent(SurveyFragment.this);
-                                            }
-                                        });
-                            } else {
-                                SnackbarUtils.createSnackbar(mLinear, orchardError.getUserFriendlyMessage(getActivity()), Snackbar.LENGTH_LONG).show();
                             }
                             return null;
                         }

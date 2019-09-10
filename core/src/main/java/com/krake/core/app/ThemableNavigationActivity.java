@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
@@ -29,6 +30,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.NavUtils;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 import com.krake.core.R;
 import com.krake.core.component.annotation.BundleResolvable;
@@ -38,6 +40,7 @@ import com.krake.core.drawer.NavigationItemIntentSelectionListener;
 import com.krake.core.extension.ActivityExtensionsKt;
 import com.krake.core.extension.IntentExtensionsKt;
 import com.krake.core.util.LayoutUtils;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
@@ -156,17 +159,7 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
 
         ComponentManager.resolveIntent(this);
 
-
-        // set the orientation taking the value from ActivityInfo.ScreenOrientation
-        final int activityOrientation = getResources().getInteger(R.integer.activity_orientation);
-        //noinspection WrongConstant
-        if (activityOrientation != getRequestedOrientation()) {
-            //noinspection WrongConstant
-            setRequestedOrientation(activityOrientation);
-        }
-
         TypedArray elements = obtainStyledAttributes(R.styleable.BaseTheme);
-        mResultManager = new ResultManager();
 
         @StyleRes int theme = themableComponentModule.getTheme();
         if (theme != 0) {
@@ -174,6 +167,19 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
             setTheme(theme);
             elements = obtainStyledAttributes(R.styleable.BaseTheme);
         }
+
+        // set the orientation taking the value from ActivityInfo.ScreenOrientation
+        final int activityOrientation = getResources().getInteger(R.integer.activity_orientation);
+        //noinspection WrongConstant
+        if (activityOrientation != getRequestedOrientation() &&
+                !themableComponentModule.getShowFloating() &&
+                !elements.getBoolean(R.styleable.BaseTheme_isFloatingWindow, false)) {
+            //noinspection WrongConstant
+            setRequestedOrientation(activityOrientation);
+        }
+
+        mResultManager = new ResultManager();
+
 
         if (themableComponentModule.getShowFloating() ||
                 elements.getBoolean(R.styleable.BaseTheme_isFloatingWindow, false)) {
