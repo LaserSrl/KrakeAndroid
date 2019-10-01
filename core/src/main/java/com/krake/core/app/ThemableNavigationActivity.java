@@ -133,10 +133,14 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayout != null && (mDrawerLayout.isDrawerOpen(GravityCompat.START) || mDrawerLayout.isDrawerOpen(GravityCompat.END))) {
-            mDrawerLayout.closeDrawers();
+        if (mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NONE) {
+            onUpNavigationButtonSelected();
         } else {
-            super.onBackPressed();
+            if (mDrawerLayout != null && (mDrawerLayout.isDrawerOpen(GravityCompat.START) || mDrawerLayout.isDrawerOpen(GravityCompat.END))) {
+                mDrawerLayout.closeDrawers();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
