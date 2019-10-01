@@ -1,5 +1,6 @@
 package mykrake.com.krakesample
 
+import android.content.Intent
 import com.krake.OtpDataRepository
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.cards.CardsDetailFragment
@@ -10,6 +11,7 @@ import com.krake.contentcreation.UserInfoCacheInvalidatorApiEndListener
 import com.krake.contentcreation.component.module.ContentCreationComponentModule
 import com.krake.core.Signaler
 import com.krake.core.app.ContentItemDetailModelFragment
+import com.krake.core.app.CustomLaunchIntentProvider
 import com.krake.core.app.KrakeApplication
 import com.krake.core.component.base.ComponentManager
 import com.krake.core.component.module.DetailComponentModule
@@ -33,7 +35,9 @@ import java.util.*
 /**
  * Created by antoniolig on 07/03/2017.
  */
-class KrakeApp : KrakeApplication(), UserNavigationViewListener {
+class KrakeApp : KrakeApplication(), UserNavigationViewListener  /*, CustomLaunchIntentProvider */ {
+
+//    override fun getLaunchIntent(): Intent = NavigationDataSource.getItinerariIntent(this)
 
     override fun onCreate() {
         super.onCreate()
@@ -44,7 +48,7 @@ class KrakeApp : KrakeApplication(), UserNavigationViewListener {
         }
         LeakCanary.install(this)
 
-        LoginManager.shared.isLogged.observeForever(FacebookLogoutListener())
+//        LoginManager.shared.isLogged.observeForever(FacebookLogoutListener())
 
         /*beaconManger = EstimoteBeaconManager(this, BeaconRegion("Tutti", null, null, null))
         val near = ProximityBeaconRanger(this, beaconManger)

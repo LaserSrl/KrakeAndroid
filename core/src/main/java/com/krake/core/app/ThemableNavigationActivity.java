@@ -71,7 +71,7 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
 
     public static final int MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW = 1;
     public static final int MAIN_NAVIGATION_MODE_DRAWER_NONE = 2;
-    private static final String EXTRA_NAVIGATION_SECTION_IDENTIFIER = "NavSectionId";
+    public static final String EXTRA_NAVIGATION_SECTION_IDENTIFIER = "NavSectionId";
     private static final int INTENT_DELAY_TIME = 250;
     private ResultManager mResultManager;
 
@@ -89,6 +89,7 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
     private DrawerLayout mDrawerLayout;
     private NavigationItemIntentSelectionListener mSelectionListener;
     private boolean mNavigationClearParallelsTask;
+    private boolean mSelectFirstDrawerItem;
 
     public static
     @Nullable
@@ -191,6 +192,12 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
         mNavigationMode = elements.getInt(R.styleable.BaseTheme_mainNavigationMode, MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW);
 
         mNavigationClearParallelsTask = elements.getBoolean(R.styleable.BaseTheme_navigationIntentClearParallelsTasks, false);
+
+        //Per selezionare il primo elemento del menu laterale all'avvio dell'app: (default: true)
+        //  true -> selezione automatica primo elemento
+        // false -> nessuna selezione
+        //NB: se impostato un itemId a EXTRA_NAVIGATION_SECTION_IDENTIFIER esso avra precedenza sulla selezione!
+        mSelectFirstDrawerItem = elements.getBoolean(R.styleable.BaseTheme_navigationSelectFirstItem, true);
 
         if (layout == 0) {
             if (mNavigationMode == MAIN_NAVIGATION_MODE_DRAWER_NAVIGATION_VIEW)
@@ -372,10 +379,14 @@ public class ThemableNavigationActivity extends AppCompatActivity implements Dra
             int id = getIntent().getIntExtra(EXTRA_NAVIGATION_SECTION_IDENTIFIER, 0);
             MenuItem menuItem = id != 0 ? menu.findItem(id) : null;
 
-            if (menuItem != null)
+            if (menuItem != null) {
                 menuItem.setChecked(true);
+            }
+            else if (mSelectFirstDrawerItem) {
+                menuItem = menu.getItem(0);
+                menuItem.setChecked(true);
+            }
             else {
-
                 for (int index = 0; index < menu.size(); ++index) {
                     menuItem = menu.getItem(index);
                     if (menuItem.isChecked()) {

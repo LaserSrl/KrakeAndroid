@@ -14,6 +14,8 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="navigationViewHeader">@layout/user_menu_view</item>
         <item name="navigationViewMenu">@menu/activity_menu_drawer</item>
+
+        <item name="navigationSelectFirstItem">false</item>
     </style>
 
 

@@ -12,6 +12,7 @@
         <attr format="reference" name="navigationViewHeader"/>
         <attr format="reference" name="navigationViewMenu"/>
         <attr format="boolean" name="navigationIntentClearParallelsTasks"/>
+        <attr format="boolean" name="navigationSelectFirstItem"/>
         <attr format="reference" name="listMapTransition"/>
     </declare-styleable>
 

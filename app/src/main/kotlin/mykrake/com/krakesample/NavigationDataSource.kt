@@ -17,6 +17,7 @@ import com.krake.contentcreation.ContentDefinition
 import com.krake.contentcreation.FieldExtras
 import com.krake.contentcreation.component.module.ContentCreationComponentModule
 import com.krake.core.app.ContentItemListMapActivity
+import com.krake.core.app.ThemableNavigationActivity.EXTRA_NAVIGATION_SECTION_IDENTIFIER
 import com.krake.core.component.base.ComponentManager
 import com.krake.core.component.module.*
 import com.krake.core.drawer.NavigationItemIntentSelectionListener
@@ -38,6 +39,48 @@ import java.util.*
  * Created by antoniolig on 07/03/2017.
  */
 class NavigationDataSource(val context: Context) : NavigationItemIntentSelectionListener {
+
+    companion object {
+
+        fun getPoiIntent(context: Context) : Intent {
+            val intent = ComponentManager.createIntent()
+                .from(context)
+                .to(ContentItemListMapActivity::class.java)
+                .with(
+                    ThemableComponentModule()
+                        .title("POI"),
+                    OrchardComponentModule()
+                        .avoidPagination()
+                        .dataClass(POI::class.java)
+                        .displayPath("elenco-poi")
+                        .searchColumnsName("titlePartTitle", "bodyPartText"),
+                    ListMapComponentModule(context)
+                        .activityLayout(R.layout.activity_content_items_map_or_grid)
+                        .termsModules(
+                            TermsModule()
+                                .filterQueryString(false),
+                            OrchardComponentModule()
+                                .dataClass(Taxonomy::class.java)
+                                .displayPath("categorie-poi")
+                        )
+                        .loadDetailsByPath(true)
+                        .listCellLayout(R.layout.cell_content_item_cardview)
+                        .mapUseCluster(true)
+                        .detailModules(DetailComponentModule(context),
+
+                            ThemableComponentModule().apply {
+                                if (context.resources.getBoolean(R.bool.is_tablet)) theme(
+                                    R.style.ContentItemsDetailThemeFloating
+                                )
+                            })
+                )
+                .build()
+//            intent.putExtra(EXTRA_NAVIGATION_SECTION_IDENTIFIER , R.id.nav_poi )
+            return intent
+        }
+    }
+
+
     override fun createIntentForNavigationItemSelected(item: MenuItem): Intent? {
         var intent: Intent? = null
 
@@ -134,38 +177,7 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
         )
 
         when (item.itemId) {
-            R.id.nav_poi -> intent = ComponentManager.createIntent()
-                .from(context)
-                .to(ContentItemListMapActivity::class.java)
-                .with(
-                    ThemableComponentModule()
-                        .title("POI"),
-                    OrchardComponentModule()
-                        .avoidPagination()
-                        .dataClass(POI::class.java)
-                        .displayPath("elenco-poi")
-                        .searchColumnsName("titlePartTitle", "bodyPartText"),
-                    ListMapComponentModule(context)
-                        .activityLayout(R.layout.activity_content_items_map_or_grid)
-                        .termsModules(
-                            TermsModule()
-                                .filterQueryString(false),
-                            OrchardComponentModule()
-                                .dataClass(Taxonomy::class.java)
-                                .displayPath("categorie-poi")
-                        )
-                        .loadDetailsByPath(true)
-                        .listCellLayout(R.layout.cell_content_item_cardview)
-                        .mapUseCluster(true)
-                        .detailModules(DetailComponentModule(context),
-
-                            ThemableComponentModule().apply {
-                                if (context.resources.getBoolean(R.bool.is_tablet)) theme(
-                                    R.style.ContentItemsDetailThemeFloating
-                                )
-                            })
-                )
-                .build()
+            R.id.nav_poi -> intent = getPoiIntent(context)
 
             R.id.nav_itineraries -> intent = ComponentManager.createIntent()
                 .from(context)
