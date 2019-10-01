@@ -44,7 +44,7 @@ class KrakeApp : KrakeApplication(), UserNavigationViewListener {
         }
         LeakCanary.install(this)
 
-        LoginManager.shared.isLogged.observeForever(FacebookLogoutListener())
+//        LoginManager.shared.isLogged.observeForever(FacebookLogoutListener())
 
         /*beaconManger = EstimoteBeaconManager(this, BeaconRegion("Tutti", null, null, null))
         val near = ProximityBeaconRanger(this, beaconManger)

@@ -12,7 +12,9 @@ import io.realm.annotations.PrimaryKey
 
 open class Prodotto : RealmObject() /*INTERFACES*/, ContentItemWithDescription,
     ContentItemWithGallery, RecordWithShare, RecordWithAutoroute, RecordWithIdentifier,
-    RecordWithFilter/*ENDINTERFACES*/, YoutubeVideo {
+    RecordWithFilter/*ENDINTERFACES*/, YoutubeVideo
+, ContentItemWithSocial
+{
     /*FIELDS*/
     open var autoroutePartUseCulturePattern: Boolean? = null
     override var bodyPartText: String? = null
@@ -31,4 +33,17 @@ open class Prodotto : RealmObject() /*INTERFACES*/, ContentItemWithDescription,
     /*ENDFIELDS*/
     override val videoUrlValue: String
         get() = "https://www.youtube.com/watch?v=C0DPdy98e4c"
+
+    override val facebookValue: String?
+        get() = "https://www.google.com"
+    override val instagramValue: String?
+        get() = "https://www.google.com"
+    override val pinterestValue: String?
+        get() = ""
+    override val twitterValue: String?
+        get() = null
+    override val youtubeValue: String?
+        get() = videoUrlValue
+
+
 }

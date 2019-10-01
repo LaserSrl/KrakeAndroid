@@ -150,6 +150,9 @@ open class SocialToolbar : FrameLayout, ContentItemView, View.OnClickListener, V
 
             if (!contentItem.instagramValue.isNullOrEmpty())
                 list.add(createSocialItem(SocialItems.INSTANGRAM, contentItem.instagramValue!!))
+
+            if (!contentItem.youtubeValue.isNullOrEmpty())
+                list.add(createSocialItem(SocialItems.YOUTUBE, contentItem.youtubeValue!!))
         }
 
         if (contentItem is ContentItemWithContact) {
@@ -174,6 +177,7 @@ open class SocialToolbar : FrameLayout, ContentItemView, View.OnClickListener, V
             SocialItems.TWITTER -> SocialItems.SocialToolbarItem(R.string.twitter, R.drawable.ic_twitter, value)
             SocialItems.PINTEREST -> SocialItems.SocialToolbarItem(R.string.pinterest, R.drawable.ic_pinterest, value)
             SocialItems.INSTANGRAM -> SocialItems.SocialToolbarItem(R.string.instagram, R.drawable.ic_instagram, value)
+            SocialItems.YOUTUBE -> SocialItems.SocialToolbarItem(R.string.youtube, R.drawable.ic_youtube, value)
             SocialItems.WEBSITE -> SocialItems.SocialToolbarItem(R.string.website, R.drawable.ic_public, value)
             SocialItems.CALL -> SocialItems.CallSocialToolbarItem(R.string.call, R.drawable.ic_call, value)
             SocialItems.MAIL -> SocialItems.MailSocialToolbarItem(R.string.mail, R.drawable.ic_email, value)

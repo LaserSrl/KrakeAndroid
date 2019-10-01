@@ -9,7 +9,7 @@ import androidx.annotation.StringRes
 
 object SocialItems
 {
-    @IntDef(FACEBOOK, TWITTER, PINTEREST, INSTANGRAM, WEBSITE, MAIL, CALL)
+    @IntDef(FACEBOOK, TWITTER, PINTEREST, INSTANGRAM, WEBSITE, MAIL, CALL, YOUTUBE)
     @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
     annotation class Type
 
@@ -20,6 +20,7 @@ object SocialItems
     const val WEBSITE = 5
     const val MAIL = 6
     const val CALL = 7
+    const val YOUTUBE = 8
 
     open class SocialToolbarItem(@StringRes val name: Int, @DrawableRes val image: Int, var value: String)
     {

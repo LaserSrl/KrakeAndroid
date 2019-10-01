@@ -34,6 +34,7 @@
     <item name="ic_public" type="drawable">@drawable/ic_public_24dp</item>
     <item name="ic_push_icon" type="drawable">@drawable/ic_share_white_old</item>
     <item name="ic_twitter" type="drawable">@drawable/ic_twitter_24dp</item>
+    <item name="ic_youtube" type="drawable">@drawable/ic_youtube_24dp</item>
 
     <item name="login_background_image" type="drawable">@null</item>
     <item name="login_image_logo" type="drawable">@null</item>
