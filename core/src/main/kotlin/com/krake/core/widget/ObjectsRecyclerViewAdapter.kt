@@ -176,7 +176,7 @@ abstract class ObjectsRecyclerViewAdapter<ObjectClass, ViewHolderClass : Recycle
     override fun getItemCount(): Int = items.size
 
     open fun getItem(position: Int): ObjectClass? =
-            if (position != -1 && position < itemCount) items[position] else null
+        if (position != -1 && position < items.size) items[position] else null
 
     fun indexOf(item: ObjectClass): Int = items.indexOf(item)
 
