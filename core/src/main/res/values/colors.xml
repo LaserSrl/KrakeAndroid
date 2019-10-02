@@ -60,4 +60,5 @@
 
     <color name="user_menu_view_placeholder_color">@color/colorAccent</color>
 
+    <color name="toolbar_detail_shadow_color">#4DFFFFFF</color>
 </resources>

@@ -182,4 +182,8 @@
     <declare-styleable name="UserNavigationMenuView">
         <attr name="hide_logout_button" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="ShadowCollapsingToolbarLayout">
+        <attr name="show_shadow" format="boolean" />
+    </declare-styleable>
 </resources>
