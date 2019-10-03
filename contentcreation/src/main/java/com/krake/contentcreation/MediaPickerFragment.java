@@ -366,7 +366,7 @@ public class MediaPickerFragment extends Fragment implements ContentCreationFrag
                                         //noinspection WrongConstant
                                         photoInfos.pickedInfos.add(mediaInfo);
                                         // Save the data obtained from DB to restore them on rotation.
-                                        mActivity.updateFragmentData(MediaPickerFragment.this, photoInfos);
+                                        mActivity.updateFragmentData(MediaPickerFragment.this, photoInfos, true);
                                         if (mAdapter != null) {
                                             updatePreviewAndButtons();
                                         }
