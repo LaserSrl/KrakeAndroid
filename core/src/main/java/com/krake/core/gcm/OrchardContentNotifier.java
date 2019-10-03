@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
 
 import com.krake.core.R;
 import com.krake.core.app.ContentItemDetailActivity;
@@ -87,6 +88,7 @@ public class OrchardContentNotifier {
                     }
                 }
             }
+            Intent upIntent = null;
             if (contentClass != null && activityIntent != null) {
                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -101,8 +103,9 @@ public class OrchardContentNotifier {
 
                 if (((KrakeApplication) context.getApplicationContext()).getForegroundActivitiesCount() == 0) {
 
-                    ThemableComponentModule module = new ThemableComponentModule().upIntent(
-                            pm.getLaunchIntentForPackage(context.getApplicationContext().getPackageName()));
+                    upIntent =
+                            pm.getLaunchIntentForPackage(context.getApplicationContext().getPackageName());
+                    ThemableComponentModule module = new ThemableComponentModule().upIntent(upIntent);
 
                     activityIntent.putExtras(module.writeContent(context));
                 }
@@ -122,8 +125,15 @@ public class OrchardContentNotifier {
                     resultObject,
                     remoteMessageExtras);
 
-
-            PendingIntent contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_ONE_SHOT);
+            PendingIntent contentIntent;
+            if (upIntent == null) {
+                contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_ONE_SHOT);
+            } else {
+                contentIntent = TaskStackBuilder.create(context)
+                        .addNextIntent(upIntent)
+                        .addNextIntent(activityIntent)
+                        .getPendingIntent(new Random().nextInt(), PendingIntent.FLAG_ONE_SHOT);
+            }
             notificationBuilder.setContentIntent(contentIntent);
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
