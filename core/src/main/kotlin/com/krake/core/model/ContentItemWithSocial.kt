@@ -9,4 +9,5 @@ interface ContentItemWithSocial : ContentItem {
     val pinterestValue: String?
     val instagramValue: String?
     val twitterValue: String?
+    val youtubeValue: String?
 }

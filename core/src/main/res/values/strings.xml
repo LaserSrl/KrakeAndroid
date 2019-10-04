@@ -62,7 +62,9 @@
 
     <string name="hours">h</string>
 
-    <string name="instagram">Instagram</string>
+    <string name="instagram" translatable="false">Instagram</string>
+
+    <string name="youtube" translatable="false">Youtube</string>
 
     <string name="list">List</string>
 

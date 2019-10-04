@@ -125,6 +125,14 @@
         <item name="android:layout_marginBottom">4dp</item>
     </style>
 
+    <style name="ContentItems.Detail.SocialToolbar.noShowName">
+<!--        <item name="android:background">@android:color/black</item>-->
+        <item name="showNames">false</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="tintColorList">?attr/colorPrimary</item>
+        <item name="socialLayout">@layout/partial_social_item_without_name</item>
+    </style>
+
     <style name="ContentItems.Detail.SocialToolbar.Button" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">@dimen/social_item_size</item>
