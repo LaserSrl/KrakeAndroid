@@ -2,11 +2,9 @@ package com.krake.core.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.krake.core.R;
 
 /**
@@ -59,7 +57,7 @@ public class BottomSheetNotUnderActionBehavior<V extends View> extends SafeBotto
             View heightView = dependency;
 
             int newTop;
-            if (((AppBarLayout) dependency).getChildAt(0) instanceof CollapsingToolbarLayout) {
+            if (((AppBarLayout) dependency).getChildAt(0) instanceof ShadowCollapsingToolbarLayout) {
                 heightView = dependency.findViewById(R.id.toolbar_actionbar);
                 newTop = heightView.getMeasuredHeight();
             } else {

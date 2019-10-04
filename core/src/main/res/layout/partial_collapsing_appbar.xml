@@ -8,12 +8,13 @@
                                                  app:expanded="false"
                                                  app:layout_behavior="com.krake.core.widget.LockAppbarLayoutBehavior">
 
-    <com.google.android.material.appbar.CollapsingToolbarLayout
+    <com.krake.core.widget.ShadowCollapsingToolbarLayout
         android:id="@+id/collapsing_toolbar_layout"
         style="@style/AppCollapsingToolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:expanded="false"
+        app:show_shadow="false"
         app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed">
 
         <RelativeLayout
@@ -36,5 +37,5 @@
             app:subtitleTextAppearance="@style/SubtitleTextAppearance"
             app:titleTextAppearance="@style/ActionBar.TitleText" />
 
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.krake.core.widget.ShadowCollapsingToolbarLayout>
 </com.google.android.material.appbar.AppBarLayout>
