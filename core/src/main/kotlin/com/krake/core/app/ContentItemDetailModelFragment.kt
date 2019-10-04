@@ -26,7 +26,6 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.krake.core.widget.ShadowCollapsingToolbarLayout
 import com.krake.core.OrchardError
 import com.krake.core.R
 import com.krake.core.api.GoogleApiClientFactory
@@ -107,7 +106,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
     private val sheetCallback: SheetCallback by lazy { SheetCallback(this) }
     private lateinit var mAppBarLayout: AppBarLayout
     private var mToolbar: Toolbar? = null
-    private var mCollapsingToolbarLayout: ShadowCollapsingToolbarLayout? = null
+    private var mCollapsingToolbarLayout: CollapsingToolbarLayout? = null
     private var mAppBarLockBehavior: LockAppbarLayoutBehavior? = null
 
     private lateinit var mLocationRequirementsHelper: LocationRequirementsHelper
@@ -540,7 +539,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
         if (mToolbar != null && activity != null)
         {
             activity.title = title
-            (mToolbar?.parent as? ShadowCollapsingToolbarLayout)?.let { it.title = title }
+            (mToolbar?.parent as? CollapsingToolbarLayout)?.let { it.title = title }
         }
     }
 
