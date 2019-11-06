@@ -69,6 +69,7 @@
     <string name="orchard_api_taxonomies_push" translatable="false">API/Laser.Orchard.Mobile/TaxonomiePush/</string>
     <string name="orchard_custom_login_authenticate_path" translatable="false">laser.orchard.usersextensions/akuseractions/SignInSsl</string>
     <string name="orchard_custom_login_registration_path" translatable="false">laser.orchard.usersextensions/akuseractions/RegisterSsl</string>
+    <string name="orchard_custom_login_nonce_path" translatable="false">laser.orchard.usersextensions/akuseractions/ChallengeEmailApiSsl</string>
     <string name="orchard_api_user_reaction" translatable="false">Api/Laser.Orchard.UserReactions/ReactionApi</string>
     <string name="orchard_data_service_path" translatable="false">Laser.orchard.WebServices/Json/GetByAlias</string>
     <string name="orchard_signal_command" translatable="false">api/Laser.Orchard.WebServices/SignalApi</string>

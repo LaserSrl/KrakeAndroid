@@ -1,6 +1,7 @@
 package mykrake.com.krakesample
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Address
 import android.location.Location
 import android.os.Bundle
@@ -15,6 +16,8 @@ import com.krake.core.app.LoginAndPrivacyActivity
 import com.krake.core.app.OnContentItemSelectedListener
 import com.krake.core.location.GeocoderTask
 import com.krake.core.location.LocationRequirementsHelper
+import com.krake.core.login.LoginManager
+import com.krake.core.login.extractNonce
 import com.krake.core.model.ContentItem
 import com.krake.core.permission.PermissionListener
 import java.util.*
@@ -74,8 +77,18 @@ class MainActivity : LoginAndPrivacyActivity(), OnContentItemSelectedListener, O
 
         val s = Gson().toJson(bounds)
         s.toCharArray()
-    }
 
+        val nonce = intent.extractNonce()
+
+        if (nonce != null) {
+            LoginManager.shared.verifyNonce(this, nonce)
+        }
+    }
+    // }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+    }
     override fun onStart() {
         super.onStart()
         //((KrakeApp) getApplication()).near.addObserver(this);

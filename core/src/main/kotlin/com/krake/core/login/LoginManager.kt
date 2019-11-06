@@ -2,6 +2,7 @@ package com.krake.core.login
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.text.TextUtils
 import androidx.lifecycle.LiveData
@@ -113,6 +114,15 @@ class LoginManager internal constructor(context: Context)
                 }
     }
 
+    fun verifyNonce(context: Context, nonce: String) {
+        val loginRequest = RemoteRequest(context)
+            .setMethod(RemoteRequest.Method.GET)
+            .setPath(context.getString(R.string.orchard_custom_login_nonce_path))
+            .setQuery("nonce", nonce)
+
+        login(context, loginRequest, false)
+    }
+
     fun logout()
     {
         RemoteClient.clients.forEach { it.value.removeAllCookies() }
@@ -169,5 +179,17 @@ class LoginManager internal constructor(context: Context)
             }
         }
     }
+}
 
+fun Intent.extractNonce(): String? {
+    if (this.action?.equals(Intent.ACTION_VIEW) ?: false) {
+        val uri = data
+        if (uri != null) {
+            if (uri.path.equals("/Users/Account/ChallengeEmail", true)) {
+                return uri.getQueryParameter("nonce")
+            }
+        }
+    }
+
+    return null
 }

@@ -2,8 +2,10 @@ package com.krake.core;
 
 import android.content.Context;
 import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.gson.JsonObject;
 import com.krake.core.data.RemoteDataRepository;
 import com.krake.core.login.PrivacyException;
@@ -19,6 +21,7 @@ public class OrchardError extends IOException {
     private static final long serialVersionUID = -5594775017637063778L;
 
     public static final int REACTION_LOGIN = 1000;
+    public static final int REACTION_VALIDATE_MAIL = 1003;
     public static final int REACTION_PRIVACY = 3000;
 
     /**

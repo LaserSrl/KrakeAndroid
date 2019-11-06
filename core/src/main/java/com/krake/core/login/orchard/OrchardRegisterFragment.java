@@ -1,6 +1,7 @@
 package com.krake.core.login.orchard;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
@@ -13,11 +14,14 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.collection.LongSparseArray;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonArray;
@@ -37,6 +41,7 @@ import com.krake.core.login.LoginManager;
 import com.krake.core.network.RemoteRequest;
 import com.krake.core.network.RemoteResponse;
 import com.krake.core.widget.SnackbarUtils;
+
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
@@ -151,7 +156,19 @@ public class OrchardRegisterFragment extends Fragment implements View.OnClickLis
             @Override
             public void onChanged(@Nullable OrchardError orchardError) {
                 if (orchardError != null) {
-                    SnackbarUtils.createSnackbar(mScrollView, orchardError.getUserFriendlyMessage(getActivity()), Snackbar.LENGTH_LONG).show();
+                    if (orchardError.getReactionCode() != OrchardError.REACTION_VALIDATE_MAIL) {
+                        SnackbarUtils.createSnackbar(mScrollView, orchardError.getUserFriendlyMessage(getActivity()), Snackbar.LENGTH_LONG).show();
+                    } else {
+
+                        new AlertDialog.Builder(getActivity())
+                                .setMessage(orchardError.getUserFriendlyMessage(getActivity()))
+                                .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        mListener.onBackPressed();
+                                    }
+                                }).show();
+                    }
                 }
             }
         });
