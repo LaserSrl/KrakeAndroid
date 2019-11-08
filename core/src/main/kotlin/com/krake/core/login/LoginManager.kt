@@ -116,9 +116,9 @@ class LoginManager internal constructor(context: Context)
 
     fun verifyNonce(context: Context, nonce: String) {
         val loginRequest = RemoteRequest(context)
-            .setMethod(RemoteRequest.Method.GET)
+            .setMethod(RemoteRequest.Method.POST)
             .setPath(context.getString(R.string.orchard_custom_login_nonce_path))
-            .setQuery("nonce", nonce)
+            .setBodyParameters(mapOf(Pair("nonce", nonce)))
 
         login(context, loginRequest, false)
     }
