@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.krake.core.data.RemoteDataRepository;
 import com.krake.core.login.PrivacyException;
@@ -89,7 +90,11 @@ public class OrchardError extends IOException {
         }
         Exception originalException1;
 
-        data = orchardResult.has("Data") ? orchardResult.getAsJsonObject("Data") : null;
+        JsonElement dataElement = orchardResult.get("Data");
+        if (dataElement instanceof JsonObject)
+            data = (JsonObject) dataElement;
+        else
+            data = null;
 
         if (reactionCode == REACTION_PRIVACY) {
             try {
