@@ -163,6 +163,7 @@ public class OrchardError extends IOException {
             return context.getString(R.string.error_generic_failure);
     }
 
+
     public int getErrorCode() {
         return errorCode;
     }
@@ -194,5 +195,9 @@ public class OrchardError extends IOException {
 
     public Date getDateCreated() {
         return dateCreated;
+    }
+
+    public JsonObject getData() {
+        return data;
     }
 }
