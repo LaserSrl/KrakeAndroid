@@ -47,6 +47,7 @@ public class OrchardError extends IOException {
     private int reactionCode;
     private int errorCode;
     private final Date dateCreated;
+    private final JsonObject data;
 
     public OrchardError(Exception e) {
         super("", null);
@@ -59,6 +60,7 @@ public class OrchardError extends IOException {
             reactionCode = REACTION_PRIVACY;
         }
         dateCreated = new Date();
+        data = null;
     }
 
     private OrchardError(JsonObject orchardResult) {
@@ -86,6 +88,8 @@ public class OrchardError extends IOException {
             }
         }
         Exception originalException1;
+
+        data = orchardResult.has("Data") ? orchardResult.getAsJsonObject("Data") : null;
 
         if (reactionCode == REACTION_PRIVACY) {
             try {
@@ -123,6 +127,7 @@ public class OrchardError extends IOException {
         this.errorCode = errorCode;
         this.originalException = originalException;
         dateCreated = new Date();
+        data = null;
     }
 
     public static
