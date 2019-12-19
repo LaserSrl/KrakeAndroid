@@ -15,10 +15,7 @@ import com.krake.core.OrchardError
 import com.krake.core.R
 import com.krake.core.messaging.MessagingService
 import com.krake.core.model.RequestCache
-import com.krake.core.network.RemoteClient
-import com.krake.core.network.RemoteRequest
-import com.krake.core.network.readRemoteRequest
-import com.krake.core.network.saveAsJson
+import com.krake.core.network.*
 import io.realm.Realm
 import io.realm.kotlin.deleteFromRealm
 
@@ -114,13 +111,18 @@ class LoginManager internal constructor(context: Context)
                 }
     }
 
-    fun verifyNonce(context: Context, nonce: String) {
+    fun verifyNonce(
+        context: Context,
+        nonce: String,
+        callback: (RemoteResponse?, OrchardError?) -> Unit
+    ) {
         val loginRequest = RemoteRequest(context)
             .setMethod(RemoteRequest.Method.POST)
             .setPath(context.getString(R.string.orchard_custom_login_nonce_path))
             .setBodyParameters(mapOf(Pair("nonce", nonce)))
 
-        login(context, loginRequest, false)
+        RemoteClient.client(RemoteClient.Mode.LOGGED)
+            .enqueue(loginRequest, callback)
     }
 
     fun logout()

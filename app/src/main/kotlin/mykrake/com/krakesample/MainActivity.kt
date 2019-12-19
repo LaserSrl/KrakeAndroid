@@ -11,6 +11,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.gson.Gson
+import com.krake.core.OrchardError
 import com.krake.core.api.GoogleApiClientFactory
 import com.krake.core.app.LoginAndPrivacyActivity
 import com.krake.core.app.OnContentItemSelectedListener
@@ -19,6 +20,7 @@ import com.krake.core.location.LocationRequirementsHelper
 import com.krake.core.login.LoginManager
 import com.krake.core.login.extractNonce
 import com.krake.core.model.ContentItem
+import com.krake.core.network.RemoteResponse
 import com.krake.core.permission.PermissionListener
 import java.util.*
 
@@ -81,7 +83,13 @@ class MainActivity : LoginAndPrivacyActivity(), OnContentItemSelectedListener, O
         val nonce = intent.extractNonce()
 
         if (nonce != null) {
-            LoginManager.shared.verifyNonce(this, nonce)
+            LoginManager.shared
+                .verifyNonce(this,
+                    nonce,
+                    callback = { remoteResponse: RemoteResponse?, orchardError: OrchardError? ->
+
+
+                    })
         }
     }
     // }
