@@ -662,7 +662,11 @@ public class ContentCreationActivity extends LoginAndPrivacyActivity implements 
     }
 
     public void updateFragmentData(ContentCreationFragment fragment, Object savedInfos) {
-        mChangedData = true;
+        updateFragmentData(fragment, savedInfos, true);
+    }
+
+    public void updateFragmentData(ContentCreationFragment fragment, Object savedInfos, Boolean changedDataValue) {
+        mChangedData = changedDataValue;
         int index = mContentEditFragments.indexOf(fragment);
         if (index != -1) {
             mFragmentEditValues.add(index, savedInfos);

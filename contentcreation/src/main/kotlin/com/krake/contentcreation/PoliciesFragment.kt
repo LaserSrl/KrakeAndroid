@@ -181,7 +181,7 @@ class PoliciesFragment : OrchardDataModelFragment(), ContentCreationFragment,
 
             // Change the list in the adapter.
             policyAdapter.swapList(policies, true)
-            persistData()
+            persistData(false)
 
             selectedPolicyId?.let { selectedId ->
                 // Find the selected policy.
@@ -199,7 +199,7 @@ class PoliciesFragment : OrchardDataModelFragment(), ContentCreationFragment,
 
     override fun policyToggled(policy: Policy) {
         // Change the value of the accepted policies.
-        persistData()
+        persistData(true)
     }
 
     override fun validateDataAndSaveError(activity: ContentCreationActivity, creationInfo: ContentCreationTabInfo.ContentCreationInfo, savedInfos: Any?): Boolean {
@@ -263,8 +263,8 @@ class PoliciesFragment : OrchardDataModelFragment(), ContentCreationFragment,
         it.policyTextInfoPartRecordUserHaveToAccept && !it.accepted
     } == null
 
-    private fun persistData() {
-        contentCreationActivity?.updateFragmentData(this, policies)
+    private fun persistData(changedData: Boolean) {
+        contentCreationActivity?.updateFragmentData(this, policies, changedData)
     }
 
     private class TempPolicy(override val policyTextInfoPartRecordIdentifier: Long,
