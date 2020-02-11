@@ -426,17 +426,18 @@ public class FieldsFragment extends Fragment implements
                         }
                     }
 
-                    TextView multiErrotText = ((MultiEnumOrTermManager) rowObj).getErrorView();
+                    if (rowObj instanceof MultiEnumOrTermManager) {
+                        TextView multiErrotText =  ((MultiEnumOrTermManager) rowObj).getErrorView();
 
-                    if (TextUtils.isEmpty(error)) {
-                        fieldInfos.mFieldsErrors.remove(orchardKey);
-                        multiErrotText.setVisibility(View.GONE);
-                    } else {
-                        fieldInfos.mFieldsErrors.put(orchardKey, error);
-                        multiErrotText.setVisibility(View.VISIBLE);
-                        multiErrotText.setText(error);
+                        if (TextUtils.isEmpty(error)) {
+                            fieldInfos.mFieldsErrors.remove(orchardKey);
+                            multiErrotText.setVisibility(View.GONE);
+                        } else {
+                            fieldInfos.mFieldsErrors.put(orchardKey, error);
+                            multiErrotText.setVisibility(View.VISIBLE);
+                            multiErrotText.setText(error);
+                        }
                     }
-
                     break;
 
                 case ContentCreationTabInfo.FIELD_TYPE_TEXT:

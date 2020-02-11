@@ -1,5 +1,6 @@
 package mykrake.com.krakesample
 
+import android.content.Intent
 import com.krake.OtpDataRepository
 import com.krake.bus.component.module.BusComponentModule
 import com.krake.cards.CardsDetailFragment
@@ -133,6 +134,8 @@ class KrakeApp : KrakeApplication(), UserNavigationViewListener {
                 LoginComponentModule().loginRequired(true)
             )
             .build()
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         startActivity(intent)
     }
