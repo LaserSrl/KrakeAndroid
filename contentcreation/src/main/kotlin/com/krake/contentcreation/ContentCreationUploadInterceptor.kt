@@ -24,18 +24,12 @@ import java.util.concurrent.CancellationException
 class ContentCreationUploadInterceptor(priority: Int, @MediaType availableMedias: Int) : UploadInterceptor(priority, availableMedias), (RemoteResponse?, OrchardError?) -> Unit
 {
 
-    private val mParser: JsonParser
+    private val mParser: JsonParser = JsonParser()
 
     /**
      * Tiene in memoria l'ultima richiesta avvenuta
      */
     private var mUploadFuture: CancelableRequest? = null
-
-    init
-    {
-        // inizializza il parser
-        mParser = JsonParser()
-    }
 
     override fun uploadFile(remoteClient: RemoteClient,
                             context: Context,
@@ -60,7 +54,7 @@ class ContentCreationUploadInterceptor(priority: Int, @MediaType availableMedias
         val contentTypeKey = Constants.REQUEST_CONTENT_TYPE
         if (uploadParams != null && uploadParams.containsKey(contentTypeKey))
         {
-            map.put(contentTypeKey, uploadParams.getString(contentTypeKey))
+            map[contentTypeKey] = uploadParams.getString(contentTypeKey)!!
         }
 
         val tempFile = MediaProvider.createTempFile(context, media.uri)

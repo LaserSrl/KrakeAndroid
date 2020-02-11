@@ -130,7 +130,7 @@ class TripPlannerSearchFragment : Fragment(),
         if (savedInstanceState != null)
             tripModule.readContent(activity!!, savedInstanceState)
         else if (arguments != null)
-            tripModule.readContent(activity!!, activity!!.intent.extras)
+            tripModule.readContent(activity!!, activity!!.intent.extras!!)
 
         val tab = when {
             tripModule.travelModes.size > 1 -> insertTravelTabType(view as ViewGroup, inflater)
@@ -260,10 +260,10 @@ class TripPlannerSearchFragment : Fragment(),
     private fun startTripPlanningIfRequestIsValid() {
         if (tripModule.request.isValid()) {
             val activity = activity ?: throw IllegalArgumentException("The activity mustn't be null.")
-            if (activity.currentFocus != null && activity.currentFocus.windowToken != null) {
+            if (activity.currentFocus != null && activity.currentFocus!!.windowToken != null) {
                 //hide the keyboard
                 val inputManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputManager.hideSoftInputFromWindow(activity.currentFocus.windowToken, 0)
+                inputManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
             }
 
             tripPlanTask.planTrip(activity, tripModule.request)
@@ -315,7 +315,7 @@ class TripPlannerSearchFragment : Fragment(),
             val fragment = TripDatePickerFragment()
             val activity = activity ?: throw IllegalArgumentException("The activity mustn't be null.")
             fragment.arguments = tripModule.writeContent(activity)
-            fragment.show(fragmentManager, "Date")
+            fragment.show(childFragmentManager, "Date")
         }
     }
 

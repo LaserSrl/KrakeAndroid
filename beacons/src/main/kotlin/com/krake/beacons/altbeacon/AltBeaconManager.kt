@@ -48,12 +48,12 @@ class AltBeaconManager(context: Context,
         return appContext
     }
 
-    override fun unbindService(p0: ServiceConnection?)
+    override fun unbindService(p0: ServiceConnection)
     {
         appContext.unbindService(p0)
     }
 
-    override fun bindService(p0: Intent?, p1: ServiceConnection?, p2: Int): Boolean
+    override fun bindService(p0: Intent?, p1: ServiceConnection, p2: Int): Boolean
     {
        return appContext.bindService(p0, p1, p2)
     }

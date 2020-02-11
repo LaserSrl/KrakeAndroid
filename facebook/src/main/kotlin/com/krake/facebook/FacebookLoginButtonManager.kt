@@ -34,7 +34,7 @@ constructor(activity: Activity, loginFragment: LoginViewManager.LoginListener) :
         val res = activity.resources
 
         facebookAuthButton = LoginButton(activity)
-        facebookAuthButton.setReadPermissions(*res.getStringArray(R.array.facebook_permissions))
+        facebookAuthButton.setPermissions(*res.getStringArray(R.array.facebook_permissions))
         facebookAuthButton.fragment = loginFragment as LoginFragment
         facebookCallBackManager = CallbackManager.Factory.create()
         facebookAuthButton.registerCallback(facebookCallBackManager, this)

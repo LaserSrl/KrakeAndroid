@@ -112,7 +112,7 @@ class TripPlannerSearchActivity : LoginAndPrivacyActivity(),
             supportActionBar?.hide()
     }
 
-    override fun onAttachFragment(fragment: Fragment?) {
+    override fun onAttachFragment(fragment: Fragment) {
         super.onAttachFragment(fragment)
 
         //if the fragment attached is TransitRoutesAlternativeFragment or RouteStepsFragment

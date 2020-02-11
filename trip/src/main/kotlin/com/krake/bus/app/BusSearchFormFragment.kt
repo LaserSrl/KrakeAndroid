@@ -53,7 +53,7 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
         get() = seekBar.progress + minimumDistance
         private set
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         listener = context as? Listener
     }
@@ -70,7 +70,7 @@ class BusSearchFormFragment : Fragment(), AddressFilterableArrayAdapter.FilterCh
 
         searchModeTab.onItemSelectedListener = this
         searchModeTab.adapter = ArrayAdapter(
-            activity,
+            activity!!,
             android.R.layout.simple_list_item_1, android.R.id.text1,
             arrayOf(getString(R.string.address), getString(R.string.bus_stop_name))
         )

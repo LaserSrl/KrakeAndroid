@@ -34,7 +34,7 @@ class FacebookDetailSharingIntercept : DetailIntentSharingInterceptor {
     }
     
     override fun handleSharingDetail(fragment: Fragment, shareLink: ShareLinkPart, mediaUri: Uri?, intent: Intent): Boolean {
-        if (intent.component.packageName == FACEBOOK_PACKAGE) {
+        if (intent.component?.packageName == FACEBOOK_PACKAGE) {
             val builder: ShareContent.Builder<*, *>?
 
             val link: String? = if (!shareLink.sharedLink.isNullOrEmpty() &&

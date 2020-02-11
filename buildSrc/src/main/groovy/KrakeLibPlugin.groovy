@@ -1,4 +1,5 @@
 import com.laser.gradle.core.BasePlugin
+import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 
 /**
@@ -49,6 +50,9 @@ class KrakeLibPlugin extends BasePlugin {
                 compileOptions {
                     sourceCompatibility 1.8
                     targetCompatibility 1.8
+                }
+                kotlinOptions {
+                    jvmTarget = JavaVersion.VERSION_1_8.toString()
                 }
 
                 // The animations are disabled in test to avoid delay.
