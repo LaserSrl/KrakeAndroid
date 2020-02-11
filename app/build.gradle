@@ -8,8 +8,8 @@ apply plugin: 'krake'
 krake.modules "apkNameGenerator", "autoOrientation"
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     compileOptions {
         sourceCompatibility 1.8
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId "mykrake.com.krakesample"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         multiDexEnabled = true

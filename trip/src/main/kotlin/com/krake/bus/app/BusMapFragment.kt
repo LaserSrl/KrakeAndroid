@@ -31,7 +31,7 @@ open class BusMapFragment : ContentItemMapModelFragment(),
     private var currentBusMarker: Marker? = null
     private var lastRadius: Double = 0.0
 
-    override fun onAttach(activity: Context?)
+    override fun onAttach(activity: Context)
     {
         super.onAttach(activity)
         if (activity is PinDropListener) {

@@ -50,9 +50,9 @@ open class DataConnectionModel() : ViewModel(),
 
     private var waitingPrivacy: Boolean = false
 
-    lateinit final override var orchardModule: OrchardComponentModule
+    final override lateinit var orchardModule: OrchardComponentModule
         private set
-    lateinit final override var loginModule: LoginComponentModule
+    final override lateinit var loginModule: LoginComponentModule
         private set
     lateinit var privacyViewModel: PrivacyViewModel
         private set
@@ -79,7 +79,7 @@ open class DataConnectionModel() : ViewModel(),
 
     private var cancelableDataLoading: CancelableRequest? = null
 
-    override final var page = 1
+    final override var page = 1
         set(value)
         {
             if (orchardModule.pageSize == 0 || orchardModule.pageSize == OrchardComponentModule.VALUE_PAGE_SIZE_NO_PAGING)
@@ -92,7 +92,7 @@ open class DataConnectionModel() : ViewModel(),
             }
         }
 
-    override final val isLoadingData: Boolean
+    final override val isLoadingData: Boolean
         get()
         {
             return loadingData.value ?: false
@@ -320,7 +320,8 @@ open class DataConnectionModel() : ViewModel(),
         return orchardModule.dataClass != null &&
                 orchardModule.displayPath != null &&
                 orchardModule.dataPartFilters.isNullOrEmpty() &&
-                RecordWithAutoroute::class.java.isAssignableFrom(orchardModule.dataClass) &&
+                orchardModule.dataClass != null &&
+                RecordWithAutoroute::class.java.isAssignableFrom(orchardModule.dataClass!!) &&
                 orchardModule.displayPath == getCacheName()
     }
 

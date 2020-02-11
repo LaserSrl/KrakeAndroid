@@ -36,7 +36,7 @@ class ContactInfoManager private constructor() {
 
             val serializedUser = prefs.getString(PREF_NAME_KEY, "")
 
-            if (serializedUser.length > 0)
+            if (serializedUser?.isNotEmpty() == true)
                 return Gson().fromJson(serializedUser, ContactInfo::class.java)
 
             return null

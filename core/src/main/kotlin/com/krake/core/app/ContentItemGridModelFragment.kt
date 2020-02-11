@@ -119,14 +119,13 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(),
         }
     }
 
-    override fun onInflate(context: Context?, attrs: AttributeSet?, savedInstanceState: Bundle?)
+    override fun onInflate(context: Context, attrs: AttributeSet, savedInstanceState: Bundle?)
     {
         super.onInflate(context, attrs, savedInstanceState)
-        if (attrs != null)
-            mListMapInflatedModuleCoder.readAttrs(context!!, attrs)
+        mListMapInflatedModuleCoder.readAttrs(context, attrs)
     }
 
-    override fun onAttach(activity: Context?)
+    override fun onAttach(activity: Context)
     {
         super.onAttach(activity)
         try
@@ -195,7 +194,7 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(),
                                                                      })
         }
 
-        dataConnectionModel.loadingData.observe(this, Observer { aBoolean -> changeProgressVisibility(aBoolean!!) })
+        dataConnectionModel.loadingData.observe(viewLifecycleOwner, Observer { aBoolean -> changeProgressVisibility(aBoolean!!) })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?)

@@ -16,7 +16,7 @@ import android.content.Intent
 
 fun Intent.equalsToIntent(intent: Intent): Boolean {
 
-    if (this.component.compareTo(intent.component) == 0) {
+    if (this.component?.compareTo(intent.component) == 0) {
         val oneExtras = this.extras
 
         val twoExtras = intent.extras

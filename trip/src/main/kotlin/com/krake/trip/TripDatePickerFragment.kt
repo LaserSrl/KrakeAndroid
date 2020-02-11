@@ -37,7 +37,7 @@ class TripDatePickerFragment : DialogFragment(), DialogInterface.OnClickListener
 
     private var mListener: OnTripDateTimePickerListener? = null
 
-    override fun onAttach(activity: Context?) {
+    override fun onAttach(activity: Context) {
         super.onAttach(activity)
 
         if (activity is OnTripDateTimePickerListener)

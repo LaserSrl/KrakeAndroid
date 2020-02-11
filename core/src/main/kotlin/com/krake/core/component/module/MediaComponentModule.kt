@@ -129,10 +129,10 @@ class MediaComponentModule : ComponentModule {
         }
         bundle.putInt(ARG_MEDIA_INDEX, index)
 
-        if (RecordWithIdentifier::class.java.isAssignableFrom(mediaPartClass)) {
+        if (mediaPartClass != null && RecordWithIdentifier::class.java.isAssignableFrom(mediaPartClass!!)) {
             val ids = mediaPartList.mapTo(LinkedList<Long>()) { (it as RecordWithIdentifier).identifier }
             bundle.putString(ARG_MEDIA_IDS, gson.toJson(ids))
-        } else if (RecordWithStringIdentifier::class.java.isAssignableFrom(mediaPartClass)) {
+        } else if (mediaPartClass != null && RecordWithStringIdentifier::class.java.isAssignableFrom(mediaPartClass!!)) {
             val ids = mediaPartList.mapTo(LinkedList<String>()) { (it as RecordWithStringIdentifier).stringIdentifier }
             bundle.putString(ARG_MEDIA_STRING_IDS, gson.toJson(ids))
         } else {

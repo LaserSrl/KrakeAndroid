@@ -76,9 +76,9 @@ class PoliciesFragment : OrchardDataModelFragment(), ContentCreationFragment,
     }
     private var selectedPolicyId: Long? = null
 
-    override fun onAttach(activity: Context?)
+    override fun onAttach(activity: Context)
     {
-        super.onAttach(context)
+        super.onAttach(activity)
         contentCreationActivity = context as? ContentCreationActivity
     }
 

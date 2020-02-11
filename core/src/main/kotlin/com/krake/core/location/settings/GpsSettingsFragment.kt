@@ -23,7 +23,7 @@ class GpsSettingsFragment : Fragment(),
     companion object {
         const val FRAGMENT_TAG = "GpsRequestFrag"
         private val TAG = GpsSettingsFragment::class.java.simpleName
-        private val ARG_SETTINGS_CHANGE_UNAVAILABLE_MSG = "argSettingsChangeUnavailableMsg"
+        private const val ARG_SETTINGS_CHANGE_UNAVAILABLE_MSG = "argSettingsChangeUnavailableMsg"
         private const val REQUEST_CODE_LOCATION_SETTINGS = 742
         private const val OUT_STATE_AVOID_DIALOG = "otsAvoidDialog"
         private const val OUT_STATE_REQUIRED_GPS = "otsRequiredGps"
@@ -65,7 +65,7 @@ class GpsSettingsFragment : Fragment(),
         avoidAskingDialog = savedInstanceState?.getBoolean(OUT_STATE_AVOID_DIALOG) ?: false
         askingGpsAccess = savedInstanceState?.getBoolean(OUT_STATE_REQUIRED_GPS) ?: false
         val arguments = arguments ?: throw IllegalArgumentException("The arguments mustn't be null.")
-        settingsChangeUnavailableMsg = arguments.getString(ARG_SETTINGS_CHANGE_UNAVAILABLE_MSG)
+        settingsChangeUnavailableMsg = arguments.getString(ARG_SETTINGS_CHANGE_UNAVAILABLE_MSG)!!
         // Inizializza il GoogleApiClient con le API di localizzazione.
         val activity = activity ?: throw IllegalArgumentException("The activity mustn't be null.")
         apiClientFactory = GoogleApiClientFactory(activity, this, LocationServices.API)

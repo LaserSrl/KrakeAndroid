@@ -89,7 +89,7 @@ open class ContentItemMapModelFragment : OrchardDataModelFragment(),
     }
 
 
-    override fun onAttach(activity: Context?)
+    override fun onAttach(activity: Context)
     {
         super.onAttach(activity)
         mListener = activity as? OnContentItemSelectedListener

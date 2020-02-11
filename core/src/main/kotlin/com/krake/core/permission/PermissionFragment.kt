@@ -67,7 +67,7 @@ open class PermissionFragment : Fragment() {
         askingPermissions = savedInstanceState?.getBoolean(OUT_STATE_ASKING_PERMISSIONS) ?: false
         val arguments = arguments ?: throw IllegalArgumentException("The arguments can't be null.")
         permanentlyRefusedMsg = arguments.getString(ARG_PERMANENTLY_REFUSED_MSG)
-        permissions = arguments.getStringArray(ARG_PERMISSIONS)
+        permissions = arguments.getStringArray(ARG_PERMISSIONS)!!
         rationalMsg = arguments.getString(ARG_RATIONAL_MSG)
     }
 

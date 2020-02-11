@@ -43,7 +43,7 @@ open class TermsFragment : OrchardDataModelFragment(),
     protected val tabLayout: TabLayout
         get() = mTabLayoutHelper.layout()
 
-    override fun onAttach(activity: Context?)
+    override fun onAttach(activity: Context)
     {
         super.onAttach(activity)
         if (activity is Listener)
@@ -52,7 +52,7 @@ open class TermsFragment : OrchardDataModelFragment(),
         }
         else
         {
-            throw RuntimeException("The context " + activity!!.javaClass.name + " must implement " + Listener::class.java.name)
+            throw RuntimeException("The context " + activity.javaClass.name + " must implement " + Listener::class.java.name)
         }
     }
 

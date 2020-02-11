@@ -208,7 +208,7 @@ class FloatSearchView : SearchView, ActivityResultCallback, View.OnClickListener
         val upBtn = ImageView(context)
         upBtn.id = R.id.btn_close_search
         // Creates a new drawable using the voice button configurations
-        upBtn.background = voiceBtn.background.constantState.newDrawable()
+        upBtn.background = voiceBtn.background.constantState?.newDrawable()
         upBtn.setImageResource(R.drawable.ic_up_icon)
         val upBtnParams = LayoutParams(voiceBtn.layoutParams.width, voiceBtn.layoutParams.height)
         val insetStart = resources.getDimensionPixelSize(R.dimen.search_view_close_btn_inset_start)

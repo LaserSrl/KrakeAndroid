@@ -410,7 +410,7 @@ open class ContentItemDetailModelFragment : OrchardDataModelFragment(),
      */
     protected fun createSharingIntent(shareLink: ShareLinkPart): Intent
     {
-        val builder = ShareCompat.IntentBuilder.from(activity)
+        val builder = ShareCompat.IntentBuilder.from(activity!!)
         if (mSocialImageUri != null)
         {
             builder.setType("image/*")

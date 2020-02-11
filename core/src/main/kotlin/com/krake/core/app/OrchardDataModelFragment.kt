@@ -96,14 +96,13 @@ abstract class OrchardDataModelFragment : Fragment()
     val loginComponentModule
         get() = dataConnectionModel.loginModule
 
-    override fun onInflate(context: Context?, attrs: AttributeSet?, savedInstanceState: Bundle?)
+    override fun onInflate(context: Context, attrs: AttributeSet, savedInstanceState: Bundle?)
     {
         super.onInflate(context, attrs, savedInstanceState)
-        if (attrs != null)
-            mOrchardInflatedModuleCoder.readAttrs(context!!, attrs)
+        mOrchardInflatedModuleCoder.readAttrs(context, attrs)
     }
 
-    override fun onAttach(activity: Context?)
+    override fun onAttach(activity: Context)
     {
         super.onAttach(activity)
 
