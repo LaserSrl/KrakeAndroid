@@ -22,7 +22,7 @@ open class YoutubeVideoActivity : ContentItemListMapActivity() {
                 .setTitle(R.string.youtube_initialize_error_title)
                 .setMessage(R.string.youtube_initialize_error_message)
                 .setCancelable(false)
-                .setPositiveButton(android.R.string.ok) { dialogInterface, i -> finish() }
+                .setPositiveButton(android.R.string.ok) { _, _ -> finish() }
                 .show()
         }
     }

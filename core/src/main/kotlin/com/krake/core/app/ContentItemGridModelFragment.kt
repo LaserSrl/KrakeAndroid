@@ -134,7 +134,7 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(),
         }
         catch (e: ClassCastException)
         {
-            throw ClassCastException(activity!!.toString() + " must implement OnContentItemSelectedListener")
+            throw ClassCastException("$activity must implement OnContentItemSelectedListener")
         }
 
     }

@@ -263,7 +263,7 @@ open class ApkVersionUpdater private constructor(private var context: Context,
         override fun onReceive(context: Context, intent: Intent)
         {
             // get request bundle
-            val extras = intent.extras
+            val extras = intent.extras!!
             val manager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             val fileUri = manager.getUriForDownloadedFile(extras.getLong(DownloadManager.EXTRA_DOWNLOAD_ID))
             val downloadId = extras.getLong(DownloadManager.EXTRA_DOWNLOAD_ID)
