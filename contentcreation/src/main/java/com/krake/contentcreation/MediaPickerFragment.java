@@ -386,6 +386,8 @@ public class MediaPickerFragment extends Fragment implements ContentCreationFrag
         mAdapter = new MediaPickerAdapter(getContext(), mInstanceCreationInfos.isEditingEnabled(), this, R.layout.gallery_preview_media_cell, photoInfos.pickedInfos, MediaPickerHolder.class);
         mediasRecyclerView.setAdapter(mAdapter);
         updatePreviewAndButtons();
+
+        mActivity.OnContentFragmentReady(this);
     }
 
     @Override

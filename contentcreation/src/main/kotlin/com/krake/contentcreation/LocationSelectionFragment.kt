@@ -163,6 +163,8 @@ class LocationSelectionFragment : Fragment(),
             // Set the text in the edit text using the current point if any.
             locationEditText.setText(selectedPoint?.name)
         }
+
+        activity.OnContentFragmentReady(this)
     }
 
     override fun onStart() {

@@ -191,6 +191,8 @@ class PoliciesFragment : OrchardDataModelFragment(), ContentCreationFragment,
                     showPolicyDetail(it)
                 }
             }
+
+            contentCreationActivity?.OnContentFragmentReady(this)
         }
     }
 

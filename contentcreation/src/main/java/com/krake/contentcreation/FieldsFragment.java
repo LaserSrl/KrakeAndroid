@@ -384,9 +384,17 @@ public class FieldsFragment extends Fragment implements
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mActivity.OnContentFragmentReady(this);
+    }
+
+    @Override
     public void onSingleTermOrEnumSelected(EnumOrTermSpinnerManager spinnerManager, Object selectedValue) {
-        mSaveFieldInfos.mFieldValues.put(spinnerManager.getFieldKey(), spinnerManager.getServerObjectToCreate());
-        mActivity.updateFragmentData(this, mSaveFieldInfos);
+        if (!mSaveFieldInfos.mFieldValues.get(spinnerManager.getFieldKey()).equals(spinnerManager.getServerObjectToCreate())) {
+            mSaveFieldInfos.mFieldValues.put(spinnerManager.getFieldKey(), spinnerManager.getServerObjectToCreate());
+            mActivity.updateFragmentData(this, mSaveFieldInfos);
+        }
     }
 
     @SuppressWarnings("unchecked")

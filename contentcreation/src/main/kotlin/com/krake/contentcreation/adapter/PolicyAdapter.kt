@@ -20,6 +20,7 @@ class PolicyAdapter(context: Context, private val listener: Listener) :
         ObjectsRecyclerViewAdapter<Policy, PolicyHolder>(context, R.layout.cell_policy, emptyList(), PolicyHolder::class.java) {
 
     private val realm by lazy { Realm.getDefaultInstance() }
+    private var notifyListener = true
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewLayout: Int): PolicyHolder {
         val holder = super.onCreateViewHolder(viewGroup, viewLayout)
@@ -31,7 +32,8 @@ class PolicyAdapter(context: Context, private val listener: Listener) :
                 policy.accepted = isChecked
             }
             // Notify the listener when the policy is accepted or declined.
-            listener.policyToggled(policy)
+            if (notifyListener)
+                listener.policyToggled(policy)
         }
         return holder
     }
@@ -44,9 +46,13 @@ class PolicyAdapter(context: Context, private val listener: Listener) :
         holder.titleTextView.text = listener.policyTitle(policy)
         val switch = holder.acceptPolicySwitch
 
+        notifyListener = false
+
         switch.isChecked = policy.accepted
         // Enable or disable the possibility to accept or decline the policy.
         switch.isEnabled = !policy.policyTextInfoPartRecordUserHaveToAccept || !policy.accepted || policy is Modifiable
+
+        notifyListener = true
 
         val switchTextSb = StringBuilder(context!!.getString(R.string.privacy_accept))
         if (policy.policyTextInfoPartRecordUserHaveToAccept) {

@@ -722,6 +722,10 @@ public class ContentCreationActivity extends LoginAndPrivacyActivity implements 
             SnackbarUtils.createSnackbar(mPager, orchardError.getUserFriendlyMessage(this), Snackbar.LENGTH_LONG).show();
     }
 
+    public void OnContentFragmentReady(ContentCreationFragment fragment) {
+        mChangedData = false;
+    }
+
     private class ContentItemPagerAdapter extends FragmentPagerAdapter {
         ContentItemPagerAdapter(FragmentManager fm) {
             super(fm);
