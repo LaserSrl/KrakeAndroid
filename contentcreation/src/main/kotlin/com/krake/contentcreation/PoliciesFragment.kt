@@ -145,7 +145,7 @@ class PoliciesFragment : OrchardDataModelFragment(), ContentCreationFragment,
 
     override fun onDataModelChanged(dataModel: DataModel?)
     {
-        if (dataModel != null)
+        if (dataModel != null && dataModel.cacheValid)
         {
             // Filter the list only with policies.
             policiesText = dataModel.listData.filterIsInstance(PolicyText::class.java)
