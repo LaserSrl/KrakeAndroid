@@ -75,17 +75,11 @@
 -dontwarn com.google.android.gms.internal.**
 
 -keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.GeneratedAppGlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-    **[] $VALUES;
-    public *;
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
 }
-
-# These could be removed after upgrading to API 26.
--dontwarn com.bumptech.glide.load.resource.bitmap.HardwareConfigState
--dontwarn com.bumptech.glide.load.resource.bitmap.Downsampler
--dontwarn com.bumptech.glide.load.engine.bitmap_recycle.LruBitmapPool
--dontwarn com.bumptech.glide.manager.RequestManagerRetriever
 
 ##--------------- Begin: proguard configuration for Gson ---------------##
 # Gson uses generic type information stored in a class file when working with fields. Proguard

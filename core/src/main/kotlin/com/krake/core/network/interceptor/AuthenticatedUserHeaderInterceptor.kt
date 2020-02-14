@@ -12,16 +12,11 @@ import javax.crypto.spec.SecretKeySpec
 
 class AuthenticatedUserHeaderInterceptor(context: Context) : Interceptor
 {
-    private val encryptionKey: String
+    private val encryptionKey: String = context.getString(R.string.header_key)
 
-    init
+    override fun intercept(chain: Interceptor.Chain): Response
     {
-        encryptionKey = context.getString(R.string.header_key)
-    }
-
-    override fun intercept(chain: Interceptor.Chain?): Response
-    {
-        val request = chain!!.request()
+        val request = chain.request()
 
         val builder = request.newBuilder()
 
@@ -29,7 +24,7 @@ class AuthenticatedUserHeaderInterceptor(context: Context) : Interceptor
 
         if (cookie != null && request.header("X-XSRF-TOKEN").isNullOrBlank())
         {
-            builder.addHeader("X-XSRF-TOKEN", generateHMAC(cookie.value(), encryptionKey))
+            builder.addHeader("X-XSRF-TOKEN", generateHMAC(cookie.value, encryptionKey))
         }
 
         return chain.proceed(builder.build())

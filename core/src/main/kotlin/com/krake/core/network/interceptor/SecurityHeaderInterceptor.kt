@@ -16,26 +16,18 @@ import javax.crypto.spec.SecretKeySpec
 
 class SecurityHeaderInterceptor(context: Context) : Interceptor
 {
-    private val deviceUUID: String
-    private val encryptionKey: String
-    private val orchardApiKey: String
-    private val ntpServers: Array<String>
+    private val deviceUUID: String = MessagingService.getUUID(context)
+    private val encryptionKey: String = context.getString(R.string.header_key)
+    private val orchardApiKey: String = context.getString(R.string.orchard_api_key)
+    private val ntpServers: Array<String> = context.resources.getStringArray(R.array.ntp_servers)
 
     private var ntpTime: Long = 0
     private var ntpSystemReference: Long = 0
     private var ntpClientTimeLoaded = false
 
-    init
+    override fun intercept(chain: Interceptor.Chain): Response
     {
-        deviceUUID = MessagingService.getUUID(context)
-        encryptionKey = context.getString(R.string.header_key)
-        orchardApiKey = context.getString(R.string.orchard_api_key)
-        ntpServers = context.resources.getStringArray(R.array.ntp_servers)
-    }
-
-    override fun intercept(chain: Interceptor.Chain?): Response
-    {
-        val request = chain!!.request()
+        val request = chain.request()
 
         val builder = request.newBuilder()
                 .addHeader("OutputFormat", "lmnv")

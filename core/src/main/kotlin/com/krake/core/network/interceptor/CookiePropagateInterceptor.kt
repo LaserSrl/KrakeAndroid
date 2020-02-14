@@ -11,9 +11,9 @@ import okhttp3.Response
 
 class CookiePropagateInterceptor : Interceptor
 {
-    override fun intercept(chain: Interceptor.Chain?): Response
+    override fun intercept(chain: Interceptor.Chain): Response
     {
-        val request = chain!!.request()
+        val request = chain.request()
 
         val response = chain.proceed(request)
 
@@ -22,22 +22,22 @@ class CookiePropagateInterceptor : Interceptor
         val responseCookie = response.cookie(Constants.COOKIE_PRIVACY_ANSWERS)
 
         if (responseCookie != null &&
-                (requestCookie == null || responseCookie.value() != requestCookie.value()))
+                (requestCookie == null || responseCookie.value != requestCookie.value))
         {
 
             val cookie = Cookie.Builder()
-                    .domain(responseCookie.domain())
-                    .expiresAt(responseCookie.expiresAt())
-                    .domain(responseCookie.domain())
-                    .name(responseCookie.name())
-                    .value(responseCookie.value())
+                    .domain(responseCookie.domain)
+                    .expiresAt(responseCookie.expiresAt)
+                    .domain(responseCookie.domain)
+                    .name(responseCookie.name)
+                    .value(responseCookie.value)
                     .build()
 
             val cookieJar = (RemoteClient.client(RemoteClient.Mode.DEFAULT) as? OkHttpRemoteClient)
                     ?.client
-                    ?.cookieJar() as? PersistentCookieJar
+                    ?.cookieJar as? PersistentCookieJar
 
-            val oldCookies = cookieJar?.loadForRequest(request.url())
+            val oldCookies = cookieJar?.loadForRequest(request.url)
 
 
             val newCookies = mutableListOf(cookie)
@@ -46,7 +46,7 @@ class CookiePropagateInterceptor : Interceptor
             {
                 for (oldCookie in oldCookies)
                 {
-                    if (oldCookie.name().equals(Constants.COOKIE_PRIVACY_ANSWERS).not())
+                    if ((oldCookie.name == Constants.COOKIE_PRIVACY_ANSWERS).not())
                     {
                         newCookies.add(oldCookie)
                     }
@@ -56,7 +56,7 @@ class CookiePropagateInterceptor : Interceptor
             cookieJar?.clear()
 
             cookieJar
-                    ?.saveFromResponse(request.url(), newCookies)
+                    ?.saveFromResponse(request.url, newCookies)
         }
 
         return response

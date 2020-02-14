@@ -20,6 +20,10 @@ import com.krake.core.network.interceptor.CookiePropagateInterceptor
 import com.krake.core.network.interceptor.OrchardErrorInterceptor
 import com.krake.core.network.interceptor.SecurityHeaderInterceptor
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.internal.http.HttpMethod
 import java.io.File
 import java.io.IOException
@@ -62,7 +66,7 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
 
     override fun removeAllCookies()
     {
-        (client.cookieJar() as? ClearableCookieJar)?.clear()
+        (client.cookieJar as? ClearableCookieJar)?.clear()
     }
 
     override fun execute(remoteRequest: RemoteRequest): RemoteResponse
@@ -94,9 +98,9 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
                 .apply {
                     this.enqueue(object : Callback
                                  {
-                                     override fun onResponse(call: Call?, response: Response?)
+                                     override fun onResponse(call: Call, response: Response)
                                      {
-                                         if (response != null && call?.isCanceled == false)
+                                         if (!call.isCanceled())
                                          {
                                              mainHandler.post {
                                                  callback(
@@ -109,9 +113,9 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
                                          }
                                      }
 
-                                     override fun onFailure(call: Call?, e: IOException?)
+                                     override fun onFailure(call: Call, e: IOException)
                                      {
-                                         if (call?.isCanceled == false)
+                                         if (!call.isCanceled())
                                          {
                                              mainHandler.post {
                                                  handleError(e as? OrchardError)
@@ -143,18 +147,18 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
 
     private fun allCookies(): List<Cookie> {
         return client
-            .cookieJar()
-            .loadForRequest(HttpUrl.parse(baseOrchardUrl)!!)
+            .cookieJar
+            .loadForRequest(baseOrchardUrl.toHttpUrlOrNull()!!)
     }
 
     override fun cookieValue(context: Context, name: String): String?
     {
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val cookies = client
-                .cookieJar()
-                .loadForRequest(HttpUrl.parse(context.getString(R.string.orchard_base_service_url)))
+                .cookieJar
+                .loadForRequest(context.getString(R.string.orchard_base_service_url).toHttpUrlOrNull()!!)
 
-        return cookies.find { cookie -> cookie.name() == name }?.value()
+        return cookies.find { cookie -> cookie.name == name }?.value
     }
 
     private fun logErrorAndCookies(
@@ -200,7 +204,7 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
 
 private fun RemoteRequest.asOkHttpRequest(): Request
 {
-    val httpUrlBuilder = HttpUrl.parse(this.baseUrl)!!.newBuilder()
+    val httpUrlBuilder = this.baseUrl.toHttpUrlOrNull()!!.newBuilder()
 
     path?.let { httpUrlBuilder.addPathSegments(it) }
 
@@ -215,7 +219,7 @@ private fun RemoteRequest.asOkHttpRequest(): Request
     }
     else
     {
-        requestBuilder.method(method.value, RequestBody.create(null, ByteArray(0)))
+        requestBuilder.method(method.value, ByteArray(0).toRequestBody(null, 0, 0))
     }
     headers.forEach { (key, value) -> requestBuilder.addHeader(key, value) }
 
@@ -226,7 +230,8 @@ private fun Any.asRequestBody(): RequestBody
 {
     if (this is JsonElement)
     {
-        return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), Gson().toJson(this))
+        return Gson().toJson(this)
+            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
     }
     else if (this is Map<*, *>)
     {
@@ -245,7 +250,7 @@ private fun Any.asRequestBody(): RequestBody
         else
         {
             val multiBuilder = MultipartBody.Builder()
-            multiBuilder.setType(MediaType.parse("multipart/form-data")!!)
+            multiBuilder.setType("multipart/form-data".toMediaTypeOrNull()!!)
 
             for (item in this)
             {
@@ -257,9 +262,8 @@ private fun Any.asRequestBody(): RequestBody
                     multiBuilder
                             .addFormDataPart(key.toString(),
                                              value.name,
-                                             RequestBody.create(
-                                                     MediaType.parse(MimeTypeMap.getSingleton().getMimeTypeFromExtension(value.extension)),
-                                                     value))
+                                value.asRequestBody(MimeTypeMap.getSingleton().getMimeTypeFromExtension(value.extension)!!.toMediaTypeOrNull())
+                            )
                 }
                 else
                 {
@@ -276,11 +280,8 @@ private fun Any.asRequestBody(): RequestBody
 
 internal class OkHttpCancelable(private val call: Call) : CancelableRequest
 {
-    override val code: Int
+    override val code: Int = Random(System.currentTimeMillis()).nextInt()
 
-    init {
-        code = Random(System.currentTimeMillis()).nextInt()
-    }
     override fun cancel()
     {
         call.cancel()

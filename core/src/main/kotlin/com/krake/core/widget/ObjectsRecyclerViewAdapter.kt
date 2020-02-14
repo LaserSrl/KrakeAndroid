@@ -43,11 +43,7 @@ abstract class ObjectsRecyclerViewAdapter<ObjectClass, ViewHolderClass : Recycle
             items.addAll(it)
         }
         inflater = LayoutInflater.from(context)
-        try {
-            viewHolderClassConstructor = holderClass.getConstructor(View::class.java)
-        } catch (e: NoSuchMethodException) {
-            throw e
-        }
+        viewHolderClassConstructor = holderClass.getConstructor(View::class.java)
     }
 
 

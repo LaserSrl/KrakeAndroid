@@ -21,9 +21,9 @@ class OkHttpResponse(private val response: Response) : RemoteResponse
     {
         if (bodyString == null)
         {
-            response.body()?.byteStream()
-            bodyString = response.body()?.string()
-            response.body()?.close()
+            response.body?.byteStream()
+            bodyString = response.body?.string()
+            response.body?.close()
 
         }
         return bodyString!!
@@ -31,17 +31,17 @@ class OkHttpResponse(private val response: Response) : RemoteResponse
 
     override fun jsonObject(): JsonObject?
     {
-        return JsonParser().parse(string())?.asJsonObject
+        return JsonParser.parseString(string())?.asJsonObject
     }
 
     override fun jsonArray(): JsonArray?
     {
-        return JsonParser().parse(string()).asJsonArray
+        return JsonParser.parseString(string()).asJsonArray
     }
 
     override fun inputStream(): InputStream?
     {
-        return response.body()?.byteStream()
+        return response.body?.byteStream()
     }
 
 }

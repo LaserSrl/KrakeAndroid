@@ -17,8 +17,8 @@ fun Request.cookie(name: String): Cookie?
             val splitSerialCookies = serialCookie.split("; ")
 
             splitSerialCookies.forEach {
-                val splitCookie = Cookie.parse(this.url(), it)
-                if (splitCookie?.name() == name)
+                val splitCookie = Cookie.parse(this.url, it)
+                if (splitCookie?.name == name)
                 {
                     cookie = splitCookie
                 }
@@ -27,15 +27,15 @@ fun Request.cookie(name: String): Cookie?
         }
         else
         {
-            cookie = Cookie.parse(this.url(), serialCookie)
-            if (cookie?.name() != name)
+            cookie = Cookie.parse(this.url, serialCookie)
+            if (cookie?.name != name)
                 cookie = null
         }
     }
     else
     {
-        val cookies = Cookie.parseAll(this.url(), this.headers())
-        cookie = cookies.find { it.name() == name }
+        val cookies = Cookie.parseAll(this.url, this.headers)
+        cookie = cookies.find { it.name == name }
     }
 
     return cookie
@@ -49,14 +49,14 @@ fun Response.cookie(name: String): Cookie?
 
     if (serialCookie != null)
     {
-        cookie = Cookie.parse(this.request().url(), serialCookie)
-        if (cookie?.name() != name)
+        cookie = Cookie.parse(this.request.url, serialCookie)
+        if (cookie?.name != name)
             cookie = null
     }
     else
     {
-        val cookies = Cookie.parseAll(this.request().url(), this.headers())
-        cookie = cookies.find { it.name() == name }
+        val cookies = Cookie.parseAll(this.request.url, this.headers)
+        cookie = cookies.find { it.name == name }
     }
 
     return cookie

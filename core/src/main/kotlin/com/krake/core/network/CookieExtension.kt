@@ -8,10 +8,10 @@ import java.util.*
 fun Cookie.toJson(): JsonObject {
     val json = JsonObject()
 
-    json.addProperty("name", name())
-    json.addProperty("value", value())
-    json.addProperty("expires", Date(expiresAt()).toString())
-    json.addProperty("persistent", persistent())
+    json.addProperty("name", name)
+    json.addProperty("value", value)
+    json.addProperty("expires", Date(expiresAt).toString())
+    json.addProperty("persistent", persistent)
 
     return json
 }
