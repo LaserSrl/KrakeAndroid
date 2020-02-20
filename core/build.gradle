@@ -29,7 +29,13 @@ dependencies {
 
     api ('com.github.fondesa:recycler-view-divider:3.0.0')
 
-    api "androidx.appcompat:appcompat:$support_library_version"
+    //todo very important, with appcompat 1.1.0 there is an issue when the webview opens in api 21, is fixed in version 1.2.0
+    //todo but there is also an issue in androidx.fragment using the version 1.0.0 when onlayout is called, so when 1.2.0 is released, remove the exclude and remove also the declaration for fragment:1.2.2
+    api ("androidx.appcompat:appcompat:$support_library_version") {
+        exclude group: 'androidx.fragment', module: 'fragment'
+    }
+    api "androidx.fragment:fragment:1.2.2"
+
     api "androidx.recyclerview:recyclerview:$support_library_version"
     api "androidx.cardview:cardview:1.0.0"
     api "com.google.android.material:material:$support_library_version"
