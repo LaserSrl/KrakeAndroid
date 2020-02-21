@@ -370,6 +370,9 @@ public class MediaPickerFragment extends Fragment implements ContentCreationFrag
                                         if (mAdapter != null) {
                                             updatePreviewAndButtons();
                                         }
+
+                                        //we are in initialization mode, so notify the parent activity that the data isn't changed
+                                        mActivity.OnContentFragmentReady(MediaPickerFragment.this);
                                     }
 
                                     @Override
