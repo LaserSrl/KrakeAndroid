@@ -12,7 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.krake.core.*
 import com.krake.core.app.LoginAndPrivacyActivity
 import com.krake.core.component.module.LoginComponentModule
@@ -95,10 +95,12 @@ class UserNavigationMenuView @JvmOverloads constructor(
         userImageView.setOnClickListener { loginOrEditUser() }
         usernameTextView.setOnClickListener { loginOrEditUser() }
 
-        val privacyViewModel = ViewModelProviders.of(context as FragmentActivity).get(PrivacyViewModel::class.java)
+        val privacyViewModel = ViewModelProvider(context as FragmentActivity).get(PrivacyViewModel::class.java)
 
-        dataConnection = DataConnectionModel(OrchardComponentModule()
-                                                     .displayPath(getString(R.string.orchard_user_info_display_path)),
+        val orchardModule = OrchardComponentModule().displayPath(getString(R.string.orchard_user_info_display_path))
+        (context.applicationContext as? UserNavigationViewListener)?.configureUserDataOrchardModule(orchardModule)
+
+        dataConnection = DataConnectionModel(orchardModule,
                                              LoginComponentModule().loginRequired(true),
                                              privacyViewModel
         )
@@ -134,12 +136,14 @@ class UserNavigationMenuView @JvmOverloads constructor(
     {
 
         if (currentUser != null &&
-                remoteRequest.method == RemoteRequest.Method.POST &&
-                remoteResponse != null &&
-                endListenerParameters is Bundle &&
-                endListenerParameters.getString(getString(R.string.orchard_new_content_type_parameter))?.equals(getString(R.string.orchard_user_content_type)) ?: false)
+            dataConnection != null &&
+            remoteRequest.method == RemoteRequest.Method.POST &&
+            remoteResponse != null &&
+            endListenerParameters is Bundle &&
+            endListenerParameters.getString(getString(R.string.orchard_new_content_type_parameter))?.equals(getString(R.string.orchard_user_content_type)) ?: false)
         {
-            dataConnection?.loadDataFromRemote()
+            (context.applicationContext as? UserNavigationViewListener)?.configureUserDataOrchardModule(dataConnection!!.orchardModule)
+            dataConnection!!.loadDataFromRemote()
         }
     }
 
@@ -223,4 +227,6 @@ class UserNavigationMenuView @JvmOverloads constructor(
  */
 interface UserNavigationViewListener {
     fun userDidClick(onView: UserNavigationMenuView)
+
+    fun configureUserDataOrchardModule(module: OrchardComponentModule) { }
 }
