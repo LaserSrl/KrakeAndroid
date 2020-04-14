@@ -30,7 +30,8 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="@string/send"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </FrameLayout>

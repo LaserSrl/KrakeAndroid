@@ -31,7 +31,13 @@ interface Question : RecordWithIdentifier, AllFileImage {
 
     val condition: String?
 
+    val conditionIdentifiers: List<Long>?
+        get() = if (condition != null && !condition.isNullOrBlank()) condition!!.split("and").map { it.trim().toLong() } else null
+
     val conditionType: String?
+
+    val conditionBehaviour: ConditionBehaviour?
+        get() = if (conditionType == null) null else ConditionBehaviour.parse(conditionType!!)
 
     object Type {
         const val SingleChoice = "SingleChoice"
@@ -56,6 +62,20 @@ interface Question : RecordWithIdentifier, AllFileImage {
                     "url" -> Url
                     "email" -> Email
                     else -> None
+                }
+            }
+        }
+    }
+
+    sealed class ConditionBehaviour {
+        object Hide : ConditionBehaviour()
+        object Show : ConditionBehaviour()
+
+        companion object {
+            fun parse(type: String): ConditionBehaviour {
+                return when (type.trim().toLowerCase(Locale.getDefault())) {
+                    "show" -> Show
+                    else -> Hide
                 }
             }
         }

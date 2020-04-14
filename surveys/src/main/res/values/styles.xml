@@ -5,6 +5,10 @@
         <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
+    <style name="SurveySectionDivider">
+        <item name="android:background">@android:color/white</item>
+    </style>
+
     <style name="SurveyOpenAnswerEditText" />
 
     <style name="SurveyImage.Answer">

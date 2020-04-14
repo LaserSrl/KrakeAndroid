@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.gson.JsonArray
@@ -61,7 +62,8 @@ import java.util.*
  */
 class SurveyFragment : OrchardDataModelFragment(),
     View.OnClickListener,
-    DateTimePickerFragment.OnDateTimePickerListener {
+    DateTimePickerFragment.OnDateTimePickerListener,
+    AdapterView.OnItemSelectedListener {
 
     @BundleResolvable
     lateinit var surveyComponentModule: SurveyComponentModule
@@ -73,6 +75,7 @@ class SurveyFragment : OrchardDataModelFragment(),
     private var listener: SurveyListener? = null
     private var currentDateEditText: EditText? = null
     private var currentDateFormat: String? = null
+    private val answersToSend = mutableListOf<AnswerToSend>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -152,8 +155,7 @@ class SurveyFragment : OrchardDataModelFragment(),
                 if (sectionRecord == null) sectionRecord = ""
                 if (!sectionRecord.equals(lastSection, ignoreCase = true)) {
                     lastSection = sectionRecord
-                    val textView =
-                        inflater.inflate(R.layout.survey_section, null) as TextView
+                    val textView = inflater.inflate(R.layout.survey_section, null) as TextView
                     textView.text = lastSection
                     mLinear.addView(textView, mLinear.childCount - 1)
                 }
@@ -166,6 +168,7 @@ class SurveyFragment : OrchardDataModelFragment(),
                     val questionView = inflater.inflate(R.layout.survey_question_text_image, null)
                     setQuestionTextAndImage(questionView, record)
                     mLinear.addView(questionView, mLinear.childCount - 1)
+                    setQuestionViewVisibility(questionView, record)
 
                     if (questionType.equals(Question.Type.SingleChoice, ignoreCase = true)) {
                         val answers: List<Answer> = record.publishedAnswers.sortedBy { it.position }
@@ -181,9 +184,9 @@ class SurveyFragment : OrchardDataModelFragment(),
                         if (size <= resources.getInteger(R.integer.survey_max_number_of_radio_group_answers) && !imageInAnswers) {
                             val view = inflater.inflate(R.layout.survey_radio_group, null)
                             view.tag = questionType
-                            val mChoicesContainer =
-                                view.findViewById<RadioGroup>(R.id.surveyRadioGroup)
+                            val mChoicesContainer = view.findViewById<RadioGroup>(R.id.surveyRadioGroup)
                             mChoicesContainer.tag = record.identifier
+
                             for (answer in answers) {
                                 val answerButton = inflater.inflate(
                                     R.layout.survey_radio_button,
@@ -192,9 +195,18 @@ class SurveyFragment : OrchardDataModelFragment(),
                                 answerButton.id = answer.identifier.toInt()
                                 answerButton.text = answer.answer
                                 answerButton.tag = answer.identifier
+
+                                val checked = answersToSend.firstOrNull { it.questionId == answer.identifier } != null
+                                if (answerButton.isChecked != checked)
+                                    answerButton.isChecked = checked
+
                                 mChoicesContainer.addView(answerButton)
                             }
+
+                            mChoicesContainer.setOnCheckedChangeListener { _, _ -> onChoiceAnswerCheckedChanged() }
                             mLinear.addView(view, mLinear.childCount - 1)
+                            setQuestionViewVisibility(view, record)
+
                         } else {
                             val spinner = inflater.inflate(R.layout.survey_spinner, null) as Spinner
                             spinner.tag = questionType
@@ -204,13 +216,25 @@ class SurveyFragment : OrchardDataModelFragment(),
                                 android.R.id.text1,
                                 answers
                             )
+                            val selection = answers.indexOfFirst { answer -> answersToSend.firstOrNull { it.questionId == answer.identifier } != null }
+                            if (selection >= 0 && spinner.selectedItemPosition != selection)
+                                spinner.setSelection(selection, false)
+                            else
+                                spinner.setSelection(0, false)
+
+                            spinner.onItemSelectedListener = this
                             mLinear.addView(spinner, mLinear.childCount - 1)
+                            setQuestionViewVisibility(spinner, record)
+
                         }
                     } else if (questionType.equals(Question.Type.OpenAnswer, ignoreCase = true)) {
                         val view = inflater.inflate(R.layout.survey_open_answer, null)
                         view.tag = questionType
                         val editText = view.findViewById<EditText>(R.id.surveyOpenAnswerEditText)
                         editText.tag = record.identifier
+
+                        val currentValue = answersToSend.firstOrNull { it.questionId == record.identifier } as? AnswerToSend.TextAnswer
+                        editText.setText(currentValue?.text ?: "")
 
                         when (record.answerTypology) {
                             is Question.AnswerType.Datetime -> buildDateTimeEditText(editText, surveyComponentModule.dateTimeFormat, true)
@@ -220,6 +244,7 @@ class SurveyFragment : OrchardDataModelFragment(),
                         }
 
                         mLinear.addView(view, mLinear.childCount - 1)
+                        setQuestionViewVisibility(view, record)
 
                     } else if (questionType.equals(Question.Type.MultiChoice, ignoreCase = true)) {
                         val answers: List<Answer> = record.publishedAnswers.sortedBy { it.position }
@@ -230,7 +255,11 @@ class SurveyFragment : OrchardDataModelFragment(),
                             check.text = answer.answer
                             check.id = answer.identifier.toInt()
                             check.tag = answer.identifier
+                            check.isChecked = answersToSend.firstOrNull { it.questionId == answer.identifier } != null
+                            check.setOnCheckedChangeListener { _, _ -> onChoiceAnswerCheckedChanged() }
                             mLinear.addView(check, mLinear.childCount - 1)
+                            setQuestionViewVisibility(check, record)
+
                             val media = answer.image
                             if (media != null) {
                                 val imageView = inflater.inflate(
@@ -241,10 +270,15 @@ class SurveyFragment : OrchardDataModelFragment(),
                                     .mediaPart(media)
                                     .load()
                                 mLinear.addView(imageView, mLinear.childCount - 1)
+                                setQuestionViewVisibility(imageView, record)
+
                             }
                         }
                     }
                 }
+
+                val divider = inflater.inflate(R.layout.survey_question_divider, null)
+                mLinear.addView(divider, mLinear.childCount - 1)
             }
         }
     }
@@ -289,42 +323,92 @@ class SurveyFragment : OrchardDataModelFragment(),
         }
     }
 
-    private fun prepareAnswersJsonToSend(): JsonArray {
-        val answers = JsonArray()
+    private fun buildAnswersToSend() {
+        answersToSend.clear()
         for (i in 0 until mLinear.childCount - 1) {
             val view = mLinear.getChildAt(i)
-            val answer = JsonObject()
             if (view is RadioGroup) {
                 if (view.checkedRadioButtonId != -1) {
                     val selectedButton =
                         view.findViewById<RadioButton>(view.checkedRadioButtonId)
-                    answer.addProperty("Id", selectedButton.tag as Long)
+                    answersToSend.add(
+                        AnswerToSend.BooleanAnswer(
+                            id = selectedButton.tag as Long
+                        )
+                    )
                 } else continue
             } else if (view is Spinner) {
                 val selectedItem =
                     view.selectedItem as Answer
-                answer.addProperty("Id", selectedItem.identifier)
+                answersToSend.add(
+                    AnswerToSend.BooleanAnswer(
+                        id = selectedItem.identifier
+                    )
+                )
             } else if (view is EditText) {
                 if (!TextUtils.isEmpty(view.text.toString())) {
-                    answer.addProperty(
-                        "QuestionRecord_Id",
-                        view.tag as Long
+                    answersToSend.add(AnswerToSend.TextAnswer(
+                        id = view.tag as Long,
+                        text = view.text.toString())
                     )
-                    answer.addProperty("AnswerText", view.text.toString())
                 } else continue
             } else if (view is CheckBox) {
                 if (view.isChecked) {
-                    answer.addProperty("Id", view.getTag().toString())
+                    answersToSend.add(
+                        AnswerToSend.BooleanAnswer(
+                            id = view.getTag().toString().toLong()
+                        )
+                    )
                 }
             }
+        }
+    }
+
+    private fun prepareAnswersJsonToSend(): JsonArray {
+        val answers = JsonArray()
+
+        answersToSend.forEach {
+            val answer = JsonObject()
+
+            when (it) {
+                is AnswerToSend.BooleanAnswer -> answer.addProperty("Id", it.id)
+                is AnswerToSend.TextAnswer -> {
+                    answer.addProperty("QuestionRecord_Id", it.id)
+                    answer.addProperty("AnswerText", it.text)
+                }
+            }
+
             if (answer.entrySet().size > 0) {
                 answers.add(answer)
             }
         }
+
         return answers
     }
 
+    private fun onChoiceAnswerCheckedChanged() {
+        buildAnswersToSend()
+        loadDataInUI(questionnaire)
+    }
+
+    private fun setQuestionViewVisibility(view: View, question: Question) {
+        var visible = question.conditionBehaviour == null || question.conditionIdentifiers == null || question.conditionBehaviour == Question.ConditionBehaviour.Hide
+
+        if (question.conditionIdentifiers != null) {
+            val conditionRespected = question.conditionIdentifiers!!.all { identifier -> answersToSend.any { it.questionId == identifier } }
+
+            visible = if (conditionRespected) {
+                question.conditionBehaviour == Question.ConditionBehaviour.Show
+            } else {
+                question.conditionBehaviour != Question.ConditionBehaviour.Show
+            }
+        }
+
+        view.isVisible = visible
+    }
+
     private fun sendAnswers() {
+        buildAnswersToSend()
         val answers = prepareAnswersJsonToSend()
 
         if (answers.size() > 0) {
@@ -425,12 +509,10 @@ class SurveyFragment : OrchardDataModelFragment(),
 
         private fun setupView(view: View, answer: Answer?) {
             view.tag = answer!!.identifier
-            val textView =
-                view.findViewById<TextView>(android.R.id.text1)
+            val textView = view.findViewById<TextView>(android.R.id.text1)
             textView.text = answer.answer
             val media = answer.image
-            val imageView =
-                view.findViewById<ImageView>(android.R.id.icon)
+            val imageView = view.findViewById<ImageView>(android.R.id.icon)
             if (media != null) {
                 imageView.visibility = View.VISIBLE
                 with(this@SurveyFragment, imageView as MediaLoadable)
@@ -448,4 +530,17 @@ class SurveyFragment : OrchardDataModelFragment(),
         currentDateEditText = null
         currentDateFormat = null
     }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) { }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        onChoiceAnswerCheckedChanged()
+    }
+
+    sealed class AnswerToSend(val questionId: Long) {
+        data class BooleanAnswer(val id: Long): AnswerToSend(id)
+        data class TextAnswer(val id: Long, val text: String): AnswerToSend(id)
+    }
+
+
 }
