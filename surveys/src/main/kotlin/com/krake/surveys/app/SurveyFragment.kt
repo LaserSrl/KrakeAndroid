@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.text.InputType
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.google.gson.JsonObject
 import com.krake.core.OrchardError
 import com.krake.core.Signaler
 import com.krake.core.app.AnalyticsApplication
+import com.krake.core.app.DateTimePickerFragment
 import com.krake.core.app.OrchardDataModelFragment
 import com.krake.core.component.annotation.BundleResolvable
 import com.krake.core.data.DataModel
@@ -33,6 +35,7 @@ import com.krake.surveys.component.module.SurveyComponentModule
 import com.krake.surveys.model.Answer
 import com.krake.surveys.model.Question
 import com.krake.surveys.model.Questionnaire
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -56,15 +59,21 @@ import java.util.*
  *
  * La chiamata di api è R.string.orchard_api_send_surveys in POST.
  */
-class SurveyFragment : OrchardDataModelFragment(), View.OnClickListener {
+class SurveyFragment : OrchardDataModelFragment(),
+    View.OnClickListener,
+    DateTimePickerFragment.OnDateTimePickerListener {
+
     @BundleResolvable
-    var surveyComponentModule: SurveyComponentModule? = null
+    lateinit var surveyComponentModule: SurveyComponentModule
     private lateinit var mLinear: LinearLayout
     private lateinit var mSendButton: Button
     private lateinit var mProgress: ProgressBar
     private var questionnaire: Questionnaire? = null
     private val mHandler = Handler()
     private var listener: SurveyListener? = null
+    private var currentDateEditText: EditText? = null
+    private var currentDateFormat: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -152,11 +161,12 @@ class SurveyFragment : OrchardDataModelFragment(), View.OnClickListener {
                 val questionType = record.questionType
                 if (questionType.equals(Question.Type.SingleChoice, ignoreCase = true) ||
                     questionType.equals(Question.Type.OpenAnswer, ignoreCase = true) ||
-                    questionType.equals(Question.Type.MultiChoice, ignoreCase = true)
-                ) {
+                    questionType.equals(Question.Type.MultiChoice, ignoreCase = true)) {
+
                     val questionView = inflater.inflate(R.layout.survey_question_text_image, null)
                     setQuestionTextAndImage(questionView, record)
                     mLinear.addView(questionView, mLinear.childCount - 1)
+
                     if (questionType.equals(Question.Type.SingleChoice, ignoreCase = true)) {
                         val answers: List<Answer> = record.publishedAnswers.sortedBy { it.position }
 
@@ -199,10 +209,18 @@ class SurveyFragment : OrchardDataModelFragment(), View.OnClickListener {
                     } else if (questionType.equals(Question.Type.OpenAnswer, ignoreCase = true)) {
                         val view = inflater.inflate(R.layout.survey_open_answer, null)
                         view.tag = questionType
-                        val editText =
-                            view.findViewById<EditText>(R.id.surveyOpenAnswerEditText)
+                        val editText = view.findViewById<EditText>(R.id.surveyOpenAnswerEditText)
                         editText.tag = record.identifier
+
+                        when (record.answerTypology) {
+                            is Question.AnswerType.Datetime -> buildDateTimeEditText(editText, surveyComponentModule.dateTimeFormat, true)
+                            is Question.AnswerType.Date -> buildDateTimeEditText(editText, surveyComponentModule.dateFormat, false)
+                            is Question.AnswerType.Url -> editText.inputType = InputType.TYPE_TEXT_VARIATION_URI
+                            is Question.AnswerType.Email -> editText.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                        }
+
                         mLinear.addView(view, mLinear.childCount - 1)
+
                     } else if (questionType.equals(Question.Type.MultiChoice, ignoreCase = true)) {
                         val answers: List<Answer> = record.publishedAnswers.sortedBy { it.position }
 
@@ -228,6 +246,20 @@ class SurveyFragment : OrchardDataModelFragment(), View.OnClickListener {
                     }
                 }
             }
+        }
+    }
+
+    private fun buildDateTimeEditText(editText: EditText, format: String, withTimePicker: Boolean) {
+        editText.isFocusable = false
+
+        editText.setOnClickListener {
+            currentDateEditText = it as EditText
+            currentDateFormat = format
+
+            val dateToShow = if (currentDateEditText!!.text.isNullOrEmpty()) Date() else SimpleDateFormat(format, Locale.getDefault()).parse(currentDateEditText!!.text.toString())
+
+            DateTimePickerFragment.newInstance(dateToShow, withTimePicker)
+                .show(childFragmentManager, null)
         }
     }
 
@@ -257,7 +289,7 @@ class SurveyFragment : OrchardDataModelFragment(), View.OnClickListener {
         }
     }
 
-    private fun sendAnswers() {
+    private fun prepareAnswersJsonToSend(): JsonArray {
         val answers = JsonArray()
         for (i in 0 until mLinear.childCount - 1) {
             val view = mLinear.getChildAt(i)
@@ -289,9 +321,15 @@ class SurveyFragment : OrchardDataModelFragment(), View.OnClickListener {
                 answers.add(answer)
             }
         }
+        return answers
+    }
+
+    private fun sendAnswers() {
+        val answers = prepareAnswersJsonToSend()
+
         if (answers.size() > 0) {
             val request = RemoteRequest(requireActivity())
-                .setPath(surveyComponentModule!!.sendSurveyApiPath)
+                .setPath(surveyComponentModule.sendSurveyApiPath)
                 .setMethod(RemoteRequest.Method.POST)
                 .setBody(answers)
             updateUiWithSendingAnswers(true)
@@ -402,5 +440,12 @@ class SurveyFragment : OrchardDataModelFragment(), View.OnClickListener {
                 imageView.visibility = View.GONE
             }
         }
+    }
+
+    override fun onDatePicked(startDate: Date, endDate: Date?) {
+        val dateFormat = SimpleDateFormat(currentDateFormat!!, Locale.getDefault())
+        currentDateEditText!!.setText(dateFormat.format(startDate))
+        currentDateEditText = null
+        currentDateFormat = null
     }
 }
