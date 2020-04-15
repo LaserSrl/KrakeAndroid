@@ -2,4 +2,6 @@
 <resources>
     <dimen name="surveyAnswerImageHeight">60dp</dimen>
     <dimen name="questionImageHeight">80dp</dimen>
+    <dimen name="surveyQuestionDividerHeight">0dp</dimen>
+    <dimen name="surveySectionDividerHeight">16dp</dimen>
 </resources>

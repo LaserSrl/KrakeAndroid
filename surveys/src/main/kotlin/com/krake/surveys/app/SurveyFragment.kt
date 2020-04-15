@@ -76,6 +76,8 @@ class SurveyFragment : OrchardDataModelFragment(),
     private var currentDateEditText: EditText? = null
     private var currentDateFormat: String? = null
     private val answersToSend = mutableListOf<AnswerToSend>()
+    private var questionDividerHeight = 0
+    private var sectionDividerHeight = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -107,6 +109,8 @@ class SurveyFragment : OrchardDataModelFragment(),
         mSendButton = view.findViewById(R.id.sendSurveyButton)
         mSendButton.setOnClickListener(this)
         mProgress = view.findViewById(android.R.id.progress)
+        questionDividerHeight = requireActivity().resources.getDimensionPixelSize(R.dimen.surveyQuestionDividerHeight)
+        sectionDividerHeight = requireActivity().resources.getDimensionPixelSize(R.dimen.surveySectionDividerHeight)
     }
 
     override fun onDataModelChanged(dataModel: DataModel?) {
@@ -158,6 +162,8 @@ class SurveyFragment : OrchardDataModelFragment(),
                     val textView = inflater.inflate(R.layout.survey_section, null) as TextView
                     textView.text = lastSection
                     mLinear.addView(textView, mLinear.childCount - 1)
+                    (textView.layoutParams as LinearLayout.LayoutParams).topMargin = sectionDividerHeight
+
                 }
                 //add views only if question type is SingleChoice or OpenAnswer (for now)
                 val questionType = record.questionType
@@ -168,6 +174,7 @@ class SurveyFragment : OrchardDataModelFragment(),
                     val questionView = inflater.inflate(R.layout.survey_question_text_image, null)
                     setQuestionTextAndImage(questionView, record)
                     mLinear.addView(questionView, mLinear.childCount - 1)
+                    (questionView.layoutParams as LinearLayout.LayoutParams).topMargin = questionDividerHeight
                     setQuestionViewVisibility(questionView, record)
 
                     if (questionType.equals(Question.Type.SingleChoice, ignoreCase = true)) {
