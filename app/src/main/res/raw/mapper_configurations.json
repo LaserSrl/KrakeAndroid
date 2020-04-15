@@ -1,35 +1,35 @@
 {
-  "MultipleValuesKeyRegex": [
+  "MultipleValuesKeyRegex" : [
     "^.*\\[\\]$",
     "^List<.+>$",
     "^WhereSelectListIterator<.+>$",
     "^OrderedEnumerable<.+>$",
     "^WhereSelectEnumerableIterator<.+>$"
   ],
-  "GenerationSpecialClassesClean": {
-    "AutoroutePart": [
+  "GenerationSpecialClassesClean" : {
+    "AutoroutePart" : [
       "customPattern",
       "path",
       "useCustomPattern"
     ]
   },
-  "GenerationNameFields": [
+  "GenerationNameFields" : [
     "name",
     "displayName"
   ],
-  "GetByID": "Json\/GetByID",
-  "SpecialNamesMapping": {
-    "String": "stringValue",
-    "Medias": "mediasList",
-    "Id": "identifier",
-    "Sid": "stringIdentifier",
-    "Repeat": "repeatValue",
-    "Slug": "autoroutePartDisplayAlias"
+  "GetByID" : "Json\/GetByID",
+  "SpecialNamesMapping" : {
+    "Slug" : "autoroutePartDisplayAlias",
+    "Medias" : "mediasList",
+    "Repeat" : "repeatValue",
+    "Sid" : "stringIdentifier",
+    "String" : "stringValue",
+    "Id" : "identifier"
   },
-  "GenerationFieldsThatContainLinkReferences": [
+  "GenerationFieldsThatContainLinkReferences" : [
     "displayAlias"
   ],
-  "GarbageParts": [
+  "GarbageParts" : [
     "CommonPart",
     "ContentItem",
     "Version",
@@ -47,17 +47,14 @@
     "Content",
     "QuestionsToDisplay",
     "DisplayName",
-    "DynamicButtonToWorkflowsPart",
-    "UserProvidersPart",
-    "FavoriteCulturePart",
-    "SeoPart"
+    "DynamicButtonToWorkflowsPart"
   ],
-  "GenerationClassesToIgnoreRegex": [
+  "GenerationClassesToIgnoreRegex" : [
     "^WhereSelectEnumerableIterator<.+>$",
     "^PersistentGenericBag<.+>$",
     "^<TakeIterator.+>$"
   ],
-  "GenerationClassesToReduceEvenIfTheyHaveMutipleFields": [
+  "GenerationClassesToReduceEvenIfTheyHaveMutipleFields" : [
     "InputField",
     "AutoroutePart",
     "ContentPickerField",
@@ -75,5 +72,5 @@
     "PolicyTextInfoPart",
     "PolicyTextInfoPartRecord"
   ],
-  "GetByAlias": "Json\/GetByAlias"
+  "GetByAlias" : "Json\/GetByAlias"
 }

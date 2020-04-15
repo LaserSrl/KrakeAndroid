@@ -19,15 +19,15 @@ interface Question : RecordWithIdentifier, AllFileImage {
 
     val answerType : String?
 
-    val answerTypology : AnswerType?
-        get() = if (answerType == null) null else AnswerType.parse(answerType!!)
+    val answerTypology : AnswerType
+        get() = AnswerType.parse(answerType)
 
     val published: Boolean
 
     val position: Long?
 
-    val publishedAnswers: List<com.krake.surveys.model.Answer>
-        get() = (answers as List<com.krake.surveys.model.Answer>).filter { it.published }
+    val publishedAnswers: List<Answer>
+        get() = (answers as List<Answer>).filter { it.published }
 
     val condition: String?
 
@@ -55,8 +55,8 @@ interface Question : RecordWithIdentifier, AllFileImage {
         object Datetime : AnswerType()
 
         companion object {
-            fun parse(type: String): AnswerType {
-                return when (type.trim().toLowerCase(Locale.getDefault())) {
+            fun parse(type: String?): AnswerType {
+                return when (type?.trim()?.toLowerCase(Locale.getDefault())) {
                     "datetime" -> Datetime
                     "date" -> Date
                     "url" -> Url

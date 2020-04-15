@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1906.25.14) on 29/08/2019, 10:23**/
+ * Created by Krake Generator 8.3 Daiquiri (1711.02.15) on 14/04/2020, 12:25**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.ContentItem
@@ -11,18 +11,14 @@ import io.realm.annotations.Index
 import io.realm.annotations.PrimaryKey
 
 
-open class ConfigurazioneTwitter : RealmObject() /*INTERFACES*/,
-    com.krake.twitter.model.TweetsLoadingConfiguration, ContentItem, RecordWithAutoroute,
-    RecordWithIdentifier, RecordWithFilter/*ENDINTERFACES*/ {
+open class ConfigurazioneTwitter : RealmObject() /*INTERFACES*/,com.krake.twitter.model.TweetsLoadingConfiguration,ContentItem,RecordWithAutoroute,RecordWithIdentifier,RecordWithFilter/*ENDINTERFACES*/ {
     /*FIELDS*/
-    open var autoroutePartPromoteToHomePage: Boolean? = null
-    override var titlePartTitle: String? = null
-    open var contentType: String? = null
-    open var autoroutePartUseCulturePattern: Boolean? = null
-    override var filtroValue: String = ""
-    @PrimaryKey
-    override var identifier: Long = 0
-    @Index
-    override var autoroutePartDisplayAlias: String = ""
+    open var autoroutePartPromoteToHomePage : Boolean? = null
+    override var titlePartTitle : String? = null
+    open var contentType : String? = null
+    open var autoroutePartUseCulturePattern : Boolean? = null
+    override var filtroValue : String = ""
+    @PrimaryKey override var identifier : Long = 0
+    @Index override var autoroutePartDisplayAlias : String = ""
 /*ENDFIELDS*/
 }

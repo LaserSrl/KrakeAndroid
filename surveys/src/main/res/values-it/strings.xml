@@ -7,4 +7,7 @@
     <string name="error_no_survey_to_answer">Complimenti, hai già compilato tutti i questionari.
         Torna presto a trovarci per contribuire ancora!
     </string>
+    <string name="survey_answer_validation_alert_title">Attenzione</string>
+    <string name="survey_answer_validation_error_message_url">Url specificato non valido</string>
+
 </resources>

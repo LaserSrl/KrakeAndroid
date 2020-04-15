@@ -238,7 +238,7 @@ class SurveyFragment : OrchardDataModelFragment(),
                         val view = inflater.inflate(R.layout.survey_open_answer, null)
                         view.tag = questionType
                         val editText = view.findViewById<EditText>(R.id.surveyOpenAnswerEditText)
-                        editText.tag = record.identifier
+                        editText.tag = record
 
                         val currentValue = answersToSend.firstOrNull { it.questionId == record.identifier } as? AnswerToSend.TextAnswer
                         editText.setText(currentValue?.text ?: "")
@@ -283,9 +283,6 @@ class SurveyFragment : OrchardDataModelFragment(),
                         }
                     }
                 }
-
-                val divider = inflater.inflate(R.layout.survey_question_divider, null)
-                mLinear.addView(divider, mLinear.childCount - 1)
             }
         }
     }
@@ -354,9 +351,11 @@ class SurveyFragment : OrchardDataModelFragment(),
                 )
             } else if (view is EditText) {
                 if (!TextUtils.isEmpty(view.text.toString())) {
+                    val record = view.tag as Question
                     answersToSend.add(AnswerToSend.TextAnswer(
-                        id = view.tag as Long,
-                        text = view.text.toString())
+                        id = record.identifier,
+                        text = view.text.toString(),
+                        type = record.answerTypology)
                     )
                 } else continue
             } else if (view is CheckBox) {
@@ -371,7 +370,7 @@ class SurveyFragment : OrchardDataModelFragment(),
         }
     }
 
-    private fun prepareAnswersJsonToSend(): JsonArray {
+    private fun checkAndPrepareAnswersJsonToSend(): JsonArray? {
         val answers = JsonArray()
 
         answersToSend.forEach {
@@ -380,6 +379,34 @@ class SurveyFragment : OrchardDataModelFragment(),
             when (it) {
                 is AnswerToSend.BooleanAnswer -> answer.addProperty("Id", it.id)
                 is AnswerToSend.TextAnswer -> {
+
+                    when (it.type) {
+                        is Question.AnswerType.Email -> {
+                            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(it.text).matches()) {
+                                AlertDialog.Builder(requireContext())
+                                    .setTitle(R.string.survey_answer_validation_alert_title)
+                                    .setMessage(R.string.error_invalid_mail)
+                                    .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                                        dialog.dismiss()
+                                    }
+                                    .show()
+                                return null
+                            }
+                        }
+                        is Question.AnswerType.Url -> {
+                            if (!android.util.Patterns.WEB_URL.matcher(it.text).matches()) {
+                                AlertDialog.Builder(requireContext())
+                                    .setTitle(R.string.survey_answer_validation_alert_title)
+                                    .setMessage(R.string.survey_answer_validation_error_message_url)
+                                    .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                                        dialog.dismiss()
+                                    }
+                                    .show()
+                                return null
+                            }
+                        }
+                    }
+
                     answer.addProperty("QuestionRecord_Id", it.id)
                     answer.addProperty("AnswerText", it.text)
                 }
@@ -416,7 +443,7 @@ class SurveyFragment : OrchardDataModelFragment(),
 
     private fun sendAnswers() {
         buildAnswersToSend()
-        val answers = prepareAnswersJsonToSend()
+        val answers = checkAndPrepareAnswersJsonToSend() ?: return
 
         if (answers.size() > 0) {
             val request = RemoteRequest(requireActivity())
@@ -546,8 +573,6 @@ class SurveyFragment : OrchardDataModelFragment(),
 
     sealed class AnswerToSend(val questionId: Long) {
         data class BooleanAnswer(val id: Long): AnswerToSend(id)
-        data class TextAnswer(val id: Long, val text: String): AnswerToSend(id)
+        data class TextAnswer(val id: Long, val text: String, val type: Question.AnswerType): AnswerToSend(id)
     }
-
-
 }

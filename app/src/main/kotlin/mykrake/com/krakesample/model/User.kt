@@ -1,5 +1,5 @@
 /**
- * Created by Krake Generator 10.0 Bloody Mary (1906.25.14) on 29/08/2019, 10:23**/
+ * Created by Krake Generator 8.3 Daiquiri (1711.02.15) on 14/04/2020, 12:25**/
 package mykrake.com.krakesample.model
 
 import com.krake.core.model.MediaPart
@@ -11,8 +11,7 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
 
-open class User : RealmObject() /*INTERFACES*/, RecordWithIdentifier,
-    RecordWithFilter/*ENDINTERFACES*/, User {
+open class User : RealmObject() /*INTERFACES*/,RecordWithIdentifier,RecordWithFilter/*ENDINTERFACES*/, User {
     override val firstPhoto: MediaPart?
         get() = null //To change initializer of created properties use File | Settings | File Templates.
 
@@ -21,16 +20,17 @@ open class User : RealmObject() /*INTERFACES*/, RecordWithIdentifier,
     override val surname: String?
         get() = "O" //To change initializer of created properties use File | Settings | File Templates.
     /*FIELDS*/
-    open var contentType: String? = null
-    open var userPwdRecoveryPart: UserPwdRecoveryPart? = null
-    open var sesso: EnumerationField? = null
-    @PrimaryKey
-    override var identifier: Long = 0
-    open var intolleranzeTerms: RealmList<TermPart> = RealmList()
-    open var religioneValue: String? = null
-    open var nazionalita: EnumerationField? = null
-    open var userPolicyPartUserPolicyAnswers: RealmList<UserPolicyAnswersRecord> = RealmList()
-    open var nascita: DateTimeField? = null
+    open var contentType : String? = null
+    open var userPwdRecoveryPart : UserPwdRecoveryPart? = null
+    open var sesso : EnumerationField? = null
+    @PrimaryKey override var identifier : Long = 0
+    open var userProvidersPart : UserProvidersPart? = null
+    open var favoriteCulturePart : FavoriteCulturePart? = null
+    open var religioneValue : String? = null
+    open var nazionalita : EnumerationField? = null
+    open var intolleranzeTerms : RealmList<TermPart> = RealmList()
+    open var userPolicyPartUserPolicyAnswers : RealmList<UserPolicyAnswersRecord> = RealmList()
+    open var nascita : DateTimeField? = null
 /*ENDFIELDS*/
 
 

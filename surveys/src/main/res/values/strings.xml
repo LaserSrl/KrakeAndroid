@@ -8,4 +8,7 @@
     <string name="error_no_survey_to_answer">Congratulations you have answered all the
         questions. Get back to us soon to contribute again.
     </string>
+    <string name="survey_answer_validation_alert_title">Warning</string>
+    <string name="survey_answer_validation_error_message_url">Invalid url</string>
+
 </resources>

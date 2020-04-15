@@ -1,181 +1,5 @@
 {
-  "OtpStopItem": [
-    "Dist",
-    "Code",
-    "Lon",
-    "StringIdentifier",
-    "Lat",
-    "OriginalId",
-    "Name"
-  ],
-  "AnswerRecord": [
-    "QuestionRecord_Id",
-    "Answer",
-    "CorrectResponse",
-    "Identifier",
-    "Published",
-    "Position"
-  ],
-  "UserPolicyAnswersRecord": [
-    "PolicyTextInfoPartRecordPolicyType",
-    "PolicyTextInfoPartRecordAddPolicyToRegistration",
-    "AnswerDate",
-    "PolicyTextInfoPartRecordIdentifier",
-    "Identifier",
-    "PolicyTextInfoPartRecordUserHaveToAccept",
-    "PolicyTextInfoPartRecordPriority",
-    "Accepted"
-  ],
-  "Prodotto": [
-    "AutoroutePartUseCulturePattern",
-    "BodyPartText",
-    "TitlePartTitle",
-    "GalleryFirstMediaUrl",
-    "AutoroutePartPromoteToHomePage",
-    "ShareLinkPart",
-    "AutoroutePartDisplayAlias",
-    "ContentType",
-    "GalleryMediaParts",
-    "BodyPartFormat",
-    "Identifier",
-    "PrezzoValue"
-  ],
-  "ConfigurazioneTwitter": [
-    "AutoroutePartPromoteToHomePage",
-    "TitlePartTitle",
-    "ContentType",
-    "AutoroutePartUseCulturePattern",
-    "FiltroValue",
-    "Identifier",
-    "AutoroutePartDisplayAlias"
-  ],
-  "Game": [
-    "AutoroutePartUseCulturePattern",
-    "QuestionariContentItems",
-    "GalleryFirstMediaUrl",
-    "TitlePartTitle",
-    "AutoroutePartPromoteToHomePage",
-    "AutoroutePartDisplayAlias",
-    "ContentType",
-    "GamePart",
-    "GalleryMediaParts",
-    "Identifier",
-    "ActivityPart"
-  ],
-  "RequestCache": [
-    "questionRecord",
-    "itinerario",
-    "userReport",
-    "immagine",
-    "user",
-    "parcheggio",
-    "termPart",
-    "prodotto",
-    "calendarEvent",
-    "otpStopItem",
-    "policyText",
-    "answerRecord",
-    "userPolicyAnswersRecord",
-    "game",
-    "stopTime",
-    "configurazioneTwitter",
-    "pOI",
-    "taxonomy",
-    "pattern",
-    "blog",
-    "questionnaire",
-    "blogPost"
-  ],
-  "QuestionRecord": [
-    "Section",
-    "QuestionnairePartRecord_Id",
-    "Position",
-    "IsRequired",
-    "Published",
-    "QuestionType",
-    "AllFiles",
-    "Answers",
-    "ConditionType",
-    "Identifier",
-    "Question",
-    "AnswerType"
-  ],
-  "Pattern": [
-    "StopTimesList",
-    "PatternId",
-    "StringIdentifier",
-    "DescriptionText"
-  ],
-  "TermPart": [
-    "TaxonomyId",
-    "Count",
-    "FullPath",
-    "AutoroutePartDisplayAlias",
-    "Weight",
-    "Path",
-    "IconFirstMediaUrl",
-    "Selectable",
-    "Identifier",
-    "Container",
-    "IconMediaParts",
-    "Datainizioselezione",
-    "TipoUnivoco",
-    "Name"
-  ],
-  "Itinerario": [
-    "AutoroutePartUseCulturePattern",
-    "BodyPartText",
-    "TitlePartTitle",
-    "GalleryFirstMediaUrl",
-    "AutoroutePartPromoteToHomePage",
-    "ContentType",
-    "GalleryMediaParts",
-    "BodyPartFormat",
-    "AutoroutePartDisplayAlias",
-    "PuntiDiInteresseContentItems",
-    "Identifier",
-    "MapPart"
-  ],
-  "Taxonomy": [
-    "TaxonomyPartIsAllTabVisibleInAppValue",
-    "TaxonomyExtensionPartOrderBy",
-    "AutoroutePartUseCulturePattern",
-    "TitlePartTitle",
-    "TaxonomyPartTerms",
-    "TaxonomyPartAutoroutePartDisplayAlias",
-    "AutoroutePartPromoteToHomePage",
-    "ContentType",
-    "TaxonomyPartTermTypeName",
-    "AutoroutePartDisplayAlias",
-    "Identifier",
-    "TaxonomyPartIsInternal",
-    "TaxonomyPartName"
-  ],
-  "ActivityPart": [
-    "AllDay",
-    "DateTimeEnd",
-    "RepeatValue",
-    "RepeatEnd",
-    "RepeatType",
-    "RepeatDetails",
-    "DateTimeStart",
-    "RepeatEndDate",
-    "Identifier"
-  ],
-  "CalendarEvent": [
-    "AutoroutePartUseCulturePattern",
-    "BodyPartText",
-    "GalleryFirstMediaUrl",
-    "TitlePartTitle",
-    "AutoroutePartPromoteToHomePage",
-    "ContentType",
-    "GalleryMediaParts",
-    "AutoroutePartDisplayAlias",
-    "BodyPartFormat",
-    "Identifier",
-    "ActivityPart"
-  ],
-  "StopTime": [
+  "StopTime" : [
     "RealtimeDeparture",
     "StopIndex",
     "TripId",
@@ -193,18 +17,213 @@
     "RealtimeState",
     "ServiceDay"
   ],
-  "User": [
-    "ContentType",
-    "UserPwdRecoveryPart",
-    "Sesso",
+  "MapPart" : [
+    "Location",
+    "MapSourceFileMediaParts",
     "Identifier",
-    "IntolleranzeTerms",
-    "ReligioneValue",
-    "Nazionalita",
-    "UserPolicyPartUserPolicyAnswers",
-    "Nascita"
+    "MapSourceFileFirstMediaUrl",
+    "LocationAddress",
+    "LocationInfo"
   ],
-  "GamePart": [
+  "UserProvidersPart" : [
+    "Providers",
+    "ProviderEntriesFieldValue",
+    "Identifier"
+  ],
+  "ConfigurazioneTwitter" : [
+    "AutoroutePartPromoteToHomePage",
+    "TitlePartTitle",
+    "ContentType",
+    "AutoroutePartUseCulturePattern",
+    "FiltroValue",
+    "Identifier",
+    "AutoroutePartDisplayAlias"
+  ],
+  "OtpStopItem" : [
+    "Dist",
+    "Code",
+    "Lon",
+    "StringIdentifier",
+    "Lat",
+    "OriginalId",
+    "Name"
+  ],
+  "DateTimeField" : [
+    "DateTime",
+    "Display"
+  ],
+  "UserPolicyAnswersRecord" : [
+    "PolicyTextInfoPartRecordPolicyType",
+    "PolicyTextInfoPartRecordAddPolicyToRegistration",
+    "AnswerDate",
+    "PolicyTextInfoPartRecordIdentifier",
+    "Identifier",
+    "PolicyTextInfoPartRecordUserHaveToAccept",
+    "PolicyTextInfoPartRecordPriority",
+    "Accepted"
+  ],
+  "Blog" : [
+    "AutoroutePartUseCulturePattern",
+    "TitlePartTitle",
+    "BlogPartName",
+    "BlogPartDescription",
+    "BlogPartFeedProxyUrl",
+    "ContentType",
+    "AutoroutePartDisplayAlias",
+    "BlogPartEnableCommentsFeed",
+    "BlogPartPostsPerPage",
+    "Identifier",
+    "AutoroutePartPromoteToHomePage",
+    "BlogPartIdentifier",
+    "BlogPartPostCount"
+  ],
+  "RequestCache" : [
+    "questionRecord",
+    "itinerario",
+    "userReport",
+    "userProviderEntry",
+    "immagine",
+    "user",
+    "parcheggio",
+    "termPart",
+    "prodotto",
+    "calendarEvent",
+    "otpStopItem",
+    "policyText",
+    "answerRecord",
+    "userPolicyAnswersRecord",
+    "game",
+    "configurazioneTwitter",
+    "stopTime",
+    "pOI",
+    "taxonomy",
+    "blog",
+    "pattern",
+    "questionnaire",
+    "blogPost"
+  ],
+  "TermPart" : [
+    "TaxonomyId",
+    "Count",
+    "FullPath",
+    "AutoroutePartDisplayAlias",
+    "Weight",
+    "Path",
+    "IconFirstMediaUrl",
+    "Selectable",
+    "Identifier",
+    "Container",
+    "IconMediaParts",
+    "Datainizioselezione",
+    "TipoUnivoco",
+    "Name"
+  ],
+  "QuestionnairePart" : [
+    "UseRecaptcha",
+    "Identifier",
+    "Questions",
+    "MustAcceptTerms"
+  ],
+  "UserProviderEntry" : [
+    "ProviderUserId",
+    "ProviderName",
+    "Identifier"
+  ],
+  "Parcheggio" : [
+    "AutoroutePartUseCulturePattern",
+    "BodyPartText",
+    "TitlePartTitle",
+    "GalleryFirstMediaUrl",
+    "AutoroutePartPromoteToHomePage",
+    "CapacityValue",
+    "ContentType",
+    "GalleryMediaParts",
+    "AutoroutePartDisplayAlias",
+    "BodyPartFormat",
+    "Identifier",
+    "MapPart"
+  ],
+  "Itinerario" : [
+    "AutoroutePartUseCulturePattern",
+    "BodyPartText",
+    "TitlePartTitle",
+    "GalleryFirstMediaUrl",
+    "AutoroutePartPromoteToHomePage",
+    "ContentType",
+    "GalleryMediaParts",
+    "BodyPartFormat",
+    "AutoroutePartDisplayAlias",
+    "PuntiDiInteresseContentItems",
+    "Identifier",
+    "MapPart"
+  ],
+  "UserReport" : [
+    "AutoroutePartUseCulturePattern",
+    "TitlePartTitle",
+    "BodyPartText",
+    "GalleryFirstMediaUrl",
+    "AutoroutePartPromoteToHomePage",
+    "ContentType",
+    "GalleryMediaParts",
+    "PublishExtensionPartPublishExtensionStatus",
+    "AutoroutePartDisplayAlias",
+    "BodyPartFormat",
+    "Identifier",
+    "SottotitoloValue",
+    "SecondaGalleryMediaParts",
+    "MapPart",
+    "CategoriaTerms",
+    "SecondaGalleryFirstMediaUrl"
+  ],
+  "MediaPart" : [
+    "MimeType",
+    "AlternateText",
+    "FileName",
+    "Title",
+    "FolderPath",
+    "LogicalType",
+    "MediaUrl",
+    "Identifier",
+    "Caption"
+  ],
+  "Pattern" : [
+    "StopTimesList",
+    "PatternId",
+    "StringIdentifier",
+    "DescriptionText"
+  ],
+  "POI" : [
+    "AutoroutePartUseCulturePattern",
+    "TitlePartTitle",
+    "BodyPartText",
+    "GalleryFirstMediaUrl",
+    "AutoroutePartPromoteToHomePage",
+    "ShareLinkPart",
+    "ContentType",
+    "GalleryMediaParts",
+    "AutoroutePartDisplayAlias",
+    "BodyPartFormat",
+    "Identifier",
+    "CategoriaPOITerms",
+    "TempoDiVisitaValue",
+    "MapPart"
+  ],
+  "Taxonomy" : [
+    "TaxonomyPartIsAllTabVisibleInAppValue",
+    "TaxonomyExtensionPartOrderBy",
+    "AutoroutePartUseCulturePattern",
+    "TitlePartTitle",
+    "TaxonomyPartTerms",
+    "TaxonomyPartAutoroutePartDisplayAlias",
+    "AutoroutePartPromoteToHomePage",
+    "ContentType",
+    "TaxonomyPartTermTypeName",
+    "AutoroutePartDisplayAlias",
+    "Identifier",
+    "TaxonomyPartIsInternal",
+    "TaxonomyPartName"
+  ],
+  "GamePart" : [
     "State",
     "AnswerPoint",
     "AnswerTime",
@@ -219,7 +238,75 @@
     "QuestionsSortedRandomlyNumber",
     "AbstractText"
   ],
-  "BlogPost": [
+  "EnumerationField" : [
+    "Value"
+  ],
+  "Prodotto" : [
+    "AutoroutePartUseCulturePattern",
+    "BodyPartText",
+    "TitlePartTitle",
+    "GalleryFirstMediaUrl",
+    "AutoroutePartPromoteToHomePage",
+    "ShareLinkPart",
+    "AutoroutePartDisplayAlias",
+    "ContentType",
+    "GalleryMediaParts",
+    "BodyPartFormat",
+    "Identifier",
+    "PrezzoValue"
+  ],
+  "PolicyText" : [
+    "AutoroutePartUseCulturePattern",
+    "BodyPartText",
+    "PolicyTextInfoPartPriority",
+    "PolicyTextInfoPartAddPolicyToRegistration",
+    "PolicyTextInfoPartPolicyType",
+    "AutoroutePartPromoteToHomePage",
+    "PolicyTextInfoPartUserHaveToAccept",
+    "AutoroutePartDisplayAlias",
+    "ContentType",
+    "BodyPartFormat",
+    "TitlePartTitle",
+    "Identifier"
+  ],
+  "UserPwdRecoveryPart" : [
+    "Identifier",
+    "InternationalPrefix",
+    "PhoneNumber"
+  ],
+  "ActivityPart" : [
+    "AllDay",
+    "DateTimeEnd",
+    "RepeatValue",
+    "RepeatEnd",
+    "RepeatType",
+    "RepeatDetails",
+    "DateTimeStart",
+    "RepeatEndDate",
+    "Identifier"
+  ],
+  "ShareLinkPart" : [
+    "SharedText",
+    "SharedBody",
+    "SharedLink",
+    "SharedIdImage",
+    "SharedImage",
+    "Identifier"
+  ],
+  "Game" : [
+    "AutoroutePartUseCulturePattern",
+    "QuestionariContentItems",
+    "GalleryFirstMediaUrl",
+    "TitlePartTitle",
+    "AutoroutePartPromoteToHomePage",
+    "AutoroutePartDisplayAlias",
+    "ContentType",
+    "GamePart",
+    "GalleryMediaParts",
+    "Identifier",
+    "ActivityPart"
+  ],
+  "BlogPost" : [
     "BlogPostPartText",
     "TagsPartCurrentTags",
     "GalleryMediaParts",
@@ -246,62 +333,37 @@
     "TitlePartTitle",
     "BlogPostPartBlogPartEnableCommentsFeed"
   ],
-  "QuestionnairePart": [
-    "UseRecaptcha",
-    "Identifier",
-    "Questions",
-    "MustAcceptTerms"
+  "FavoriteCulturePart" : [
+    "Culture_Id",
+    "Culture",
+    "Identifier"
   ],
-  "UserReport": [
-    "AutoroutePartUseCulturePattern",
+  "Questionnaire" : [
+    "AutoroutePartPromoteToHomePage",
     "TitlePartTitle",
     "BodyPartText",
-    "GalleryFirstMediaUrl",
-    "AutoroutePartPromoteToHomePage",
+    "QuestionnairePart",
     "ContentType",
-    "GalleryMediaParts",
-    "PublishExtensionPartPublishExtensionStatus",
-    "AutoroutePartDisplayAlias",
-    "BodyPartFormat",
     "Identifier",
-    "SottotitoloValue",
-    "SecondaGalleryMediaParts",
-    "MapPart",
-    "CategoriaTerms",
-    "SecondaGalleryFirstMediaUrl"
-  ],
-  "DateTimeField": [
-    "DateTime",
-    "Display"
-  ],
-  "MediaPart": [
-    "MimeType",
-    "AlternateText",
-    "FileName",
-    "Title",
-    "FolderPath",
-    "LogicalType",
-    "MediaUrl",
-    "Identifier",
-    "Caption"
-  ],
-  "POI": [
     "AutoroutePartUseCulturePattern",
-    "TitlePartTitle",
-    "BodyPartText",
-    "GalleryFirstMediaUrl",
-    "AutoroutePartPromoteToHomePage",
-    "ShareLinkPart",
-    "ContentType",
-    "GalleryMediaParts",
-    "AutoroutePartDisplayAlias",
     "BodyPartFormat",
-    "Identifier",
-    "CategoriaPOITerms",
-    "TempoDiVisitaValue",
-    "MapPart"
+    "AutoroutePartDisplayAlias"
   ],
-  "Immagine": [
+  "QuestionRecord" : [
+    "Section",
+    "QuestionnairePartRecord_Id",
+    "Position",
+    "IsRequired",
+    "Published",
+    "QuestionType",
+    "AllFiles",
+    "Answers",
+    "ConditionType",
+    "Identifier",
+    "Question",
+    "AnswerType"
+  ],
+  "Immagine" : [
     "AutoroutePartUseCulturePattern",
     "BodyPartText",
     "GalleryFirstMediaUrl",
@@ -314,82 +376,39 @@
     "TipoImmagineTerms",
     "Identifier"
   ],
-  "UserPwdRecoveryPart": [
-    "Identifier",
-    "InternationalPrefix",
-    "PhoneNumber"
-  ],
-  "Blog": [
-    "AutoroutePartUseCulturePattern",
-    "TitlePartTitle",
-    "BlogPartName",
-    "BlogPartDescription",
-    "BlogPartFeedProxyUrl",
-    "ContentType",
-    "AutoroutePartDisplayAlias",
-    "BlogPartEnableCommentsFeed",
-    "BlogPartPostsPerPage",
-    "Identifier",
-    "AutoroutePartPromoteToHomePage",
-    "BlogPartIdentifier",
-    "BlogPartPostCount"
-  ],
-  "EnumerationField": [
-    "Value"
-  ],
-  "Parcheggio": [
+  "CalendarEvent" : [
     "AutoroutePartUseCulturePattern",
     "BodyPartText",
-    "TitlePartTitle",
     "GalleryFirstMediaUrl",
+    "TitlePartTitle",
     "AutoroutePartPromoteToHomePage",
-    "CapacityValue",
     "ContentType",
     "GalleryMediaParts",
     "AutoroutePartDisplayAlias",
     "BodyPartFormat",
     "Identifier",
-    "MapPart"
+    "ActivityPart"
   ],
-  "PolicyText": [
-    "AutoroutePartUseCulturePattern",
-    "BodyPartText",
-    "PolicyTextInfoPartPriority",
-    "PolicyTextInfoPartAddPolicyToRegistration",
-    "PolicyTextInfoPartPolicyType",
-    "AutoroutePartPromoteToHomePage",
-    "PolicyTextInfoPartUserHaveToAccept",
-    "AutoroutePartDisplayAlias",
+  "User" : [
     "ContentType",
-    "BodyPartFormat",
-    "TitlePartTitle",
-    "Identifier"
-  ],
-  "ShareLinkPart": [
-    "SharedText",
-    "SharedBody",
-    "SharedLink",
-    "SharedIdImage",
-    "SharedImage",
-    "Identifier"
-  ],
-  "MapPart": [
-    "Location",
-    "MapSourceFileMediaParts",
+    "UserPwdRecoveryPart",
+    "Sesso",
     "Identifier",
-    "MapSourceFileFirstMediaUrl",
-    "LocationAddress",
-    "LocationInfo"
+    "UserProvidersPart",
+    "FavoriteCulturePart",
+    "ReligioneValue",
+    "Nazionalita",
+    "IntolleranzeTerms",
+    "UserPolicyPartUserPolicyAnswers",
+    "Nascita"
   ],
-  "Questionnaire": [
-    "AutoroutePartPromoteToHomePage",
-    "TitlePartTitle",
-    "BodyPartText",
-    "QuestionnairePart",
-    "ContentType",
+  "AnswerRecord" : [
+    "Answer",
+    "QuestionRecord_Id",
+    "Published",
+    "AllFiles",
+    "Position",
     "Identifier",
-    "AutoroutePartUseCulturePattern",
-    "BodyPartFormat",
-    "AutoroutePartDisplayAlias"
+    "CorrectResponse"
   ]
 }
