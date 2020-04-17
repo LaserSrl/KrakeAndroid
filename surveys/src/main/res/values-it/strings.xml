@@ -9,5 +9,6 @@
     </string>
     <string name="survey_answer_validation_alert_title">Attenzione</string>
     <string name="survey_answer_validation_error_message_url">Url specificato non valido</string>
+    <string name="survey_spinner_no_element_selected">Seleziona un elemento</string>
 
 </resources>

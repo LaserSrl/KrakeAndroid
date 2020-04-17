@@ -4,4 +4,6 @@
     <dimen name="questionImageHeight">80dp</dimen>
     <dimen name="surveyQuestionDividerHeight">0dp</dimen>
     <dimen name="surveySectionDividerHeight">16dp</dimen>
+    <dimen name="surveySpinnerNoElementSelectedPadding">16dp</dimen>
+
 </resources>
