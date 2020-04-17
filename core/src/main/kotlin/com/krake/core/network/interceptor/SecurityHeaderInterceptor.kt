@@ -19,6 +19,7 @@ class SecurityHeaderInterceptor(context: Context) : Interceptor
     private val deviceUUID: String = MessagingService.getUUID(context)
     private val encryptionKey: String = context.getString(R.string.header_key)
     private val orchardApiKey: String = context.getString(R.string.orchard_api_key)
+    private val apiChannel: String = context.getString(R.string.orchard_api_channel)
     private val ntpServers: Array<String> = context.resources.getStringArray(R.array.ntp_servers)
 
     private var ntpTime: Long = 0
@@ -32,6 +33,9 @@ class SecurityHeaderInterceptor(context: Context) : Interceptor
         val builder = request.newBuilder()
                 .addHeader("OutputFormat", "lmnv")
                 .addHeader("x-UUID", deviceUUID)
+
+        if (!TextUtils.isEmpty(apiChannel))
+            builder.addHeader("ApiChannel", apiChannel)
 
         try
         {
