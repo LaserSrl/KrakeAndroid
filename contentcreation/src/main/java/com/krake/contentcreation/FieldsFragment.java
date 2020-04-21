@@ -391,7 +391,8 @@ public class FieldsFragment extends Fragment implements
 
     @Override
     public void onSingleTermOrEnumSelected(EnumOrTermSpinnerManager spinnerManager, Object selectedValue) {
-        if (!mSaveFieldInfos.mFieldValues.get(spinnerManager.getFieldKey()).equals(spinnerManager.getServerObjectToCreate())) {
+        Object field = mSaveFieldInfos.mFieldValues.get(spinnerManager.getFieldKey());
+        if (field == null || !field.equals(spinnerManager.getServerObjectToCreate())) {
             mSaveFieldInfos.mFieldValues.put(spinnerManager.getFieldKey(), spinnerManager.getServerObjectToCreate());
             mActivity.updateFragmentData(this, mSaveFieldInfos);
         }
