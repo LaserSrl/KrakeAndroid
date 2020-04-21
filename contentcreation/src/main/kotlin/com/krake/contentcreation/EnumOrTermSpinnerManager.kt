@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonArray
 import com.krake.core.OrchardError
 import com.krake.core.PrivacyViewModel
@@ -122,7 +122,7 @@ constructor(private val context: FragmentActivity,
 
             val dataConnection = DataConnectionModel(orchardModule,
                                                      loginModule,
-                                                     ViewModelProviders.of(context).get(PrivacyViewModel::class.java))
+                                                     ViewModelProvider(context).get(PrivacyViewModel::class.java))
 
             progress.visibility = View.VISIBLE
             mCategorySpinner.visibility = View.GONE

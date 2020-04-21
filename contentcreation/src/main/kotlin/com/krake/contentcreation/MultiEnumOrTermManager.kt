@@ -6,7 +6,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonArray
 import com.krake.core.OrchardError
 import com.krake.core.PrivacyViewModel
@@ -103,7 +103,10 @@ class MultiEnumOrTermManager constructor(context: FragmentActivity,
             val orchardModule = OrchardComponentModule()
                     .displayPath(fieldInfo.orchardComponentModule)
 
-            val dataConnection = DataConnectionModel(orchardModule, LoginComponentModule(), ViewModelProviders.of(context).get(PrivacyViewModel::class.java))
+            val loginModule = LoginComponentModule()
+                .loginRequired(fieldInfo.isLoginEnabled)
+
+            val dataConnection = DataConnectionModel(orchardModule, loginModule, ViewModelProvider(context).get(PrivacyViewModel::class.java))
 
             progress.visibility = View.VISIBLE
             mDataConnection = dataConnection
