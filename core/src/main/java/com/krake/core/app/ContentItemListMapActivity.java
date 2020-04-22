@@ -538,7 +538,7 @@ public class ContentItemListMapActivity extends LoginAndPrivacyActivity
                         params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
                         mToolbar.setLayoutParams(params);
 
-                        AppBarLayout.LayoutParams tabParams = new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        AppBarLayout.LayoutParams tabParams = new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         tabParams.setScrollFlags(0);
                         tabContainer.setLayoutParams(tabParams);
                     }
