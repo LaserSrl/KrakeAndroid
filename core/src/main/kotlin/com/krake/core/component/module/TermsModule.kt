@@ -81,6 +81,10 @@ class TermsModule : ComponentModule {
         return this
     }
 
+    fun allTabTermId(allTabTermId: Int): TermsModule = apply {
+        this.allTabTermId = allTabTermId
+    }
+
     /**
      * Legge il contenuto di un [Bundle] e modifica le sue proprietà.
      *
