@@ -31,9 +31,6 @@ interface Question : RecordWithIdentifier, AllFileImage {
 
     val condition: String?
 
-    val conditionIdentifiers: List<Long>?
-        get() = if (condition != null && !condition.isNullOrBlank()) condition!!.split("and", "or").map { it.trim().toLong() } else null
-
     val conditionType: String?
 
     val conditionBehaviour: ConditionBehaviour?

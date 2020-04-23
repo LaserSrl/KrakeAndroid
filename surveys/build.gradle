@@ -2,4 +2,5 @@ new KrakeLibPlugin().apply(project)
 
 dependencies {
     api project(':core')
+    api 'com.udojava:EvalEx:2.5'
 }
