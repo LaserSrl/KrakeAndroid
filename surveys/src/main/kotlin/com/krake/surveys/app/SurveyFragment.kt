@@ -36,6 +36,7 @@ import com.krake.surveys.component.module.SurveyComponentModule
 import com.krake.surveys.model.Answer
 import com.krake.surveys.model.Question
 import com.krake.surveys.model.Questionnaire
+import com.udojava.evalex.Expression
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -223,7 +224,7 @@ class SurveyFragment : OrchardDataModelFragment(),
                                 android.R.id.text1,
                                 answers
                             )
-                            spinner.prompt = "Seleziona un elemento"
+
 
                             val selection = answers.indexOfFirst { answer -> answersToSend.filterIsInstance<AnswerToSend.BooleanAnswer>().firstOrNull { it.questionId == answer.identifier } != null }
                             if (selection >= 0)
@@ -429,10 +430,19 @@ class SurveyFragment : OrchardDataModelFragment(),
     }
 
     private fun setQuestionViewVisibility(view: View, question: Question) {
-        var visible = question.conditionBehaviour == null || question.conditionIdentifiers == null || question.conditionBehaviour == Question.ConditionBehaviour.Hide
+        var visible = question.conditionBehaviour == null || question.condition == null || question.conditionBehaviour == Question.ConditionBehaviour.Hide
 
-        if (question.conditionIdentifiers != null) {
-            val conditionRespected = question.conditionIdentifiers!!.all { identifier -> answersToSend.filterIsInstance<AnswerToSend.BooleanAnswer>().any { it.questionId == identifier } }
+        if (question.condition?.trim()?.isNotBlank() == true) {
+            var condition = question.condition!!
+            val match = Regex("""[0-9]+""").findAll(condition)
+            match.forEach { matched ->
+                val respected = answersToSend.filterIsInstance<AnswerToSend.BooleanAnswer>().firstOrNull { it.questionId == matched.value.toLong() } != null
+                condition = condition.replace(matched.value, if (respected) "true" else "false")
+            }
+
+            condition = condition.replace("and", "&&")
+            condition = condition.replace("or", "||")
+            val conditionRespected = Expression(condition).eval().toInt() == 1
 
             visible = if (conditionRespected) {
                 question.conditionBehaviour == Question.ConditionBehaviour.Show
@@ -441,7 +451,7 @@ class SurveyFragment : OrchardDataModelFragment(),
             }
         }
 
-        view.isVisible = visible
+        view.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     private fun sendAnswers() {

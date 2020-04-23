@@ -33,7 +33,7 @@ import com.krake.core.network.RemoteResponse
  * on the avatar
  * Created by joel on 01/08/17.
  */
-class UserNavigationMenuView @JvmOverloads constructor(
+open class UserNavigationMenuView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr), Observer<DataModel>, OrchardApiEndListener
 {
@@ -42,23 +42,17 @@ class UserNavigationMenuView @JvmOverloads constructor(
     private lateinit var logoutButton: ImageButton
     private lateinit var userInitialsText: TextView
 
-    private var dataConnection: DataConnectionModel? = null
+    protected open var dataConnection: DataConnectionModel? = null
 
     private var currentUser: User? = null
     private var userLoggedIn: Boolean = false
 
     private val hideLoginButton: Boolean
 
-    private var loginObserver = object : Observer<Boolean?>
-    {
-        override fun onChanged(t: Boolean?)
-        {
-            if (t != null)
-            {
-                if ((t && currentUser == null) || !t)
-                {
-                    updateUI(t, null)
-                }
+    private var loginObserver = Observer<Boolean?> { t ->
+        if (t != null) {
+            if ((t && currentUser == null) || !t) {
+                updateUI(t, null)
             }
         }
     }
@@ -95,17 +89,9 @@ class UserNavigationMenuView @JvmOverloads constructor(
         userImageView.setOnClickListener { loginOrEditUser() }
         usernameTextView.setOnClickListener { loginOrEditUser() }
 
-        val privacyViewModel = ViewModelProvider(context as FragmentActivity).get(PrivacyViewModel::class.java)
-
-        val orchardModule = OrchardComponentModule().displayPath(getString(R.string.orchard_user_info_display_path))
-        (context.applicationContext as? UserNavigationViewListener)?.configureUserDataOrchardModule(orchardModule)
-
-        dataConnection = DataConnectionModel(orchardModule,
-                                             LoginComponentModule().loginRequired(true),
-                                             privacyViewModel
-        )
-
+        dataConnection = configureUserInfoDataConnection()
         dataConnection?.model?.observeForever(this)
+
         LoginManager.shared.isLogged.observeForever(loginObserver)
         if (LoginManager.shared.isLogged.value == true) {
             updateUI(true, currentUser)
@@ -123,6 +109,15 @@ class UserNavigationMenuView @JvmOverloads constructor(
         Signaler.shared.removeApiEndListener(getString(R.string.orchard_api_path_content_modify), this)
     }
 
+    protected open fun configureUserInfoDataConnection(): DataConnectionModel {
+        val orchardModule = OrchardComponentModule().displayPath(getString(R.string.orchard_user_info_display_path))
+        val privacyViewModel = ViewModelProvider(context as FragmentActivity).get(PrivacyViewModel::class.java)
+
+        return DataConnectionModel(orchardModule,
+            LoginComponentModule().loginRequired(true),
+            privacyViewModel
+        )
+    }
 
     override fun onChanged(t: DataModel?)
     {
@@ -140,9 +135,8 @@ class UserNavigationMenuView @JvmOverloads constructor(
             remoteRequest.method == RemoteRequest.Method.POST &&
             remoteResponse != null &&
             endListenerParameters is Bundle &&
-            endListenerParameters.getString(getString(R.string.orchard_new_content_type_parameter))?.equals(getString(R.string.orchard_user_content_type)) ?: false)
+            endListenerParameters.getString(getString(R.string.orchard_new_content_type_parameter))?.equals(getString(R.string.orchard_user_content_type)) == true)
         {
-            (context.applicationContext as? UserNavigationViewListener)?.configureUserDataOrchardModule(dataConnection!!.orchardModule)
             dataConnection!!.loadDataFromRemote()
         }
     }
@@ -167,22 +161,28 @@ class UserNavigationMenuView @JvmOverloads constructor(
         when {
             user != null -> {
                 val photo = user.firstPhoto
-                if (photo != null) {
-                    MediaLoader.with(context, userImageView)
-                        .mediaPart(photo)
-                        .load()
+                when {
+                    photo != null -> {
+                        MediaLoader.with(context, userImageView)
+                            .mediaPart(photo)
+                            .load()
 
-                    userInitialsText.visibility = View.GONE
-                } else {
-                    userImageView.setImageBitmap(null)
-                    userInitialsText.visibility = View.VISIBLE
+                        userInitialsText.visibility = View.GONE
+                    }
+                    user.name.isNullOrEmpty() -> {
+                        userImageView.setImageResource(R.drawable.user_image_placeholder)
+                        userInitialsText.visibility = View.GONE
+                    }
+                    else -> {
+                        userImageView.setImageBitmap(null)
+                        userInitialsText.visibility = View.VISIBLE
+                    }
                 }
 
                 logoutButton.visibility = View.VISIBLE
 
                 val nameSb = StringBuilder()
                 val firstLettersSb = StringBuilder()
-
                 val name = user.name
                 if (!name.isNullOrEmpty()) {
                     nameSb.append(name)
@@ -193,10 +193,10 @@ class UserNavigationMenuView @JvmOverloads constructor(
                         nameSb.append(" ").append(surname)
                         firstLettersSb.append(surname.first())
                     }
+
                 } else {
                     val anonymousLabel = getString(R.string.usernamePlaceholder)
                     nameSb.append(anonymousLabel)
-                    firstLettersSb.append(anonymousLabel.first())
                 }
                 usernameTextView.text = nameSb.toString()
                 userInitialsText.text = firstLettersSb.toString()
@@ -227,6 +227,4 @@ class UserNavigationMenuView @JvmOverloads constructor(
  */
 interface UserNavigationViewListener {
     fun userDidClick(onView: UserNavigationMenuView)
-
-    fun configureUserDataOrchardModule(module: OrchardComponentModule) { }
 }
