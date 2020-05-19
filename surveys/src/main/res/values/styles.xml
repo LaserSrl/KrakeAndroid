@@ -26,4 +26,7 @@
     <style name="SurveyTextStyle.Answer" />
 
     <style name="SurveyTextStyle" />
+
+    <style name="SurveyButtonStyle" parent="Widget.AppCompat.Button.Colored">
+    </style>
 </resources>

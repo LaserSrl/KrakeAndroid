@@ -31,6 +31,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="@string/send"
                 android:visibility="gone"
+                style="@style/SurveyButtonStyle"
                 tools:visibility="visible"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
