@@ -201,6 +201,8 @@ public class OrchardRecoverFragment extends Fragment
     }
 
     private void handleResponse(RemoteResponse remoteResponse, OrchardError orchardError, boolean sms) {
+        if (getActivity() == null)
+            return;
 
         if (remoteResponse != null) {
             int text = sms ? R.string.password_reset_sent_sms : R.string.password_reset_sent_mail;
