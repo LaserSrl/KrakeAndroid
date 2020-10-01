@@ -331,7 +331,7 @@ abstract class KrakeApplication : Application(),
         /* Unused */
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle?) {
+    override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {
         /* Unused */
     }
 
