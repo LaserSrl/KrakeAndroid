@@ -16,7 +16,9 @@ import com.krake.core.model.TermPart;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Informazioni per rappresentare un tab che permette di creare un nuovo contenuto su Orchard.
@@ -369,7 +371,7 @@ public class ContentCreationTabInfo {
         private final boolean required;
         private final Object defaultValue;
         private final boolean multipleSelection;
-        private final SparseArray extras;
+        private HashMap<Integer, Object> extras = null;
         private final ArrayList<FieldInfoValidator> fieldInfoValidators = new ArrayList<>();
         private final boolean editingEnabled;
         private String orchardComponentModule;
@@ -552,7 +554,15 @@ public class ContentCreationTabInfo {
             this.type = type;
             this.required = required;
             this.editingEnabled = editingEnabled;
-            this.extras = extras;
+
+            //convert sparsearray to hashmap for gson serialize issue
+            if (extras != null) {
+                this.extras = new HashMap<>();
+                for (int i = 0; i < extras.size(); i++) {
+                    this.extras.put(extras.keyAt(i), extras.valueAt(i));
+                }
+            }
+
             this.defaultValue = defaultValue;
             this.multipleSelection = multipleSelection;
             this.orchardComponentModule = bundleForOrchardComponentModule;
@@ -592,7 +602,7 @@ public class ContentCreationTabInfo {
             return dataKey;
         }
 
-        public SparseArray getExtras() {
+        public HashMap<Integer, Object> getExtras() {
             return extras;
         }
 

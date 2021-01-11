@@ -43,6 +43,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
@@ -172,7 +173,7 @@ public class FieldsFragment extends Fragment implements
         }
 
         for (ContentCreationTabInfo.FieldInfo fieldInfo : fieldInfos.getFields()) {
-            final SparseArray extras = fieldInfo.getExtras();
+            final HashMap<Integer, Object> extras = fieldInfo.getExtras();
             final Object defaultValue = fieldInfo.getDefaultValue();
             final String orchardKey = fieldInfo.getOrchardKey();
 
@@ -184,7 +185,7 @@ public class FieldsFragment extends Fragment implements
                     EditText editText = textFieldContainer.getEditText();
                     if (editText != null) {
                         boolean addMultiline = false;
-                        Object lineNumber = extras == null ? 1 : extras.get(FieldExtras.Text.KEY_MAX_LINES, 1);
+                        Object lineNumber = extras == null || !extras.containsKey(FieldExtras.Text.KEY_MAX_LINES) ? 1 : extras.get(FieldExtras.Text.KEY_MAX_LINES);
                         if (objectIsInteger(lineNumber)) {
                             int convertedLineNumber = ((Number) lineNumber).intValue();
                             if (convertedLineNumber == 1) {
@@ -318,14 +319,14 @@ public class FieldsFragment extends Fragment implements
                     boolean enableTime;
                     DateFormat visualDateFormat;
                     if (extras != null) {
-                        Object enableTimeExtra = extras.get(FieldExtras.Date.KEY_ENABLE_TIME, false);
+                        Object enableTimeExtra = extras.containsKey(FieldExtras.Date.KEY_ENABLE_TIME) ? extras.get(FieldExtras.Date.KEY_ENABLE_TIME) : false;
                         if (enableTimeExtra instanceof Boolean) {
                             enableTime = (boolean) enableTimeExtra;
                         } else {
                             throw new ClassCastException("The attribute FieldExtras.Date.KEY_ENABLE_TIME must be a boolean");
                         }
 
-                        Object dateFormat = extras.get(FieldExtras.Date.KEY_DATE_FORMAT, enableTime ? defaultFormat + " - HH:mm" : defaultFormat);
+                        Object dateFormat = extras.containsKey(FieldExtras.Date.KEY_DATE_FORMAT) ? extras.get(FieldExtras.Date.KEY_DATE_FORMAT) : enableTime ? defaultFormat + " - HH:mm" : defaultFormat;
                         if (dateFormat instanceof String) {
                             visualDateFormat = new SimpleDateFormat((String) dateFormat, Locale.US);
                         } else {
@@ -453,7 +454,7 @@ public class FieldsFragment extends Fragment implements
                     TextInputLayout textInputLayout = (TextInputLayout) rowObj;
 
                     String text = (String) fieldInfos.mFieldValues.get(orchardKey);
-                    final SparseArray extras = fieldInfo.getExtras();
+                    final HashMap<Integer, Object> extras = fieldInfo.getExtras();
                     Object inputType;
                     if (TextUtils.isEmpty(text)) {
                         if (fieldInfo.isRequired()) {
@@ -461,7 +462,7 @@ public class FieldsFragment extends Fragment implements
                             valid = false;
                         }
                     } else if (extras != null
-                            && objectIsInteger(inputType = extras.get(FieldExtras.Text.KEY_INPUT_TYPE, InputType.TYPE_NULL))
+                            && objectIsInteger(inputType = extras.containsKey(FieldExtras.Text.KEY_INPUT_TYPE) ? extras.get(FieldExtras.Text.KEY_INPUT_TYPE) : InputType.TYPE_NULL)
                             && numberInputType(((Number) inputType).intValue())) {
                         try {
                             NumberFormat.getNumberInstance(Locale.US).parse(text);
