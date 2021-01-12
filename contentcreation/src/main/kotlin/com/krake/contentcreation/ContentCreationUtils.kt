@@ -16,7 +16,7 @@ import java.util.*
  */
 object ContentCreationUtils {
 
-    const val CONTENT_CREATION_DATE_PATTERN = "dd/MM/yyyy HH.mmZ"
+    const val CONTENT_CREATION_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss"
 
     /**
      * Metodo di utilità che permette di creare una ContentDefinition già valorizzata con i seguenti valori:

@@ -465,7 +465,7 @@ public class FieldsFragment extends Fragment implements
                             && objectIsInteger(inputType = extras.containsKey(FieldExtras.Text.KEY_INPUT_TYPE) ? extras.get(FieldExtras.Text.KEY_INPUT_TYPE) : InputType.TYPE_NULL)
                             && numberInputType(((Number) inputType).intValue())) {
                         try {
-                            NumberFormat.getNumberInstance(Locale.US).parse(text);
+                            NumberFormat.getNumberInstance().parse(text);
                         } catch (ParseException e) {
                             error = activity.getString(R.string.error_invalid_number);
                             valid = false;
@@ -574,13 +574,29 @@ public class FieldsFragment extends Fragment implements
 
         for (ContentCreationTabInfo.FieldInfo fieldInfo : mContentFields.getFields()) {
             String orchardKey = fieldInfo.getOrchardKey();
+            HashMap<Integer, Object> extras = fieldInfo.getExtras();
+            Object inputType;
 
             switch (fieldInfo.getType()) {
                 case ContentCreationTabInfo.FIELD_TYPE_TEXT:
                     String text = (String) fieldInfos.mFieldValues.get(orchardKey);
 
                     if (!TextUtils.isEmpty(text)) {
-                        parameters.addProperty(orchardKey, text);
+                        if ( extras != null
+                                && objectIsInteger(inputType = extras.containsKey(FieldExtras.Text.KEY_INPUT_TYPE) ? extras.get(FieldExtras.Text.KEY_INPUT_TYPE) : InputType.TYPE_NULL)
+                                && numberInputType(((Number) inputType).intValue())) {
+                            //set number
+                            try {
+                                Number value = NumberFormat.getNumberInstance().parse(text);
+                                parameters.addProperty(orchardKey, value);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            //set text
+                            parameters.addProperty(orchardKey, text);
+                        }
+
                     }
                     break;
 
