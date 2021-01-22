@@ -1,12 +1,11 @@
 package com.krake.core.network.interceptor
 
 import android.content.Context
-import android.os.SystemClock
 import android.text.TextUtils
 import android.util.Base64
 import com.krake.core.R
+import com.krake.core.extension.DateNTP
 import com.krake.core.messaging.MessagingService
-import com.krake.core.net.SntpClient
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.ByteArrayOutputStream
@@ -21,10 +20,6 @@ class SecurityHeaderInterceptor(context: Context) : Interceptor
     private val orchardApiKey: String = context.getString(R.string.orchard_api_key)
     private val apiChannel: String = context.getString(R.string.orchard_api_channel)
     private val ntpServers: Array<String> = context.resources.getStringArray(R.array.ntp_servers)
-
-    private var ntpTime: Long = 0
-    private var ntpSystemReference: Long = 0
-    private var ntpClientTimeLoaded = false
 
     override fun intercept(chain: Interceptor.Chain): Response
     {
@@ -41,10 +36,10 @@ class SecurityHeaderInterceptor(context: Context) : Interceptor
         {
             if (!TextUtils.isEmpty(orchardApiKey) && !TextUtils.isEmpty(encryptionKey))
             {
-                if (!ntpClientTimeLoaded)
-                    loadNtpTimeStamp()
+                if (!DateNTP.isNtpClientTimeLoaded())
+                    DateNTP.loadNtpTime(ntpServers)
 
-                val now = (if (ntpClientTimeLoaded) ntpTime + SystemClock.elapsedRealtime() - ntpSystemReference else Date().time) / 1000
+                val now = DateNTP.ntpNowInMillis() /1000
 
                 val sb = StringBuilder(orchardApiKey)
                 sb.append(':')
@@ -83,19 +78,5 @@ class SecurityHeaderInterceptor(context: Context) : Interceptor
         return chain.proceed(builder.build())
     }
 
-    private fun loadNtpTimeStamp()
-    {
-        val client = SntpClient()
 
-        for (server in ntpServers)
-        {
-            if (client.requestTime(server, 10000))
-            {
-                ntpTime = client.ntpTime
-                ntpSystemReference = client.ntpTimeReference
-                ntpClientTimeLoaded = true
-                break
-            }
-        }
-    }
 }
