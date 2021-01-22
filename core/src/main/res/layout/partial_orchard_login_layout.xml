@@ -9,21 +9,22 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_input_text_layout"
+        android:hint="@string/username"
         style="@style/LoginInputLayout">
 
         <androidx.appcompat.widget.AppCompatEditText
             style="@style/LoginEditText"
-            android:hint="@string/username"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_input_text_layout"
+        android:hint="@string/password"
         style="@style/LoginInputLayout">
 
         <androidx.appcompat.widget.AppCompatEditText
             style="@style/LoginEditText"
-            android:hint="@string/password"
+
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 

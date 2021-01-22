@@ -21,42 +21,42 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/username_input_text_layout"
+            android:hint="@string/username"
             style="@style/LoginInputLayout">
 
             <androidx.appcompat.widget.AppCompatEditText
                 style="@style/LoginEditText"
-                android:hint="@string/username"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_input_text_layout"
+            android:hint="@string/password"
             style="@style/LoginInputLayout">
 
             <androidx.appcompat.widget.AppCompatEditText
                 style="@style/LoginEditText"
-                android:hint="@string/password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_confirm_text_layout"
+            android:hint="@string/confirm_password"
             style="@style/LoginInputLayout">
 
             <EditText
                 style="@style/LoginEditText"
-                android:hint="@string/confirm_password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/telephone_number_text_layout"
+            android:hint="@string/telephone_number"
             style="@style/LoginInputLayout"
             android:visibility="gone">
 
             <EditText
                 style="@style/LoginEditText"
-                android:hint="@string/telephone_number"
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
