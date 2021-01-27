@@ -4,7 +4,6 @@
     <string-array name="facebook_permissions">
         <item>public_profile</item>
         <item>email</item>
-        <item>user_birthday</item>
     </string-array>
 
     <string name="login_button_manager_facebook">com.krake.facebook.FacebookLoginButtonManager</string>
