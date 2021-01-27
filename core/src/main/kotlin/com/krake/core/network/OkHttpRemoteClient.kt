@@ -28,6 +28,7 @@ import okhttp3.internal.http.HttpMethod
 import java.io.File
 import java.io.IOException
 import java.lang.ref.WeakReference
+import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClient.Mode) : RemoteClient
@@ -48,12 +49,17 @@ internal class OkHttpRemoteClient(context: Context, private val mode: RemoteClie
         analyticsWeakRef = WeakReference(context.applicationContext as AnalyticsApplication)
         enableLogs = context.resources.getBoolean(R.bool.enable_network_logs)
         baseOrchardUrl = context.getString(R.string.orchard_base_service_url)
+        val timeoutSeconds = context.resources.getInteger(R.integer.orchard_timeout_seconds).toLong()
         client = OkHttpClient.Builder()
                 .cookieJar(
                         PersistentCookieJar(
                                 SetCookieCache(),
                                 SharedPrefsCookiePersistor(context.getSharedPreferences("OkHttpStore-" + mode.name, Context.MODE_PRIVATE)))
                 )
+                .callTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
                 .addInterceptor(SecurityHeaderInterceptor(context))
                 .addNetworkInterceptor(AuthenticatedUserHeaderInterceptor(context))
                 .addInterceptor(OrchardErrorInterceptor())

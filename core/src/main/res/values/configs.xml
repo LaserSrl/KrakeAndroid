@@ -14,6 +14,7 @@
     <string name="header_key" translatable="false" />
     <string name="orchard_api_key" translatable="false" />
     <string name="orchard_api_channel" translatable="false" />
+    <integer name="orchard_timeout_seconds">30</integer>
 
     <!-- Cache -->
     <integer name="orchard_default_page_size">25</integer>
