@@ -238,8 +238,7 @@ open class ContentItemGridModelFragment : OrchardDataModelFragment(),
 
                 val page = Math.ceil(1.0 * dataModel.listData.size / orchardComponentModule.pageSize).toInt()
 
-                if (page > dataConnectionModel.page)
-                    dataConnectionModel.page = page
+                dataConnectionModel.page = page
             }
             else if (dataModel.cacheValid)
             {
