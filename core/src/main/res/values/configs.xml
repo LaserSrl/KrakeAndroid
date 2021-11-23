@@ -26,6 +26,7 @@
 
     <bool name="enable_analytics">false</bool>
     <bool name="enable_network_logs">false</bool>
+    <bool name="enable_open_push_notification_event">true</bool>
 
     <bool name="enable_social_sharing_on_details">true</bool>
     <bool name="show_location_poi_directions">true</bool>

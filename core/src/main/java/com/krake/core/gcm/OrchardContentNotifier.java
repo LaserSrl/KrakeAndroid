@@ -125,6 +125,8 @@ public class OrchardContentNotifier {
                     resultObject,
                     remoteMessageExtras);
 
+            activityIntent.putExtra(KrakeApplication.OPEN_PUSH_NOTIFICATION, context.getResources().getBoolean(R.bool.enable_open_push_notification_event));
+
             PendingIntent contentIntent;
             if (upIntent == null) {
                 contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_ONE_SHOT);

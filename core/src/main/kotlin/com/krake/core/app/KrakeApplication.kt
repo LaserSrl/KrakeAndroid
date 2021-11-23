@@ -83,6 +83,7 @@ abstract class KrakeApplication : Application(),
         private val TAG = KrakeApplication::class.java.simpleName
 
         const val KRAKE_NOTIFICATION_CHANNEL = "krakeNotificationChannel"
+        const val OPEN_PUSH_NOTIFICATION = "open_push_notification"
     }
 
     private val registeredDetailsFragment =

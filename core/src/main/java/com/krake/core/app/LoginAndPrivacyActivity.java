@@ -87,6 +87,9 @@ public abstract class LoginAndPrivacyActivity
     public void onCreate(Bundle savedInstanceState, int layout) {
         super.onCreate(savedInstanceState, layout);
 
+        if(getIntent().getBooleanExtra(KrakeApplication.OPEN_PUSH_NOTIFICATION, false))
+            ((KrakeApplication) getApplication()).logEvent(KrakeApplication.OPEN_PUSH_NOTIFICATION, new Bundle());
+
         ViewModelProviders.of(this)
                 .get(PrivacyViewModel.class)
                 .getPrivacyStatus()
