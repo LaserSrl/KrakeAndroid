@@ -10,6 +10,7 @@
             android:label="@string/title_activity_cards"
             android:screenOrientation="@integer/activity_orientation"
             android:windowSoftInputMode="stateUnchanged"
+            android:exported="true"
             tools:ignore="ManifestResource">
             <meta-data
                 android:name="android.app.searchable"

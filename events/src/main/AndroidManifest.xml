@@ -9,6 +9,7 @@
     <application>
         <activity
             android:name=".EventActivity"
+            android:exported="true"
             android:label="@string/title_contentitem_list"
             android:screenOrientation="@integer/activity_orientation"
             android:windowSoftInputMode="stateUnchanged"

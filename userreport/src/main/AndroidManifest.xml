@@ -9,7 +9,8 @@
             android:label="@string/title_activity_reports"
             android:screenOrientation="@integer/activity_orientation"
             android:windowSoftInputMode="stateUnchanged"
-            tools:ignore="ManifestResource">
+            tools:ignore="ManifestResource"
+            android:exported="true">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable_voice" />

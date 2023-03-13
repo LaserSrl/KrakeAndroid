@@ -8,6 +8,7 @@
         <activity
             android:name=".GamesActivity"
             android:label="@string/games"
+            android:exported="true"
             android:screenOrientation="@integer/activity_orientation"
             android:windowSoftInputMode="stateUnchanged">
             <meta-data
