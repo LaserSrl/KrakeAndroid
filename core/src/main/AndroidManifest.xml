@@ -45,11 +45,10 @@
         <service
             android:name=".OrchardUploadService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="true" />
         <service
             android:name=".messaging.MessagingService"
-            android:exported="true"
-            tools:ignore="ExportedService">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -88,6 +87,7 @@
             android:name=".app.ContentItemListMapActivity"
             android:label="@string/title_contentitem_list"
             android:screenOrientation="@integer/activity_orientation"
+            android:exported="true"
             android:windowSoftInputMode="stateUnchanged|adjustNothing">
             <meta-data
                 android:name="android.app.searchable"
