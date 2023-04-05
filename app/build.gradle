@@ -72,7 +72,7 @@ android {
 
 }
 
-def leak_canary_version = '1.6.3'
+def leak_canary_version = '1.6.2'
 
 dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
