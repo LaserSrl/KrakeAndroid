@@ -8,7 +8,7 @@ apply plugin: 'krake'
 krake.modules "apkNameGenerator", "autoOrientation"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     buildToolsVersion "29.0.3"
 
     compileOptions {
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId "mykrake.com.krakesample"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled = true
@@ -72,7 +72,7 @@ android {
 
 }
 
-def leak_canary_version = '1.6.2'
+def leak_canary_version = '1.6.3'
 
 dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
