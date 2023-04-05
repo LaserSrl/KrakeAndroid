@@ -4,12 +4,15 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArrayMap;
 import androidx.core.app.NotificationCompat;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -22,6 +25,7 @@ import com.krake.core.component.module.OrchardComponentModule;
 import com.krake.core.media.UploadableMediaInfo;
 import com.krake.core.network.RemoteRequest;
 import com.krake.core.network.RemoteResponse;
+
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
@@ -145,13 +149,25 @@ public class CreateContentUploadMediaEndListener implements UploadCompleteEndLis
                                         .dataClass(dataClass)
                                         .displayPath(alias))
                         .build();
-                PendingIntent resultPendingIntent =
-                        PendingIntent.getActivity(
-                                context,
-                                0,
-                                resultIntent,
-                                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT
-                        );
+                PendingIntent resultPendingIntent;
+                if (Build.VERSION.SDK_INT >= 31) {
+                    resultPendingIntent =
+                            PendingIntent.getActivity(
+                                    context,
+                                    0,
+                                    resultIntent,
+                                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE
+                            );
+                } else {
+
+                    resultPendingIntent =
+                            PendingIntent.getActivity(
+                                    context,
+                                    0,
+                                    resultIntent,
+                                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT
+                            );
+                }
 
                 builder.setContentIntent(resultPendingIntent);
             }

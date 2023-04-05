@@ -131,7 +131,7 @@ public class OrchardContentNotifier {
             PendingIntent contentIntent;
             if (upIntent == null) {
                 if (Build.VERSION.SDK_INT >= 31) {
-                    contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_IMMUTABLE);
+                    contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_ONE_SHOT);
                 } else {
                     contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_ONE_SHOT);
                 }
@@ -140,7 +140,7 @@ public class OrchardContentNotifier {
                     contentIntent = TaskStackBuilder.create(context)
                             .addNextIntent(upIntent)
                             .addNextIntent(activityIntent)
-                            .getPendingIntent(new Random().nextInt(), PendingIntent.FLAG_IMMUTABLE);
+                            .getPendingIntent(new Random().nextInt(), PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_ONE_SHOT);
                 } else {
                     contentIntent = TaskStackBuilder.create(context)
                             .addNextIntent(upIntent)
