@@ -342,8 +342,9 @@ class NavigationDataSource(val context: Context) : NavigationItemIntentSelection
                 .with(
                     ThemableComponentModule()
                         .title("Title"),
-                    LoginComponentModule()
-                        .loginRequired(true),
+                    //For test try comment this:
+                    LoginComponentModule().loginRequired(true),
+
                     SurveyComponentModule(context),
                     OrchardComponentModule()
                         .dataClass(Questionnaire::class.java)

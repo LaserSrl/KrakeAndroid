@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Configurazioni base-->
-    <string name="orchard_base_service_url" translatable="false">https://team00.mykrake.com/</string>
+    <string name="orchard_base_service_url" translatable="false">https://test-team00.mykrake.com/</string>
+    <string name="header_key" translatable="false">CB5869ABFA4D063DF8816AE7C06BE4B6C4E63EDB9126A63079508689D0598DE8</string>
+    <string name="orchard_api_key" translatable="false">zjDW9tv4NBCSl7BGWgCXIH</string>
+    <string name="orchard_api_channel" translatable="false">Hkt00App</string>
 
     <string name="open_trip_planner_base_url">http://otp.laser-group.com:8080/otp/routers/sicilia/</string>
 
