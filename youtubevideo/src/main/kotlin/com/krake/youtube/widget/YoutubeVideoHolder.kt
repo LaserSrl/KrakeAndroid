@@ -1,6 +1,9 @@
 package com.krake.youtube.widget
 
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.view.View
+import com.google.android.libraries.places.api.Places
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubeThumbnailLoader
 import com.google.android.youtube.player.YouTubeThumbnailView
@@ -21,7 +24,18 @@ open class YoutubeVideoHolder(itemView: View) : ImageTextCellHolder(itemView),
     private var listener: OnThumbnailLoaderAvailable? = null
 
     init {
-        thumbnailView.initialize(itemView.context.getString(R.string.google_api_key), this)
+        val ai: ApplicationInfo = itemView.context.packageManager.getApplicationInfo(
+            itemView.context.packageName,
+            PackageManager.GET_META_DATA
+        )
+        val value = ai.metaData["com.google.android.geo.API_KEY"]
+//        val value = ai.metaData["key_value_google"]
+
+        var keyValue = ""
+        if(value != null) keyValue =  value.toString()
+
+        thumbnailView.initialize(keyValue, this)
+//        thumbnailView.initialize(itemView.context.getString(R.string.google_api_key), this)
     }
 
     fun setIndex(index: Int) {
