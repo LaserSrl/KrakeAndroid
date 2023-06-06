@@ -112,14 +112,14 @@ class BusStopGeofenceManager(context: Context, listener: Listener) : PermissionL
 
             addGeofence(
                 Geofence.Builder()
-                .setRequestId(contentItem.identifierOrStringIdentifier)
-                .setCircularRegion(
-                    mapPart.latitude,
-                    mapPart.longitude,
-                    radius
-                )
-                .setExpirationDuration(Geofence.NEVER_EXPIRE)
-                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER)
+                    .setRequestId(contentItem.identifierOrStringIdentifier)
+                    .setCircularRegion(
+                        mapPart.latitude,
+                        mapPart.longitude,
+                        radius
+                    )
+                    .setExpirationDuration(Geofence.NEVER_EXPIRE)
+                    .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER)
                     .build()
             )
         }

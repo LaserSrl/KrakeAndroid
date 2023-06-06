@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -205,8 +207,16 @@ public class OrchardUploadService extends MessengerAndWorkerMultithreadService {
         cancelIntent.setAction(INTENT_ACTION_CANCEL_UPLOAD);
         cancelIntent.addFlags(START_STICKY_COMPATIBILITY);
 
+        PendingIntent contentIntent;
+
+        if (Build.VERSION.SDK_INT >= 31) {
+            contentIntent = PendingIntent.getService(this, 0, cancelIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            contentIntent = PendingIntent.getService(this, 0, cancelIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        }
+
         final NotificationCompat.Action action = new NotificationCompat.Action(R.drawable.media_upload_cancel_icon, getString(android.R.string.cancel),
-                PendingIntent.getService(this, 0, cancelIntent, PendingIntent.FLAG_UPDATE_CURRENT));
+                contentIntent);
 
         startForeground(UPLOAD_CONTENT_NOTIFICATION_ID, getOnGoingStatusNotification(notificationTitle, notificationText, notificationDrawable, notificationProgressStart, maxProgress, action));
 

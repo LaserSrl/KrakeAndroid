@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,7 @@ public class OrchardContentNotifier {
                                         @Nullable String displayPath,
                                         @Nullable Map<String, String> connectionExtras,
                                         @Nullable Map<String, String> remoteMessageExtras) {
-        showNotification(context,text,resultObject,displayPath,connectionExtras,null, KrakeApplication.KRAKE_NOTIFICATION_CHANNEL);
+        showNotification(context, text, resultObject, displayPath, connectionExtras, null, KrakeApplication.KRAKE_NOTIFICATION_CHANNEL);
     }
 
     public static void showNotification(@NonNull Context context,
@@ -129,12 +130,23 @@ public class OrchardContentNotifier {
 
             PendingIntent contentIntent;
             if (upIntent == null) {
-                contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_ONE_SHOT);
+                if (Build.VERSION.SDK_INT >= 31) {
+                    contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_ONE_SHOT);
+                } else {
+                    contentIntent = PendingIntent.getActivity(context, new Random().nextInt(), activityIntent, PendingIntent.FLAG_ONE_SHOT);
+                }
             } else {
-                contentIntent = TaskStackBuilder.create(context)
-                        .addNextIntent(upIntent)
-                        .addNextIntent(activityIntent)
-                        .getPendingIntent(new Random().nextInt(), PendingIntent.FLAG_ONE_SHOT);
+                if (Build.VERSION.SDK_INT >= 31) {
+                    contentIntent = TaskStackBuilder.create(context)
+                            .addNextIntent(upIntent)
+                            .addNextIntent(activityIntent)
+                            .getPendingIntent(new Random().nextInt(), PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_ONE_SHOT);
+                } else {
+                    contentIntent = TaskStackBuilder.create(context)
+                            .addNextIntent(upIntent)
+                            .addNextIntent(activityIntent)
+                            .getPendingIntent(new Random().nextInt(), PendingIntent.FLAG_ONE_SHOT);
+                }
             }
             notificationBuilder.setContentIntent(contentIntent);
 
