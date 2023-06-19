@@ -1,4 +1,5 @@
-include ':app', ':rxfakeimport'
+include ':app'
+include':rxfakeimport'
 include ':autoupdate'
 include ':beacons'
 include ':cards'
@@ -18,4 +19,4 @@ include ':twitterstream'
 include ':userreport'
 include ':youtubevideo'
 
-//project(':app').projectDir = new File(settingsDir, '../vallicanavesaneandroid/app')
+//project(':app').projectDir = new File(settingsDir, '../PACTA/app')
