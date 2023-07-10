@@ -21,7 +21,7 @@ import java.util.Locale;
 Classe per fare una richiesta delle indicazioni su come arrivare ad una destinazione
  */
 public class Request implements Function2<RemoteResponse, OrchardError, Unit> {
-    private static final String GoogleMapsDirectionServiceEndPoint = "http://maps.googleapis.com/maps/api/directions/json";
+    private static final String GoogleMapsDirectionServiceEndPoint = "https://maps.googleapis.com/maps/api/directions/json";
     private final android.location.Location origin;
     private final android.location.Location destination;
     private final android.location.Location[] waypoints;
